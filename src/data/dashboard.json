@@ -1,0 +1,462 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "user1@example.com",
+      "password": "Password123!",
+      "name": "John Doe",
+      "role": "Administrator",
+      "avatar": "member1"
+    },
+    {
+      "id": "2",
+      "email": "user2@example.com",
+      "password": "Password123!",
+      "name": "Jane Smith",
+      "role": "Financial Analyst",
+      "avatar": "member2"
+    },
+    {
+      "id": "3",
+      "email": "user3@example.com",
+      "password": "Password123!",
+      "name": "Michael Brown",
+      "role": "Sales Director",
+      "avatar": "member3"
+    },
+    {
+      "id": "4",
+      "email": "user4@example.com",
+      "password": "Password123!",
+      "name": "Emily Davis",
+      "role": "Operations Manager",
+      "avatar": "member4"
+    },
+    {
+      "id": "5",
+      "email": "user5@example.com",
+      "password": "Password123!",
+      "name": "David Wilson",
+      "role": "Senior Developer",
+      "avatar": "member5"
+    },
+    {
+      "id": "6",
+      "email": "user6@example.com",
+      "password": "Password123!",
+      "name": "Jessica Taylor",
+      "role": "Marketing Lead",
+      "avatar": "member6"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "1",
+      "userId": "1",
+      "name": "John Doe",
+      "email": "user1@example.com",
+      "role": "Administrator",
+      "avatar": "member1",
+      "welcomeGreeting": "Congratulations John!",
+      "welcomeDescription": "You have done 72% more sales today. Check your new badge in your profile.",
+      "growthPercentage": 72,
+      "orders": {
+        "label": "Order",
+        "value": "276K",
+        "numericValue": 276000
+      },
+      "sales": {
+        "label": "Sales",
+        "value": "$4,679",
+        "numericValue": 4679,
+        "growth": "28.14%",
+        "growthDirection": "up"
+      },
+      "totalRevenue": {
+        "title": "Total Revenue",
+        "value": "$32.5k",
+        "growthIndicator": "78%",
+        "companyGrowth": "62%"
+      },
+      "payments": {
+        "title": "Payments",
+        "value": "$4,679",
+        "change": "-14.82%",
+        "changeDirection": "down"
+      },
+      "profitReport": {
+        "title": "Profit Report",
+        "year": "2023",
+        "growth": "14.82%",
+        "growthDirection": "up",
+        "profitValue": "$84,686k",
+        "numericValue": 84686000
+      },
+      "transactions": [
+        { "id": 1, "type": "Paypal", "description": "send money", "amount": "+82.6", "currency": "USD", "isCredit": true },
+        { "id": 2, "type": "wallet", "description": "Mac'D", "amount": "+270.69", "currency": "USD", "isCredit": true },
+        { "id": 3, "type": "Transfer", "description": "refund", "amount": "+637.91", "currency": "USD", "isCredit": true },
+        { "id": 4, "type": "Credit Card", "description": "Ordered food", "amount": "-838.71", "currency": "USD", "isCredit": false },
+        { "id": 5, "type": "wallet", "description": "Starbucks", "amount": "+203.33", "currency": "USD", "isCredit": true },
+        { "id": 6, "type": "mastercard", "description": "Ordered food", "amount": "+203.33", "currency": "USD", "isCredit": true }
+      ],
+      "activities": [
+        { "id": 1, "title": "12 Invoice have been paid", "timeLabel": "12 min ago", "description": "Invoices have been paid to the company", "statusColor": "#696cff" },
+        { "id": 2, "title": "Client Meeting", "timeLabel": "45 min ago", "description": "Project meeting with client @10:15am", "statusColor": "#ff9f43" },
+        { "id": 3, "title": "Create a new project for client", "timeLabel": "2 days ago", "description": "5 team members assigned", "statusColor": "#00cfe8" }
+      ]
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "name": "Jane Smith",
+      "email": "user2@example.com",
+      "role": "Financial Analyst",
+      "avatar": "member2",
+      "welcomeGreeting": "Congratulations Jane!",
+      "welcomeDescription": "You have achieved a 58% increase in payment closures this week.",
+      "growthPercentage": 58,
+      "orders": {
+        "label": "Order",
+        "value": "198K",
+        "numericValue": 198000
+      },
+      "sales": {
+        "label": "Sales",
+        "value": "$3,845",
+        "numericValue": 3845,
+        "growth": "19.40%",
+        "growthDirection": "up"
+      },
+      "totalRevenue": {
+        "title": "Total Revenue",
+        "value": "$28.1k",
+        "growthIndicator": "65%",
+        "companyGrowth": "55%"
+      },
+      "payments": {
+        "title": "Payments",
+        "value": "$3,845",
+        "change": "+12.30%",
+        "changeDirection": "up"
+      },
+      "profitReport": {
+        "title": "Profit Report",
+        "year": "2023",
+        "growth": "11.20%",
+        "growthDirection": "up",
+        "profitValue": "$68,230k",
+        "numericValue": 68230000
+      },
+      "transactions": [
+        { "id": 1, "type": "Transfer", "description": "Wire Deposit", "amount": "+420.00", "currency": "USD", "isCredit": true },
+        { "id": 2, "type": "Paypal", "description": "Client Retainer", "amount": "+150.25", "currency": "USD", "isCredit": true },
+        { "id": 3, "type": "Wallet", "description": "Coffee & Supplies", "amount": "+89.50", "currency": "USD", "isCredit": true },
+        { "id": 4, "type": "Credit Card", "description": "Software Subscription", "amount": "-310.00", "currency": "USD", "isCredit": false }
+      ],
+      "activities": [
+        { "id": 1, "title": "Quarterly financial audit completed", "timeLabel": "30 min ago", "description": "Ledger reconciled with bank statement", "statusColor": "#28c76f" },
+        { "id": 2, "title": "Payroll processed", "timeLabel": "2 hours ago", "description": "Disbursed to 42 employees", "statusColor": "#696cff" },
+        { "id": 3, "title": "Tax filing review", "timeLabel": "1 day ago", "description": "Signed off with certified CPA", "statusColor": "#ff9f43" }
+      ]
+    },
+    {
+      "id": "3",
+      "userId": "3",
+      "name": "Michael Brown",
+      "email": "user3@example.com",
+      "role": "Sales Director",
+      "avatar": "member3",
+      "welcomeGreeting": "Congratulations Michael!",
+      "welcomeDescription": "You have reached 84% more customer leads this month.",
+      "growthPercentage": 84,
+      "orders": {
+        "label": "Order",
+        "value": "342K",
+        "numericValue": 342000
+      },
+      "sales": {
+        "label": "Sales",
+        "value": "$6,120",
+        "numericValue": 6120,
+        "growth": "35.20%",
+        "growthDirection": "up"
+      },
+      "totalRevenue": {
+        "title": "Total Revenue",
+        "value": "$41.8k",
+        "growthIndicator": "88%",
+        "companyGrowth": "74%"
+      },
+      "payments": {
+        "title": "Payments",
+        "value": "$5,420",
+        "change": "-8.40%",
+        "changeDirection": "down"
+      },
+      "profitReport": {
+        "title": "Profit Report",
+        "year": "2023",
+        "growth": "22.15%",
+        "growthDirection": "up",
+        "profitValue": "$98,400k",
+        "numericValue": 98400000
+      },
+      "transactions": [
+        { "id": 1, "type": "Mastercard", "description": "Annual Enterprise Deal", "amount": "+1,520.00", "currency": "USD", "isCredit": true },
+        { "id": 2, "type": "Wallet", "description": "Client Lunch", "amount": "+315.80", "currency": "USD", "isCredit": true },
+        { "id": 3, "type": "Paypal", "description": "Commission Payout", "amount": "+850.00", "currency": "USD", "isCredit": true },
+        { "id": 4, "type": "Credit Card", "description": "Flight Booking", "amount": "-450.00", "currency": "USD", "isCredit": false }
+      ],
+      "activities": [
+        { "id": 1, "title": "Enterprise contract closed", "timeLabel": "10 min ago", "description": "Annual subscription renewal of $120k", "statusColor": "#28c76f" },
+        { "id": 2, "title": "Sales quarterly sync", "timeLabel": "1 hour ago", "description": "Target exceeded by 14%", "statusColor": "#696cff" },
+        { "id": 3, "title": "Demo with inbound lead", "timeLabel": "Yesterday", "description": "Scheduled follow-up presentation", "statusColor": "#00cfe8" }
+      ]
+    },
+    {
+      "id": "4",
+      "userId": "4",
+      "name": "Emily Davis",
+      "email": "user4@example.com",
+      "role": "Operations Manager",
+      "avatar": "member4",
+      "welcomeGreeting": "Congratulations Emily!",
+      "welcomeDescription": "You have expedited 63% more order dispatches today.",
+      "growthPercentage": 63,
+      "orders": {
+        "label": "Order",
+        "value": "165K",
+        "numericValue": 165000
+      },
+      "sales": {
+        "label": "Sales",
+        "value": "$2,950",
+        "numericValue": 2950,
+        "growth": "14.60%",
+        "growthDirection": "up"
+      },
+      "totalRevenue": {
+        "title": "Total Revenue",
+        "value": "$24.3k",
+        "growthIndicator": "54%",
+        "companyGrowth": "48%"
+      },
+      "payments": {
+        "title": "Payments",
+        "value": "$2,950",
+        "change": "+6.10%",
+        "changeDirection": "up"
+      },
+      "profitReport": {
+        "title": "Profit Report",
+        "year": "2023",
+        "growth": "9.80%",
+        "growthDirection": "up",
+        "profitValue": "$52,100k",
+        "numericValue": 52100000
+      },
+      "transactions": [
+        { "id": 1, "type": "Wallet", "description": "Fleet Maintenance", "amount": "+180.50", "currency": "USD", "isCredit": true },
+        { "id": 2, "type": "Transfer", "description": "Freight Settlement", "amount": "+330.00", "currency": "USD", "isCredit": true },
+        { "id": 3, "type": "Paypal", "description": "Warehouse Tools", "amount": "+95.00", "currency": "USD", "isCredit": true },
+        { "id": 4, "type": "Mastercard", "description": "Packaging Bulk Order", "amount": "-120.00", "currency": "USD", "isCredit": false }
+      ],
+      "activities": [
+        { "id": 1, "title": "Warehouse restocked", "timeLabel": "15 min ago", "description": "1,200 inventory units logged", "statusColor": "#ff9f43" },
+        { "id": 2, "title": "Supplier agreement renewed", "timeLabel": "3 hours ago", "description": "Lowered unit cost by 4%", "statusColor": "#28c76f" },
+        { "id": 3, "title": "Logistics audit report", "timeLabel": "2 days ago", "description": "On-time delivery score 98.4%", "statusColor": "#696cff" }
+      ]
+    },
+    {
+      "id": "5",
+      "userId": "5",
+      "name": "David Wilson",
+      "email": "user5@example.com",
+      "role": "Senior Developer",
+      "avatar": "member5",
+      "welcomeGreeting": "Congratulations David!",
+      "welcomeDescription": "You have completed 77% of release milestones ahead of schedule.",
+      "growthPercentage": 77,
+      "orders": {
+        "label": "Order",
+        "value": "220K",
+        "numericValue": 220000
+      },
+      "sales": {
+        "label": "Sales",
+        "value": "$4,250",
+        "numericValue": 4250,
+        "growth": "24.80%",
+        "growthDirection": "up"
+      },
+      "totalRevenue": {
+        "title": "Total Revenue",
+        "value": "$36.0k",
+        "growthIndicator": "72%",
+        "companyGrowth": "68%"
+      },
+      "payments": {
+        "title": "Payments",
+        "value": "$4,100",
+        "change": "-5.20%",
+        "changeDirection": "down"
+      },
+      "profitReport": {
+        "title": "Profit Report",
+        "year": "2023",
+        "growth": "16.40%",
+        "growthDirection": "up",
+        "profitValue": "$76,500k",
+        "numericValue": 76500000
+      },
+      "transactions": [
+        { "id": 1, "type": "Paypal", "description": "Cloud Infrastructure", "amount": "+340.00", "currency": "USD", "isCredit": true },
+        { "id": 2, "type": "Wallet", "description": "Domain Renewals", "amount": "+210.00", "currency": "USD", "isCredit": true },
+        { "id": 3, "type": "Credit Card", "description": "CI/CD Pipeline Credits", "amount": "+550.00", "currency": "USD", "isCredit": true },
+        { "id": 4, "type": "Transfer", "description": "Security Audit Fee", "amount": "-240.00", "currency": "USD", "isCredit": false }
+      ],
+      "activities": [
+        { "id": 1, "title": "Production deployment successful", "timeLabel": "5 min ago", "description": "Zero downtime release of v2.4.0", "statusColor": "#28c76f" },
+        { "id": 2, "title": "Core API optimizations", "timeLabel": "1 hour ago", "description": "P99 latency improved by 35ms", "statusColor": "#696cff" },
+        { "id": 3, "title": "Security patch merged", "timeLabel": "Yesterday", "description": "Passed automated vulnerability scan", "statusColor": "#00cfe8" }
+      ]
+    },
+    {
+      "id": "6",
+      "userId": "6",
+      "name": "Jessica Taylor",
+      "email": "user6@example.com",
+      "role": "Marketing Lead",
+      "avatar": "member6",
+      "welcomeGreeting": "Congratulations Jessica!",
+      "welcomeDescription": "You have generated 91% more campaign engagements this quarter.",
+      "growthPercentage": 91,
+      "orders": {
+        "label": "Order",
+        "value": "388K",
+        "numericValue": 388000
+      },
+      "sales": {
+        "label": "Sales",
+        "value": "$7,340",
+        "numericValue": 7340,
+        "growth": "43.70%",
+        "growthDirection": "up"
+      },
+      "totalRevenue": {
+        "title": "Total Revenue",
+        "value": "$49.5k",
+        "growthIndicator": "94%",
+        "companyGrowth": "82%"
+      },
+      "payments": {
+        "title": "Payments",
+        "value": "$6,890",
+        "change": "+18.50%",
+        "changeDirection": "up"
+      },
+      "profitReport": {
+        "title": "Profit Report",
+        "year": "2023",
+        "growth": "27.80%",
+        "growthDirection": "up",
+        "profitValue": "$115,200k",
+        "numericValue": 115200000
+      },
+      "transactions": [
+        { "id": 1, "type": "Mastercard", "description": "Ad Campaign Budget", "amount": "+780.00", "currency": "USD", "isCredit": true },
+        { "id": 2, "type": "Paypal", "description": "Influencer Collaboration", "amount": "+450.00", "currency": "USD", "isCredit": true },
+        { "id": 3, "type": "Transfer", "description": "Event Sponsorship", "amount": "+890.00", "currency": "USD", "isCredit": true },
+        { "id": 4, "type": "Wallet", "description": "Graphic Assets", "amount": "-160.00", "currency": "USD", "isCredit": false }
+      ],
+      "activities": [
+        { "id": 1, "title": "Brand campaign launched", "timeLabel": "20 min ago", "description": "Live across Facebook, Instagram, and LinkedIn", "statusColor": "#696cff" },
+        { "id": 2, "title": "Newsletter dispatched", "timeLabel": "4 hours ago", "description": "Delivered to 50k active subscribers (32% open rate)", "statusColor": "#28c76f" },
+        { "id": 3, "title": "Social media giveaway ended", "timeLabel": "2 days ago", "description": "Gained 4,800 new qualified followers", "statusColor": "#ff9f43" }
+      ]
+    }
+  ],
+  "navigation": {
+    "dashboardGroup": {
+      "title": "Dashboards",
+      "icon": "home",
+      "badge": null,
+      "items": [
+        { "id": "analytics", "title": "Analytics", "path": "/dashboard", "active": true },
+        { "id": "crm", "title": "CRM", "path": "/dashboard/crm", "active": false },
+        { "id": "ecommerce", "title": "eCommerce", "path": "/dashboard/ecommerce", "active": false }
+      ]
+    },
+    "sections": [
+      {
+        "title": "APPS & PAGES",
+        "items": [
+          { "id": "email", "title": "Email", "icon": "mail", "path": "/apps/email", "hasSubmenu": false },
+          { "id": "chat", "title": "Chat", "icon": "message-square", "path": "/apps/chat", "hasSubmenu": false },
+          { "id": "calendar", "title": "Calendar", "icon": "calendar", "path": "/apps/calendar", "hasSubmenu": false },
+          { "id": "invoice", "title": "Invoice", "icon": "file-text", "path": "/apps/invoice", "hasSubmenu": true },
+          { "id": "user", "title": "User", "icon": "user", "path": "/apps/user", "hasSubmenu": true },
+          { "id": "roles", "title": "Roles & Permissions", "icon": "shield", "path": "/apps/roles", "hasSubmenu": true },
+          { "id": "pages", "title": "Pages", "icon": "layout", "path": "/pages", "hasSubmenu": true },
+          { "id": "auth-pages", "title": "Auth Pages", "icon": "lock", "path": "/auth", "hasSubmenu": true }
+        ]
+      }
+    ]
+  },
+  "orderStatistics": {
+    "title": "Order Statistics",
+    "totalSales": "42.82K",
+    "totalOrders": "8,258",
+    "growthIndicator": "38%",
+    "categories": [
+      {
+        "name": "Electronic",
+        "description": "Mobile, Earbuds, TV",
+        "icon": "smartphone"
+      },
+      {
+        "name": "Fashion",
+        "description": "Tshirt, Jeans, Shoes",
+        "icon": "shopping-bag"
+      },
+      {
+        "name": "Decor",
+        "description": "Fine Art, Dining",
+        "icon": "home"
+      },
+      {
+        "name": "Sports",
+        "description": "Football, Cricket Kit",
+        "icon": "activity"
+      }
+    ]
+  },
+  "incomeChart": {
+    "tabs": ["Income", "Expenses", "Profit"],
+    "activeTab": "Income",
+    "totalIncome": "$459.1k",
+    "growth": "42.9%",
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+    "activeDataPoint": {
+      "month": "Apr",
+      "sales": 42
+    },
+    "weeklyIncome": {
+      "indicator": "6.5k",
+      "summary": "$39k less than last week"
+    }
+  },
+  "browserStatistics": {
+    "tabs": ["Browser", "Operating System", "Country"],
+    "activeTab": "Browser",
+    "entries": [
+      { "rank": 1, "browser": "Chrome", "visits": "8.92k", "percentage": "64.91%" },
+      { "rank": 2, "browser": "Safari", "visits": "1.29k", "percentage": "19.03%" },
+      { "rank": 3, "browser": "Firefox", "visits": "328", "percentage": "3.26%" },
+      { "rank": 4, "browser": "Edge", "visits": "142", "percentage": "3.99%" },
+      { "rank": 5, "browser": "Opera", "visits": "85", "percentage": "2.12%" },
+      { "rank": 6, "browser": "Brave", "visits": "36", "percentage": "1.06%" }
+    ]
+  }
+}

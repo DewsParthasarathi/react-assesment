@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+:root {
+  --bg: #ffffff;
+  --fg: #09090b;
+  --card-bg: #ffffff;
+  --muted-bg: #f4f4f5;
+  --muted-hover-bg: #e4e4e7;
+  --border-color: #e4e4e7;
+  --muted-fg: #71717a;
+  --page-bg: #fafafa;
+  --primary: #18181b;
+  --primary-hover: #27272a;
+  --primary-muted: #f4f4f5;
+  --danger: #ef4444;
+  --danger-muted: #fef2f2;
+  --fg-hover: #000000;
+  --border-hover: #d4d4d8;
+
+  --fs12: clamp(6.2px, 12vw * 100 / 1920, 12px);
+
+  --fs13: clamp(6.7166666667px, 13vw * 100 / 1920, 13px);
+
+  --fs14: clamp(7.2333333333px, 14vw * 100 / 1920, 14px);
+
+  --fs15: clamp(7.75px, 15vw * 100 / 1920, 15px);
+
+  --fs16: clamp(8.2666666667px, 16vw * 100 / 1920, 16px);
+
+  --fs17: clamp(8.7833333333px, 17vw * 100 / 1920, 17px);
+
+  --fs18: clamp(9.3px, 18vw * 100 / 1920, 18px);
+
+  --fs19: clamp(9.8166666667px, 19vw * 100 / 1920, 19px);
+
+  --fs20: clamp(10.3333333333px, 20vw * 100 / 1920, 20px);
+
+  --fs21: clamp(10.85px, 21vw * 100 / 1920, 21px);
+
+  --fs22: clamp(11.3666666667px, 22vw * 100 / 1920, 22px);
+
+  --fs23: clamp(11.8833333333px, 23vw * 100 / 1920, 23px);
+
+  --fs24: clamp(12.4px, 24vw * 100 / 1920, 24px);
+
+  --fs25: clamp(12.9166666667px, 25vw * 100 / 1920, 25px);
+
+  --fs26: clamp(13.4333333333px, 26vw * 100 / 1920, 26px);
+
+  --fs27: clamp(13.95px, 27vw * 100 / 1920, 27px);
+
+  --fs28: clamp(14.4666666667px, 28vw * 100 / 1920, 28px);
+
+  --fs29: clamp(14.9833333333px, 29vw * 100 / 1920, 29px);
+
+  --fs30: clamp(15.5px, calc(30vw * 100 / 1920), 30px);
+
+  --fs31: clamp(16.0166666667px, 31vw * 100 / 1920, 31px);
+
+  --fs32: clamp(16.5333333333px, 32vw * 100 / 1920, 32px);
+
+  --fs33: clamp(17.05px, 33vw * 100 / 1920, 33px);
+
+  --fs34: clamp(17.5666666667px, 34vw * 100 / 1920, 34px);
+
+  --fs35: clamp(18.0833333333px, 35vw * 100 / 1920, 35px);
+
+  --fs36: clamp(18.6px, 36vw * 100 / 1920, 36px);
+
+  --fs37: clamp(19.1166666667px, 37vw * 100 / 1920, 37px);
+
+  --fs38: clamp(19.6333333333px, 38vw * 100 / 1920, 38px);
+
+  --fs39: clamp(20.15px, 39vw * 100 / 1920, 39px);
+
+  --fs40: clamp(20.6666666667px, 40vw * 100 / 1920, 40px);
+
+  --fs41: clamp(21.1833333333px, 41vw * 100 / 1920, 41px);
+
+  --fs42: clamp(21.7px, 42vw * 100 / 1920, 42px);
+
+  --fs43: clamp(22.2166666667px, 43vw * 100 / 1920, 43px);
+
+  --fs44: clamp(22.7333333333px, 44vw * 100 / 1920, 44px);
+
+  --fs45: clamp(23.25px, 45vw * 100 / 1920, 45px);
+
+  --fs46: clamp(23.7666666667px, 46vw * 100 / 1920, 46px);
+
+  --fs47: clamp(24.2833333333px, 47vw * 100 / 1920, 47px);
+
+  --fs48: clamp(24.8px, 48vw * 100 / 1920, 48px);
+
+  --fs49: clamp(25.3166666667px, 49vw * 100 / 1920, 49px);
+
+  --fs50: clamp(25.8333333333px, 50vw * 100 / 1920, 50px);
+
+  --fs51: clamp(26.35px, 51vw * 100 / 1920, 51px);
+
+  --fs52: clamp(26.8666666667px, 52vw * 100 / 1920, 52px);
+
+  --fs53: clamp(27.3833333333px, 53vw * 100 / 1920, 53px);
+
+  --fs54: clamp(27.9px, 54vw * 100 / 1920, 54px);
+
+  --fs55: clamp(28.4166666667px, 55vw * 100 / 1920, 55px);
+
+  --fs56: clamp(28.9333333333px, 56vw * 100 / 1920, 56px);
+
+  --fs57: clamp(29.45px, 57vw * 100 / 1920, 57px);
+
+  --fs58: clamp(29.9666666667px, 58vw * 100 / 1920, 58px);
+
+  --fs59: clamp(30.4833333333px, 59vw * 100 / 1920, 59px);
+
+  --fs60: clamp(31px, 60vw * 100 / 1920, 60px);
+
+  --fs61: clamp(31.5166666667px, 61vw * 100 / 1920, 61px);
+
+  --fs62: clamp(32.0333333333px, 62vw * 100 / 1920, 62px);
+
+  --fs63: clamp(32.55px, 63vw * 100 / 1920, 63px);
+
+  --fs64: clamp(33.0666666667px, 64vw * 100 / 1920, 64px);
+
+  --fs65: clamp(33.5833333333px, 65vw * 100 / 1920, 65px);
+
+  --fs66: clamp(34.1px, 66vw * 100 / 1920, 66px);
+
+  --fs67: clamp(34.6166666667px, 67vw * 100 / 1920, 67px);
+
+  --fs68: clamp(35.1333333333px, 68vw * 100 / 1920, 68px);
+
+  --fs69: clamp(35.65px, 69vw * 100 / 1920, 69px);
+
+  --fs70: clamp(36.17px, 3.646vw, 70px);
+
+  --fs71: clamp(36.6833333333px, 71vw * 100 / 1920, 71px);
+
+  --fs72: clamp(37.2px, 72vw * 100 / 1920, 72px);
+
+  --fs73: clamp(37.7166666667px, 73vw * 100 / 1920, 73px);
+
+  --fs74: clamp(38.2333333333px, 74vw * 100 / 1920, 74px);
+
+  --fs75: clamp(38.75px, 75vw * 100 / 1920, 75px);
+
+  --fs76: clamp(39.2666666667px, 76vw * 100 / 1920, 76px);
+
+  --fs77: clamp(39.7833333333px, 77vw * 100 / 1920, 77px);
+
+  --fs78: clamp(40.3px, 78vw * 100 / 1920, 78px);
+
+  --fs79: clamp(40.8166666667px, 79vw * 100 / 1920, 79px);
+
+  --fs80: clamp(41.3333333333px, 80vw * 100 / 1920, 80px);
+
+  --fs90: clamp(42.8166666667px, 90vw * 100 / 1920, 90px);
+
+  --fs100: clamp(42.3333333333px, 100vw * 100 / 1920, 100px);
+
+  --fs120: clamp(43.8166666667px, 120vw * 100 / 1920, 120px);
+}
+
+@theme inline {
+  --text-fs12: var(--fs12);
+  --text-fs13: var(--fs13);
+  --text-fs14: var(--fs14);
+  --text-fs15: var(--fs15);
+  --text-fs16: var(--fs16);
+  --text-fs17: var(--fs17);
+  --text-fs18: var(--fs18);
+  --text-fs19: var(--fs19);
+  --text-fs20: var(--fs20);
+  --text-fs21: var(--fs21);
+  --text-fs22: var(--fs22);
+  --text-fs23: var(--fs23);
+  --text-fs24: var(--fs24);
+  --text-fs25: var(--fs25);
+  --text-fs26: var(--fs26);
+  --text-fs27: var(--fs27);
+  --text-fs28: var(--fs28);
+  --text-fs29: var(--fs29);
+  --text-fs30: var(--fs30);
+  --text-fs31: var(--fs31);
+  --text-fs32: var(--fs32);
+  --text-fs33: var(--fs33);
+  --text-fs34: var(--fs34);
+  --text-fs35: var(--fs35);
+  --text-fs36: var(--fs36);
+  --text-fs37: var(--fs37);
+  --text-fs38: var(--fs38);
+  --text-fs39: var(--fs39);
+  --text-fs40: var(--fs40);
+  --text-fs41: var(--fs41);
+  --text-fs42: var(--fs42);
+  --text-fs43: var(--fs43);
+  --text-fs44: var(--fs44);
+  --text-fs45: var(--fs45);
+  --text-fs46: var(--fs46);
+  --text-fs47: var(--fs47);
+  --text-fs48: var(--fs48);
+  --text-fs49: var(--fs49);
+  --text-fs50: var(--fs50);
+  --text-fs51: var(--fs51);
+  --text-fs52: var(--fs52);
+  --text-fs53: var(--fs53);
+  --text-fs54: var(--fs54);
+  --text-fs55: var(--fs55);
+  --text-fs56: var(--fs56);
+  --text-fs57: var(--fs57);
+  --text-fs58: var(--fs58);
+  --text-fs59: var(--fs59);
+  --text-fs60: var(--fs60);
+  --text-fs61: var(--fs61);
+  --text-fs62: var(--fs62);
+  --text-fs63: var(--fs63);
+  --text-fs64: var(--fs64);
+  --text-fs65: var(--fs65);
+  --text-fs66: var(--fs66);
+  --text-fs67: var(--fs67);
+  --text-fs68: var(--fs68);
+  --text-fs69: var(--fs69);
+  --text-fs70: var(--fs70);
+  --text-fs71: var(--fs71);
+  --text-fs72: var(--fs72);
+  --text-fs73: var(--fs73);
+  --text-fs74: var(--fs74);
+  --text-fs75: var(--fs75);
+  --text-fs76: var(--fs76);
+  --text-fs77: var(--fs77);
+  --text-fs78: var(--fs78);
+  --text-fs79: var(--fs79);
+  --text-fs80: var(--fs80);
+  --text-fs90: var(--fs90);
+  --text-fs100: var(--fs100);
+  --text-fs120: var(--fs120);
+
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-card: var(--card-bg);
+  --color-muted: var(--muted-bg);
+  --color-muted-hover: var(--muted-hover-bg);
+  --color-border: var(--border-color);
+  --color-muted-foreground: var(--muted-fg);
+  --color-page-bg: var(--page-bg);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-muted: var(--primary-muted);
+  --color-danger: var(--danger);
+  --color-danger-muted: var(--danger-muted);
+  --color-foreground-hover: var(--fg-hover);
+  --color-border-hover: var(--border-hover);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--page-bg);
+  color: var(--fg);
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
