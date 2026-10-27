@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import walletIcon from "../../../assets/images/wallet.svg";
+import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
 
 interface SalesCardProps {
   value?: string;
   growth?: string;
+  growthDirection?: "up" | "down";
+  years?: Record<string, { value: string; growth?: string; growthDirection?: "up" | "down" }>;
+  availableYears?: string[];
 }
 
 export const SalesCard: React.FC<SalesCardProps> = ({
   value = "$4,679",
   growth = "28.14%",
+  growthDirection = "up",
+  years,
+  availableYears = ["2023", "2022"],
 }) => {
+  const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const active = years && years[selectedYear] ? years[selectedYear] : { value, growth, growthDirection };
+  const displayValue = active.value ?? value;
+  const displayGrowth = active.growth ?? growth;
+  const isUp = (active.growthDirection ?? growthDirection) === "up" || (!displayGrowth.startsWith("-") && !displayGrowth.includes("down"));
+
   return (
     <div className="bg-white rounded-[5px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full ">
       <div className="flex items-center justify-between">
@@ -20,23 +33,33 @@ export const SalesCard: React.FC<SalesCardProps> = ({
             className="w-full h-full object-contain"
           />
         </div>
-        <button
-          type="button"
-          aria-label="Options"
-          className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
+        <YearSelectionPopup
+          selectedYear={selectedYear}
+          onSelectYear={setSelectedYear}
+          availableYears={availableYears}
         >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-          </svg>
-        </button>
+          <button
+            type="button"
+            aria-label="Options"
+            className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+          </button>
+        </YearSelectionPopup>
       </div>
 
       <div>
-        <p className="text-fs14 font-medium text-[#6f6b7d]">Sales</p>
-        <p className="text-fs24 font-bold text-[#32475c] mt-1">{value}</p>
-        <p className="text-fs13 font-semibold text-[#71dd37] mt-3 flex items-center gap-1">
-          <span>↑</span>
-          <span>{growth}</span>
+        <p className="text-fs18 font-normal text-[#a5a3ae]">Sales</p>
+        <p className="text-fs24 font-semibold text-[#444050] mt-1">{displayValue}</p>
+        <p
+          className={`text-fs16 font-normal mt-3 flex items-center gap-1 ${
+            isUp ? "text-[#71dd37]" : "text-[#ea5455]"
+          }`}
+        >
+          <span>{isUp ? "↑" : "↓"}</span>
+          <span>{displayGrowth.replace(/^[+-]/, "")}</span>
         </p>
       </div>
     </div>

@@ -118,12 +118,33 @@ export const IncomeChartCard: React.FC = () => {
 
   const current = tabData[activeTab];
 
+  // Same values as before; only the end marker styling is normalised so the
+  // last point shows a white ring with a purple border, as in the reference.
+  const seriesPoints: Highcharts.PointOptionsObject[] = (
+    current.points as (number | Highcharts.PointOptionsObject)[]
+  ).map((point, idx, all) => {
+    const y = typeof point === "number" ? point : (point.y ?? 0);
+    return idx === all.length - 1
+      ? {
+          y,
+          marker: {
+            enabled: true,
+            radius: 6,
+            fillColor: "#ffffff",
+            lineColor: "#696cff",
+            lineWidth: 3,
+          },
+        }
+      : { y };
+  });
+
   const chartOptions: Highcharts.Options = {
     chart: {
       type: "areaspline",
       height: 190,
       backgroundColor: "transparent",
-      margin: [25, 10, 30, 10],
+      margin: [25, 16, 30, 0],
+      spacing: [0, 0, 0, 0],
     },
     title: { text: undefined },
     credits: { enabled: false },
@@ -132,19 +153,39 @@ export const IncomeChartCard: React.FC = () => {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
       lineWidth: 0,
       tickWidth: 0,
+      plotLines:
+        activeTab === "INCOME"
+          ? [
+              {
+                value: 3,
+                width: 1,
+                color: "#dbdade",
+                dashStyle: "Dash",
+                zIndex: 1,
+              },
+            ]
+          : [],
       labels: {
+        rotation: 0,
+        autoRotation: [0],
         useHTML: true,
         formatter: function () {
           if (this.value === "Apr") {
-            return '<span style="background: #ebeef0; color: #32475c; font-weight: 600; padding: 2px 8px; border-radius: 4px; font-size: 11px;">Apr</span>';
+            return '<span style="background: #ebeef0; color: #32475c; font-weight: 600; padding: 2px 8px; border-radius: 4px; font-size: 14px;">Apr</span>';
           }
-          return `<span style="color: #a5a3ae; font-size: 11px;">${this.value}</span>`;
+          return `<span style="color: #a5a3ae; font-size: 14px;">${this.value}</span>`;
         },
       },
     },
     yAxis: {
-      visible: false,
       min: 0,
+      max: 50,
+      tickInterval: 10,
+      title: { text: undefined },
+      labels: { enabled: false },
+      gridLineWidth: 1,
+      gridLineDashStyle: "Dash",
+      gridLineColor: "#ebeef0",
     },
     tooltip: {
       enabled: true,
@@ -159,15 +200,17 @@ export const IncomeChartCard: React.FC = () => {
     },
     plotOptions: {
       areaspline: {
+        pointPlacement: "on",
+        clip: false,
         fillColor: {
           linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
           stops: [
-            [0, "rgba(105, 108, 255, 0.45)"],
-            [1, "rgba(105, 108, 255, 0.0)"],
+            [0, "rgba(105, 108, 255, 0.4)"],
+            [1, "rgba(105, 108, 255, 0.02)"],
           ],
         },
         lineColor: "#696cff",
-        lineWidth: 3,
+        lineWidth: 2,
         marker: {
           enabled: false,
           states: {
@@ -179,7 +222,7 @@ export const IncomeChartCard: React.FC = () => {
     series: [
       {
         type: "areaspline",
-        data: current.points as (number | Highcharts.PointOptionsObject)[],
+        data: seriesPoints,
       },
     ],
   };
@@ -194,39 +237,46 @@ export const IncomeChartCard: React.FC = () => {
     <div className="bg-white rounded-[5px] p-6 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       {/* 3 Tabs at Top */}
       <div>
-        <Tabs
-          tabs={tabItems}
-          activeTab={activeTab}
-          onChange={(tabId) => setActiveTab(tabId as TabType)}
-          renderContent={false}
-          tabListClassName="flex items-center gap-1.5 p-1 bg-[#f8f7fa] rounded-lg w-fit"
-        />
+        <div className="-mx-6 -mt-2 px-6 pb-4 border-b border-[#dbdade]/60">
+          <Tabs
+            tabs={tabItems}
+            activeTab={activeTab}
+            onChange={(tabId) => setActiveTab(tabId as TabType)}
+            renderContent={false}
+            tabListClassName="flex items-center gap-2 w-fit"
+            tabButtonClassName="px-4 py-2 rounded-[5px] text-fs14 font-normal transition cursor-pointer flex items-center gap-2 select-none"
+            activeTabClassName="bg-[#696cff] text-white"
+            inactiveTabClassName="text-[#6f6b7d] hover:text-[#444050]"
+          />
+        </div>
 
         {/* Total Label & Value */}
-        <div className="mt-5">
-          <p className="text-fs13 text-[#a5a3ae]">{current.label}</p>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-fs24 font-bold text-[#32475c]">
+        <div className="mt-6 pl-11">
+          <p className="text-fs18 font-medium text-[#6f6b7d]">
+            {current.label}
+          </p>
+          <div className="flex items-center gap-5 mt-1.5">
+            <span className="text-fs18 font-semibold text-[#444050]">
               {current.value}
             </span>
-            <span className="px-2 py-0.5 rounded text-fs12 font-medium bg-[#e8fadf] text-[#71dd37]">
-              ↑ {current.percentage}
+            <span className="text-fs16 font-normal text-[#71dd37]">
+              {current.percentage}
             </span>
           </div>
         </div>
 
         {/* Highcharts Area Spline Chart */}
-        <div className="relative -mx-2 mt-1">
+        <div className="relative -mx-6 mt-1">
           <Chart options={chartOptions} />
           {/* Static reference Apr Tooltip Overlay matching screenshot */}
           {activeTab === "INCOME" && (
-            <div className="absolute top-2 left-[52%] -translate-x-1/2 bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)] border border-[#dbdade]/60 px-3 py-1 text-center pointer-events-none">
-              <span className="text-[11px] text-[#a5a3ae] font-medium block">
+            <div className="absolute top-2 left-[50%] -translate-x-1/2 bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)] border border-[#dbdade]/60 px-3 py-2 pointer-events-none">
+              <span className="text-fs16 font-medium text-[#444050] block text-left">
                 Apr
               </span>
-              <span className="text-fs12 font-bold text-[#32475c] flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-[#696cff]" />
-                Sales: 42
+              <span className="text-fs13 font-normal text-[#6f6b7d] flex items-center gap-2 mt-0.5">
+                <span className="w-3 h-3 rounded-full bg-[#696cff]" />
+                Series - 1: <b className="font-medium text-[#444050]">42</b>
               </span>
             </div>
           )}
@@ -234,17 +284,17 @@ export const IncomeChartCard: React.FC = () => {
       </div>
 
       {/* Bottom Summary Indicator */}
-      <div className="flex items-center gap-3 pt-4 border-t border-[#dbdade]/40 mt-3">
-        <div className="w-10 h-10 rounded-full border-2 border-[#696cff] flex items-center justify-center shrink-0">
-          <span className="text-fs11 font-bold text-[#696cff]">
+      <div className="flex items-center justify-center gap-4 pt-2 mt-1">
+        <div className="w-11 h-11 rounded-full border-[3px] border-[#696cff] border-t-[#d7d8ff] flex items-center justify-center shrink-0">
+          <span className="text-fs12 font-normal text-[#6f6b7d] leading-none">
             {current.indicator}
           </span>
         </div>
         <div>
-          <p className="text-fs14 font-semibold text-[#32475c] leading-tight">
+          <p className="text-fs16 font-medium text-[#6f6b7d] leading-tight">
             {current.summary}
           </p>
-          <p className="text-fs12 text-[#a5a3ae] leading-tight mt-0.5">
+          <p className="text-fs13 font-normal text-[#a5a3ae] leading-tight mt-1">
             {current.subSummary}
           </p>
         </div>

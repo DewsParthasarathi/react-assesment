@@ -91,6 +91,31 @@ function mockApiPlugin(): Plugin {
           return;
         }
 
+        // 2.5. GET /api/dashboard/crm
+        if (req.method === "GET" && pathname === "/api/dashboard/crm") {
+          const data = getDashboardData();
+          const crmData = data?.crmDashboard
+            ? JSON.parse(JSON.stringify(data.crmDashboard))
+            : {};
+          const year = parsedUrl.searchParams.get("year");
+          if (year && crmData.salesAnalytics?.years?.[year]) {
+            crmData.salesAnalytics.selectedYear = year;
+            crmData.salesAnalytics.matrix = crmData.salesAnalytics.years[year].matrix;
+            crmData.salesAnalytics.badge = crmData.salesAnalytics.years[year].badge;
+            crmData.salesAnalytics.badgeText = crmData.salesAnalytics.years[year].badgeText;
+          } else if (crmData.salesAnalytics?.selectedYear && crmData.salesAnalytics?.years) {
+            const defYear = crmData.salesAnalytics.selectedYear;
+            if (crmData.salesAnalytics.years[defYear]) {
+              crmData.salesAnalytics.matrix = crmData.salesAnalytics.years[defYear].matrix;
+              crmData.salesAnalytics.badge = crmData.salesAnalytics.years[defYear].badge;
+              crmData.salesAnalytics.badgeText = crmData.salesAnalytics.years[defYear].badgeText;
+            }
+          }
+          res.statusCode = 200;
+          res.end(JSON.stringify(crmData));
+          return;
+        }
+
         // 3. GET /api/dashboard/:userId
         const dashboardMatch = pathname.match(/^\/api\/dashboard\/([^/]+)$/);
         if (req.method === "GET" && dashboardMatch) {

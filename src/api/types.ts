@@ -49,6 +49,18 @@ export interface ProfitReportData {
   growthDirection: "up" | "down";
   profitValue: string;
   numericValue: number;
+  curveData?: number[];
+  years?: Record<
+    string,
+    {
+      year?: string;
+      growth?: string;
+      growthDirection?: "up" | "down";
+      profitValue?: string;
+      numericValue?: number;
+      curveData?: number[];
+    }
+  >;
 }
 
 export interface TotalRevenueData {
@@ -56,6 +68,32 @@ export interface TotalRevenueData {
   value: string;
   growthIndicator: string;
   companyGrowth: string;
+  legend?: string[];
+  series?: Array<{
+    name: string;
+    data: number[];
+  }>;
+  comparison?: Array<{
+    year: string;
+    amount: string;
+  }>;
+  years?: Record<
+    string,
+    {
+      value: string;
+      growthIndicator: string;
+      companyGrowth: string;
+      legend?: string[];
+      series?: Array<{
+        name: string;
+        data: number[];
+      }>;
+      comparison?: Array<{
+        year: string;
+        amount: string;
+      }>;
+    }
+  >;
 }
 
 export interface PaymentsData {
@@ -75,6 +113,7 @@ export interface UserProfile {
   welcomeGreeting: string;
   welcomeDescription: string;
   growthPercentage: number;
+  availableYears?: string[];
   orders: {
     label: string;
     value: string;
@@ -86,12 +125,37 @@ export interface UserProfile {
     numericValue: number;
     growth: string;
     growthDirection: "up" | "down";
+    years?: Record<string, { value: string; growth?: string; numericValue?: number }>;
   };
   profitReport: ProfitReportData;
   totalRevenue: TotalRevenueData;
-  payments: PaymentsData;
+  payments: PaymentsData & {
+    years?: Record<string, { value: string; change?: string; changeDirection?: "up" | "down" }>;
+  };
   transactions: MemberTransaction[];
+  transactionsYears?: Record<string, MemberTransaction[]>;
   activities: MemberActivity[];
+  activitiesYears?: Record<string, MemberActivity[]>;
+  orderStatisticsYears?: Record<
+    string,
+    {
+      totalSales?: string;
+      totalOrders?: string;
+      growth?: string;
+      chartSeries?: Array<{
+        name: string;
+        y: number;
+        color?: string;
+      }>;
+      categories?: Array<{
+        name: string;
+        description: string;
+        value: string;
+        icon?: string;
+        bg?: string;
+      }>;
+    }
+  >;
 }
 
 export interface NavigationItem {
@@ -153,3 +217,162 @@ export interface DashboardOverview {
     }>;
   };
 }
+
+export interface CustomerRatingsData {
+  rating: number;
+  maxRating: number;
+  badge: string;
+  categories: string[];
+  primarySeries: number[];
+  secondarySeries: number[];
+  highlightedIndex: number;
+  years?: Record<string, { rating: number; badge?: string; primarySeries?: number[]; secondarySeries?: number[] }>;
+}
+
+export interface OverviewSalesActivityData {
+  subtitle: string;
+  categories: string[];
+  sales: number[];
+  overview: number[];
+  years?: Record<string, { subtitle?: string; categories?: string[]; sales?: number[]; overview?: number[] }>;
+}
+
+export interface SessionsData {
+  value: string;
+  series: number[];
+  years?: Record<string, { value: string; series: number[] }>;
+}
+
+export interface OrderData {
+  amount: string;
+  change: string;
+  isPositive: boolean;
+  years?: Record<string, { amount: string; change: string; isPositive: boolean }>;
+}
+
+export interface GeneratedLeadsData {
+  title: string;
+  subtitle: string;
+  value: string;
+  change: string;
+  percentage: number;
+  years?: Record<string, { value: string; change: string; percentage: number }>;
+}
+
+export interface TopProductSales {
+  id: number;
+  name: string;
+  brand: string;
+  amount: string;
+  icon: string;
+  bg: string;
+}
+
+export interface TopProductVolume {
+  id: number;
+  name: string;
+  brand: string;
+  volume: string;
+  change: string;
+  isPositive: boolean;
+  icon: string;
+}
+
+export interface EarningReportData {
+  netProfit: { label: string; subLabel: string; amount: string };
+  totalIncome: { label: string; subLabel: string; amount: string };
+  totalExpenses: { label: string; subLabel: string; amount: string };
+  weeklyReport: {
+    days: string[];
+    values: number[];
+    highlightDayIndex: number;
+  };
+  years?: Record<string, {
+    netProfit: { label: string; subLabel: string; amount: string };
+    totalIncome: { label: string; subLabel: string; amount: string };
+    totalExpenses: { label: string; subLabel: string; amount: string };
+    weeklyReport: {
+      days: string[];
+      values: number[];
+      highlightDayIndex: number;
+    };
+  }>;
+}
+
+export interface SalesAnalyticsYearData {
+  badge: string;
+  badgeText?: string;
+  matrix: number[][];
+}
+
+export interface SalesAnalyticsData {
+  selectedYear: string;
+  availableYears: string[];
+  badge?: string;
+  badgeText?: string;
+  months: string[];
+  yCategories: string[];
+  matrix?: number[][];
+  years?: Record<string, SalesAnalyticsYearData>;
+}
+
+export interface CountrySales {
+  id: number;
+  country: string;
+  sales: string;
+  total: string;
+  flag: string;
+}
+
+export interface SalesStatusData {
+  percentage: number;
+  title: string;
+  legends: Array<{ label: string; color: string }>;
+  years?: Record<string, { percentage: number; title?: string }>;
+}
+
+export interface EmployeePerformance {
+  id: number;
+  name: string;
+  role: string;
+  avatar: string;
+  project: string;
+  projectBg: string;
+  tasks: string;
+  progress: number;
+  progressColor: string;
+}
+
+export interface CustomerTransaction {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  amount: string;
+  status: string;
+  statusColor: string;
+  paymentMethod: string;
+}
+
+export interface CrmDashboardData {
+  availableYears?: string[];
+  customerRatings: CustomerRatingsData;
+  overviewSalesActivity: OverviewSalesActivityData;
+  sessions: SessionsData;
+  order: OrderData;
+  generatedLeads: GeneratedLeadsData;
+  topProductsBySales: TopProductSales[];
+  topProductsBySalesYears?: Record<string, TopProductSales[]>;
+  topProductsByVolume: TopProductVolume[];
+  topProductsByVolumeYears?: Record<string, TopProductVolume[]>;
+  earningReport: EarningReportData;
+  salesAnalytics: SalesAnalyticsData;
+  salesByCountries: CountrySales[];
+  salesByCountriesYears?: Record<string, CountrySales[]>;
+  salesStatus: SalesStatusData;
+  employeePerformance: EmployeePerformance[];
+  employeePerformanceYears?: Record<string, EmployeePerformance[]>;
+  customerTransactions: CustomerTransaction[];
+  customerTransactionsYears?: Record<string, CustomerTransaction[]>;
+}
+

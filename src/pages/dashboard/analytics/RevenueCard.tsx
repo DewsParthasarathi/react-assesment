@@ -24,7 +24,7 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
       tickWidth: 0,
       labels: {
         step: 1,
-        style: { color: "#a5a3ae", fontSize: "11px", fontFamily: "Poppins" },
+        style: { color: "#a5a3ae", fontSize: "13px", fontFamily: "Poppins" },
       },
     },
     yAxis: {
@@ -41,22 +41,23 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
     },
     plotOptions: {
       column: {
-        borderRadius: 4,
-        pointWidth: 9,
+        borderRadius: 0,
         borderWidth: 0,
+        groupPadding: 0,
+        pointPadding: 0.22,
       },
     },
     series: [
       {
         type: "column",
         data: [
-          { y: 15, color: "#e7e7ff" },
-          { y: 22, color: "#e7e7ff" },
-          { y: 18, color: "#e7e7ff" },
-          { y: 14, color: "#e7e7ff" },
+          { y: 15, color: "#e0e1ff" },
+          { y: 22, color: "#d7d8ff" },
+          { y: 18, color: "#e0e1ff" },
+          { y: 14, color: "#d7d8ff" },
           { y: 32, color: "#696cff" },
-          { y: 16, color: "#e7e7ff" },
-          { y: 24, color: "#e7e7ff" },
+          { y: 16, color: "#e0e1ff" },
+          { y: 24, color: "#d7d8ff" },
         ],
       },
     ],
@@ -65,8 +66,8 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
   return (
     <div className="bg-white rounded-[5px] p-5 pb-3 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
       <div>
-        <p className="text-fs14 font-medium text-[#6f6b7d]">Revenue</p>
-        <p className="text-fs24 font-bold text-[#32475c] mt-0.5">{value}</p>
+        <p className="text-fs18 font-normal text-[#a5a3ae]">Revenue</p>
+        <p className="text-fs24 font-semibold text-[#444050] mt-1">{value}</p>
       </div>
       <div className="mt-1">
         <Chart options={options} />

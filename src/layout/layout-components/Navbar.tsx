@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CustomInput } from "../components/ui/CustomInput";
-import { CustomButton } from "../components/ui/CustomButton";
-import { CustomImage } from "../components/ui/CustomImage";
-import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { logout } from "../store/slices/authSlice";
-import { getMemberAvatar } from "../utils/userAvatars";
+import { CustomInput } from "../../components/ui/CustomInput";
+import { CustomButton } from "../../components/ui/CustomButton";
+import { CustomImage } from "../../components/ui/CustomImage";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { logout } from "../../store/slices/authSlice";
+import { getMemberAvatar } from "../../utils/userAvatars";
 
 export const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,7 +33,6 @@ export const Navbar: React.FC = () => {
     navigate("/login");
   };
 
-  // Close dropdown menu on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {

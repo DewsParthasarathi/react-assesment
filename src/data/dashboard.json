@@ -60,6 +60,7 @@
       "welcomeGreeting": "Congratulations John!",
       "welcomeDescription": "You have done 72% more sales today. Check your new badge in your profile.",
       "growthPercentage": 72,
+      "availableYears": ["2023", "2022"],
       "orders": {
         "label": "Order",
         "value": "276K",
@@ -70,19 +71,66 @@
         "value": "$4,679",
         "numericValue": 4679,
         "growth": "28.14%",
-        "growthDirection": "up"
+        "growthDirection": "up",
+        "years": {
+          "2023": { "value": "$4,679", "growth": "28.14%", "numericValue": 4679 },
+          "2022": { "value": "$3,820", "growth": "19.50%", "numericValue": 3820 }
+        }
       },
       "totalRevenue": {
         "title": "Total Revenue",
         "value": "$32.5k",
         "growthIndicator": "78%",
-        "companyGrowth": "62%"
+        "companyGrowth": "62%",
+        "legend": ["2023", "2022"],
+        "series": [
+          { "name": "2023", "data": [18, 7, 15, 29, 29, 13, 11] },
+          { "name": "2022", "data": [-14, -16, -17, -11, -3, -14, -11] }
+        ],
+        "comparison": [
+          { "year": "2023", "amount": "$32.5k" },
+          { "year": "2022", "amount": "$41.2k" }
+        ],
+        "years": {
+          "2023": {
+            "value": "$32.5k",
+            "growthIndicator": "78%",
+            "companyGrowth": "62%",
+            "legend": ["2023", "2022"],
+            "series": [
+              { "name": "2023", "data": [18, 7, 15, 29, 29, 13, 11] },
+              { "name": "2022", "data": [-14, -16, -17, -11, -3, -14, -11] }
+            ],
+            "comparison": [
+              { "year": "2023", "amount": "$32.5k" },
+              { "year": "2022", "amount": "$41.2k" }
+            ]
+          },
+          "2022": {
+            "value": "$28.4k",
+            "growthIndicator": "64%",
+            "companyGrowth": "51%",
+            "legend": ["2022", "2021"],
+            "series": [
+              { "name": "2022", "data": [14, 11, 18, 22, 20, 16, 14] },
+              { "name": "2021", "data": [-10, -12, -14, -9, -5, -11, -8] }
+            ],
+            "comparison": [
+              { "year": "2022", "amount": "$28.4k" },
+              { "year": "2021", "amount": "$36.8k" }
+            ]
+          }
+        }
       },
       "payments": {
         "title": "Payments",
         "value": "$4,679",
         "change": "-14.82%",
-        "changeDirection": "down"
+        "changeDirection": "down",
+        "years": {
+          "2023": { "value": "$4,679", "change": "-14.82%", "changeDirection": "down" },
+          "2022": { "value": "$3,410", "change": "+8.25%", "changeDirection": "up" }
+        }
       },
       "profitReport": {
         "title": "Profit Report",
@@ -90,7 +138,24 @@
         "growth": "14.82%",
         "growthDirection": "up",
         "profitValue": "$84,686k",
-        "numericValue": 84686000
+        "numericValue": 84686000,
+        "curveData": [8, 62, 66, 10, 52, 22, 46, 72],
+        "years": {
+          "2023": {
+            "year": "2023",
+            "growth": "14.82%",
+            "profitValue": "$84,686k",
+            "numericValue": 84686000,
+            "curveData": [8, 62, 66, 10, 52, 22, 46, 72]
+          },
+          "2022": {
+            "year": "2022",
+            "growth": "11.40%",
+            "profitValue": "$68,240k",
+            "numericValue": 68240000,
+            "curveData": [12, 45, 50, 18, 38, 28, 35, 58]
+          }
+        }
       },
       "transactions": [
         { "id": 1, "type": "Paypal", "description": "send money", "amount": "+82.6", "currency": "USD", "isCredit": true },
@@ -98,13 +163,79 @@
         { "id": 3, "type": "Transfer", "description": "refund", "amount": "+637.91", "currency": "USD", "isCredit": true },
         { "id": 4, "type": "Credit Card", "description": "Ordered food", "amount": "-838.71", "currency": "USD", "isCredit": false },
         { "id": 5, "type": "wallet", "description": "Starbucks", "amount": "+203.33", "currency": "USD", "isCredit": true },
-        { "id": 6, "type": "mastercard", "description": "Ordered food", "amount": "+203.33", "currency": "USD", "isCredit": true }
+        { "id": 6, "type": "mastercard", "description": "Ordered food", "amount": "-92.45", "currency": "USD", "isCredit": false }
       ],
+      "transactionsYears": {
+        "2023": [
+          { "id": 1, "type": "Paypal", "description": "send money", "amount": "+82.6", "currency": "USD", "isCredit": true },
+          { "id": 2, "type": "wallet", "description": "Mac'D", "amount": "+270.69", "currency": "USD", "isCredit": true },
+          { "id": 3, "type": "Transfer", "description": "refund", "amount": "+637.91", "currency": "USD", "isCredit": true },
+          { "id": 4, "type": "Credit Card", "description": "Ordered food", "amount": "-838.71", "currency": "USD", "isCredit": false },
+          { "id": 5, "type": "wallet", "description": "Starbucks", "amount": "+203.33", "currency": "USD", "isCredit": true },
+          { "id": 6, "type": "mastercard", "description": "Ordered food", "amount": "-92.45", "currency": "USD", "isCredit": false }
+        ],
+        "2022": [
+          { "id": 1, "type": "Paypal", "description": "affiliate payout", "amount": "+64.2", "currency": "USD", "isCredit": true },
+          { "id": 2, "type": "wallet", "description": "Office Supplies", "amount": "-142.50", "currency": "USD", "isCredit": false },
+          { "id": 3, "type": "Transfer", "description": "vendor refund", "amount": "+420.00", "currency": "USD", "isCredit": true },
+          { "id": 4, "type": "Credit Card", "description": "Server Hosting", "amount": "-580.00", "currency": "USD", "isCredit": false },
+          { "id": 5, "type": "wallet", "description": "Team lunch", "amount": "-95.40", "currency": "USD", "isCredit": false },
+          { "id": 6, "type": "mastercard", "description": "Client deposit", "amount": "+850.00", "currency": "USD", "isCredit": true }
+        ]
+      },
       "activities": [
         { "id": 1, "title": "12 Invoice have been paid", "timeLabel": "12 min ago", "description": "Invoices have been paid to the company", "statusColor": "#696cff" },
         { "id": 2, "title": "Client Meeting", "timeLabel": "45 min ago", "description": "Project meeting with client @10:15am", "statusColor": "#ff9f43" },
         { "id": 3, "title": "Create a new project for client", "timeLabel": "2 days ago", "description": "5 team members assigned", "statusColor": "#00cfe8" }
-      ]
+      ],
+      "activitiesYears": {
+        "2023": [
+          { "id": 1, "title": "12 Invoice have been paid", "timeLabel": "12 min ago", "description": "Invoices have been paid to the company", "statusColor": "#696cff" },
+          { "id": 2, "title": "Client Meeting", "timeLabel": "45 min ago", "description": "Project meeting with client @10:15am", "statusColor": "#ff9f43" },
+          { "id": 3, "title": "Create a new project for client", "timeLabel": "2 days ago", "description": "5 team members assigned", "statusColor": "#00cfe8" }
+        ],
+        "2022": [
+          { "id": 1, "title": "Annual financial review approved", "timeLabel": "1 hour ago", "description": "Audited by board of directors", "statusColor": "#71dd37" },
+          { "id": 2, "title": "HQ Office expansion lease signed", "timeLabel": "3 hours ago", "description": "New floor added in downtown tower", "statusColor": "#696cff" },
+          { "id": 3, "title": "ERP System migration complete", "timeLabel": "3 days ago", "description": "Zero downtime cloud transfer", "statusColor": "#ffab00" }
+        ]
+      },
+      "orderStatisticsYears": {
+        "2023": {
+          "totalSales": "42.82K Total Sales",
+          "totalOrders": "8,258",
+          "growth": "38%",
+          "chartSeries": [
+            { "name": "Electronic", "y": 45, "color": "#696cff" },
+            { "name": "Fashion", "y": 28, "color": "#71dd37" },
+            { "name": "Decor", "y": 17, "color": "#03c3ec" },
+            { "name": "Sports", "y": 10, "color": "#ffab00" }
+          ],
+          "categories": [
+            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "82.5k" },
+            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "23.8k" },
+            { "name": "Decor", "description": "Fine Art, Dining", "value": "849" },
+            { "name": "Sports", "description": "Football, Cricket Kit", "value": "99" }
+          ]
+        },
+        "2022": {
+          "totalSales": "34.15K Total Sales",
+          "totalOrders": "6,840",
+          "growth": "24%",
+          "chartSeries": [
+            { "name": "Electronic", "y": 30, "color": "#696cff" },
+            { "name": "Fashion", "y": 38, "color": "#71dd37" },
+            { "name": "Decor", "y": 20, "color": "#03c3ec" },
+            { "name": "Sports", "y": 12, "color": "#ffab00" }
+          ],
+          "categories": [
+            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "64.2k" },
+            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "18.5k" },
+            { "name": "Decor", "description": "Fine Art, Dining", "value": "620" },
+            { "name": "Sports", "description": "Football, Cricket Kit", "value": "78" }
+          ]
+        }
+      }
     },
     {
       "id": "2",
@@ -116,6 +247,7 @@
       "welcomeGreeting": "Congratulations Jane!",
       "welcomeDescription": "You have achieved a 58% increase in payment closures this week.",
       "growthPercentage": 58,
+      "availableYears": ["2023", "2022"],
       "orders": {
         "label": "Order",
         "value": "198K",
@@ -126,19 +258,66 @@
         "value": "$3,845",
         "numericValue": 3845,
         "growth": "19.40%",
-        "growthDirection": "up"
+        "growthDirection": "up",
+        "years": {
+          "2023": { "value": "$3,845", "growth": "19.40%", "growthDirection": "up", "numericValue": 3845 },
+          "2022": { "value": "$3,120", "growth": "14.10%", "growthDirection": "up", "numericValue": 3120 }
+        }
       },
       "totalRevenue": {
         "title": "Total Revenue",
         "value": "$28.1k",
         "growthIndicator": "65%",
-        "companyGrowth": "55%"
+        "companyGrowth": "55%",
+        "legend": ["2023", "2022"],
+        "series": [
+          { "name": "2023", "data": [15, 9, 12, 24, 22, 11, 9] },
+          { "name": "2022", "data": [-11, -13, -15, -9, -3, -11, -9] }
+        ],
+        "comparison": [
+          { "year": "2023", "amount": "$28.1k" },
+          { "year": "2022", "amount": "$34.2k" }
+        ],
+        "years": {
+          "2023": {
+            "value": "$28.1k",
+            "growthIndicator": "65%",
+            "companyGrowth": "55%",
+            "legend": ["2023", "2022"],
+            "series": [
+              { "name": "2023", "data": [15, 9, 12, 24, 22, 11, 9] },
+              { "name": "2022", "data": [-11, -13, -15, -9, -3, -11, -9] }
+            ],
+            "comparison": [
+              { "year": "2023", "amount": "$28.1k" },
+              { "year": "2022", "amount": "$34.2k" }
+            ]
+          },
+          "2022": {
+            "value": "$24.6k",
+            "growthIndicator": "52%",
+            "companyGrowth": "44%",
+            "legend": ["2022", "2021"],
+            "series": [
+              { "name": "2022", "data": [12, 10, 16, 19, 17, 14, 12] },
+              { "name": "2021", "data": [-8, -10, -12, -7, -4, -9, -6] }
+            ],
+            "comparison": [
+              { "year": "2022", "amount": "$24.6k" },
+              { "year": "2021", "amount": "$31.5k" }
+            ]
+          }
+        }
       },
       "payments": {
         "title": "Payments",
         "value": "$3,845",
         "change": "+12.30%",
-        "changeDirection": "up"
+        "changeDirection": "up",
+        "years": {
+          "2023": { "value": "$3,845", "change": "+12.30%", "changeDirection": "up" },
+          "2022": { "value": "$2,950", "change": "-6.40%", "changeDirection": "down" }
+        }
       },
       "profitReport": {
         "title": "Profit Report",
@@ -146,19 +325,104 @@
         "growth": "11.20%",
         "growthDirection": "up",
         "profitValue": "$68,230k",
-        "numericValue": 68230000
+        "numericValue": 68230000,
+        "curveData": [10, 48, 55, 14, 42, 28, 38, 62],
+        "years": {
+          "2023": {
+            "year": "2023",
+            "growth": "11.20%",
+            "profitValue": "$68,230k",
+            "numericValue": 68230000,
+            "curveData": [10, 48, 55, 14, 42, 28, 38, 62]
+          },
+          "2022": {
+            "year": "2022",
+            "growth": "8.75%",
+            "profitValue": "$54,120k",
+            "numericValue": 54120000,
+            "curveData": [8, 35, 40, 12, 32, 20, 28, 48]
+          }
+        }
       },
       "transactions": [
         { "id": 1, "type": "Transfer", "description": "Wire Deposit", "amount": "+420.00", "currency": "USD", "isCredit": true },
         { "id": 2, "type": "Paypal", "description": "Client Retainer", "amount": "+150.25", "currency": "USD", "isCredit": true },
         { "id": 3, "type": "Wallet", "description": "Coffee & Supplies", "amount": "+89.50", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Credit Card", "description": "Software Subscription", "amount": "-310.00", "currency": "USD", "isCredit": false }
+        { "id": 4, "type": "Credit Card", "description": "Software Subscription", "amount": "-310.00", "currency": "USD", "isCredit": false },
+        { "id": 5, "type": "Wallet", "description": "Team Lunch", "amount": "-95.40", "currency": "USD", "isCredit": false },
+        { "id": 6, "type": "Mastercard", "description": "Office Setup", "amount": "-120.00", "currency": "USD", "isCredit": false }
       ],
+      "transactionsYears": {
+        "2023": [
+          { "id": 1, "type": "Transfer", "description": "Wire Deposit", "amount": "+420.00", "currency": "USD", "isCredit": true },
+          { "id": 2, "type": "Paypal", "description": "Client Retainer", "amount": "+150.25", "currency": "USD", "isCredit": true },
+          { "id": 3, "type": "Wallet", "description": "Coffee & Supplies", "amount": "+89.50", "currency": "USD", "isCredit": true },
+          { "id": 4, "type": "Credit Card", "description": "Software Subscription", "amount": "-310.00", "currency": "USD", "isCredit": false },
+          { "id": 5, "type": "Wallet", "description": "Team Lunch", "amount": "-95.40", "currency": "USD", "isCredit": false },
+          { "id": 6, "type": "Mastercard", "description": "Office Setup", "amount": "-120.00", "currency": "USD", "isCredit": false }
+        ],
+        "2022": [
+          { "id": 1, "type": "Transfer", "description": "Vendor Settlement", "amount": "+315.00", "currency": "USD", "isCredit": true },
+          { "id": 2, "type": "Paypal", "description": "Audit Retainer", "amount": "+120.00", "currency": "USD", "isCredit": true },
+          { "id": 3, "type": "Wallet", "description": "Travel Reimburse", "amount": "-75.00", "currency": "USD", "isCredit": false },
+          { "id": 4, "type": "Credit Card", "description": "Cloud Storage", "amount": "-210.00", "currency": "USD", "isCredit": false },
+          { "id": 5, "type": "Wallet", "description": "Stationary", "amount": "-45.00", "currency": "USD", "isCredit": false },
+          { "id": 6, "type": "Mastercard", "description": "Hardware Repair", "amount": "-180.00", "currency": "USD", "isCredit": false }
+        ]
+      },
       "activities": [
         { "id": 1, "title": "Quarterly financial audit completed", "timeLabel": "30 min ago", "description": "Ledger reconciled with bank statement", "statusColor": "#28c76f" },
         { "id": 2, "title": "Payroll processed", "timeLabel": "2 hours ago", "description": "Disbursed to 42 employees", "statusColor": "#696cff" },
         { "id": 3, "title": "Tax filing review", "timeLabel": "1 day ago", "description": "Signed off with certified CPA", "statusColor": "#ff9f43" }
-      ]
+      ],
+      "activitiesYears": {
+        "2023": [
+          { "id": 1, "title": "Quarterly financial audit completed", "timeLabel": "30 min ago", "description": "Ledger reconciled with bank statement", "statusColor": "#28c76f" },
+          { "id": 2, "title": "Payroll processed", "timeLabel": "2 hours ago", "description": "Disbursed to 42 employees", "statusColor": "#696cff" },
+          { "id": 3, "title": "Tax filing review", "timeLabel": "1 day ago", "description": "Signed off with certified CPA", "statusColor": "#ff9f43" }
+        ],
+        "2022": [
+          { "id": 1, "title": "FY22 Annual Closing Signed", "timeLabel": "2 hours ago", "description": "Final statement submitted to auditors", "statusColor": "#28c76f" },
+          { "id": 2, "title": "Vendor invoice batch cleared", "timeLabel": "5 hours ago", "description": "28 accounts settled in full", "statusColor": "#696cff" },
+          { "id": 3, "title": "Internal controls audit", "timeLabel": "2 days ago", "description": "Risk compliance score 98%", "statusColor": "#ffab00" }
+        ]
+      },
+      "orderStatisticsYears": {
+        "2023": {
+          "totalSales": "38.45K Total Sales",
+          "totalOrders": "7,140",
+          "growth": "32%",
+          "chartSeries": [
+            { "name": "Electronic", "y": 40, "color": "#696cff" },
+            { "name": "Fashion", "y": 30, "color": "#71dd37" },
+            { "name": "Decor", "y": 18, "color": "#03c3ec" },
+            { "name": "Sports", "y": 12, "color": "#ffab00" }
+          ],
+          "categories": [
+            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "74.1k" },
+            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "20.4k" },
+            { "name": "Decor", "description": "Fine Art, Dining", "value": "780" },
+            { "name": "Sports", "description": "Football, Cricket Kit", "value": "92" }
+          ]
+        },
+        "2022": {
+          "totalSales": "29.80K Total Sales",
+          "totalOrders": "5,620",
+          "growth": "21%",
+          "chartSeries": [
+            { "name": "Electronic", "y": 32, "color": "#696cff" },
+            { "name": "Fashion", "y": 36, "color": "#71dd37" },
+            { "name": "Decor", "y": 20, "color": "#03c3ec" },
+            { "name": "Sports", "y": 12, "color": "#ffab00" }
+          ],
+          "categories": [
+            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "58.6k" },
+            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "16.2k" },
+            { "name": "Decor", "description": "Fine Art, Dining", "value": "540" },
+            { "name": "Sports", "description": "Football, Cricket Kit", "value": "70" }
+          ]
+        }
+      }
     },
     {
       "id": "3",
@@ -457,6 +721,847 @@
       { "rank": 4, "browser": "Edge", "visits": "142", "percentage": "3.99%" },
       { "rank": 5, "browser": "Opera", "visits": "85", "percentage": "2.12%" },
       { "rank": 6, "browser": "Brave", "visits": "36", "percentage": "1.06%" }
+    ]
+  },
+  "crmDashboard": {
+    "availableYears": ["2023", "2022"],
+    "customerRatings": {
+      "rating": 4.3,
+      "maxRating": 5,
+      "badge": "+8.4 Points from last month",
+      "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      "primarySeries": [2.5, 3.1, 2.9, 4.1, 2.8, 3.6, 4.3],
+      "secondarySeries": [1.9, 2.4, 2.0, 3.2, 2.1, 2.7, 3.4],
+      "highlightedIndex": 3,
+      "years": {
+        "2023": {
+          "rating": 4.3,
+          "badge": "+8.4 Points from last month",
+          "primarySeries": [2.5, 3.1, 2.9, 4.1, 2.8, 3.6, 4.3],
+          "secondarySeries": [1.9, 2.4, 2.0, 3.2, 2.1, 2.7, 3.4]
+        },
+        "2022": {
+          "rating": 3.9,
+          "badge": "+4.2 Points from last month",
+          "primarySeries": [2.0, 2.6, 2.3, 3.4, 2.5, 3.0, 3.9],
+          "secondarySeries": [1.5, 2.0, 1.8, 2.6, 1.9, 2.2, 2.9]
+        }
+      }
+    },
+    "overviewSalesActivity": {
+      "subtitle": "Check out each column for more details",
+      "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      "sales": [-38, -48, -44, -52, -30, -42, -46],
+      "overview": [24, 26, 22, 30, 20, 25, 28],
+      "years": {
+        "2023": {
+          "sales": [-38, -48, -44, -52, -30, -42, -46],
+          "overview": [24, 26, 22, 30, 20, 25, 28]
+        },
+        "2022": {
+          "sales": [-28, -36, -34, -40, -24, -32, -35],
+          "overview": [18, 20, 16, 24, 15, 19, 22]
+        }
+      }
+    },
+    "sessions": {
+      "value": "3,120",
+      "series": [14, 16, 21, 15, 26, 22, 31]
+    },
+    "order": {
+      "amount": "$1,842",
+      "change": "18.65%",
+      "isPositive": true,
+      "years": {
+        "2023": {
+          "amount": "$1,842",
+          "change": "18.65%",
+          "isPositive": true
+        },
+        "2022": {
+          "amount": "$1,380",
+          "change": "-4.20%",
+          "isPositive": false
+        }
+      }
+    },
+    "generatedLeads": {
+      "title": "Generated Leads",
+      "subtitle": "Monthly Report",
+      "value": "5,810",
+      "change": "16.4%",
+      "percentage": 35,
+      "label": "Average"
+    },
+    "topProductsBySales": [
+      {
+        "id": 1,
+        "name": "Galaxy S24 Ultra",
+        "brand": "Samsung",
+        "amount": "$112,450",
+        "icon": "phone2.svg",
+        "bg": "bg-[#ffe2e3] text-[#ff3e1d]"
+      },
+      {
+        "id": 2,
+        "name": "Apple Watch Ultra",
+        "brand": "Apple",
+        "amount": "$28,920",
+        "icon": "Smart watch.svg",
+        "bg": "bg-[#e7e7ff] text-[#696cff]"
+      },
+      {
+        "id": 3,
+        "name": "ThinkPad X1 Carbon",
+        "brand": "Lenovo",
+        "amount": "$6,840",
+        "icon": "Laptop.svg",
+        "bg": "bg-[#d7f5fc] text-[#03c3ec]"
+      },
+      {
+        "id": 4,
+        "name": "Pixel 8 Pro",
+        "brand": "Google",
+        "amount": "$76,320",
+        "icon": "phone2.svg",
+        "bg": "bg-[#e8fadf] text-[#71dd37]"
+      },
+      {
+        "id": 5,
+        "name": "WH-1000XM5 ANC",
+        "brand": "Sony",
+        "amount": "$14,890",
+        "icon": "Earphone.svg",
+        "bg": "bg-[#ebeef0] text-[#8592a3]"
+      }
+    ],
+    "topProductsBySalesYears": {
+      "2023": [
+        {
+          "id": 1,
+          "name": "Galaxy S24 Ultra",
+          "brand": "Samsung",
+          "amount": "$112,450",
+          "icon": "phone2.svg",
+          "bg": "bg-[#ffe2e3] text-[#ff3e1d]"
+        },
+        {
+          "id": 2,
+          "name": "Apple Watch Ultra",
+          "brand": "Apple",
+          "amount": "$28,920",
+          "icon": "Smart watch.svg",
+          "bg": "bg-[#e7e7ff] text-[#696cff]"
+        },
+        {
+          "id": 3,
+          "name": "ThinkPad X1 Carbon",
+          "brand": "Lenovo",
+          "amount": "$6,840",
+          "icon": "Laptop.svg",
+          "bg": "bg-[#d7f5fc] text-[#03c3ec]"
+        },
+        {
+          "id": 4,
+          "name": "Pixel 8 Pro",
+          "brand": "Google",
+          "amount": "$76,320",
+          "icon": "phone2.svg",
+          "bg": "bg-[#e8fadf] text-[#71dd37]"
+        },
+        {
+          "id": 5,
+          "name": "WH-1000XM5 ANC",
+          "brand": "Sony",
+          "amount": "$14,890",
+          "icon": "Earphone.svg",
+          "bg": "bg-[#ebeef0] text-[#8592a3]"
+        }
+      ],
+      "2022": [
+        {
+          "id": 1,
+          "name": "iPhone 14 Pro",
+          "brand": "Apple",
+          "amount": "$98,240",
+          "icon": "phone2.svg",
+          "bg": "bg-[#e7e7ff] text-[#696cff]"
+        },
+        {
+          "id": 2,
+          "name": "Galaxy Watch 5 Pro",
+          "brand": "Samsung",
+          "amount": "$22,410",
+          "icon": "Smart watch.svg",
+          "bg": "bg-[#ffe2e3] text-[#ff3e1d]"
+        },
+        {
+          "id": 3,
+          "name": "Dell Latitude 7420",
+          "brand": "Dell",
+          "amount": "$5,620",
+          "icon": "Laptop.svg",
+          "bg": "bg-[#d7f5fc] text-[#03c3ec]"
+        },
+        {
+          "id": 4,
+          "name": "Pixel 7 Pro",
+          "brand": "Google",
+          "amount": "$61,850",
+          "icon": "phone2.svg",
+          "bg": "bg-[#e8fadf] text-[#71dd37]"
+        },
+        {
+          "id": 5,
+          "name": "WH-1000XM4 ANC",
+          "brand": "Sony",
+          "amount": "$11,940",
+          "icon": "Earphone.svg",
+          "bg": "bg-[#ebeef0] text-[#8592a3]"
+        }
+      ]
+    },
+    "topProductsByVolume": [
+      {
+        "id": 1,
+        "name": "MacBook Air M3",
+        "brand": "Apple",
+        "volume": "16.8k",
+        "change": "+18.2%",
+        "isPositive": true,
+        "icon": "Laptop.svg"
+      },
+      {
+        "id": 2,
+        "name": "Dell XPS 15",
+        "brand": "Dell",
+        "volume": "62.4k",
+        "change": "-6.4%",
+        "isPositive": false,
+        "icon": "Imac.svg"
+      },
+      {
+        "id": 3,
+        "name": "Garmin Venu 3",
+        "brand": "Garmin",
+        "volume": "5.9k",
+        "change": "+21.0%",
+        "isPositive": true,
+        "icon": "Smart watch.svg"
+      },
+      {
+        "id": 4,
+        "name": "Moto Edge 50",
+        "brand": "Motorola",
+        "volume": "14.75k",
+        "change": "+9.8%",
+        "isPositive": true,
+        "icon": "phone2.svg"
+      },
+      {
+        "id": 5,
+        "name": "Nothing Phone 2",
+        "brand": "Nothing",
+        "volume": "10.32k",
+        "change": "-4.5%",
+        "isPositive": false,
+        "icon": "phone2.svg"
+      }
+    ],
+    "topProductsByVolumeYears": {
+      "2023": [
+        {
+          "id": 1,
+          "name": "MacBook Air M3",
+          "brand": "Apple",
+          "volume": "16.8k",
+          "change": "+18.2%",
+          "isPositive": true,
+          "icon": "Laptop.svg"
+        },
+        {
+          "id": 2,
+          "name": "Dell XPS 15",
+          "brand": "Dell",
+          "volume": "62.4k",
+          "change": "-6.4%",
+          "isPositive": false,
+          "icon": "Imac.svg"
+        },
+        {
+          "id": 3,
+          "name": "Garmin Venu 3",
+          "brand": "Garmin",
+          "volume": "5.9k",
+          "change": "+21.0%",
+          "isPositive": true,
+          "icon": "Smart watch.svg"
+        },
+        {
+          "id": 4,
+          "name": "Moto Edge 50",
+          "brand": "Motorola",
+          "volume": "14.75k",
+          "change": "+9.8%",
+          "isPositive": true,
+          "icon": "phone2.svg"
+        },
+        {
+          "id": 5,
+          "name": "Nothing Phone 2",
+          "brand": "Nothing",
+          "volume": "10.32k",
+          "change": "-4.5%",
+          "isPositive": false,
+          "icon": "phone2.svg"
+        }
+      ],
+      "2022": [
+        {
+          "id": 1,
+          "name": "MacBook Air M2",
+          "brand": "Apple",
+          "volume": "13.4k",
+          "change": "+12.5%",
+          "isPositive": true,
+          "icon": "Laptop.svg"
+        },
+        {
+          "id": 2,
+          "name": "Dell XPS 13",
+          "brand": "Dell",
+          "volume": "48.2k",
+          "change": "-3.1%",
+          "isPositive": false,
+          "icon": "Imac.svg"
+        },
+        {
+          "id": 3,
+          "name": "Garmin Venu 2",
+          "brand": "Garmin",
+          "volume": "4.8k",
+          "change": "+15.6%",
+          "isPositive": true,
+          "icon": "Smart watch.svg"
+        },
+        {
+          "id": 4,
+          "name": "Moto G Stylus",
+          "brand": "Motorola",
+          "volume": "11.2k",
+          "change": "+6.4%",
+          "isPositive": true,
+          "icon": "phone2.svg"
+        },
+        {
+          "id": 5,
+          "name": "Nothing Phone 1",
+          "brand": "Nothing",
+          "volume": "8.15k",
+          "change": "-2.8%",
+          "isPositive": false,
+          "icon": "phone2.svg"
+        }
+      ]
+    },
+    "earningReport": {
+      "netProfit": {
+        "label": "Net Profit",
+        "subLabel": "15.8k Sales",
+        "amount": "64,820"
+      },
+      "totalIncome": {
+        "label": "Total Income",
+        "subLabel": "Enterprise Licensing",
+        "amount": "$4,930"
+      },
+      "totalExpenses": {
+        "label": "Total Expenses",
+        "subLabel": "Operations, Cloud",
+        "amount": "$580"
+      },
+      "weeklyReport": {
+        "days": ["M", "T", "W", "T", "F", "S", "S"],
+        "values": [32, 48, 38, 26, 74, 35, 45],
+        "highlightDayIndex": 4
+      },
+      "years": {
+        "2023": {
+          "netProfit": {
+            "label": "Net Profit",
+            "subLabel": "15.8k Sales",
+            "amount": "64,820"
+          },
+          "totalIncome": {
+            "label": "Total Income",
+            "subLabel": "Enterprise Licensing",
+            "amount": "$4,930"
+          },
+          "totalExpenses": {
+            "label": "Total Expenses",
+            "subLabel": "Operations, Cloud",
+            "amount": "$580"
+          },
+          "weeklyReport": {
+            "days": ["M", "T", "W", "T", "F", "S", "S"],
+            "values": [32, 48, 38, 26, 74, 35, 45],
+            "highlightDayIndex": 4
+          }
+        },
+        "2022": {
+          "netProfit": {
+            "label": "Net Profit",
+            "subLabel": "12.4k Sales",
+            "amount": "52,410"
+          },
+          "totalIncome": {
+            "label": "Total Income",
+            "subLabel": "Enterprise Licensing",
+            "amount": "$3,840"
+          },
+          "totalExpenses": {
+            "label": "Total Expenses",
+            "subLabel": "Operations, Cloud",
+            "amount": "$420"
+          },
+          "weeklyReport": {
+            "days": ["M", "T", "W", "T", "F", "S", "S"],
+            "values": [28, 35, 42, 30, 58, 28, 38],
+            "highlightDayIndex": 4
+          }
+        }
+      }
+    },
+    "salesAnalytics": {
+      "selectedYear": "2023",
+      "availableYears": ["2023", "2022", "2021"],
+      "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+      "yCategories": ["8k", "7k", "6k", "5k", "4k", "3k", "2k", "1k"],
+      "years": {
+        "2023": {
+          "badge": "+7.2",
+          "badgeText": "Than Last year",
+          "matrix": [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 3, 0, 0],
+            [0, 0, 0, 0, 3, 0, 0, 0],
+            [0, 0, 0, 3, 3, 0, 3, 0],
+            [0, 0, 3, 3, 0, 0, 0, 0],
+            [0, 3, 0, 0, 0, 0, 0, 0],
+            [3, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0]
+          ]
+        },
+        "2022": {
+          "badge": "+4.5",
+          "badgeText": "Than Last year",
+          "matrix": [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 3, 0],
+            [0, 0, 0, 0, 3, 0, 0, 0],
+            [0, 0, 3, 0, 0, 3, 0, 0],
+            [0, 3, 0, 0, 0, 0, 0, 0],
+            [3, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0]
+          ]
+        },
+        "2021": {
+          "badge": "+3.0",
+          "badgeText": "Than Last year",
+          "matrix": [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 3],
+            [0, 0, 0, 0, 0, 3, 0, 0],
+            [0, 0, 0, 3, 0, 0, 0, 0],
+            [0, 0, 3, 0, 0, 0, 0, 0],
+            [0, 3, 0, 0, 0, 0, 0, 0],
+            [3, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0]
+          ]
+        }
+      }
+    },
+    "salesByCountries": [
+      {
+        "id": 1,
+        "country": "united States of america",
+        "sales": "$9,420k",
+        "total": "920k",
+        "flag": "United state of america.png"
+      },
+      {
+        "id": 2,
+        "country": "Brazil",
+        "sales": "$3,150k",
+        "total": "710k",
+        "flag": "Brazil.png"
+      },
+      {
+        "id": 3,
+        "country": "India",
+        "sales": "$1,240k",
+        "total": "210k",
+        "flag": "India.png"
+      },
+      {
+        "id": 4,
+        "country": "France",
+        "sales": "$890k",
+        "total": "105k",
+        "flag": "France.png"
+      },
+      {
+        "id": 5,
+        "country": "Belgium",
+        "sales": "$620k",
+        "total": "58k",
+        "flag": "belgium.png"
+      },
+      {
+        "id": 6,
+        "country": "China",
+        "sales": "$24k",
+        "total": "14k",
+        "flag": "China.png"
+      }
+    ],
+    "salesByCountriesYears": {
+      "2023": [
+        {
+          "id": 1,
+          "country": "united States of america",
+          "sales": "$9,420k",
+          "total": "920k",
+          "flag": "United state of america.png"
+        },
+        {
+          "id": 2,
+          "country": "Brazil",
+          "sales": "$3,150k",
+          "total": "710k",
+          "flag": "Brazil.png"
+        },
+        {
+          "id": 3,
+          "country": "India",
+          "sales": "$1,240k",
+          "total": "210k",
+          "flag": "India.png"
+        },
+        {
+          "id": 4,
+          "country": "France",
+          "sales": "$890k",
+          "total": "105k",
+          "flag": "France.png"
+        },
+        {
+          "id": 5,
+          "country": "Belgium",
+          "sales": "$620k",
+          "total": "58k",
+          "flag": "belgium.png"
+        },
+        {
+          "id": 6,
+          "country": "China",
+          "sales": "$24k",
+          "total": "14k",
+          "flag": "China.png"
+        }
+      ],
+      "2022": [
+        {
+          "id": 1,
+          "country": "united States of america",
+          "sales": "$7,850k",
+          "total": "810k",
+          "flag": "United state of america.png"
+        },
+        {
+          "id": 2,
+          "country": "Brazil",
+          "sales": "$2,420k",
+          "total": "540k",
+          "flag": "Brazil.png"
+        },
+        {
+          "id": 3,
+          "country": "India",
+          "sales": "$980k",
+          "total": "160k",
+          "flag": "India.png"
+        },
+        {
+          "id": 4,
+          "country": "France",
+          "sales": "$710k",
+          "total": "85k",
+          "flag": "France.png"
+        },
+        {
+          "id": 5,
+          "country": "Belgium",
+          "sales": "$490k",
+          "total": "42k",
+          "flag": "belgium.png"
+        },
+        {
+          "id": 6,
+          "country": "China",
+          "sales": "$18k",
+          "total": "10k",
+          "flag": "China.png"
+        }
+      ]
+    },
+    "salesStatus": {
+      "percentage": 82,
+      "title": "Sales",
+      "legends": [
+        { "label": "Conversion Ratio", "color": "#696cff" },
+        { "label": "Total requirements", "color": "#cfd3fb" }
+      ],
+      "years": {
+        "2023": { "percentage": 82, "title": "Sales" },
+        "2022": { "percentage": 68, "title": "Sales" }
+      }
+    },
+    "employeePerformance": [
+      {
+        "id": 1,
+        "name": "Marcus Vance",
+        "role": "Lead iOS Engineer",
+        "avatar": "member1",
+        "project": "ZIPCAR",
+        "projectBg": "bg-[#e7e7ff] text-[#696cff]",
+        "tasks": "94/140",
+        "progress": 72,
+        "progressColor": "#696cff"
+      },
+      {
+        "id": 2,
+        "name": "Sophia Chen",
+        "role": "Senior Product Designer",
+        "avatar": "member2",
+        "project": "BITBANK",
+        "projectBg": "bg-[#ffe2e3] text-[#ff3e1d]",
+        "tasks": "312/380",
+        "progress": 85,
+        "progressColor": "#ff3e1d"
+      },
+      {
+        "id": 3,
+        "name": "Liam Gallagher",
+        "role": "Fullstack Developer",
+        "avatar": "member3",
+        "project": "PAYERS",
+        "projectBg": "bg-[#fff1d6] text-[#ffab00]",
+        "tasks": "58/70",
+        "progress": 83,
+        "progressColor": "#ffab00"
+      },
+      {
+        "id": 4,
+        "name": "Elena Rostova",
+        "role": "Technical PM",
+        "avatar": "member4",
+        "project": "BRANDI",
+        "projectBg": "bg-[#d7f5fc] text-[#03c3ec]",
+        "tasks": "115/280",
+        "progress": 42,
+        "progressColor": "#03c3ec"
+      },
+      {
+        "id": 5,
+        "name": "Lucas Silva",
+        "role": "UX Researcher",
+        "avatar": "member5",
+        "project": "AVIATO",
+        "projectBg": "bg-[#ebeef0] text-[#8592a3]",
+        "tasks": "18/30",
+        "progress": 60,
+        "progressColor": "#8592a3"
+      }
+    ],
+    "employeePerformanceYears": {
+      "2023": [
+        {
+          "id": 1,
+          "name": "Marcus Vance",
+          "role": "Lead iOS Engineer",
+          "avatar": "member1",
+          "project": "ZIPCAR",
+          "projectBg": "bg-[#e7e7ff] text-[#696cff]",
+          "tasks": "94/140",
+          "progress": 72,
+          "progressColor": "#696cff"
+        },
+        {
+          "id": 2,
+          "name": "Sophia Chen",
+          "role": "Senior Product Designer",
+          "avatar": "member2",
+          "project": "BITBANK",
+          "projectBg": "bg-[#ffe2e3] text-[#ff3e1d]",
+          "tasks": "312/380",
+          "progress": 85,
+          "progressColor": "#ff3e1d"
+        },
+        {
+          "id": 3,
+          "name": "Liam Gallagher",
+          "role": "Fullstack Developer",
+          "avatar": "member3",
+          "project": "PAYERS",
+          "projectBg": "bg-[#fff1d6] text-[#ffab00]",
+          "tasks": "58/70",
+          "progress": 83,
+          "progressColor": "#ffab00"
+        },
+        {
+          "id": 4,
+          "name": "Elena Rostova",
+          "role": "Technical PM",
+          "avatar": "member4",
+          "project": "BRANDI",
+          "projectBg": "bg-[#d7f5fc] text-[#03c3ec]",
+          "tasks": "115/280",
+          "progress": 42,
+          "progressColor": "#03c3ec"
+        },
+        {
+          "id": 5,
+          "name": "Lucas Silva",
+          "role": "UX Researcher",
+          "avatar": "member5",
+          "project": "AVIATO",
+          "projectBg": "bg-[#ebeef0] text-[#8592a3]",
+          "tasks": "18/30",
+          "progress": 60,
+          "progressColor": "#8592a3"
+        }
+      ],
+      "2022": [
+        {
+          "id": 1,
+          "name": "Marcus Vance",
+          "role": "Lead iOS Engineer",
+          "avatar": "member1",
+          "project": "ZIPCAR",
+          "projectBg": "bg-[#e7e7ff] text-[#696cff]",
+          "tasks": "78/120",
+          "progress": 65,
+          "progressColor": "#696cff"
+        },
+        {
+          "id": 2,
+          "name": "Sophia Chen",
+          "role": "Senior Product Designer",
+          "avatar": "member2",
+          "project": "BITBANK",
+          "projectBg": "bg-[#ffe2e3] text-[#ff3e1d]",
+          "tasks": "260/310",
+          "progress": 84,
+          "progressColor": "#ff3e1d"
+        },
+        {
+          "id": 3,
+          "name": "Liam Gallagher",
+          "role": "Fullstack Developer",
+          "avatar": "member3",
+          "project": "PAYERS",
+          "projectBg": "bg-[#fff1d6] text-[#ffab00]",
+          "tasks": "44/60",
+          "progress": 73,
+          "progressColor": "#ffab00"
+        },
+        {
+          "id": 4,
+          "name": "Elena Rostova",
+          "role": "Technical PM",
+          "avatar": "member4",
+          "project": "BRANDI",
+          "projectBg": "bg-[#d7f5fc] text-[#03c3ec]",
+          "tasks": "98/210",
+          "progress": 47,
+          "progressColor": "#03c3ec"
+        },
+        {
+          "id": 5,
+          "name": "Lucas Silva",
+          "role": "UX Researcher",
+          "avatar": "member5",
+          "project": "AVIATO",
+          "projectBg": "bg-[#ebeef0] text-[#8592a3]",
+          "tasks": "14/25",
+          "progress": 56,
+          "progressColor": "#8592a3"
+        }
+      ]
+    },
+    "customerTransactions": [
+      {
+        "id": 1,
+        "name": "Marcus Vance",
+        "email": "m.vance@techcorp.io",
+        "avatar": "member1",
+        "amount": "$582.40",
+        "status": "PAID",
+        "statusColor": "bg-[#e8fadf] text-[#71dd37]",
+        "paymentMethod": "mastercard"
+      },
+      {
+        "id": 2,
+        "name": "Sophia Chen",
+        "email": "sophia.c@designlab.org",
+        "avatar": "member2",
+        "amount": "$145.20",
+        "status": "PENDING",
+        "statusColor": "bg-[#fff1d6] text-[#ffab00]",
+        "paymentMethod": "visa"
+      },
+      {
+        "id": 3,
+        "name": "Liam Gallagher",
+        "email": "liam.g@oasisnet.com",
+        "avatar": "member3",
+        "amount": "$1,120.50",
+        "status": "PENDING",
+        "statusColor": "bg-[#fff1d6] text-[#ffab00]",
+        "paymentMethod": "visa"
+      },
+      {
+        "id": 4,
+        "name": "Elena Rostova",
+        "email": "elena.r@fintechpro.eu",
+        "avatar": "member4",
+        "amount": "$865.30",
+        "status": "PAID",
+        "statusColor": "bg-[#e8fadf] text-[#71dd37]",
+        "paymentMethod": "mastercard"
+      },
+      {
+        "id": 5,
+        "name": "Lucas Silva",
+        "email": "lucas.silva@metaspace.br",
+        "avatar": "member5",
+        "amount": "$940.00",
+        "status": "PAID",
+        "statusColor": "bg-[#e8fadf] text-[#71dd37]",
+        "paymentMethod": "paypal"
+      },
+      {
+        "id": 6,
+        "name": "Maya Patel",
+        "email": "maya.patel@horizon.co",
+        "avatar": "member6",
+        "amount": "$725.80",
+        "status": "PENDING",
+        "statusColor": "bg-[#fff1d6] text-[#ffab00]",
+        "paymentMethod": "visa"
+      }
     ]
   }
 }

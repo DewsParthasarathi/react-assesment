@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchUsers, type User } from "../api";
+import { fetchUsers } from "../api/authApi";
+import type { User } from "../api/types";
 
 export const USERS_QUERY_KEY = "users";
 

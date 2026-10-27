@@ -1,6 +1,7 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { Sidebar, Navbar } from '../layout-components';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import { Sidebar } from "./layout-components/Sidebar";
+import { Navbar } from "./layout-components/Navbar";
 
 export const MainLayout: React.FC = () => {
   return (

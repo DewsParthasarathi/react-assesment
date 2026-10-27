@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { loginUser, type LoginCredentials, type LoginResponse } from "../api";
+import { loginUser } from "../api/authApi";
+import type { LoginCredentials, LoginResponse } from "../api/types";
 import { useAppDispatch } from "../store/hooks";
 import { loginSuccess, loginFailure } from "../store/slices/authSlice";
 import { DASHBOARD_QUERY_KEY } from "./useDashboardQuery";

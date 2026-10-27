@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { CustomButton } from "../components/ui/CustomButton";
+import { CustomButton } from "../../components/ui/CustomButton";
 
 interface SubmenuItem {
   id: string;
@@ -192,30 +192,30 @@ export const Sidebar: React.FC = () => {
         { id: "faq", title: "FAQ", path: "/pages/faq" },
       ],
     },
-    {
-      id: "auth-pages",
-      title: "Auth Pages",
-      hasSubmenu: true,
-      icon: (
-        <svg
-          className="w-5 h-5 shrink-0"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-          />
-        </svg>
-      ),
-      subItems: [
-        { id: "auth-login", title: "Login", path: "/login" },
-        { id: "auth-register", title: "Register", path: "/register" },
-      ],
-    },
+    // {
+    //   id: "auth-pages",
+    //   title: "Auth Pages",
+    //   hasSubmenu: true,
+    //   icon: (
+    //     <svg
+    //       className="w-5 h-5 shrink-0"
+    //       fill="none"
+    //       stroke="currentColor"
+    //       viewBox="0 0 24 24"
+    //     >
+    //       <path
+    //         strokeLinecap="round"
+    //         strokeLinejoin="round"
+    //         strokeWidth={1.5}
+    //         d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+    //       />
+    //     </svg>
+    //   ),
+    //   subItems: [
+    //     { id: "auth-login", title: "Login", path: "/login" },
+    //     { id: "auth-register", title: "Register", path: "/register" },
+    //   ],
+    // },
   ];
 
   const dashboardItems = [
@@ -228,7 +228,7 @@ export const Sidebar: React.FC = () => {
     location.pathname === "/dashboard" || location.pathname === "/";
 
   return (
-    <aside className="sticky top-0 h-screen w-[260px] max-[1440px]:w-[240px] max-[1280px]:w-[220px] max-[1024px]:w-[200px] shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20">
+    <aside className="sticky top-0 h-screen w-[16%]  shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20">
       {/* Top Dashboards Navigation Group using CustomButton */}
       <div className="px-3 mb-1">
         <CustomButton

@@ -13,7 +13,7 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
   growth = "14.82%",
   value = "$84,686k",
 }) => {
-  const curveData = [10, 28, 13, 23, 17, 25, 21];
+  const curveData = [8, 62, 66, 10, 52, 22, 46, 72];
 
   const splineOptions: Highcharts.Options = {
     chart: {
@@ -27,7 +27,7 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
     credits: { enabled: false },
     legend: { enabled: false },
     xAxis: { visible: false },
-    yAxis: { visible: false, min: 0 },
+    yAxis: { visible: false, min: 0, max: 80 },
     tooltip: {
       headerFormat: "",
       pointFormat: "<b>{point.y}k</b> Profit",
@@ -47,21 +47,12 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
       },
     },
     series: [
-      // Outer soft glow layer
+      // Soft, subtle glow layer behind the line
       {
         type: "spline",
         data: curveData,
-        lineWidth: 8,
-        color: "rgba(255, 171, 0, 0.22)",
-        enableMouseTracking: false,
-        marker: { enabled: false },
-      },
-      // Middle intense glow layer
-      {
-        type: "spline",
-        data: curveData,
-        lineWidth: 5,
-        color: "rgba(255, 171, 0, 0.45)",
+        lineWidth: 7,
+        color: "rgba(255, 171, 0, 0.14)",
         enableMouseTracking: false,
         marker: { enabled: false },
       },
@@ -69,12 +60,12 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
       {
         type: "spline",
         data: curveData,
-        lineWidth: 3.5,
+        lineWidth: 3,
         color: "#ffab00",
         shadow: {
-          color: "rgba(255, 171, 0, 0.4)",
-          width: 5,
-          offsetY: 2,
+          color: "rgba(255, 171, 0, 0.3)",
+          width: 6,
+          offsetY: 3,
           offsetX: 0,
         },
         marker: {
@@ -90,21 +81,19 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
   return (
     <div className="bg-white rounded-[5px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between">
       <div className="flex flex-col items-start gap-1">
-        <h3 className="text-fs16 font-semibold text-[#32475c]">
-          Profit Report
-        </h3>
-        <span className="inline-block px-2.5 py-0.5 rounded-[5px] text-fs12 font-medium bg-[#fff1d6] text-[#ffab00]">
+        <h3 className="text-fs22 font-medium text-[#444050]">Profit Report</h3>
+        <span className="inline-block px-2.5 py-0.5 rounded-[5px] text-fs13 font-normal bg-[#fff1d6] text-[#ffab00]">
           {year}
         </span>
       </div>
 
       <div className="grid grid-cols-12 items-center gap-2 mt-3">
         <div className="col-span-5">
-          <p className="text-fs13 font-semibold text-[#71dd37] flex items-center gap-1">
+          <p className="text-fs16 font-normal text-[#71dd37] flex items-center gap-1">
             <span>↑</span>
             <span>{growth}</span>
           </p>
-          <p className="text-fs22 font-bold text-[#32475c] mt-0.5 tracking-tight">
+          <p className="text-fs24 font-semibold text-[#444050] mt-0.5 tracking-tight">
             {value}
           </p>
         </div>

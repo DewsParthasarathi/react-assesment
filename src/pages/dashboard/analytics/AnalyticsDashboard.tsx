@@ -1,20 +1,20 @@
 import React from "react";
-import { useAppSelector } from "../store/hooks";
-import { useDashboardQuery } from "../hooks/useDashboardQuery";
-import { WelcomeCard } from "./dashboard/analytics/WelcomeCard";
-import { OrderCard } from "./dashboard/analytics/OrderCard";
-import { SalesCard } from "./dashboard/analytics/SalesCard";
-import { TotalRevenueCard } from "./dashboard/analytics/TotalRevenueCard";
-import { PaymentsCard } from "./dashboard/analytics/PaymentsCard";
-import { RevenueCard } from "./dashboard/analytics/RevenueCard";
-import { ProfitReportCard } from "./dashboard/analytics/ProfitReportCard";
-import { OrderStatisticsCard } from "./dashboard/analytics/OrderStatisticsCard";
-import { IncomeChartCard } from "./dashboard/analytics/IncomeChartCard";
-import { TransactionsCard } from "./dashboard/analytics/TransactionsCard";
-import { ActivityTimelineCard } from "./dashboard/analytics/ActivityTimelineCard";
-import { BrowserAnalyticsCard } from "./dashboard/analytics/BrowserAnalyticsCard";
+import { useAppSelector } from "../../../store/hooks";
+import { useDashboardQuery } from "../../../hooks/useDashboardQuery";
+import { WelcomeCard } from "./WelcomeCard";
+import { OrderCard } from "./OrderCard";
+import { SalesCard } from "./SalesCard";
+import { TotalRevenueCard } from "./TotalRevenueCard";
+import { PaymentsCard } from "./PaymentsCard";
+import { RevenueCard } from "./RevenueCard";
+import { ProfitReportCard } from "./ProfitReportCard";
+import { OrderStatisticsCard } from "./OrderStatisticsCard";
+import { IncomeChartCard } from "./IncomeChartCard";
+import { TransactionsCard } from "./TransactionsCard";
+import { ActivityTimelineCard } from "./ActivityTimelineCard";
+import { BrowserAnalyticsCard } from "./BrowserAnalyticsCard";
 
-export const Dashboard: React.FC = () => {
+export const AnalyticsDashboard: React.FC = () => {
   const currentUser = useAppSelector((state) => state.auth.user);
   const userId = currentUser?.id || "1";
 
@@ -94,6 +94,8 @@ export const Dashboard: React.FC = () => {
             <SalesCard
               value={profile.sales?.value || "$4,679"}
               growth={profile.sales?.growth || "28.14%"}
+              years={profile.sales?.years}
+              availableYears={profile.availableYears}
             />
           </div>
         </div>
@@ -103,12 +105,14 @@ export const Dashboard: React.FC = () => {
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-8 flex flex-col">
           <TotalRevenueCard
+            data={profile.totalRevenue}
             growth={profile.totalRevenue?.growthIndicator || "78%"}
             companyGrowth={
               profile.totalRevenue?.companyGrowth || "62% Company Growth"
             }
             value2023={profile.totalRevenue?.value || "$32.5k"}
-            value2022="$41.2k"
+            value2022="$28.4k"
+            availableYears={profile.availableYears}
           />
         </div>
         <div className="col-span-12 lg:col-span-4 flex flex-col justify-between gap-6">
@@ -116,6 +120,9 @@ export const Dashboard: React.FC = () => {
             <PaymentsCard
               value={profile.payments?.value || "$4,679"}
               change={profile.payments?.change || "-14.82%"}
+              changeDirection={profile.payments?.changeDirection}
+              years={profile.payments?.years}
+              availableYears={profile.availableYears}
             />
             <RevenueCard value="425K" />
           </div>
@@ -130,20 +137,31 @@ export const Dashboard: React.FC = () => {
       {/* ROW 3: Order Statistics (4 cols) + Income / Expenses / Profit (4 cols) + Transactions (4 cols) */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-4">
-          <OrderStatisticsCard />
+          <OrderStatisticsCard
+            years={profile.orderStatisticsYears}
+            availableYears={profile.availableYears}
+          />
         </div>
         <div className="col-span-12 lg:col-span-4">
           <IncomeChartCard />
         </div>
         <div className="col-span-12 lg:col-span-4">
-          <TransactionsCard />
+          <TransactionsCard
+            transactions={profile.transactions}
+            years={profile.transactionsYears}
+            availableYears={profile.availableYears}
+          />
         </div>
       </div>
 
       {/* ROW 4: Activity Timeline (5 cols) + Browser Analytics (7 cols) */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-5">
-          <ActivityTimelineCard />
+          <ActivityTimelineCard
+            activities={profile.activities}
+            years={profile.activitiesYears}
+            availableYears={profile.availableYears}
+          />
         </div>
         <div className="col-span-12 lg:col-span-7">
           <BrowserAnalyticsCard />
@@ -153,4 +171,4 @@ export const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default AnalyticsDashboard;
