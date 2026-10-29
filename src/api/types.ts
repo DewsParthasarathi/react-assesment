@@ -376,3 +376,171 @@ export interface CrmDashboardData {
   customerTransactionsYears?: Record<string, CustomerTransaction[]>;
 }
 
+export interface EcommerceCongratulations {
+  sellerName: string;
+  subtitle: string;
+  salesValue: string;
+}
+
+export interface EcommerceNewVisitors {
+  title: string;
+  timeLabel: string;
+  percentage: string;
+  change: string;
+  changeDirection: "up" | "down";
+  days: string[];
+  series: number[];
+}
+
+export interface EcommerceActivity {
+  title: string;
+  timeLabel: string;
+  percentage: string;
+  change: string;
+  changeDirection: "up" | "down";
+  days: string[];
+  series: number[];
+}
+
+export interface EcommerceMetricSmall {
+  title: string;
+  value: string;
+  growth: string;
+  growthDirection: "up" | "down";
+}
+
+export interface EcommerceProfitSmall {
+  title: string;
+  value: string;
+  months: string[];
+  series: number[];
+  secondarySeries?: number[];
+}
+
+export interface EcommerceTotalIncome {
+  title: string;
+  subtitle: string;
+  months: string[];
+  series: number[];
+}
+
+export interface EcommerceReportItem {
+  label: string;
+  amount: string;
+  change: string;
+  changeType: "positive" | "negative";
+  type: "income" | "expense" | "profit";
+}
+
+export interface EcommerceReport {
+  title: string;
+  subtitle: string;
+  items: EcommerceReportItem[];
+}
+
+export interface EcommerceExpensesGauge {
+  title: string;
+  percentage: number;
+  comparisonText: string;
+}
+
+export interface EcommercePerformance {
+  title: string;
+  earning: string;
+  sales: string;
+  categories: string[];
+  series: Array<{
+    name: string;
+    data: number[];
+    color: string;
+  }>;
+}
+
+export interface EcommerceFunnelMetric {
+  label: string;
+  subtext: string;
+  value: string;
+  changeDirection: "up" | "down";
+}
+
+export interface EcommerceConversionRate {
+  title: string;
+  subtitle: string;
+  rate: string;
+  sparkline: number[];
+  lastMonthSparkline?: number[];
+  metrics: EcommerceFunnelMetric[];
+}
+
+export interface EcommerceSalesSummary {
+  title: string;
+  value: string;
+  growth: string;
+  growthDirection: "up" | "down";
+}
+
+export interface EcommerceProfitTarget {
+  title: string;
+  value: string;
+  growth: string;
+  targetLabel: string;
+  targetPercentage: number;
+}
+
+export interface EcommerceExpensesComparison {
+  title: string;
+  value: string;
+  growth: string;
+  period: string;
+  series: Array<{
+    name: string;
+    data: number[];
+  }>;
+}
+
+export interface EcommerceProduct {
+  id: string;
+  name: string;
+  brand: string;
+  icon: string;
+  category: string;
+  paidAmount: string;
+  totalAmount: string;
+  paymentStatus: string;
+  orderStatus: string;
+  statusBadgeColor: string;
+}
+
+export interface EcommerceTotalBalance {
+  title: string;
+  walletBalance: string;
+  paypalBalance: string;
+  months: string[];
+  series: number[];
+  salesGrowthMessage: string;
+  subMessage: string;
+}
+
+export interface EcommerceDashboardData {
+  availableYears?: string[];
+  selectedYear?: string;
+  congratulations: EcommerceCongratulations;
+  newVisitors: EcommerceNewVisitors;
+  activity: EcommerceActivity;
+  salesSmall: EcommerceMetricSmall;
+  profitSmall: EcommerceProfitSmall;
+  totalIncome: EcommerceTotalIncome;
+  report: EcommerceReport;
+  expensesGauge: EcommerceExpensesGauge;
+  transactionsSmall: EcommerceMetricSmall;
+  performance: EcommercePerformance;
+  conversionRate: EcommerceConversionRate;
+  salesSummary: EcommerceSalesSummary;
+  profitTarget: EcommerceProfitTarget;
+  expensesComparison: EcommerceExpensesComparison;
+  products: EcommerceProduct[];
+  totalBalance: EcommerceTotalBalance;
+  years?: Record<string, Partial<EcommerceDashboardData>>;
+}
+
+

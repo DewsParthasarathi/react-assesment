@@ -10,7 +10,7 @@ interface GeneratedLeadsCardProps {
 export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) => {
   if (!data) {
     return (
-      <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
+      <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
         <div className="h-5 bg-gray-200 rounded w-1/3 mb-2"></div>
         <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
         <div className="h-16 bg-gray-100 rounded w-full"></div>
@@ -65,7 +65,7 @@ export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) 
   };
 
   return (
-    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
+    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
         <h3 className="text-fs22 font-medium text-[#444050]">{title}</h3>
         <p className="text-fs16 font-normal text-[#a5a3ae] mt-0.5">{subtitle}</p>

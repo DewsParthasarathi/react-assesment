@@ -116,6 +116,24 @@ function mockApiPlugin(): Plugin {
           return;
         }
 
+        // 2.7. GET /api/dashboard/ecommerce
+        if (req.method === "GET" && pathname === "/api/dashboard/ecommerce") {
+          const data = getDashboardData();
+          const ecommerceData = data?.ecommerceDashboard
+            ? JSON.parse(JSON.stringify(data.ecommerceDashboard))
+            : {};
+          const year = parsedUrl.searchParams.get("year");
+          if (year && ecommerceData.years?.[year]) {
+            ecommerceData.selectedYear = year;
+            Object.assign(ecommerceData, ecommerceData.years[year]);
+          } else if (ecommerceData.selectedYear && ecommerceData.years?.[ecommerceData.selectedYear]) {
+            Object.assign(ecommerceData, ecommerceData.years[ecommerceData.selectedYear]);
+          }
+          res.statusCode = 200;
+          res.end(JSON.stringify(ecommerceData));
+          return;
+        }
+
         // 3. GET /api/dashboard/:userId
         const dashboardMatch = pathname.match(/^\/api\/dashboard\/([^/]+)$/);
         if (req.method === "GET" && dashboardMatch) {

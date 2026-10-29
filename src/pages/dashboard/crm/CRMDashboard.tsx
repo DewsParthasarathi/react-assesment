@@ -19,7 +19,7 @@ export const CRMDashboard: React.FC = () => {
   const { data } = useCrmDashboardQuery(selectedYear);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f9] p-2 space-y-6">
+    <div className="w-full space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         <div className="h-full">
           <CustomerRatingsCard

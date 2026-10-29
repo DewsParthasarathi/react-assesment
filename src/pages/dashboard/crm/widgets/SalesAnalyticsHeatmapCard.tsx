@@ -18,7 +18,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
 
   if (!data) {
     return (
-      <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
+      <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
         <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
         <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
         <div className="h-44 bg-gray-100 rounded w-full"></div>
@@ -56,7 +56,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
   };
 
   return (
-    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full relative">
+    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full relative">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between">

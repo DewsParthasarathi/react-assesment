@@ -64,7 +64,7 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
   };
 
   return (
-    <div className="bg-white rounded-[5px] p-5 pb-3 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
+    <div className="bg-white rounded-[5px] p-4 pb-2 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
       <div>
         <p className="text-fs18 font-normal text-[#a5a3ae]">Revenue</p>
         <p className="text-fs24 font-semibold text-[#444050] mt-1">{value}</p>

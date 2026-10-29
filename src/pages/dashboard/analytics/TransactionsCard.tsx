@@ -100,7 +100,7 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
   });
 
   return (
-    <div className="bg-white rounded-[5px] p-6 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       {/* Header */}
       <div className="flex items-center justify-between pb-1">
         <h3 className="text-fs22 font-medium text-[#444050]">Transactions</h3>

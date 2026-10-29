@@ -226,6 +226,11 @@ export const Sidebar: React.FC = () => {
 
   const isAnalyticsActive =
     location.pathname === "/dashboard" || location.pathname === "/";
+  const isDashboardActive =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname === "/" ||
+    location.pathname === "/crm" ||
+    location.pathname === "/ecommerce";
 
   return (
     <aside className="sticky top-0 h-screen w-[16%]  shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20">
@@ -235,7 +240,7 @@ export const Sidebar: React.FC = () => {
           variant="ghost"
           onClick={() => setDashboardOpen((prev) => !prev)}
           className={`w-full !justify-between px-3 !py-2.5 !h-auto rounded-lg text-fs14 font-medium transition cursor-pointer ${
-            isAnalyticsActive
+            isDashboardActive
               ? "!bg-[#e7e7ff] !text-[#696cff]"
               : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
           }`}

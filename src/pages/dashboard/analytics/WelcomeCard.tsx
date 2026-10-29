@@ -65,7 +65,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-[5px] px-6 py-3 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] relative overflow-hidden flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[5px] px-4 py-3 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] relative overflow-hidden flex flex-col justify-between h-full">
       <div className="max-w-[62%] sm:max-w-[65%] z-10">
         <h2 className="text-fs20 font-bold text-[#696cff] tracking-normal">
           {greeting}

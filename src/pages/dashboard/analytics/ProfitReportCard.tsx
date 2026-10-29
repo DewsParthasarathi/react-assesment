@@ -79,7 +79,7 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-[5px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between">
+    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between">
       <div className="flex flex-col items-start gap-1">
         <h3 className="text-fs22 font-medium text-[#444050]">Profit Report</h3>
         <span className="inline-block px-2.5 py-0.5 rounded-[5px] text-fs13 font-normal bg-[#fff1d6] text-[#ffab00]">

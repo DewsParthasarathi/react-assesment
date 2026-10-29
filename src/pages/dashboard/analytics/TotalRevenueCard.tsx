@@ -134,7 +134,7 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
     <div className="bg-white rounded-[5px] border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] overflow-hidden h-full flex flex-col justify-between">
       <div className="grid grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-[#dbdade]/50 h-full flex-1">
         {/* Left Column: Total Revenue Bar Chart */}
-        <div className="col-span-12 md:col-span-7 p-5 flex flex-col justify-between">
+        <div className="col-span-12 md:col-span-7 p-4 flex flex-col justify-between">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
             <h3 className="text-fs22 font-medium text-[#444050]">
               Total Revenue
@@ -157,7 +157,7 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
         </div>
 
         {/* Right Column: Semicircular Radial Segmented Growth Gauge */}
-        <div className="col-span-12 md:col-span-5 p-5 flex flex-col justify-between items-center text-center">
+        <div className="col-span-12 md:col-span-5 p-4 flex flex-col justify-between items-center text-center">
           <div className="w-full flex justify-end relative">
             <YearSelectionPopup
               selectedYear={selectedYear}

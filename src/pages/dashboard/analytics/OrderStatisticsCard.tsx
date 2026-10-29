@@ -129,7 +129,7 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
   });
 
   return (
-    <div className="bg-white rounded-[5px] p-6 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between">

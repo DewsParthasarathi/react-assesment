@@ -234,10 +234,10 @@ export const IncomeChartCard: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-[5px] p-6 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       {/* 3 Tabs at Top */}
       <div>
-        <div className="-mx-6 -mt-2 px-6 pb-4 border-b border-[#dbdade]/60">
+        <div className="-mx-4 -mt-2 px-4 pb-4 border-b border-[#dbdade]/60">
           <Tabs
             tabs={tabItems}
             activeTab={activeTab}

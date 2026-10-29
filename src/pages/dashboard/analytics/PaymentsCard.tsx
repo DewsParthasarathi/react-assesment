@@ -24,7 +24,7 @@ export const PaymentsCard: React.FC<PaymentsCardProps> = ({
   const isUp = (active.changeDirection ?? changeDirection) === "up" || (!displayChange.startsWith("-") && displayChange.startsWith("+"));
 
   return (
-    <div className="bg-white rounded-[5px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
+    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
       <div className="flex items-center justify-between">
         <div className="w-10 h-10 rounded-[5px] bg-[#ea5455]/15 flex items-center justify-center p-2.5">
           <img

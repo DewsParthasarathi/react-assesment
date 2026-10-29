@@ -23,7 +23,7 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
 }) => {
   if (!transactions) {
     return (
-      <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
+      <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
         <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
         <div className="space-y-4">
           {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -156,7 +156,7 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
   ];
 
   return (
-    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
+    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       {/* Table using reusable Table component */}
       <Table
         columns={columns}

@@ -41,7 +41,7 @@
   --danger-muted: #fef2f2;
   --fg-hover: #000000;
   --border-hover: #d4d4d8;
-
+  --fs11: clamp(6.2px, 12vw * 100 / 1920, 12px);
   --fs12: clamp(6.2px, 12vw * 100 / 1920, 12px);
 
   --fs13: clamp(6.7166666667px, 13vw * 100 / 1920, 13px);
@@ -188,6 +188,7 @@
 }
 
 @theme inline {
+  --text-fs11: var(--fs11);
   --text-fs12: var(--fs12);
   --text-fs13: var(--fs13);
   --text-fs14: var(--fs14);

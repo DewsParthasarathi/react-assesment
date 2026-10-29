@@ -1,0 +1,246 @@
+import React from "react";
+import Highcharts from "highcharts";
+import Chart from "../../../../components/ui/Chart";
+import type { EcommerceTotalBalance } from "../../../../api/types";
+import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+
+interface TotalBalanceCardProps {
+  data?: EcommerceTotalBalance;
+  availableYears?: string[];
+  selectedYear?: string;
+  onSelectYear?: (year: string) => void;
+}
+
+export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
+  data,
+  availableYears = ["2023", "2022"],
+  selectedYear = "2023",
+  onSelectYear,
+}) => {
+  const title = data?.title || "Total Balance";
+  const walletBalance = data?.walletBalance || "$2.54K";
+  const paypalBalance = data?.paypalBalance || "$4.21K";
+  const months = data?.months || ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+  const seriesData = data?.series || [18, 24, 20, 32, 18, 30];
+  const salesGrowthMessage =
+    data?.salesGrowthMessage || "You have done 57.6% more sales.";
+  const subMessage =
+    data?.subMessage || "check your new badge in your profile.";
+
+  // Highlighting the last point with a hollow circular marker matching the reference
+  const seriesPoints: Highcharts.PointOptionsObject[] = seriesData.map(
+    (val, idx, arr) =>
+      idx === arr.length - 1
+        ? {
+            y: val,
+            marker: {
+              enabled: true,
+              symbol: "circle",
+              radius: 5.5,
+              fillColor: "#ffffff",
+              lineColor: "#ffab00",
+              lineWidth: 3,
+            },
+          }
+        : {
+            y: val,
+            marker: { enabled: false },
+          },
+  );
+
+  const chartOptions: Highcharts.Options = {
+    chart: {
+      type: "spline",
+      height: 220,
+      backgroundColor: "transparent",
+      margin: [10, 10, 24, 10],
+      spacing: [0, 0, 0, 0],
+    },
+    title: { text: undefined },
+    credits: { enabled: false },
+    legend: { enabled: false },
+    tooltip: {
+      backgroundColor: "#ffffff",
+      borderColor: "#dbdade",
+      borderRadius: 6,
+      style: { fontSize: "11px", fontFamily: "Poppins" },
+      valuePrefix: "$",
+      valueSuffix: "k",
+    },
+    xAxis: {
+      categories: months,
+      lineWidth: 0,
+      tickWidth: 0,
+      labels: {
+        style: {
+          color: "#a5a3ae",
+          fontSize: "11px",
+          fontFamily: "Poppins",
+        },
+        y: 16,
+      },
+    },
+    yAxis: {
+      visible: false,
+      min: 10,
+      max: 36,
+    },
+    plotOptions: {
+      spline: {
+        states: {
+          hover: {
+            lineWidthPlus: 0,
+          },
+        },
+      },
+    },
+    series: [
+      // 1. Soft glowing outer aura
+      {
+        type: "spline",
+        name: "GlowAura",
+        data: seriesData,
+        lineWidth: 8,
+        color: "rgba(255, 171, 0, 0.18)",
+        enableMouseTracking: false,
+        showInLegend: false,
+        marker: { enabled: false },
+      },
+      // 2. Mid radiant highlight
+      {
+        type: "spline",
+        name: "GlowMid",
+        data: seriesData,
+        lineWidth: 5,
+        color: "rgba(255, 185, 45, 0.45)",
+        enableMouseTracking: false,
+        showInLegend: false,
+        marker: { enabled: false },
+      },
+      // 3. Crisp central illuminated stroke
+      {
+        type: "spline",
+        name: "Balance",
+        data: seriesPoints,
+        lineWidth: 2.5,
+        color: "#ffab00",
+        enableMouseTracking: true,
+      },
+    ],
+  };
+
+  return (
+    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full min-h-[340px]">
+      <div>
+        <div className="flex items-center justify-between">
+          <h3 className="text-fs18 font-bold text-[#444050] tracking-tight">
+            {title}
+          </h3>
+
+          <YearSelectionPopup
+            selectedYear={selectedYear}
+            onSelectYear={onSelectYear || (() => {})}
+            availableYears={availableYears}
+          >
+            <button
+              type="button"
+              className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
+              aria-label="Balance options"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="5" r="2" />
+                <circle cx="12" cy="12" r="2" />
+                <circle cx="12" cy="19" r="2" />
+              </svg>
+            </button>
+          </YearSelectionPopup>
+        </div>
+
+        {/* Balance summaries */}
+        <div className="flex items-center  gap-18 mt-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-[6px] bg-[#fff1d6] flex items-center justify-center shrink-0">
+              <svg
+                className="w-5 h-auto text-[#ffab00]"
+                viewBox="0 0 25 18"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M4.91978e-06 3.28173V16.8118C0.00136128 17.1266 0.132734 17.4281 0.36525 17.6505C0.59796 17.8732 0.913021 17.9987 1.24204 18H23.4088V12.6656H18.8449C18.1247 12.6654 17.4341 12.3909 16.9261 11.9025L16.8803 11.8581C16.8728 11.8506 16.8654 11.8429 16.858 11.8353C16.8509 11.8275 16.8433 11.8201 16.8358 11.8124L16.8141 11.7893L16.7924 11.7655L16.7712 11.7418L16.7501 11.7179L16.7296 11.6938L16.7092 11.6693C16.7027 11.6612 16.6957 11.6528 16.6893 11.6447C16.6829 11.6365 16.6759 11.6282 16.6695 11.6196C16.6631 11.6111 16.6565 11.603 16.6501 11.5946C16.6437 11.5865 16.6372 11.5776 16.631 11.5681L16.6122 11.5416C16.606 11.5329 16.5996 11.5244 16.5936 11.5151L16.5755 11.4886C16.5693 11.4799 16.5635 11.471 16.5577 11.4621C16.5519 11.453 16.5457 11.4445 16.5399 11.4356L16.5226 11.409L16.4893 11.356L16.4728 11.3295L16.457 11.303C16.4517 11.2939 16.4467 11.2847 16.4415 11.2765L16.4265 11.25L16.4116 11.2218C16.4066 11.2125 16.4019 11.2029 16.3971 11.1936L16.3829 11.1653C16.3783 11.1556 16.3734 11.1462 16.369 11.1365C16.3645 11.1269 16.3599 11.1171 16.3556 11.1076L16.3422 11.0787C16.338 11.0689 16.3339 11.0592 16.3295 11.0494L16.3173 11.0199C16.313 11.0101 16.3091 11.0003 16.3052 10.9904C16.3014 10.9806 16.2971 10.9708 16.2936 10.9606C16.2897 10.9508 16.2859 10.9406 16.2822 10.9307L16.2713 10.9005C16.2676 10.8907 16.2642 10.8805 16.2609 10.8705C16.2576 10.8605 16.2539 10.8503 16.2506 10.8399C16.2473 10.8299 16.2442 10.8197 16.2409 10.8093C16.2376 10.7989 16.2347 10.7889 16.2314 10.7787C16.2283 10.7684 16.2256 10.758 16.2225 10.748C16.2198 10.7376 16.2167 10.7272 16.214 10.7168C16.2113 10.7064 16.2084 10.696 16.2058 10.6857C16.2031 10.6753 16.2006 10.6647 16.1981 10.6543C16.1954 10.644 16.1929 10.6334 16.1905 10.623C16.1884 10.6126 16.1859 10.6021 16.1836 10.5913C16.181 10.5807 16.1787 10.57 16.177 10.5594C16.1748 10.549 16.1727 10.5385 16.1706 10.5277C16.1686 10.5168 16.1667 10.5062 16.165 10.4956C16.163 10.4851 16.1611 10.4743 16.1593 10.4636L16.1543 10.4315C16.1543 10.4206 16.1512 10.41 16.1498 10.3991L16.1456 10.3666C16.1456 10.3557 16.1431 10.3447 16.1419 10.334L16.1386 10.3014C16.1386 10.2904 16.1367 10.2795 16.1359 10.2684L16.1334 10.2354C16.1334 10.2244 16.132 10.2135 16.1314 10.2024L16.1297 10.1692V10.136V10.1028V10.0696L16.1305 9.79247C16.1318 9.10375 16.4182 8.44378 16.9268 7.95657C17.4355 7.46935 18.1251 7.1948 18.8449 7.19295H23.4084V3.79701H1.46535C0.928443 3.79738 0.408946 3.61459 0.000114669 3.28184L4.91978e-06 3.28173ZM4.91978e-06 1.6236V1.62341C0.00194253 1.99474 0.156955 2.3503 0.431322 2.61265C0.705688 2.87516 1.07731 3.02347 1.46526 3.02514H20.7392V0H1.46526C1.07734 0.00166852 0.70553 0.14998 0.431123 0.412486C0.156717 0.674992 0.00174604 1.03055 0 1.40191L4.91978e-06 1.6236ZM23.8116 7.96509H25V11.8938H18.8447C18.3384 11.8934 17.853 11.7003 17.4961 11.3568L17.48 11.341L17.4641 11.3252L17.4482 11.3093L17.4327 11.2932L17.4174 11.277L17.4021 11.2604L17.3872 11.2439L17.3725 11.2268L17.3579 11.2097L17.3434 11.1925L17.3295 11.1753L17.3015 11.14L17.2882 11.1221L17.2748 11.1043L17.2618 11.0859L17.25 11.0675L17.2374 11.0492L17.2252 11.0307L17.213 11.0117L17.201 10.9928L17.1894 10.9737L17.1779 10.9546L17.1558 10.9157L17.1349 10.8764L17.1246 10.8564L17.1146 10.8364L17.1049 10.8162L17.0954 10.796L17.0863 10.7756L17.0774 10.7552L17.0685 10.7344L17.0601 10.7136L17.0518 10.6927L17.044 10.6717L17.0363 10.6504L17.0219 10.6078L17.015 10.5863L17.0084 10.5648C17.0064 10.5575 17.0041 10.5505 17.0022 10.5433L16.996 10.5218L16.9902 10.4997L16.9846 10.4776L16.9793 10.4556L16.9747 10.4335L16.97 10.4113L16.9656 10.389L16.9578 10.3438L16.9541 10.3212L16.951 10.2984L16.9472 10.2756L16.9444 10.2526C16.9444 10.2452 16.9427 10.2374 16.9423 10.2298L16.9402 10.2066L16.9384 10.1834V10.1135V10.0902V10.0668L16.9382 9.79227C16.9402 9.30804 17.1419 8.84437 17.4998 8.50195C17.8574 8.15973 18.3422 7.96675 18.8482 7.96509L23.8116 7.96509ZM19.1741 10.2695C18.9558 10.2313 18.8112 10.0307 18.8513 9.82176C18.8912 9.61283 19.1007 9.47453 19.3191 9.5129L19.326 9.5142C19.5444 9.55257 19.689 9.75298 19.649 9.96191C19.6089 10.1708 19.3995 10.3091 19.1811 10.2708L19.1741 10.2695Z"
+                />
+              </svg>
+            </div>
+            <div>
+              <span className="text-fs16 font-bold text-[#444050] block leading-tight">
+                {walletBalance}
+              </span>
+              <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
+                Wallet
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-[6px] bg-[#f8f7fa] flex items-center justify-center shrink-0">
+              <svg
+                className="w-3.5 h-5 text-[#a5a3ae]"
+                viewBox="0 0 15 25"
+                fill="currentColor"
+              >
+                <path d="M7.69509 24.9974L6.42667 24.9913V22.1034L6.22202 22.0874C5.79699 22.0543 5.3393 21.9953 4.73154 21.8953C4.53737 21.8633 4.16094 21.7837 3.81979 21.7026C3.5034 21.6274 2.75105 21.4058 2.62736 21.3512C2.60163 21.3399 2.49633 21.3013 2.39365 21.2657C1.62127 20.9971 0.722816 20.5233 0.121267 20.068L0 19.9761L0.0895825 19.7768C0.244919 19.4313 0.324731 19.2489 0.324731 19.2401C0.324731 19.2354 0.360229 19.1521 0.403592 19.0548C0.446952 18.9577 0.506038 18.8241 0.5351 18.7577C0.563927 18.6914 0.637783 18.5233 0.699012 18.384C0.76024 18.2446 0.833855 18.0765 0.862923 18.0102C0.891751 17.9438 0.951073 17.8102 0.994431 17.7131C1.03779 17.616 1.07329 17.5327 1.07329 17.5281C1.07329 17.5234 1.11117 17.4347 1.15739 17.331C1.20361 17.2273 1.27199 17.0737 1.30939 16.9899C1.3468 16.9061 1.37729 16.8287 1.37729 16.8181C1.37729 16.7876 1.44186 16.74 1.45091 16.7636C1.45544 16.7751 1.56955 16.8606 1.70464 16.9533C2.74959 17.6708 4.06991 18.2131 5.41054 18.4758C5.83795 18.5596 6.04521 18.5933 6.2699 18.6154L6.42761 18.6312L6.42666 16.3998V14.169L6.37401 14.1543C6.34518 14.1462 6.23202 14.1172 6.12266 14.0897C5.91301 14.0371 5.85154 14.0201 5.42127 13.8985C5.27332 13.8567 5.09726 13.8071 5.03007 13.7882C4.77467 13.7169 3.86814 13.3972 3.7028 13.32C3.67707 13.308 3.55604 13.2532 3.43382 13.1979C1.81568 12.4676 0.842698 11.3939 0.516034 9.97899C0.39215 9.4423 0.382618 9.34889 0.383093 8.66476C0.383332 8.15265 0.391908 7.97767 0.425739 7.78454C0.625147 6.65244 1.0709 5.75625 1.82303 4.9753C2.47727 4.29582 3.36017 3.75323 4.38036 3.40384C4.92284 3.21782 5.54058 3.07357 6.16933 2.98584C6.22723 2.97773 6.30871 2.96569 6.35064 2.9593L6.42664 2.94751V0.00822816L7.70293 0.00183901C8.4048 -0.00160128 8.98348 -0.000126664 8.98897 0.0055253C8.99421 0.0109315 8.99874 0.664807 8.99874 1.45859C8.99874 2.81653 9.00112 2.90159 9.03972 2.90203C9.12191 2.90276 9.70439 2.97231 10.0392 3.02121C10.6414 3.10918 11.7162 3.36622 12.155 3.52718C12.1871 3.53898 12.2925 3.57756 12.3887 3.6127C12.5483 3.67094 12.6708 3.71837 12.7978 3.77046C13.2245 3.94592 13.823 4.2521 14.1236 4.44893C14.2124 4.50717 14.2294 4.52879 14.2117 4.56124C14.1996 4.58335 14.1355 4.74259 14.0695 4.9151C13.9444 5.24144 13.6876 5.89238 13.6509 5.97618C13.6392 6.00272 13.5387 6.25779 13.4272 6.54285C13.3157 6.8279 13.1627 7.21836 13.0872 7.41054C13.0117 7.60247 12.9497 7.76318 12.9497 7.7676C12.9497 7.77202 12.884 7.73836 12.8037 7.69265C12.0282 7.25327 11.2908 6.93995 10.4716 6.70209C10.1485 6.60822 10.0232 6.57701 9.62982 6.49248C9.47044 6.45808 9.09806 6.39812 9.04517 6.39812C8.99848 6.39812 8.99824 6.4104 9.0042 8.66799L9.01015 10.9379L9.50117 11.0644C10.6652 11.3645 11.3945 11.6112 12.088 11.9392C13.5878 12.6486 14.4667 13.6174 14.8281 14.9593C15.0415 15.7523 15.057 16.7215 14.87 17.576C14.5705 18.9442 13.6518 20.1734 12.3546 20.9413C12.0221 21.1381 11.619 21.334 11.2899 21.4583C11.1934 21.4947 11.0936 21.5338 11.0679 21.5451C10.7865 21.6675 9.81021 21.9063 9.30277 21.9771C9.19341 21.9923 9.08025 22.0105 9.05142 22.0179L8.99877 22.0309V23.51C8.99877 24.3234 8.9909 24.9925 8.98114 24.9965C8.97161 25.0007 8.39291 25.0012 7.69509 24.9977L7.69509 24.9974ZM9.18363 18.4789C9.4233 18.4243 9.78781 18.2734 10.0156 18.1343C10.135 18.0613 10.3694 17.8655 10.4668 17.7574C10.5826 17.6286 10.7301 17.3689 10.7901 17.1875C10.8459 17.0194 10.853 16.9619 10.8525 16.6842C10.8523 16.4046 10.8456 16.353 10.7911 16.206C10.7113 15.9913 10.5471 15.7389 10.3946 15.5966C10.2224 15.4359 9.92864 15.2427 9.64799 15.1061C9.4169 14.9936 9.05239 14.8397 9.01595 14.8395C9.00642 14.8395 8.99832 15.6708 8.99832 16.6869C8.99832 18.4029 9.00118 18.5334 9.03739 18.5189C9.05883 18.5103 9.12459 18.4926 9.18343 18.4791L9.18363 18.4789ZM6.42667 8.36126V6.46538L6.37402 6.48185C6.34519 6.49094 6.27944 6.50888 6.22798 6.5219C6.0524 6.56614 5.7839 6.67107 5.58258 6.77452C5.03557 7.05539 4.67632 7.48639 4.54788 8.01596C4.49832 8.22066 4.49713 8.63079 4.54573 8.8232C4.66057 9.27757 5.03532 9.66064 5.66832 9.97128C5.93873 10.104 6.31708 10.2541 6.38569 10.2561C6.42429 10.2573 6.42667 10.1514 6.42667 8.36147L6.42667 8.36126Z" />
+              </svg>
+            </div>
+            <div>
+              <span className="text-fs16 font-bold text-[#444050] block leading-tight">
+                {paypalBalance}
+              </span>
+              <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
+                Paypal
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full flex-1 flex flex-col justify-end mt-1 mb-1">
+        <Chart options={chartOptions} />
+      </div>
+
+      {/* Footer message with action button */}
+      <div className="border-t border-[#dbdade]/40 pt-3 flex items-center justify-between mt-auto">
+        <div>
+          <span className="text-fs12 font-medium text-[#6f6b7d] block leading-tight">
+            {salesGrowthMessage}
+          </span>
+          <span className="text-fs11 text-[#a5a3ae] block leading-tight mt-0.5 capitalize">
+            {subMessage}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          className="w-8 h-8 rounded-[6px] bg-[#fff1e3] text-[#ffab00] flex items-center justify-center hover:bg-[#ffe5c9] transition cursor-pointer shrink-0 ml-2"
+          aria-label="View sales details"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default TotalBalanceCard;

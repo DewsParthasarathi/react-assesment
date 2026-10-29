@@ -1,5 +1,5 @@
 import axiosClient from "./axiosClient";
-import type { CrmDashboardData, DashboardOverview, UserProfile } from "./types";
+import type { CrmDashboardData, DashboardOverview, EcommerceDashboardData, UserProfile } from "./types";
 
 /**
  * Retrieves the dashboard profile and reports for a specific user ID.
@@ -25,4 +25,14 @@ export const fetchCrmDashboard = async (year?: string): Promise<CrmDashboardData
   const response = await axiosClient.get<CrmDashboardData>(url);
   return response.data;
 };
+
+/**
+ * Retrieves E-commerce dashboard dynamic dataset, optionally filtered by year.
+ */
+export const fetchEcommerceDashboard = async (year?: string): Promise<EcommerceDashboardData> => {
+  const url = year ? `/dashboard/ecommerce?year=${encodeURIComponent(year)}` : "/dashboard/ecommerce";
+  const response = await axiosClient.get<EcommerceDashboardData>(url);
+  return response.data;
+};
+
 
