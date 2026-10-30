@@ -28,7 +28,6 @@ export const ExpensesGaugeCard: React.FC<ExpensesGaugeCardProps> = ({
           viewBox="0 0 120 70"
           className="w-[125px] h-[72px] overflow-visible"
         >
-          {/* Background track arc (180 deg) */}
           <path
             d="M 14 62 A 46 46 0 0 1 106 62"
             fill="none"
@@ -36,7 +35,6 @@ export const ExpensesGaugeCard: React.FC<ExpensesGaugeCardProps> = ({
             strokeWidth="8"
             strokeLinecap="round"
           />
-          {/* Active progress arc */}
           <path
             d="M 14 62 A 46 46 0 0 1 106 62"
             fill="none"
@@ -47,7 +45,6 @@ export const ExpensesGaugeCard: React.FC<ExpensesGaugeCardProps> = ({
             strokeDashoffset={arcLength * (1 - normalizedPercent / 100)}
             className="transition-all duration-700 ease-out"
           />
-          {/* Centered percentage text inside the arch */}
           <text
             x="60"
             y="57"

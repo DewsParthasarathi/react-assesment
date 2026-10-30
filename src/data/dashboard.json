@@ -73,8 +73,16 @@
         "growth": "28.14%",
         "growthDirection": "up",
         "years": {
-          "2023": { "value": "$4,679", "growth": "28.14%", "numericValue": 4679 },
-          "2022": { "value": "$3,820", "growth": "19.50%", "numericValue": 3820 }
+          "2022": {
+            "value": "$3,820",
+            "growth": "19.50%",
+            "numericValue": 3820
+          },
+          "2023": {
+            "value": "$4,679",
+            "growth": "28.14%",
+            "numericValue": 4679
+          }
         }
       },
       "totalRevenue": {
@@ -84,40 +92,76 @@
         "companyGrowth": "62%",
         "legend": ["2023", "2022"],
         "series": [
-          { "name": "2023", "data": [18, 7, 15, 29, 29, 13, 11] },
-          { "name": "2022", "data": [-14, -16, -17, -11, -3, -14, -11] }
+          {
+            "name": "2023",
+            "data": [18, 7, 15, 29, 29, 13, 11]
+          },
+          {
+            "name": "2022",
+            "data": [-14, -16, -17, -11, -3, -14, -11]
+          }
         ],
         "comparison": [
-          { "year": "2023", "amount": "$32.5k" },
-          { "year": "2022", "amount": "$41.2k" }
+          {
+            "year": "2023",
+            "amount": "$32.5k"
+          },
+          {
+            "year": "2022",
+            "amount": "$41.2k"
+          }
         ],
         "years": {
-          "2023": {
-            "value": "$32.5k",
-            "growthIndicator": "78%",
-            "companyGrowth": "62%",
-            "legend": ["2023", "2022"],
-            "series": [
-              { "name": "2023", "data": [18, 7, 15, 29, 29, 13, 11] },
-              { "name": "2022", "data": [-14, -16, -17, -11, -3, -14, -11] }
-            ],
-            "comparison": [
-              { "year": "2023", "amount": "$32.5k" },
-              { "year": "2022", "amount": "$41.2k" }
-            ]
-          },
           "2022": {
             "value": "$28.4k",
             "growthIndicator": "64%",
             "companyGrowth": "51%",
             "legend": ["2022", "2021"],
             "series": [
-              { "name": "2022", "data": [14, 11, 18, 22, 20, 16, 14] },
-              { "name": "2021", "data": [-10, -12, -14, -9, -5, -11, -8] }
+              {
+                "name": "2022",
+                "data": [14, 11, 18, 22, 20, 16, 14]
+              },
+              {
+                "name": "2021",
+                "data": [-10, -12, -14, -9, -5, -11, -8]
+              }
             ],
             "comparison": [
-              { "year": "2022", "amount": "$28.4k" },
-              { "year": "2021", "amount": "$36.8k" }
+              {
+                "year": "2022",
+                "amount": "$28.4k"
+              },
+              {
+                "year": "2021",
+                "amount": "$36.8k"
+              }
+            ]
+          },
+          "2023": {
+            "value": "$32.5k",
+            "growthIndicator": "78%",
+            "companyGrowth": "62%",
+            "legend": ["2023", "2022"],
+            "series": [
+              {
+                "name": "2023",
+                "data": [18, 7, 15, 29, 29, 13, 11]
+              },
+              {
+                "name": "2022",
+                "data": [-14, -16, -17, -11, -3, -14, -11]
+              }
+            ],
+            "comparison": [
+              {
+                "year": "2023",
+                "amount": "$32.5k"
+              },
+              {
+                "year": "2022",
+                "amount": "$41.2k"
+              }
             ]
           }
         }
@@ -128,8 +172,16 @@
         "change": "-14.82%",
         "changeDirection": "down",
         "years": {
-          "2023": { "value": "$4,679", "change": "-14.82%", "changeDirection": "down" },
-          "2022": { "value": "$3,410", "change": "+8.25%", "changeDirection": "up" }
+          "2022": {
+            "value": "$3,410",
+            "change": "+8.25%",
+            "changeDirection": "up"
+          },
+          "2023": {
+            "value": "$4,679",
+            "change": "-14.82%",
+            "changeDirection": "down"
+          }
         }
       },
       "profitReport": {
@@ -141,98 +193,342 @@
         "numericValue": 84686000,
         "curveData": [8, 62, 66, 10, 52, 22, 46, 72],
         "years": {
-          "2023": {
-            "year": "2023",
-            "growth": "14.82%",
-            "profitValue": "$84,686k",
-            "numericValue": 84686000,
-            "curveData": [8, 62, 66, 10, 52, 22, 46, 72]
-          },
           "2022": {
             "year": "2022",
             "growth": "11.40%",
             "profitValue": "$68,240k",
             "numericValue": 68240000,
             "curveData": [12, 45, 50, 18, 38, 28, 35, 58]
+          },
+          "2023": {
+            "year": "2023",
+            "growth": "14.82%",
+            "profitValue": "$84,686k",
+            "numericValue": 84686000,
+            "curveData": [8, 62, 66, 10, 52, 22, 46, 72]
           }
         }
       },
       "transactions": [
-        { "id": 1, "type": "Paypal", "description": "send money", "amount": "+82.6", "currency": "USD", "isCredit": true },
-        { "id": 2, "type": "wallet", "description": "Mac'D", "amount": "+270.69", "currency": "USD", "isCredit": true },
-        { "id": 3, "type": "Transfer", "description": "refund", "amount": "+637.91", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Credit Card", "description": "Ordered food", "amount": "-838.71", "currency": "USD", "isCredit": false },
-        { "id": 5, "type": "wallet", "description": "Starbucks", "amount": "+203.33", "currency": "USD", "isCredit": true },
-        { "id": 6, "type": "mastercard", "description": "Ordered food", "amount": "-92.45", "currency": "USD", "isCredit": false }
+        {
+          "id": 1,
+          "type": "Paypal",
+          "description": "send money",
+          "amount": "+82.6",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 2,
+          "type": "wallet",
+          "description": "Mac'D",
+          "amount": "+270.69",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 3,
+          "type": "Transfer",
+          "description": "refund",
+          "amount": "+637.91",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 4,
+          "type": "Credit Card",
+          "description": "Ordered food",
+          "amount": "-838.71",
+          "currency": "USD",
+          "isCredit": false
+        },
+        {
+          "id": 5,
+          "type": "wallet",
+          "description": "Starbucks",
+          "amount": "+203.33",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 6,
+          "type": "mastercard",
+          "description": "Ordered food",
+          "amount": "-92.45",
+          "currency": "USD",
+          "isCredit": false
+        }
       ],
       "transactionsYears": {
-        "2023": [
-          { "id": 1, "type": "Paypal", "description": "send money", "amount": "+82.6", "currency": "USD", "isCredit": true },
-          { "id": 2, "type": "wallet", "description": "Mac'D", "amount": "+270.69", "currency": "USD", "isCredit": true },
-          { "id": 3, "type": "Transfer", "description": "refund", "amount": "+637.91", "currency": "USD", "isCredit": true },
-          { "id": 4, "type": "Credit Card", "description": "Ordered food", "amount": "-838.71", "currency": "USD", "isCredit": false },
-          { "id": 5, "type": "wallet", "description": "Starbucks", "amount": "+203.33", "currency": "USD", "isCredit": true },
-          { "id": 6, "type": "mastercard", "description": "Ordered food", "amount": "-92.45", "currency": "USD", "isCredit": false }
-        ],
         "2022": [
-          { "id": 1, "type": "Paypal", "description": "affiliate payout", "amount": "+64.2", "currency": "USD", "isCredit": true },
-          { "id": 2, "type": "wallet", "description": "Office Supplies", "amount": "-142.50", "currency": "USD", "isCredit": false },
-          { "id": 3, "type": "Transfer", "description": "vendor refund", "amount": "+420.00", "currency": "USD", "isCredit": true },
-          { "id": 4, "type": "Credit Card", "description": "Server Hosting", "amount": "-580.00", "currency": "USD", "isCredit": false },
-          { "id": 5, "type": "wallet", "description": "Team lunch", "amount": "-95.40", "currency": "USD", "isCredit": false },
-          { "id": 6, "type": "mastercard", "description": "Client deposit", "amount": "+850.00", "currency": "USD", "isCredit": true }
+          {
+            "id": 1,
+            "type": "Paypal",
+            "description": "affiliate payout",
+            "amount": "+64.2",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 2,
+            "type": "wallet",
+            "description": "Office Supplies",
+            "amount": "-142.50",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 3,
+            "type": "Transfer",
+            "description": "vendor refund",
+            "amount": "+420.00",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 4,
+            "type": "Credit Card",
+            "description": "Server Hosting",
+            "amount": "-580.00",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 5,
+            "type": "wallet",
+            "description": "Team lunch",
+            "amount": "-95.40",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 6,
+            "type": "mastercard",
+            "description": "Client deposit",
+            "amount": "+850.00",
+            "currency": "USD",
+            "isCredit": true
+          }
+        ],
+        "2023": [
+          {
+            "id": 1,
+            "type": "Paypal",
+            "description": "send money",
+            "amount": "+82.6",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 2,
+            "type": "wallet",
+            "description": "Mac'D",
+            "amount": "+270.69",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 3,
+            "type": "Transfer",
+            "description": "refund",
+            "amount": "+637.91",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 4,
+            "type": "Credit Card",
+            "description": "Ordered food",
+            "amount": "-838.71",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 5,
+            "type": "wallet",
+            "description": "Starbucks",
+            "amount": "+203.33",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 6,
+            "type": "mastercard",
+            "description": "Ordered food",
+            "amount": "-92.45",
+            "currency": "USD",
+            "isCredit": false
+          }
         ]
       },
       "activities": [
-        { "id": 1, "title": "12 Invoice have been paid", "timeLabel": "12 min ago", "description": "Invoices have been paid to the company", "statusColor": "#696cff" },
-        { "id": 2, "title": "Client Meeting", "timeLabel": "45 min ago", "description": "Project meeting with client @10:15am", "statusColor": "#ff9f43" },
-        { "id": 3, "title": "Create a new project for client", "timeLabel": "2 days ago", "description": "5 team members assigned", "statusColor": "#00cfe8" }
+        {
+          "id": 1,
+          "title": "12 Invoice have been paid",
+          "timeLabel": "12 min ago",
+          "description": "Invoices have been paid to the company",
+          "statusColor": "#696cff"
+        },
+        {
+          "id": 2,
+          "title": "Client Meeting",
+          "timeLabel": "45 min ago",
+          "description": "Project meeting with client @10:15am",
+          "statusColor": "#ff9f43"
+        },
+        {
+          "id": 3,
+          "title": "Create a new project for client",
+          "timeLabel": "2 days ago",
+          "description": "5 team members assigned",
+          "statusColor": "#00cfe8"
+        }
       ],
       "activitiesYears": {
-        "2023": [
-          { "id": 1, "title": "12 Invoice have been paid", "timeLabel": "12 min ago", "description": "Invoices have been paid to the company", "statusColor": "#696cff" },
-          { "id": 2, "title": "Client Meeting", "timeLabel": "45 min ago", "description": "Project meeting with client @10:15am", "statusColor": "#ff9f43" },
-          { "id": 3, "title": "Create a new project for client", "timeLabel": "2 days ago", "description": "5 team members assigned", "statusColor": "#00cfe8" }
-        ],
         "2022": [
-          { "id": 1, "title": "Annual financial review approved", "timeLabel": "1 hour ago", "description": "Audited by board of directors", "statusColor": "#71dd37" },
-          { "id": 2, "title": "HQ Office expansion lease signed", "timeLabel": "3 hours ago", "description": "New floor added in downtown tower", "statusColor": "#696cff" },
-          { "id": 3, "title": "ERP System migration complete", "timeLabel": "3 days ago", "description": "Zero downtime cloud transfer", "statusColor": "#ffab00" }
+          {
+            "id": 1,
+            "title": "Annual financial review approved",
+            "timeLabel": "1 hour ago",
+            "description": "Audited by board of directors",
+            "statusColor": "#71dd37"
+          },
+          {
+            "id": 2,
+            "title": "HQ Office expansion lease signed",
+            "timeLabel": "3 hours ago",
+            "description": "New floor added in downtown tower",
+            "statusColor": "#696cff"
+          },
+          {
+            "id": 3,
+            "title": "ERP System migration complete",
+            "timeLabel": "3 days ago",
+            "description": "Zero downtime cloud transfer",
+            "statusColor": "#ffab00"
+          }
+        ],
+        "2023": [
+          {
+            "id": 1,
+            "title": "12 Invoice have been paid",
+            "timeLabel": "12 min ago",
+            "description": "Invoices have been paid to the company",
+            "statusColor": "#696cff"
+          },
+          {
+            "id": 2,
+            "title": "Client Meeting",
+            "timeLabel": "45 min ago",
+            "description": "Project meeting with client @10:15am",
+            "statusColor": "#ff9f43"
+          },
+          {
+            "id": 3,
+            "title": "Create a new project for client",
+            "timeLabel": "2 days ago",
+            "description": "5 team members assigned",
+            "statusColor": "#00cfe8"
+          }
         ]
       },
       "orderStatisticsYears": {
-        "2023": {
-          "totalSales": "42.82K Total Sales",
-          "totalOrders": "8,258",
-          "growth": "38%",
-          "chartSeries": [
-            { "name": "Electronic", "y": 45, "color": "#696cff" },
-            { "name": "Fashion", "y": 28, "color": "#71dd37" },
-            { "name": "Decor", "y": 17, "color": "#03c3ec" },
-            { "name": "Sports", "y": 10, "color": "#ffab00" }
-          ],
-          "categories": [
-            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "82.5k" },
-            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "23.8k" },
-            { "name": "Decor", "description": "Fine Art, Dining", "value": "849" },
-            { "name": "Sports", "description": "Football, Cricket Kit", "value": "99" }
-          ]
-        },
         "2022": {
           "totalSales": "34.15K Total Sales",
           "totalOrders": "6,840",
           "growth": "24%",
           "chartSeries": [
-            { "name": "Electronic", "y": 30, "color": "#696cff" },
-            { "name": "Fashion", "y": 38, "color": "#71dd37" },
-            { "name": "Decor", "y": 20, "color": "#03c3ec" },
-            { "name": "Sports", "y": 12, "color": "#ffab00" }
+            {
+              "name": "Electronic",
+              "y": 30,
+              "color": "#696cff"
+            },
+            {
+              "name": "Fashion",
+              "y": 38,
+              "color": "#71dd37"
+            },
+            {
+              "name": "Decor",
+              "y": 20,
+              "color": "#03c3ec"
+            },
+            {
+              "name": "Sports",
+              "y": 12,
+              "color": "#ffab00"
+            }
           ],
           "categories": [
-            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "64.2k" },
-            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "18.5k" },
-            { "name": "Decor", "description": "Fine Art, Dining", "value": "620" },
-            { "name": "Sports", "description": "Football, Cricket Kit", "value": "78" }
+            {
+              "name": "Electronic",
+              "description": "Mobile, Earbuds, TV",
+              "value": "64.2k"
+            },
+            {
+              "name": "Fashion",
+              "description": "Tshirt, Jeans, Shoes",
+              "value": "18.5k"
+            },
+            {
+              "name": "Decor",
+              "description": "Fine Art, Dining",
+              "value": "620"
+            },
+            {
+              "name": "Sports",
+              "description": "Football, Cricket Kit",
+              "value": "78"
+            }
+          ]
+        },
+        "2023": {
+          "totalSales": "42.82K Total Sales",
+          "totalOrders": "8,258",
+          "growth": "38%",
+          "chartSeries": [
+            {
+              "name": "Electronic",
+              "y": 45,
+              "color": "#696cff"
+            },
+            {
+              "name": "Fashion",
+              "y": 28,
+              "color": "#71dd37"
+            },
+            {
+              "name": "Decor",
+              "y": 17,
+              "color": "#03c3ec"
+            },
+            {
+              "name": "Sports",
+              "y": 10,
+              "color": "#ffab00"
+            }
+          ],
+          "categories": [
+            {
+              "name": "Electronic",
+              "description": "Mobile, Earbuds, TV",
+              "value": "82.5k"
+            },
+            {
+              "name": "Fashion",
+              "description": "Tshirt, Jeans, Shoes",
+              "value": "23.8k"
+            },
+            {
+              "name": "Decor",
+              "description": "Fine Art, Dining",
+              "value": "849"
+            },
+            {
+              "name": "Sports",
+              "description": "Football, Cricket Kit",
+              "value": "99"
+            }
           ]
         }
       }
@@ -260,8 +556,18 @@
         "growth": "19.40%",
         "growthDirection": "up",
         "years": {
-          "2023": { "value": "$3,845", "growth": "19.40%", "growthDirection": "up", "numericValue": 3845 },
-          "2022": { "value": "$3,120", "growth": "14.10%", "growthDirection": "up", "numericValue": 3120 }
+          "2022": {
+            "value": "$3,120",
+            "growth": "14.10%",
+            "growthDirection": "up",
+            "numericValue": 3120
+          },
+          "2023": {
+            "value": "$3,845",
+            "growth": "19.40%",
+            "growthDirection": "up",
+            "numericValue": 3845
+          }
         }
       },
       "totalRevenue": {
@@ -271,40 +577,76 @@
         "companyGrowth": "55%",
         "legend": ["2023", "2022"],
         "series": [
-          { "name": "2023", "data": [15, 9, 12, 24, 22, 11, 9] },
-          { "name": "2022", "data": [-11, -13, -15, -9, -3, -11, -9] }
+          {
+            "name": "2023",
+            "data": [15, 9, 12, 24, 22, 11, 9]
+          },
+          {
+            "name": "2022",
+            "data": [-11, -13, -15, -9, -3, -11, -9]
+          }
         ],
         "comparison": [
-          { "year": "2023", "amount": "$28.1k" },
-          { "year": "2022", "amount": "$34.2k" }
+          {
+            "year": "2023",
+            "amount": "$28.1k"
+          },
+          {
+            "year": "2022",
+            "amount": "$34.2k"
+          }
         ],
         "years": {
-          "2023": {
-            "value": "$28.1k",
-            "growthIndicator": "65%",
-            "companyGrowth": "55%",
-            "legend": ["2023", "2022"],
-            "series": [
-              { "name": "2023", "data": [15, 9, 12, 24, 22, 11, 9] },
-              { "name": "2022", "data": [-11, -13, -15, -9, -3, -11, -9] }
-            ],
-            "comparison": [
-              { "year": "2023", "amount": "$28.1k" },
-              { "year": "2022", "amount": "$34.2k" }
-            ]
-          },
           "2022": {
             "value": "$24.6k",
             "growthIndicator": "52%",
             "companyGrowth": "44%",
             "legend": ["2022", "2021"],
             "series": [
-              { "name": "2022", "data": [12, 10, 16, 19, 17, 14, 12] },
-              { "name": "2021", "data": [-8, -10, -12, -7, -4, -9, -6] }
+              {
+                "name": "2022",
+                "data": [12, 10, 16, 19, 17, 14, 12]
+              },
+              {
+                "name": "2021",
+                "data": [-8, -10, -12, -7, -4, -9, -6]
+              }
             ],
             "comparison": [
-              { "year": "2022", "amount": "$24.6k" },
-              { "year": "2021", "amount": "$31.5k" }
+              {
+                "year": "2022",
+                "amount": "$24.6k"
+              },
+              {
+                "year": "2021",
+                "amount": "$31.5k"
+              }
+            ]
+          },
+          "2023": {
+            "value": "$28.1k",
+            "growthIndicator": "65%",
+            "companyGrowth": "55%",
+            "legend": ["2023", "2022"],
+            "series": [
+              {
+                "name": "2023",
+                "data": [15, 9, 12, 24, 22, 11, 9]
+              },
+              {
+                "name": "2022",
+                "data": [-11, -13, -15, -9, -3, -11, -9]
+              }
+            ],
+            "comparison": [
+              {
+                "year": "2023",
+                "amount": "$28.1k"
+              },
+              {
+                "year": "2022",
+                "amount": "$34.2k"
+              }
             ]
           }
         }
@@ -315,8 +657,16 @@
         "change": "+12.30%",
         "changeDirection": "up",
         "years": {
-          "2023": { "value": "$3,845", "change": "+12.30%", "changeDirection": "up" },
-          "2022": { "value": "$2,950", "change": "-6.40%", "changeDirection": "down" }
+          "2022": {
+            "value": "$2,950",
+            "change": "-6.40%",
+            "changeDirection": "down"
+          },
+          "2023": {
+            "value": "$3,845",
+            "change": "+12.30%",
+            "changeDirection": "up"
+          }
         }
       },
       "profitReport": {
@@ -328,98 +678,342 @@
         "numericValue": 68230000,
         "curveData": [10, 48, 55, 14, 42, 28, 38, 62],
         "years": {
-          "2023": {
-            "year": "2023",
-            "growth": "11.20%",
-            "profitValue": "$68,230k",
-            "numericValue": 68230000,
-            "curveData": [10, 48, 55, 14, 42, 28, 38, 62]
-          },
           "2022": {
             "year": "2022",
             "growth": "8.75%",
             "profitValue": "$54,120k",
             "numericValue": 54120000,
             "curveData": [8, 35, 40, 12, 32, 20, 28, 48]
+          },
+          "2023": {
+            "year": "2023",
+            "growth": "11.20%",
+            "profitValue": "$68,230k",
+            "numericValue": 68230000,
+            "curveData": [10, 48, 55, 14, 42, 28, 38, 62]
           }
         }
       },
       "transactions": [
-        { "id": 1, "type": "Transfer", "description": "Wire Deposit", "amount": "+420.00", "currency": "USD", "isCredit": true },
-        { "id": 2, "type": "Paypal", "description": "Client Retainer", "amount": "+150.25", "currency": "USD", "isCredit": true },
-        { "id": 3, "type": "Wallet", "description": "Coffee & Supplies", "amount": "+89.50", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Credit Card", "description": "Software Subscription", "amount": "-310.00", "currency": "USD", "isCredit": false },
-        { "id": 5, "type": "Wallet", "description": "Team Lunch", "amount": "-95.40", "currency": "USD", "isCredit": false },
-        { "id": 6, "type": "Mastercard", "description": "Office Setup", "amount": "-120.00", "currency": "USD", "isCredit": false }
+        {
+          "id": 1,
+          "type": "Transfer",
+          "description": "Wire Deposit",
+          "amount": "+420.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 2,
+          "type": "Paypal",
+          "description": "Client Retainer",
+          "amount": "+150.25",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 3,
+          "type": "Wallet",
+          "description": "Coffee & Supplies",
+          "amount": "+89.50",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 4,
+          "type": "Credit Card",
+          "description": "Software Subscription",
+          "amount": "-310.00",
+          "currency": "USD",
+          "isCredit": false
+        },
+        {
+          "id": 5,
+          "type": "Wallet",
+          "description": "Team Lunch",
+          "amount": "-95.40",
+          "currency": "USD",
+          "isCredit": false
+        },
+        {
+          "id": 6,
+          "type": "Mastercard",
+          "description": "Office Setup",
+          "amount": "-120.00",
+          "currency": "USD",
+          "isCredit": false
+        }
       ],
       "transactionsYears": {
-        "2023": [
-          { "id": 1, "type": "Transfer", "description": "Wire Deposit", "amount": "+420.00", "currency": "USD", "isCredit": true },
-          { "id": 2, "type": "Paypal", "description": "Client Retainer", "amount": "+150.25", "currency": "USD", "isCredit": true },
-          { "id": 3, "type": "Wallet", "description": "Coffee & Supplies", "amount": "+89.50", "currency": "USD", "isCredit": true },
-          { "id": 4, "type": "Credit Card", "description": "Software Subscription", "amount": "-310.00", "currency": "USD", "isCredit": false },
-          { "id": 5, "type": "Wallet", "description": "Team Lunch", "amount": "-95.40", "currency": "USD", "isCredit": false },
-          { "id": 6, "type": "Mastercard", "description": "Office Setup", "amount": "-120.00", "currency": "USD", "isCredit": false }
-        ],
         "2022": [
-          { "id": 1, "type": "Transfer", "description": "Vendor Settlement", "amount": "+315.00", "currency": "USD", "isCredit": true },
-          { "id": 2, "type": "Paypal", "description": "Audit Retainer", "amount": "+120.00", "currency": "USD", "isCredit": true },
-          { "id": 3, "type": "Wallet", "description": "Travel Reimburse", "amount": "-75.00", "currency": "USD", "isCredit": false },
-          { "id": 4, "type": "Credit Card", "description": "Cloud Storage", "amount": "-210.00", "currency": "USD", "isCredit": false },
-          { "id": 5, "type": "Wallet", "description": "Stationary", "amount": "-45.00", "currency": "USD", "isCredit": false },
-          { "id": 6, "type": "Mastercard", "description": "Hardware Repair", "amount": "-180.00", "currency": "USD", "isCredit": false }
+          {
+            "id": 1,
+            "type": "Transfer",
+            "description": "Vendor Settlement",
+            "amount": "+315.00",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 2,
+            "type": "Paypal",
+            "description": "Audit Retainer",
+            "amount": "+120.00",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 3,
+            "type": "Wallet",
+            "description": "Travel Reimburse",
+            "amount": "-75.00",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 4,
+            "type": "Credit Card",
+            "description": "Cloud Storage",
+            "amount": "-210.00",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 5,
+            "type": "Wallet",
+            "description": "Stationary",
+            "amount": "-45.00",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 6,
+            "type": "Mastercard",
+            "description": "Hardware Repair",
+            "amount": "-180.00",
+            "currency": "USD",
+            "isCredit": false
+          }
+        ],
+        "2023": [
+          {
+            "id": 1,
+            "type": "Transfer",
+            "description": "Wire Deposit",
+            "amount": "+420.00",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 2,
+            "type": "Paypal",
+            "description": "Client Retainer",
+            "amount": "+150.25",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 3,
+            "type": "Wallet",
+            "description": "Coffee & Supplies",
+            "amount": "+89.50",
+            "currency": "USD",
+            "isCredit": true
+          },
+          {
+            "id": 4,
+            "type": "Credit Card",
+            "description": "Software Subscription",
+            "amount": "-310.00",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 5,
+            "type": "Wallet",
+            "description": "Team Lunch",
+            "amount": "-95.40",
+            "currency": "USD",
+            "isCredit": false
+          },
+          {
+            "id": 6,
+            "type": "Mastercard",
+            "description": "Office Setup",
+            "amount": "-120.00",
+            "currency": "USD",
+            "isCredit": false
+          }
         ]
       },
       "activities": [
-        { "id": 1, "title": "Quarterly financial audit completed", "timeLabel": "30 min ago", "description": "Ledger reconciled with bank statement", "statusColor": "#28c76f" },
-        { "id": 2, "title": "Payroll processed", "timeLabel": "2 hours ago", "description": "Disbursed to 42 employees", "statusColor": "#696cff" },
-        { "id": 3, "title": "Tax filing review", "timeLabel": "1 day ago", "description": "Signed off with certified CPA", "statusColor": "#ff9f43" }
+        {
+          "id": 1,
+          "title": "Quarterly financial audit completed",
+          "timeLabel": "30 min ago",
+          "description": "Ledger reconciled with bank statement",
+          "statusColor": "#28c76f"
+        },
+        {
+          "id": 2,
+          "title": "Payroll processed",
+          "timeLabel": "2 hours ago",
+          "description": "Disbursed to 42 employees",
+          "statusColor": "#696cff"
+        },
+        {
+          "id": 3,
+          "title": "Tax filing review",
+          "timeLabel": "1 day ago",
+          "description": "Signed off with certified CPA",
+          "statusColor": "#ff9f43"
+        }
       ],
       "activitiesYears": {
-        "2023": [
-          { "id": 1, "title": "Quarterly financial audit completed", "timeLabel": "30 min ago", "description": "Ledger reconciled with bank statement", "statusColor": "#28c76f" },
-          { "id": 2, "title": "Payroll processed", "timeLabel": "2 hours ago", "description": "Disbursed to 42 employees", "statusColor": "#696cff" },
-          { "id": 3, "title": "Tax filing review", "timeLabel": "1 day ago", "description": "Signed off with certified CPA", "statusColor": "#ff9f43" }
-        ],
         "2022": [
-          { "id": 1, "title": "FY22 Annual Closing Signed", "timeLabel": "2 hours ago", "description": "Final statement submitted to auditors", "statusColor": "#28c76f" },
-          { "id": 2, "title": "Vendor invoice batch cleared", "timeLabel": "5 hours ago", "description": "28 accounts settled in full", "statusColor": "#696cff" },
-          { "id": 3, "title": "Internal controls audit", "timeLabel": "2 days ago", "description": "Risk compliance score 98%", "statusColor": "#ffab00" }
+          {
+            "id": 1,
+            "title": "FY22 Annual Closing Signed",
+            "timeLabel": "2 hours ago",
+            "description": "Final statement submitted to auditors",
+            "statusColor": "#28c76f"
+          },
+          {
+            "id": 2,
+            "title": "Vendor invoice batch cleared",
+            "timeLabel": "5 hours ago",
+            "description": "28 accounts settled in full",
+            "statusColor": "#696cff"
+          },
+          {
+            "id": 3,
+            "title": "Internal controls audit",
+            "timeLabel": "2 days ago",
+            "description": "Risk compliance score 98%",
+            "statusColor": "#ffab00"
+          }
+        ],
+        "2023": [
+          {
+            "id": 1,
+            "title": "Quarterly financial audit completed",
+            "timeLabel": "30 min ago",
+            "description": "Ledger reconciled with bank statement",
+            "statusColor": "#28c76f"
+          },
+          {
+            "id": 2,
+            "title": "Payroll processed",
+            "timeLabel": "2 hours ago",
+            "description": "Disbursed to 42 employees",
+            "statusColor": "#696cff"
+          },
+          {
+            "id": 3,
+            "title": "Tax filing review",
+            "timeLabel": "1 day ago",
+            "description": "Signed off with certified CPA",
+            "statusColor": "#ff9f43"
+          }
         ]
       },
       "orderStatisticsYears": {
-        "2023": {
-          "totalSales": "38.45K Total Sales",
-          "totalOrders": "7,140",
-          "growth": "32%",
-          "chartSeries": [
-            { "name": "Electronic", "y": 40, "color": "#696cff" },
-            { "name": "Fashion", "y": 30, "color": "#71dd37" },
-            { "name": "Decor", "y": 18, "color": "#03c3ec" },
-            { "name": "Sports", "y": 12, "color": "#ffab00" }
-          ],
-          "categories": [
-            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "74.1k" },
-            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "20.4k" },
-            { "name": "Decor", "description": "Fine Art, Dining", "value": "780" },
-            { "name": "Sports", "description": "Football, Cricket Kit", "value": "92" }
-          ]
-        },
         "2022": {
           "totalSales": "29.80K Total Sales",
           "totalOrders": "5,620",
           "growth": "21%",
           "chartSeries": [
-            { "name": "Electronic", "y": 32, "color": "#696cff" },
-            { "name": "Fashion", "y": 36, "color": "#71dd37" },
-            { "name": "Decor", "y": 20, "color": "#03c3ec" },
-            { "name": "Sports", "y": 12, "color": "#ffab00" }
+            {
+              "name": "Electronic",
+              "y": 32,
+              "color": "#696cff"
+            },
+            {
+              "name": "Fashion",
+              "y": 36,
+              "color": "#71dd37"
+            },
+            {
+              "name": "Decor",
+              "y": 20,
+              "color": "#03c3ec"
+            },
+            {
+              "name": "Sports",
+              "y": 12,
+              "color": "#ffab00"
+            }
           ],
           "categories": [
-            { "name": "Electronic", "description": "Mobile, Earbuds, TV", "value": "58.6k" },
-            { "name": "Fashion", "description": "Tshirt, Jeans, Shoes", "value": "16.2k" },
-            { "name": "Decor", "description": "Fine Art, Dining", "value": "540" },
-            { "name": "Sports", "description": "Football, Cricket Kit", "value": "70" }
+            {
+              "name": "Electronic",
+              "description": "Mobile, Earbuds, TV",
+              "value": "58.6k"
+            },
+            {
+              "name": "Fashion",
+              "description": "Tshirt, Jeans, Shoes",
+              "value": "16.2k"
+            },
+            {
+              "name": "Decor",
+              "description": "Fine Art, Dining",
+              "value": "540"
+            },
+            {
+              "name": "Sports",
+              "description": "Football, Cricket Kit",
+              "value": "70"
+            }
+          ]
+        },
+        "2023": {
+          "totalSales": "38.45K Total Sales",
+          "totalOrders": "7,140",
+          "growth": "32%",
+          "chartSeries": [
+            {
+              "name": "Electronic",
+              "y": 40,
+              "color": "#696cff"
+            },
+            {
+              "name": "Fashion",
+              "y": 30,
+              "color": "#71dd37"
+            },
+            {
+              "name": "Decor",
+              "y": 18,
+              "color": "#03c3ec"
+            },
+            {
+              "name": "Sports",
+              "y": 12,
+              "color": "#ffab00"
+            }
+          ],
+          "categories": [
+            {
+              "name": "Electronic",
+              "description": "Mobile, Earbuds, TV",
+              "value": "74.1k"
+            },
+            {
+              "name": "Fashion",
+              "description": "Tshirt, Jeans, Shoes",
+              "value": "20.4k"
+            },
+            {
+              "name": "Decor",
+              "description": "Fine Art, Dining",
+              "value": "780"
+            },
+            {
+              "name": "Sports",
+              "description": "Football, Cricket Kit",
+              "value": "92"
+            }
           ]
         }
       }
@@ -467,15 +1061,61 @@
         "numericValue": 98400000
       },
       "transactions": [
-        { "id": 1, "type": "Mastercard", "description": "Annual Enterprise Deal", "amount": "+1,520.00", "currency": "USD", "isCredit": true },
-        { "id": 2, "type": "Wallet", "description": "Client Lunch", "amount": "+315.80", "currency": "USD", "isCredit": true },
-        { "id": 3, "type": "Paypal", "description": "Commission Payout", "amount": "+850.00", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Credit Card", "description": "Flight Booking", "amount": "-450.00", "currency": "USD", "isCredit": false }
+        {
+          "id": 1,
+          "type": "Mastercard",
+          "description": "Annual Enterprise Deal",
+          "amount": "+1,520.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 2,
+          "type": "Wallet",
+          "description": "Client Lunch",
+          "amount": "+315.80",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 3,
+          "type": "Paypal",
+          "description": "Commission Payout",
+          "amount": "+850.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 4,
+          "type": "Credit Card",
+          "description": "Flight Booking",
+          "amount": "-450.00",
+          "currency": "USD",
+          "isCredit": false
+        }
       ],
       "activities": [
-        { "id": 1, "title": "Enterprise contract closed", "timeLabel": "10 min ago", "description": "Annual subscription renewal of $120k", "statusColor": "#28c76f" },
-        { "id": 2, "title": "Sales quarterly sync", "timeLabel": "1 hour ago", "description": "Target exceeded by 14%", "statusColor": "#696cff" },
-        { "id": 3, "title": "Demo with inbound lead", "timeLabel": "Yesterday", "description": "Scheduled follow-up presentation", "statusColor": "#00cfe8" }
+        {
+          "id": 1,
+          "title": "Enterprise contract closed",
+          "timeLabel": "10 min ago",
+          "description": "Annual subscription renewal of $120k",
+          "statusColor": "#28c76f"
+        },
+        {
+          "id": 2,
+          "title": "Sales quarterly sync",
+          "timeLabel": "1 hour ago",
+          "description": "Target exceeded by 14%",
+          "statusColor": "#696cff"
+        },
+        {
+          "id": 3,
+          "title": "Demo with inbound lead",
+          "timeLabel": "Yesterday",
+          "description": "Scheduled follow-up presentation",
+          "statusColor": "#00cfe8"
+        }
       ]
     },
     {
@@ -521,15 +1161,61 @@
         "numericValue": 52100000
       },
       "transactions": [
-        { "id": 1, "type": "Wallet", "description": "Fleet Maintenance", "amount": "+180.50", "currency": "USD", "isCredit": true },
-        { "id": 2, "type": "Transfer", "description": "Freight Settlement", "amount": "+330.00", "currency": "USD", "isCredit": true },
-        { "id": 3, "type": "Paypal", "description": "Warehouse Tools", "amount": "+95.00", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Mastercard", "description": "Packaging Bulk Order", "amount": "-120.00", "currency": "USD", "isCredit": false }
+        {
+          "id": 1,
+          "type": "Wallet",
+          "description": "Fleet Maintenance",
+          "amount": "+180.50",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 2,
+          "type": "Transfer",
+          "description": "Freight Settlement",
+          "amount": "+330.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 3,
+          "type": "Paypal",
+          "description": "Warehouse Tools",
+          "amount": "+95.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 4,
+          "type": "Mastercard",
+          "description": "Packaging Bulk Order",
+          "amount": "-120.00",
+          "currency": "USD",
+          "isCredit": false
+        }
       ],
       "activities": [
-        { "id": 1, "title": "Warehouse restocked", "timeLabel": "15 min ago", "description": "1,200 inventory units logged", "statusColor": "#ff9f43" },
-        { "id": 2, "title": "Supplier agreement renewed", "timeLabel": "3 hours ago", "description": "Lowered unit cost by 4%", "statusColor": "#28c76f" },
-        { "id": 3, "title": "Logistics audit report", "timeLabel": "2 days ago", "description": "On-time delivery score 98.4%", "statusColor": "#696cff" }
+        {
+          "id": 1,
+          "title": "Warehouse restocked",
+          "timeLabel": "15 min ago",
+          "description": "1,200 inventory units logged",
+          "statusColor": "#ff9f43"
+        },
+        {
+          "id": 2,
+          "title": "Supplier agreement renewed",
+          "timeLabel": "3 hours ago",
+          "description": "Lowered unit cost by 4%",
+          "statusColor": "#28c76f"
+        },
+        {
+          "id": 3,
+          "title": "Logistics audit report",
+          "timeLabel": "2 days ago",
+          "description": "On-time delivery score 98.4%",
+          "statusColor": "#696cff"
+        }
       ]
     },
     {
@@ -575,15 +1261,61 @@
         "numericValue": 76500000
       },
       "transactions": [
-        { "id": 1, "type": "Paypal", "description": "Cloud Infrastructure", "amount": "+340.00", "currency": "USD", "isCredit": true },
-        { "id": 2, "type": "Wallet", "description": "Domain Renewals", "amount": "+210.00", "currency": "USD", "isCredit": true },
-        { "id": 3, "type": "Credit Card", "description": "CI/CD Pipeline Credits", "amount": "+550.00", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Transfer", "description": "Security Audit Fee", "amount": "-240.00", "currency": "USD", "isCredit": false }
+        {
+          "id": 1,
+          "type": "Paypal",
+          "description": "Cloud Infrastructure",
+          "amount": "+340.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 2,
+          "type": "Wallet",
+          "description": "Domain Renewals",
+          "amount": "+210.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 3,
+          "type": "Credit Card",
+          "description": "CI/CD Pipeline Credits",
+          "amount": "+550.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 4,
+          "type": "Transfer",
+          "description": "Security Audit Fee",
+          "amount": "-240.00",
+          "currency": "USD",
+          "isCredit": false
+        }
       ],
       "activities": [
-        { "id": 1, "title": "Production deployment successful", "timeLabel": "5 min ago", "description": "Zero downtime release of v2.4.0", "statusColor": "#28c76f" },
-        { "id": 2, "title": "Core API optimizations", "timeLabel": "1 hour ago", "description": "P99 latency improved by 35ms", "statusColor": "#696cff" },
-        { "id": 3, "title": "Security patch merged", "timeLabel": "Yesterday", "description": "Passed automated vulnerability scan", "statusColor": "#00cfe8" }
+        {
+          "id": 1,
+          "title": "Production deployment successful",
+          "timeLabel": "5 min ago",
+          "description": "Zero downtime release of v2.4.0",
+          "statusColor": "#28c76f"
+        },
+        {
+          "id": 2,
+          "title": "Core API optimizations",
+          "timeLabel": "1 hour ago",
+          "description": "P99 latency improved by 35ms",
+          "statusColor": "#696cff"
+        },
+        {
+          "id": 3,
+          "title": "Security patch merged",
+          "timeLabel": "Yesterday",
+          "description": "Passed automated vulnerability scan",
+          "statusColor": "#00cfe8"
+        }
       ]
     },
     {
@@ -629,15 +1361,61 @@
         "numericValue": 115200000
       },
       "transactions": [
-        { "id": 1, "type": "Mastercard", "description": "Ad Campaign Budget", "amount": "+780.00", "currency": "USD", "isCredit": true },
-        { "id": 2, "type": "Paypal", "description": "Influencer Collaboration", "amount": "+450.00", "currency": "USD", "isCredit": true },
-        { "id": 3, "type": "Transfer", "description": "Event Sponsorship", "amount": "+890.00", "currency": "USD", "isCredit": true },
-        { "id": 4, "type": "Wallet", "description": "Graphic Assets", "amount": "-160.00", "currency": "USD", "isCredit": false }
+        {
+          "id": 1,
+          "type": "Mastercard",
+          "description": "Ad Campaign Budget",
+          "amount": "+780.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 2,
+          "type": "Paypal",
+          "description": "Influencer Collaboration",
+          "amount": "+450.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 3,
+          "type": "Transfer",
+          "description": "Event Sponsorship",
+          "amount": "+890.00",
+          "currency": "USD",
+          "isCredit": true
+        },
+        {
+          "id": 4,
+          "type": "Wallet",
+          "description": "Graphic Assets",
+          "amount": "-160.00",
+          "currency": "USD",
+          "isCredit": false
+        }
       ],
       "activities": [
-        { "id": 1, "title": "Brand campaign launched", "timeLabel": "20 min ago", "description": "Live across Facebook, Instagram, and LinkedIn", "statusColor": "#696cff" },
-        { "id": 2, "title": "Newsletter dispatched", "timeLabel": "4 hours ago", "description": "Delivered to 50k active subscribers (32% open rate)", "statusColor": "#28c76f" },
-        { "id": 3, "title": "Social media giveaway ended", "timeLabel": "2 days ago", "description": "Gained 4,800 new qualified followers", "statusColor": "#ff9f43" }
+        {
+          "id": 1,
+          "title": "Brand campaign launched",
+          "timeLabel": "20 min ago",
+          "description": "Live across Facebook, Instagram, and LinkedIn",
+          "statusColor": "#696cff"
+        },
+        {
+          "id": 2,
+          "title": "Newsletter dispatched",
+          "timeLabel": "4 hours ago",
+          "description": "Delivered to 50k active subscribers (32% open rate)",
+          "statusColor": "#28c76f"
+        },
+        {
+          "id": 3,
+          "title": "Social media giveaway ended",
+          "timeLabel": "2 days ago",
+          "description": "Gained 4,800 new qualified followers",
+          "statusColor": "#ff9f43"
+        }
       ]
     }
   ],
@@ -647,23 +1425,86 @@
       "icon": "home",
       "badge": null,
       "items": [
-        { "id": "analytics", "title": "Analytics", "path": "/dashboard", "active": true },
-        { "id": "crm", "title": "CRM", "path": "/dashboard/crm", "active": false },
-        { "id": "ecommerce", "title": "eCommerce", "path": "/dashboard/ecommerce", "active": false }
+        {
+          "id": "analytics",
+          "title": "Analytics",
+          "path": "/dashboard",
+          "active": true
+        },
+        {
+          "id": "crm",
+          "title": "CRM",
+          "path": "/dashboard/crm",
+          "active": false
+        },
+        {
+          "id": "ecommerce",
+          "title": "eCommerce",
+          "path": "/dashboard/ecommerce",
+          "active": false
+        }
       ]
     },
     "sections": [
       {
         "title": "APPS & PAGES",
         "items": [
-          { "id": "email", "title": "Email", "icon": "mail", "path": "/apps/email", "hasSubmenu": false },
-          { "id": "chat", "title": "Chat", "icon": "message-square", "path": "/apps/chat", "hasSubmenu": false },
-          { "id": "calendar", "title": "Calendar", "icon": "calendar", "path": "/apps/calendar", "hasSubmenu": false },
-          { "id": "invoice", "title": "Invoice", "icon": "file-text", "path": "/apps/invoice", "hasSubmenu": true },
-          { "id": "user", "title": "User", "icon": "user", "path": "/apps/user", "hasSubmenu": true },
-          { "id": "roles", "title": "Roles & Permissions", "icon": "shield", "path": "/apps/roles", "hasSubmenu": true },
-          { "id": "pages", "title": "Pages", "icon": "layout", "path": "/pages", "hasSubmenu": true },
-          { "id": "auth-pages", "title": "Auth Pages", "icon": "lock", "path": "/auth", "hasSubmenu": true }
+          {
+            "id": "email",
+            "title": "Email",
+            "icon": "mail",
+            "path": "/apps/email",
+            "hasSubmenu": false
+          },
+          {
+            "id": "chat",
+            "title": "Chat",
+            "icon": "message-square",
+            "path": "/apps/chat",
+            "hasSubmenu": false
+          },
+          {
+            "id": "calendar",
+            "title": "Calendar",
+            "icon": "calendar",
+            "path": "/apps/calendar",
+            "hasSubmenu": false
+          },
+          {
+            "id": "invoice",
+            "title": "Invoice",
+            "icon": "file-text",
+            "path": "/apps/invoice",
+            "hasSubmenu": true
+          },
+          {
+            "id": "user",
+            "title": "User",
+            "icon": "user",
+            "path": "/apps/user",
+            "hasSubmenu": true
+          },
+          {
+            "id": "roles",
+            "title": "Roles & Permissions",
+            "icon": "shield",
+            "path": "/apps/roles",
+            "hasSubmenu": true
+          },
+          {
+            "id": "pages",
+            "title": "Pages",
+            "icon": "layout",
+            "path": "/pages",
+            "hasSubmenu": true
+          },
+          {
+            "id": "auth-pages",
+            "title": "Auth Pages",
+            "icon": "lock",
+            "path": "/auth",
+            "hasSubmenu": true
+          }
         ]
       }
     ]
@@ -715,12 +1556,42 @@
     "tabs": ["Browser", "Operating System", "Country"],
     "activeTab": "Browser",
     "entries": [
-      { "rank": 1, "browser": "Chrome", "visits": "8.92k", "percentage": "64.91%" },
-      { "rank": 2, "browser": "Safari", "visits": "1.29k", "percentage": "19.03%" },
-      { "rank": 3, "browser": "Firefox", "visits": "328", "percentage": "3.26%" },
-      { "rank": 4, "browser": "Edge", "visits": "142", "percentage": "3.99%" },
-      { "rank": 5, "browser": "Opera", "visits": "85", "percentage": "2.12%" },
-      { "rank": 6, "browser": "Brave", "visits": "36", "percentage": "1.06%" }
+      {
+        "rank": 1,
+        "browser": "Chrome",
+        "visits": "8.92k",
+        "percentage": "64.91%"
+      },
+      {
+        "rank": 2,
+        "browser": "Safari",
+        "visits": "1.29k",
+        "percentage": "19.03%"
+      },
+      {
+        "rank": 3,
+        "browser": "Firefox",
+        "visits": "328",
+        "percentage": "3.26%"
+      },
+      {
+        "rank": 4,
+        "browser": "Edge",
+        "visits": "142",
+        "percentage": "3.99%"
+      },
+      {
+        "rank": 5,
+        "browser": "Opera",
+        "visits": "85",
+        "percentage": "2.12%"
+      },
+      {
+        "rank": 6,
+        "browser": "Brave",
+        "visits": "36",
+        "percentage": "1.06%"
+      }
     ]
   },
   "crmDashboard": {
@@ -731,20 +1602,20 @@
       "badge": "+8.4 Points from last month",
       "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
       "primarySeries": [2.5, 3.1, 2.9, 4.1, 2.8, 3.6, 4.3],
-      "secondarySeries": [1.9, 2.4, 2.0, 3.2, 2.1, 2.7, 3.4],
+      "secondarySeries": [1.9, 2.4, 2, 3.2, 2.1, 2.7, 3.4],
       "highlightedIndex": 3,
       "years": {
+        "2022": {
+          "rating": 3.9,
+          "badge": "+4.2 Points from last month",
+          "primarySeries": [2, 2.6, 2.3, 3.4, 2.5, 3, 3.9],
+          "secondarySeries": [1.5, 2, 1.8, 2.6, 1.9, 2.2, 2.9]
+        },
         "2023": {
           "rating": 4.3,
           "badge": "+8.4 Points from last month",
           "primarySeries": [2.5, 3.1, 2.9, 4.1, 2.8, 3.6, 4.3],
-          "secondarySeries": [1.9, 2.4, 2.0, 3.2, 2.1, 2.7, 3.4]
-        },
-        "2022": {
-          "rating": 3.9,
-          "badge": "+4.2 Points from last month",
-          "primarySeries": [2.0, 2.6, 2.3, 3.4, 2.5, 3.0, 3.9],
-          "secondarySeries": [1.5, 2.0, 1.8, 2.6, 1.9, 2.2, 2.9]
+          "secondarySeries": [1.9, 2.4, 2, 3.2, 2.1, 2.7, 3.4]
         }
       }
     },
@@ -754,13 +1625,13 @@
       "sales": [-38, -48, -44, -52, -30, -42, -46],
       "overview": [24, 26, 22, 30, 20, 25, 28],
       "years": {
-        "2023": {
-          "sales": [-38, -48, -44, -52, -30, -42, -46],
-          "overview": [24, 26, 22, 30, 20, 25, 28]
-        },
         "2022": {
           "sales": [-28, -36, -34, -40, -24, -32, -35],
           "overview": [18, 20, 16, 24, 15, 19, 22]
+        },
+        "2023": {
+          "sales": [-38, -48, -44, -52, -30, -42, -46],
+          "overview": [24, 26, 22, 30, 20, 25, 28]
         }
       }
     },
@@ -773,15 +1644,15 @@
       "change": "18.65%",
       "isPositive": true,
       "years": {
-        "2023": {
-          "amount": "$1,842",
-          "change": "18.65%",
-          "isPositive": true
-        },
         "2022": {
           "amount": "$1,380",
           "change": "-4.20%",
           "isPositive": false
+        },
+        "2023": {
+          "amount": "$1,842",
+          "change": "18.65%",
+          "isPositive": true
         }
       }
     },
@@ -836,48 +1707,6 @@
       }
     ],
     "topProductsBySalesYears": {
-      "2023": [
-        {
-          "id": 1,
-          "name": "Galaxy S24 Ultra",
-          "brand": "Samsung",
-          "amount": "$112,450",
-          "icon": "phone2.svg",
-          "bg": "bg-[#ffe2e3] text-[#ff3e1d]"
-        },
-        {
-          "id": 2,
-          "name": "Apple Watch Ultra",
-          "brand": "Apple",
-          "amount": "$28,920",
-          "icon": "Smart watch.svg",
-          "bg": "bg-[#e7e7ff] text-[#696cff]"
-        },
-        {
-          "id": 3,
-          "name": "ThinkPad X1 Carbon",
-          "brand": "Lenovo",
-          "amount": "$6,840",
-          "icon": "Laptop.svg",
-          "bg": "bg-[#d7f5fc] text-[#03c3ec]"
-        },
-        {
-          "id": 4,
-          "name": "Pixel 8 Pro",
-          "brand": "Google",
-          "amount": "$76,320",
-          "icon": "phone2.svg",
-          "bg": "bg-[#e8fadf] text-[#71dd37]"
-        },
-        {
-          "id": 5,
-          "name": "WH-1000XM5 ANC",
-          "brand": "Sony",
-          "amount": "$14,890",
-          "icon": "Earphone.svg",
-          "bg": "bg-[#ebeef0] text-[#8592a3]"
-        }
-      ],
       "2022": [
         {
           "id": 1,
@@ -916,6 +1745,48 @@
           "name": "WH-1000XM4 ANC",
           "brand": "Sony",
           "amount": "$11,940",
+          "icon": "Earphone.svg",
+          "bg": "bg-[#ebeef0] text-[#8592a3]"
+        }
+      ],
+      "2023": [
+        {
+          "id": 1,
+          "name": "Galaxy S24 Ultra",
+          "brand": "Samsung",
+          "amount": "$112,450",
+          "icon": "phone2.svg",
+          "bg": "bg-[#ffe2e3] text-[#ff3e1d]"
+        },
+        {
+          "id": 2,
+          "name": "Apple Watch Ultra",
+          "brand": "Apple",
+          "amount": "$28,920",
+          "icon": "Smart watch.svg",
+          "bg": "bg-[#e7e7ff] text-[#696cff]"
+        },
+        {
+          "id": 3,
+          "name": "ThinkPad X1 Carbon",
+          "brand": "Lenovo",
+          "amount": "$6,840",
+          "icon": "Laptop.svg",
+          "bg": "bg-[#d7f5fc] text-[#03c3ec]"
+        },
+        {
+          "id": 4,
+          "name": "Pixel 8 Pro",
+          "brand": "Google",
+          "amount": "$76,320",
+          "icon": "phone2.svg",
+          "bg": "bg-[#e8fadf] text-[#71dd37]"
+        },
+        {
+          "id": 5,
+          "name": "WH-1000XM5 ANC",
+          "brand": "Sony",
+          "amount": "$14,890",
           "icon": "Earphone.svg",
           "bg": "bg-[#ebeef0] text-[#8592a3]"
         }
@@ -969,53 +1840,6 @@
       }
     ],
     "topProductsByVolumeYears": {
-      "2023": [
-        {
-          "id": 1,
-          "name": "MacBook Air M3",
-          "brand": "Apple",
-          "volume": "16.8k",
-          "change": "+18.2%",
-          "isPositive": true,
-          "icon": "Laptop.svg"
-        },
-        {
-          "id": 2,
-          "name": "Dell XPS 15",
-          "brand": "Dell",
-          "volume": "62.4k",
-          "change": "-6.4%",
-          "isPositive": false,
-          "icon": "Imac.svg"
-        },
-        {
-          "id": 3,
-          "name": "Garmin Venu 3",
-          "brand": "Garmin",
-          "volume": "5.9k",
-          "change": "+21.0%",
-          "isPositive": true,
-          "icon": "Smart watch.svg"
-        },
-        {
-          "id": 4,
-          "name": "Moto Edge 50",
-          "brand": "Motorola",
-          "volume": "14.75k",
-          "change": "+9.8%",
-          "isPositive": true,
-          "icon": "phone2.svg"
-        },
-        {
-          "id": 5,
-          "name": "Nothing Phone 2",
-          "brand": "Nothing",
-          "volume": "10.32k",
-          "change": "-4.5%",
-          "isPositive": false,
-          "icon": "phone2.svg"
-        }
-      ],
       "2022": [
         {
           "id": 1,
@@ -1062,6 +1886,53 @@
           "isPositive": false,
           "icon": "phone2.svg"
         }
+      ],
+      "2023": [
+        {
+          "id": 1,
+          "name": "MacBook Air M3",
+          "brand": "Apple",
+          "volume": "16.8k",
+          "change": "+18.2%",
+          "isPositive": true,
+          "icon": "Laptop.svg"
+        },
+        {
+          "id": 2,
+          "name": "Dell XPS 15",
+          "brand": "Dell",
+          "volume": "62.4k",
+          "change": "-6.4%",
+          "isPositive": false,
+          "icon": "Imac.svg"
+        },
+        {
+          "id": 3,
+          "name": "Garmin Venu 3",
+          "brand": "Garmin",
+          "volume": "5.9k",
+          "change": "+21.0%",
+          "isPositive": true,
+          "icon": "Smart watch.svg"
+        },
+        {
+          "id": 4,
+          "name": "Moto Edge 50",
+          "brand": "Motorola",
+          "volume": "14.75k",
+          "change": "+9.8%",
+          "isPositive": true,
+          "icon": "phone2.svg"
+        },
+        {
+          "id": 5,
+          "name": "Nothing Phone 2",
+          "brand": "Nothing",
+          "volume": "10.32k",
+          "change": "-4.5%",
+          "isPositive": false,
+          "icon": "phone2.svg"
+        }
       ]
     },
     "earningReport": {
@@ -1086,28 +1957,6 @@
         "highlightDayIndex": 4
       },
       "years": {
-        "2023": {
-          "netProfit": {
-            "label": "Net Profit",
-            "subLabel": "15.8k Sales",
-            "amount": "64,820"
-          },
-          "totalIncome": {
-            "label": "Total Income",
-            "subLabel": "Enterprise Licensing",
-            "amount": "$4,930"
-          },
-          "totalExpenses": {
-            "label": "Total Expenses",
-            "subLabel": "Operations, Cloud",
-            "amount": "$580"
-          },
-          "weeklyReport": {
-            "days": ["M", "T", "W", "T", "F", "S", "S"],
-            "values": [32, 48, 38, 26, 74, 35, 45],
-            "highlightDayIndex": 4
-          }
-        },
         "2022": {
           "netProfit": {
             "label": "Net Profit",
@@ -1129,6 +1978,28 @@
             "values": [28, 35, 42, 30, 58, 28, 38],
             "highlightDayIndex": 4
           }
+        },
+        "2023": {
+          "netProfit": {
+            "label": "Net Profit",
+            "subLabel": "15.8k Sales",
+            "amount": "64,820"
+          },
+          "totalIncome": {
+            "label": "Total Income",
+            "subLabel": "Enterprise Licensing",
+            "amount": "$4,930"
+          },
+          "totalExpenses": {
+            "label": "Total Expenses",
+            "subLabel": "Operations, Cloud",
+            "amount": "$580"
+          },
+          "weeklyReport": {
+            "days": ["M", "T", "W", "T", "F", "S", "S"],
+            "values": [32, 48, 38, 26, 74, 35, 45],
+            "highlightDayIndex": 4
+          }
         }
       }
     },
@@ -1138,15 +2009,15 @@
       "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
       "yCategories": ["8k", "7k", "6k", "5k", "4k", "3k", "2k", "1k"],
       "years": {
-        "2023": {
-          "badge": "+7.2",
+        "2021": {
+          "badge": "+3.0",
           "badgeText": "Than Last year",
           "matrix": [
             [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 3],
             [0, 0, 0, 0, 0, 3, 0, 0],
-            [0, 0, 0, 0, 3, 0, 0, 0],
-            [0, 0, 0, 3, 3, 0, 3, 0],
-            [0, 0, 3, 3, 0, 0, 0, 0],
+            [0, 0, 0, 3, 0, 0, 0, 0],
+            [0, 0, 3, 0, 0, 0, 0, 0],
             [0, 3, 0, 0, 0, 0, 0, 0],
             [3, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0]
@@ -1166,15 +2037,15 @@
             [0, 0, 0, 0, 0, 0, 0, 0]
           ]
         },
-        "2021": {
-          "badge": "+3.0",
+        "2023": {
+          "badge": "+7.2",
           "badgeText": "Than Last year",
           "matrix": [
             [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 3],
             [0, 0, 0, 0, 0, 3, 0, 0],
-            [0, 0, 0, 3, 0, 0, 0, 0],
-            [0, 0, 3, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 3, 0, 0, 0],
+            [0, 0, 0, 3, 3, 0, 3, 0],
+            [0, 0, 3, 3, 0, 0, 0, 0],
             [0, 3, 0, 0, 0, 0, 0, 0],
             [3, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0]
@@ -1227,50 +2098,6 @@
       }
     ],
     "salesByCountriesYears": {
-      "2023": [
-        {
-          "id": 1,
-          "country": "united States of america",
-          "sales": "$9,420k",
-          "total": "920k",
-          "flag": "United state of america.png"
-        },
-        {
-          "id": 2,
-          "country": "Brazil",
-          "sales": "$3,150k",
-          "total": "710k",
-          "flag": "Brazil.png"
-        },
-        {
-          "id": 3,
-          "country": "India",
-          "sales": "$1,240k",
-          "total": "210k",
-          "flag": "India.png"
-        },
-        {
-          "id": 4,
-          "country": "France",
-          "sales": "$890k",
-          "total": "105k",
-          "flag": "France.png"
-        },
-        {
-          "id": 5,
-          "country": "Belgium",
-          "sales": "$620k",
-          "total": "58k",
-          "flag": "belgium.png"
-        },
-        {
-          "id": 6,
-          "country": "China",
-          "sales": "$24k",
-          "total": "14k",
-          "flag": "China.png"
-        }
-      ],
       "2022": [
         {
           "id": 1,
@@ -1314,18 +2141,74 @@
           "total": "10k",
           "flag": "China.png"
         }
+      ],
+      "2023": [
+        {
+          "id": 1,
+          "country": "united States of america",
+          "sales": "$9,420k",
+          "total": "920k",
+          "flag": "United state of america.png"
+        },
+        {
+          "id": 2,
+          "country": "Brazil",
+          "sales": "$3,150k",
+          "total": "710k",
+          "flag": "Brazil.png"
+        },
+        {
+          "id": 3,
+          "country": "India",
+          "sales": "$1,240k",
+          "total": "210k",
+          "flag": "India.png"
+        },
+        {
+          "id": 4,
+          "country": "France",
+          "sales": "$890k",
+          "total": "105k",
+          "flag": "France.png"
+        },
+        {
+          "id": 5,
+          "country": "Belgium",
+          "sales": "$620k",
+          "total": "58k",
+          "flag": "belgium.png"
+        },
+        {
+          "id": 6,
+          "country": "China",
+          "sales": "$24k",
+          "total": "14k",
+          "flag": "China.png"
+        }
       ]
     },
     "salesStatus": {
       "percentage": 82,
       "title": "Sales",
       "legends": [
-        { "label": "Conversion Ratio", "color": "#696cff" },
-        { "label": "Total requirements", "color": "#cfd3fb" }
+        {
+          "label": "Conversion Ratio",
+          "color": "#696cff"
+        },
+        {
+          "label": "Total requirements",
+          "color": "#cfd3fb"
+        }
       ],
       "years": {
-        "2023": { "percentage": 82, "title": "Sales" },
-        "2022": { "percentage": 68, "title": "Sales" }
+        "2022": {
+          "percentage": 68,
+          "title": "Sales"
+        },
+        "2023": {
+          "percentage": 82,
+          "title": "Sales"
+        }
       }
     },
     "employeePerformance": [
@@ -1386,63 +2269,6 @@
       }
     ],
     "employeePerformanceYears": {
-      "2023": [
-        {
-          "id": 1,
-          "name": "Marcus Vance",
-          "role": "Lead iOS Engineer",
-          "avatar": "member1",
-          "project": "ZIPCAR",
-          "projectBg": "bg-[#e7e7ff] text-[#696cff]",
-          "tasks": "94/140",
-          "progress": 72,
-          "progressColor": "#696cff"
-        },
-        {
-          "id": 2,
-          "name": "Sophia Chen",
-          "role": "Senior Product Designer",
-          "avatar": "member2",
-          "project": "BITBANK",
-          "projectBg": "bg-[#ffe2e3] text-[#ff3e1d]",
-          "tasks": "312/380",
-          "progress": 85,
-          "progressColor": "#ff3e1d"
-        },
-        {
-          "id": 3,
-          "name": "Liam Gallagher",
-          "role": "Fullstack Developer",
-          "avatar": "member3",
-          "project": "PAYERS",
-          "projectBg": "bg-[#fff1d6] text-[#ffab00]",
-          "tasks": "58/70",
-          "progress": 83,
-          "progressColor": "#ffab00"
-        },
-        {
-          "id": 4,
-          "name": "Elena Rostova",
-          "role": "Technical PM",
-          "avatar": "member4",
-          "project": "BRANDI",
-          "projectBg": "bg-[#d7f5fc] text-[#03c3ec]",
-          "tasks": "115/280",
-          "progress": 42,
-          "progressColor": "#03c3ec"
-        },
-        {
-          "id": 5,
-          "name": "Lucas Silva",
-          "role": "UX Researcher",
-          "avatar": "member5",
-          "project": "AVIATO",
-          "projectBg": "bg-[#ebeef0] text-[#8592a3]",
-          "tasks": "18/30",
-          "progress": 60,
-          "progressColor": "#8592a3"
-        }
-      ],
       "2022": [
         {
           "id": 1,
@@ -1497,6 +2323,63 @@
           "projectBg": "bg-[#ebeef0] text-[#8592a3]",
           "tasks": "14/25",
           "progress": 56,
+          "progressColor": "#8592a3"
+        }
+      ],
+      "2023": [
+        {
+          "id": 1,
+          "name": "Marcus Vance",
+          "role": "Lead iOS Engineer",
+          "avatar": "member1",
+          "project": "ZIPCAR",
+          "projectBg": "bg-[#e7e7ff] text-[#696cff]",
+          "tasks": "94/140",
+          "progress": 72,
+          "progressColor": "#696cff"
+        },
+        {
+          "id": 2,
+          "name": "Sophia Chen",
+          "role": "Senior Product Designer",
+          "avatar": "member2",
+          "project": "BITBANK",
+          "projectBg": "bg-[#ffe2e3] text-[#ff3e1d]",
+          "tasks": "312/380",
+          "progress": 85,
+          "progressColor": "#ff3e1d"
+        },
+        {
+          "id": 3,
+          "name": "Liam Gallagher",
+          "role": "Fullstack Developer",
+          "avatar": "member3",
+          "project": "PAYERS",
+          "projectBg": "bg-[#fff1d6] text-[#ffab00]",
+          "tasks": "58/70",
+          "progress": 83,
+          "progressColor": "#ffab00"
+        },
+        {
+          "id": 4,
+          "name": "Elena Rostova",
+          "role": "Technical PM",
+          "avatar": "member4",
+          "project": "BRANDI",
+          "projectBg": "bg-[#d7f5fc] text-[#03c3ec]",
+          "tasks": "115/280",
+          "progress": 42,
+          "progressColor": "#03c3ec"
+        },
+        {
+          "id": 5,
+          "name": "Lucas Silva",
+          "role": "UX Researcher",
+          "avatar": "member5",
+          "project": "AVIATO",
+          "projectBg": "bg-[#ebeef0] text-[#8592a3]",
+          "tasks": "18/30",
+          "progress": 60,
           "progressColor": "#8592a3"
         }
       ]
@@ -1606,8 +2489,23 @@
     "totalIncome": {
       "title": "Total income",
       "subtitle": "Yearly Sales Overview",
-      "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      "series": [3500, 3500, 4500, 4500, 3000, 3000, 2000, 2000, 3500, 3500, 5000, 5000]
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "series": [
+        3500, 3500, 4500, 4500, 3000, 3000, 2000, 2000, 3500, 3500, 5000, 5000
+      ]
     },
     "report": {
       "title": "Report",
@@ -1852,7 +2750,10 @@
           "secondarySeries": [20, 12, 32, 45]
         },
         "totalIncome": {
-          "series": [2800, 2800, 3600, 3600, 2500, 2500, 1800, 1800, 2900, 2900, 4200, 4200]
+          "series": [
+            2800, 2800, 3600, 3600, 2500, 2500, 1800, 1800, 2900, 2900, 4200,
+            4200
+          ]
         },
         "report": {
           "subtitle": "Monthly Avg $38,200k",
@@ -1941,5 +2842,537 @@
         }
       }
     }
-  }
+  },
+  "emails": [
+    {
+      "id": "email-1793339603149",
+      "from": {
+        "name": "Katie Seller",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "",
+      "cc": "",
+      "bcc": "",
+      "subject": "(Untitled Draft)",
+      "snippet": "",
+      "message": "",
+      "timestamp": "11:23 am",
+      "date": "2026-10-30T05:53:23.149Z",
+      "folder": "trash",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["company"],
+      "originalFolder": "draft"
+    },
+    {
+      "id": "email-1",
+      "from": {
+        "name": "Bowen hank",
+        "email": "bowen.hank@vertexsales.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Q3 Sales Performance Review & Regional Target Allocation",
+      "snippet": "please find attached the last company report",
+      "message": "Hi Katie,\n\nPlease find attached the last company report for Q3 regional enterprise sales. We exceeded our target margin by 14.2% across Midwest retail sectors.\n\nKey highlights:\n- Enterprise ACV grew to $482k\n- Sales cycle shortened from 42 days to 28 days\n- Client retention reached 96.8%\n\nLet me know your availability for a follow-up review on Tuesday.\n\nBest regards,\nBowen Hank\nVP of Global Sales Operations",
+      "timestamp": "01:30 PM",
+      "date": "2026-10-30T13:30:00Z",
+      "folder": "inbox",
+      "isRead": false,
+      "isStarred": false,
+      "labels": ["personal"]
+    },
+    {
+      "id": "email-2",
+      "from": {
+        "name": "Adrian McGuire",
+        "email": "adrian.mcguire@summittech.io",
+        "avatar": "member2.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Executive Coaching & Sales Leadership Workshop",
+      "snippet": "update can changes your personal life",
+      "message": "Hello Katie,\n\nThe quarterly leadership and sales psychology workshop is now open for registration. This intensive session focuses on high-stakes enterprise negotiations, team scaling, and resilient pipeline management.\n\nDetails:\n- Date: November 12-14, 2026\n- Format: Hybrid / Live Stream\n- Keynote: Modern Enterprise Deal Structuring\n\nLooking forward to having your team participate!\n\nCheers,\nAdrian McGuire",
+      "timestamp": "01:24 PM",
+      "date": "2026-10-30T13:24:00Z",
+      "folder": "inbox",
+      "isRead": true,
+      "isStarred": true,
+      "labels": ["private", "company"]
+    },
+    {
+      "id": "email-3",
+      "from": {
+        "name": "Alma Gonzalez",
+        "email": "alma.g@partnernetwork.org",
+        "avatar": "member3.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "B2B Partner Referral Program - Commission Payout",
+      "snippet": "Refer friend,get rewards.",
+      "message": "Hi Katie,\n\nWe are excited to share that your client referral for the POS ERP rollout has officially converted! A commission reward of $2,450.00 has been credited to your sales partner account.\n\nCheck out the updated tier list in your partner portal to unlock extra bonuses on your next enterprise referrals.\n\nWarmly,\nAlma Gonzalez\nPartner Community Lead",
+      "timestamp": "09:12 AM",
+      "date": "2026-10-30T09:12:00Z",
+      "folder": "inbox",
+      "isRead": false,
+      "isStarred": true,
+      "labels": ["company"]
+    },
+    {
+      "id": "email-4",
+      "from": {
+        "name": "Bowen hank",
+        "email": "bowen.hank@vertexsales.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "SalesFlow CRM Platform 4.2 Release Notes",
+      "snippet": "App Update",
+      "message": "Team,\n\nSalesFlow 4.2 is officially live in production! This release brings significant speed improvements to the analytics dashboard, integrated Highcharts widgets, and automated order status synchronization.\n\nPlease test your pipelines and report any anomalies to IT support.\n\nBowen Hank\nEngineering & Sales Ops",
+      "timestamp": "11:22 AM",
+      "date": "2026-10-30T11:22:00Z",
+      "folder": "inbox",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["private"]
+    },
+    {
+      "id": "email-5",
+      "from": {
+        "name": "Alma Gonzalez",
+        "email": "security@salesflow.com",
+        "avatar": "member3.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Security Notification: Password Changed Successfully",
+      "snippet": "Password Reset",
+      "message": "Hi Katie,\n\nYour account security credentials were updated recently from IP 192.168.1.42 (Chrome on Windows). If you authorized this change, no further action is required.\n\nIf you did not make this request, please contact IT Security immediately to lock your session.\n\nSalesFlow Security Team",
+      "timestamp": "11:12 AM",
+      "date": "2026-10-30T11:12:00Z",
+      "folder": "inbox",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["important"]
+    },
+    {
+      "id": "email-6",
+      "from": {
+        "name": "Nathan Wagner",
+        "email": "nathan.w@solardynamics.com",
+        "avatar": "member4.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Mobile CRM Field App Patch v3.8.1 Available",
+      "snippet": "App Update",
+      "message": "Hi Katie,\n\nThe mobile field app patch has been released on iOS TestFlight and Android Play Console. It resolves the background sync delay on disconnected tablets and optimizes battery usage during client presentations.\n\nNathan Wagner\nMobile Product Lead",
+      "timestamp": "09:12 PM",
+      "date": "2026-10-29T21:12:00Z",
+      "folder": "inbox",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["company"]
+    },
+    {
+      "id": "email-7",
+      "from": {
+        "name": "Katie (Draft)",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "procurement@globalhypermarket.eu",
+      "subject": "Master Service Agreement - Enterprise Retail Expansion",
+      "snippet": "Draft proposal outlining discount tiers for 120 retail chain outlets...",
+      "message": "Dear Procurement Committee,\n\nFollowing our review meeting last Thursday, here is the updated SLA proposal and tiered licensing model for the upcoming fiscal year...",
+      "timestamp": "Yesterday",
+      "date": "2026-10-29T16:00:00Z",
+      "folder": "trash",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["company"],
+      "originalFolder": "draft"
+    },
+    {
+      "id": "email-8",
+      "from": {
+        "name": "Katie (Draft)",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "leads@nordiclogistics.se",
+      "subject": "Follow-up: Cross-border Shipping Integration",
+      "snippet": "Draft email regarding API webhook delivery milestones...",
+      "message": "Hi Lars,\n\nChecking in on the technical specifications document we sent over last week...",
+      "timestamp": "Oct 28",
+      "date": "2026-10-28T14:20:00Z",
+      "folder": "draft",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["important"]
+    },
+    {
+      "id": "email-9",
+      "from": {
+        "name": "Katie (Draft)",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "accounting@vertexsales.com",
+      "subject": "Quarterly Travel Expense Breakdown - Europe Roadshow",
+      "snippet": "Itemized receipts for Q3 client visits and conference travel...",
+      "message": "Attached are the receipts and expense vouchers from the Frankfurt and Paris enterprise meetings...",
+      "timestamp": "Oct 27",
+      "date": "2026-10-27T10:15:00Z",
+      "folder": "draft",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["personal"]
+    },
+    {
+      "id": "email-10",
+      "from": {
+        "name": "Katie (Draft)",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "team-leads@salesflow.com",
+      "subject": "Pipeline Velocity & Win Rate Improvements - Next Steps",
+      "snippet": "Draft recommendations for sales engineering enablement...",
+      "message": "Hi team,\n\nI have compiled the feedback from our SDR group regarding demo conversion bottlenecks...",
+      "timestamp": "Oct 26",
+      "date": "2026-10-26T18:40:00Z",
+      "folder": "draft",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["company"]
+    },
+    {
+      "id": "email-11",
+      "from": {
+        "name": "Cryptocurrency Rewards",
+        "email": "promo@free-crypto-giveaway.xyz",
+        "avatar": "member5.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Claim your 1.5 BTC staking reward right now!",
+      "snippet": "Click this link immediately to verify your crypto wallet address...",
+      "message": "Congratulations! Your email address was selected in the international crypto lottery. Transfer fees must be paid within 24 hours.",
+      "timestamp": "Oct 29",
+      "date": "2026-10-29T08:00:00Z",
+      "folder": "spam",
+      "isRead": false,
+      "isStarred": false,
+      "labels": ["private"]
+    },
+    {
+      "id": "email-12",
+      "from": {
+        "name": "Luxury Cruise Line",
+        "email": "offers@caribbean-vacation-deals.biz",
+        "avatar": "member6.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Complimentary 7-Day All-Inclusive Caribbean Cruise Pass",
+      "snippet": "Exclusive VIP pass waiting for confirmation before midnight...",
+      "message": "Pack your bags! You have won an all-inclusive cruise for two people. Call our automated reservation hotline to secure dates.",
+      "timestamp": "Oct 27",
+      "date": "2026-10-27T12:00:00Z",
+      "folder": "spam",
+      "isRead": false,
+      "isStarred": false,
+      "labels": ["personal"]
+    },
+    {
+      "id": "email-13",
+      "from": {
+        "name": "Katie Seller",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "board@salesflow.com",
+      "subject": "Sent: Monthly Revenue & Expansion Summary - October 2026",
+      "snippet": "Delivered final executive slide deck to the board of directors.",
+      "message": "Dear Board Members,\n\nPlease find the attached summary deck covering our $48.9k month-to-date milestone and 28.14% sales growth.\n\nWarm regards,\nKatie",
+      "timestamp": "Oct 29",
+      "date": "2026-10-29T17:30:00Z",
+      "folder": "sent",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["company"]
+    },
+    {
+      "id": "email-14",
+      "from": {
+        "name": "Katie Seller",
+        "email": "katie.seller@salesflow.com",
+        "avatar": "member1.jpg"
+      },
+      "to": "procurement@nordicretail.com",
+      "subject": "Sent: Countersigned Commercial Agreement & Work Order",
+      "snippet": "Countersigned contract has been uploaded to DocuSign.",
+      "message": "Hi Nordic Team,\n\nThank you for the partnership! We have countersigned the contract and look forward to kickoff.\n\nBest,\nKatie",
+      "timestamp": "Oct 28",
+      "date": "2026-10-28T11:45:00Z",
+      "folder": "sent",
+      "isRead": true,
+      "isStarred": false,
+      "labels": ["important"]
+    },
+    {
+      "id": "email-15",
+      "from": {
+        "name": "Marketing Automation",
+        "email": "newsletters@outdatedmarketing.net",
+        "avatar": "member8.jpg"
+      },
+      "to": "katie.seller@salesflow.com",
+      "subject": "Weekly Digest #89 - Obsolete Marketing Trends",
+      "snippet": "Archived newsletter moved to trash...",
+      "message": "This is a weekly automated digest from a legacy subscription.",
+      "timestamp": "Oct 25",
+      "date": "2026-10-25T07:15:00Z",
+      "folder": "trash",
+      "originalFolder": "inbox",
+      "isRead": true,
+      "isStarred": true,
+      "labels": ["personal"]
+    }
+  ],
+  "chatConversations": {
+    "2": [
+      {
+        "id": "msg-1",
+        "senderId": "2",
+        "text": "Its perfect for my next project.",
+        "timestamp": "01:20 PM",
+        "createdAt": "2026-10-30T13:20:00Z"
+      },
+      {
+        "id": "msg-2",
+        "senderId": "2",
+        "text": "How can i Purchase it ?",
+        "timestamp": "01:25 PM",
+        "createdAt": "2026-10-30T13:25:00Z"
+      },
+      {
+        "id": "msg-3",
+        "senderId": "user",
+        "text": "Thanks,from our official site",
+        "timestamp": "01:30 PM",
+        "createdAt": "2026-10-30T13:30:00Z"
+      },
+      {
+        "id": "msg-4",
+        "senderId": "2",
+        "text": "I will purchase it for sure",
+        "timestamp": "11:22 AM",
+        "createdAt": "2026-10-30T11:22:00Z"
+      },
+      {
+        "id": "msg-1793343707824",
+        "senderId": "user",
+        "text": "what is current nifty fifty points?",
+        "timestamp": "12:31 pm",
+        "createdAt": "2026-10-30T07:01:47.823Z"
+      },
+      {
+        "id": "msg-ai-demo",
+        "senderId": "2",
+        "text": "The Nifty 50 index is currently consolidating around key resistance and support zones with healthy volume in financials and technology. Within SalesFlow, our enterprise analytics remain strong with a 28.14% increase in sales performance.",
+        "timestamp": "12:32 pm",
+        "createdAt": "2026-10-30T07:02:00.000Z"
+      },
+      {
+        "id": "msg-1793346891287",
+        "senderId": "user",
+        "text": "hi",
+        "timestamp": "01:24 pm",
+        "createdAt": "2026-10-30T07:54:51.286Z"
+      }
+    ],
+    "3": [
+      {
+        "id": "msg-5",
+        "senderId": "3",
+        "text": "Hi John, do you have a moment to review the Q3 pipeline projections?",
+        "timestamp": "10:15 AM",
+        "createdAt": "2026-10-30T10:15:00Z"
+      },
+      {
+        "id": "msg-6",
+        "senderId": "user",
+        "text": "Sure Michael, overall ARR is up 28.14% and enterprise deals are closing on schedule.",
+        "timestamp": "10:20 AM",
+        "createdAt": "2026-10-30T10:20:00Z"
+      },
+      {
+        "id": "msg-7",
+        "senderId": "3",
+        "text": "if it takes long you can mail me a summary report",
+        "timestamp": "10:22 AM",
+        "createdAt": "2026-10-30T10:22:00Z"
+      }
+    ],
+    "4": [
+      {
+        "id": "msg-8",
+        "senderId": "4",
+        "text": "Operations team has approved the new warehouse fulfillment workflow.",
+        "timestamp": "Yesterday",
+        "createdAt": "2026-10-29T15:00:00Z"
+      }
+    ],
+    "5": [
+      {
+        "id": "msg-9",
+        "senderId": "5",
+        "text": "The Highcharts radar and spline render optimizations are merged.",
+        "timestamp": "Oct 28",
+        "createdAt": "2026-10-28T16:45:00Z"
+      }
+    ],
+    "6": [
+      {
+        "id": "msg-10",
+        "senderId": "6",
+        "text": "New email campaign template is ready for review.",
+        "timestamp": "Oct 27",
+        "createdAt": "2026-10-27T11:30:00Z"
+      }
+    ]
+  },
+  "calendarEvents": [
+    {
+      "id": "evt-1",
+      "title": "Dart Game Social",
+      "description": "After-work dart league tournament with sales team members.",
+      "startDate": "2023-01-15",
+      "startTime": "18:00",
+      "endDate": "2023-01-15",
+      "endTime": "20:00",
+      "allDay": false,
+      "category": "etc",
+      "location": "Downtown Sports Lounge"
+    },
+    {
+      "id": "evt-2",
+      "title": "Team Dinner Celebration",
+      "description": "Celebrating the closing of the Q4 enterprise software sales targets.",
+      "startDate": "2023-01-15",
+      "startTime": "20:30",
+      "endDate": "2023-01-15",
+      "endTime": "22:30",
+      "allDay": false,
+      "category": "holiday",
+      "location": "Grand Bistro Restaurant"
+    },
+    {
+      "id": "evt-3",
+      "title": "Pipeline Strategy Sync",
+      "description": "Reviewing inbound qualified sales leads for the new product launch.",
+      "startDate": "2023-01-15",
+      "startTime": "14:00",
+      "endDate": "2023-01-15",
+      "endTime": "15:00",
+      "allDay": false,
+      "category": "business",
+      "location": "Conference Room B"
+    },
+    {
+      "id": "evt-4",
+      "title": "Client Onboarding Brief",
+      "description": "Onboarding session with new financial services client.",
+      "startDate": "2023-01-15",
+      "startTime": "16:00",
+      "endDate": "2023-01-15",
+      "endTime": "17:00",
+      "allDay": false,
+      "category": "business",
+      "location": "Zoom Meeting"
+    },
+    {
+      "id": "evt-5",
+      "title": "Doctor Appointment",
+      "description": "Annual medical checkup and health consultation.",
+      "startDate": "2023-01-17",
+      "startTime": "09:00",
+      "endDate": "2023-01-17",
+      "endTime": "10:30",
+      "allDay": false,
+      "category": "personal",
+      "location": "City Health Medical Clinic"
+    },
+    {
+      "id": "evt-6",
+      "title": "Meeting with the Client",
+      "description": "Strategic partnership meeting with enterprise leadership.",
+      "startDate": "2023-01-17",
+      "startTime": "11:30",
+      "endDate": "2023-01-17",
+      "endTime": "13:00",
+      "allDay": false,
+      "category": "business",
+      "location": "Executive Boardroom"
+    },
+    {
+      "id": "evt-7",
+      "title": "Family Trip Weekend",
+      "description": "Annual winter ski trip and family retreat in the mountains.",
+      "startDate": "2023-01-20",
+      "startTime": "08:00",
+      "endDate": "2023-01-21",
+      "endTime": "21:00",
+      "allDay": true,
+      "category": "family",
+      "location": "Mountain Lodge & Ski Resort"
+    },
+    {
+      "id": "evt-8",
+      "title": "Design Review & Sprint",
+      "description": "Reviewing updated UI mockups, email flows, and chat dashboards.",
+      "startDate": "2023-01-22",
+      "startTime": "17:44",
+      "endDate": "2023-01-23",
+      "endTime": "18:30",
+      "allDay": false,
+      "category": "business",
+      "location": "Design Lab 3"
+    },
+    {
+      "id": "evt-9",
+      "title": "Sales Performance Kickoff",
+      "description": "Quarterly sales strategy kickoff with Michael Brown and team.",
+      "startDate": "2023-01-09",
+      "startTime": "10:00",
+      "endDate": "2023-01-09",
+      "endTime": "11:30",
+      "allDay": false,
+      "category": "business",
+      "location": "Main Auditorium"
+    },
+    {
+      "id": "evt-10",
+      "title": "Global Tech Expo Conference",
+      "description": "Attending cloud architecture and enterprise SaaS summit.",
+      "startDate": "2023-01-25",
+      "startTime": "09:00",
+      "endDate": "2023-01-25",
+      "endTime": "17:00",
+      "allDay": true,
+      "category": "etc",
+      "location": "Convention Center"
+    },
+    {
+      "id": "evt-11",
+      "title": "Personal Fitness Coaching",
+      "description": "One-on-one personal training session.",
+      "startDate": "2023-01-30",
+      "startTime": "07:00",
+      "endDate": "2023-01-30",
+      "endTime": "08:00",
+      "allDay": false,
+      "category": "personal",
+      "location": "Equinox Gym"
+    }
+  ]
 }

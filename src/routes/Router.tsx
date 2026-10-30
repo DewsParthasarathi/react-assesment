@@ -3,6 +3,9 @@ import MainLayout from "../layout/MainLayout";
 import AnalyticsDashboard from "../pages/dashboard/analytics/AnalyticsDashboard";
 import CRMDashboard from "../pages/dashboard/crm/CRMDashboard";
 import EcommerceDashboard from "../pages/dashboard/ecommerce/EcommerceDashboard";
+import EmailDashboard from "../pages/email/EmailDashboard";
+import ChatPage from "../pages/chat/ChatPage";
+import CalendarPage from "../pages/calendar/CalendarPage";
 import Login from "../pages/login-pages/Login";
 import NotFound from "../pages/NotFound";
 
@@ -35,6 +38,30 @@ export const router = createBrowserRouter([
       {
         path: "ecommerce",
         element: <EcommerceDashboard />,
+      },
+      {
+        path: "apps/email",
+        element: <EmailDashboard />,
+      },
+      {
+        path: "email",
+        element: <EmailDashboard />,
+      },
+      {
+        path: "apps/chat",
+        element: <ChatPage />,
+      },
+      {
+        path: "chat",
+        element: <ChatPage />,
+      },
+      {
+        path: "apps/calendar",
+        element: <CalendarPage />,
+      },
+      {
+        path: "calendar",
+        element: <CalendarPage />,
       },
     ],
   },

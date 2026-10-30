@@ -543,4 +543,111 @@ export interface EcommerceDashboardData {
   years?: Record<string, Partial<EcommerceDashboardData>>;
 }
 
+export type EmailFolder = "inbox" | "sent" | "draft" | "starred" | "spam" | "trash";
+export type EmailLabel = "personal" | "company" | "important" | "private";
+
+export interface EmailSenderRecipient {
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
+export interface EmailItem {
+  id: string;
+  from: EmailSenderRecipient;
+  to: string;
+  cc?: string;
+  bcc?: string;
+  subject: string;
+  snippet: string;
+  message: string;
+  timestamp: string;
+  date: string;
+  folder: "inbox" | "sent" | "draft" | "spam" | "trash";
+  originalFolder?: "inbox" | "sent" | "draft" | "spam";
+  isRead: boolean;
+  isStarred: boolean;
+  labels: EmailLabel[];
+}
+
+export interface EmailFolderCounts {
+  inbox: number;
+  sent: number;
+  draft: number;
+  starred: number;
+  spam: number;
+  trash: number;
+}
+
+export interface EmailComposePayload {
+  to: string;
+  cc?: string;
+  bcc?: string;
+  subject: string;
+  message: string;
+  isDraft?: boolean;
+}
+
+export interface ChatMessage {
+  id: string;
+  senderId: string;
+  text: string;
+  timestamp: string;
+  createdAt: string;
+  status?: "sent" | "delivered" | "read";
+  isAi?: boolean;
+}
+
+export interface ChatContact {
+  id: string;
+  name: string;
+  role: string;
+  email: string;
+  avatar: string;
+  isOnline: boolean;
+  isAi?: boolean;
+  unreadCount?: number;
+  lastMessage?: string;
+  lastMessageTime?: string;
+}
+
+export interface ChatConversation {
+  contactId: string;
+  messages: ChatMessage[];
+  lastMessage?: string;
+  lastMessageTime?: string;
+}
+
+export type CalendarEventCategory =
+  | "personal"
+  | "business"
+  | "family"
+  | "holiday"
+  | "etc";
+
+export interface CalendarEvent {
+  id: string;
+  title: string;
+  description?: string;
+  startDate: string; // YYYY-MM-DD
+  startTime?: string; // HH:mm
+  endDate: string; // YYYY-MM-DD
+  endTime?: string; // HH:mm
+  allDay?: boolean;
+  category: CalendarEventCategory;
+  location?: string;
+  color?: string;
+}
+
+export interface CalendarFilterState {
+  viewAll: boolean;
+  personal: boolean;
+  business: boolean;
+  family: boolean;
+  holiday: boolean;
+  etc: boolean;
+}
+
+
+
 

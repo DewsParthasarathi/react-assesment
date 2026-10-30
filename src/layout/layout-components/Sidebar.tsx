@@ -378,16 +378,50 @@ export const Sidebar: React.FC = () => {
             <NavLink
               key={item.id}
               to={item.path || "#"}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-md text-fs14 transition ${
-                  isActive
+              className={({ isActive }) => {
+                const isItemActive =
+                  isActive ||
+                  (item.id === "email" &&
+                    (location.pathname === "/email" ||
+                      location.pathname.startsWith("/apps/email"))) ||
+                  (item.id === "chat" &&
+                    (location.pathname === "/chat" ||
+                      location.pathname.startsWith("/apps/chat"))) ||
+                  (item.id === "calendar" &&
+                    (location.pathname === "/calendar" ||
+                      location.pathname.startsWith("/apps/calendar")));
+                return `flex items-center gap-3 px-3 py-2 rounded-md text-fs14 transition ${
+                  isItemActive
                     ? "bg-[#e7e7ff] text-[#696cff] font-medium"
                     : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c]"
-                }`
-              }
+                }`;
+              }}
             >
-              <span className="text-[#6f6b7d]">{item.icon}</span>
-              <span>{item.title}</span>
+              {({ isActive }) => {
+                const isItemActive =
+                  isActive ||
+                  (item.id === "email" &&
+                    (location.pathname === "/email" ||
+                      location.pathname.startsWith("/apps/email"))) ||
+                  (item.id === "chat" &&
+                    (location.pathname === "/chat" ||
+                      location.pathname.startsWith("/apps/chat"))) ||
+                  (item.id === "calendar" &&
+                    (location.pathname === "/calendar" ||
+                      location.pathname.startsWith("/apps/calendar")));
+                return (
+                  <>
+                    <span
+                      className={
+                        isItemActive ? "text-[#696cff]" : "text-[#6f6b7d]"
+                      }
+                    >
+                      {item.icon}
+                    </span>
+                    <span>{item.title}</span>
+                  </>
+                );
+              }}
             </NavLink>
           );
         })}

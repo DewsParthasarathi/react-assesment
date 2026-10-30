@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <header className="sticky top-[2.5%] z-30 w-[95%] mx-auto mt-[2.5%] bg-white/95 backdrop-blur-md px-6 max-[1440px]:px-5 max-[1024px]:px-4 h-[62px] flex items-center justify-between border-b border-[#dbdade]/40 shadow-[0_2px_4px_rgba(165,163,174,0.1)] rounded-[5px]">
+    <header className="shrink-0 sticky top-[2.5%] z-30 w-[95%] mx-auto mt-[2.5%] bg-white/95 backdrop-blur-md px-6 max-[1440px]:px-5 max-[1024px]:px-4 h-[62px] flex items-center justify-between border-b border-[#dbdade]/40 shadow-[0_2px_4px_rgba(165,163,174,0.1)] rounded-[5px]">
       {/* Search Input using CustomInput */}
       <div className="flex items-center flex-1 max-w-md">
         <CustomInput

@@ -1,0 +1,242 @@
+/* Scoped FullCalendar styling matching 06_Calender.png */
+
+.calendar-wrapper {
+  --fc-border-color: #dbdade;
+  --fc-page-bg-color: #ffffff;
+  --fc-today-bg-color: rgba(105, 108, 255, 0.04);
+  --fc-neutral-bg-color: #ffffff;
+  --fc-list-event-hover-bg-color: #f8f7fa;
+  font-family: inherit;
+  width: 100%;
+}
+
+.calendar-wrapper .fc {
+  font-size: 13px;
+  color: #5d596c;
+}
+
+/* Ensure clean table border collapse */
+.calendar-wrapper table {
+  border-collapse: collapse !important;
+}
+
+/* ==========================================================================
+   1. Crisp Visible Grid Lines (Horizontal & Vertical)
+   ========================================================================== */
+
+/* Outer top border for the calendar grid */
+.calendar-wrapper [role="row"]:first-child,
+.calendar-wrapper thead tr {
+  border-top: 1px solid var(--fc-border-color) !important;
+}
+
+/* Horizontal borders separating every row */
+.calendar-wrapper [role="row"],
+.calendar-wrapper tr {
+  border-bottom: 1px solid var(--fc-border-color) !important;
+}
+
+/* Vertical borders separating every column */
+.calendar-wrapper [role="columnheader"],
+.calendar-wrapper [role="cell"],
+.calendar-wrapper [role="gridcell"],
+.calendar-wrapper th,
+.calendar-wrapper td {
+  border-right: 1px solid var(--fc-border-color) !important;
+}
+
+/* Left-most border for the first column */
+.calendar-wrapper [role="columnheader"]:first-child,
+.calendar-wrapper [role="cell"]:first-child,
+.calendar-wrapper [role="gridcell"]:first-child,
+.calendar-wrapper th:first-child,
+.calendar-wrapper td:first-child {
+  border-left: 1px solid var(--fc-border-color) !important;
+}
+
+/* Day of week headers */
+.calendar-wrapper [role="columnheader"],
+.calendar-wrapper .fc-col-header-cell,
+.calendar-wrapper th {
+  padding: 12px 0 !important;
+  background-color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  color: #6f6b7d !important;
+  text-align: center !important;
+}
+
+.calendar-wrapper .fc-col-header-cell-cushion {
+  color: #6f6b7d !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  display: inline-block;
+  padding: 2px 4px;
+}
+
+/* ==========================================================================
+   2. Spacious Date Cells (Month View)
+   ========================================================================== */
+
+/* Set generous minimum height for each day cell to prevent congestion */
+.calendar-wrapper [role="cell"],
+.calendar-wrapper [role="gridcell"],
+.calendar-wrapper .fc-daygrid-day {
+  min-height: 120px !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  padding-bottom: 6px !important;
+}
+
+/* Day Numbers: Align to top-left of each day cell matching 06_Calender.png */
+.calendar-wrapper [role="cell"] > div:first-child,
+.calendar-wrapper .fc-daygrid-day-top {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  padding: 8px 10px 4px 10px !important;
+}
+
+.calendar-wrapper .fc-daygrid-day-number {
+  color: #5d596c !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+/* Other month days */
+.calendar-wrapper .fc-day-other .fc-daygrid-day-number,
+.calendar-wrapper [data-date].fc-day-other {
+  color: #a5a3ae !important;
+  opacity: 0.55;
+  background-color: #fafafb !important;
+}
+
+/* Selected / Today highlight */
+.calendar-wrapper .fc-day-today {
+  background-color: var(--fc-today-bg-color) !important;
+}
+
+/* Day grid events container */
+.calendar-wrapper .fc-daygrid-day-events {
+  margin-top: 4px !important;
+  padding: 0 6px !important;
+  min-height: 2em !important;
+}
+
+/* Event items spacing */
+.calendar-wrapper .fc-daygrid-event-harness,
+.calendar-wrapper [role="cell"] .fc-event {
+  margin-bottom: 5px !important;
+}
+
+.calendar-wrapper .fc-event {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+.calendar-wrapper .fc-event:focus {
+  box-shadow: none !important;
+}
+
+/* "+ more" link matching 06_Calender.png */
+.calendar-wrapper .fc-daygrid-more-link {
+  font-size: 11px !important;
+  color: #a5a3ae !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  padding: 2px 6px !important;
+  margin-top: 2px !important;
+  display: inline-block !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease;
+}
+
+.calendar-wrapper .fc-daygrid-more-link:hover {
+  color: #696cff !important;
+  background-color: rgba(105, 108, 255, 0.08) !important;
+}
+
+/* Popover for "+ more" */
+.calendar-wrapper .fc-popover {
+  border: 1px solid #dbdade !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 18px rgba(165, 163, 174, 0.25) !important;
+  z-index: 50 !important;
+  background: #ffffff !important;
+}
+
+.calendar-wrapper .fc-popover-header {
+  background: #f8f7fa !important;
+  padding: 8px 12px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  color: #5d596c !important;
+  border-bottom: 1px solid #dbdade !important;
+}
+
+/* ==========================================================================
+   3. TimeGrid (Week & Day views)
+   ========================================================================== */
+.calendar-wrapper .fc-timegrid-slot {
+  height: 2.75em !important;
+  border-bottom: 1px solid #eceef1 !important;
+}
+
+.calendar-wrapper .fc-timegrid-col {
+  border-right: 1px solid var(--fc-border-color) !important;
+}
+
+.calendar-wrapper .fc-timegrid-slot-label-cushion {
+  font-size: 11px;
+  color: #a5a3ae;
+}
+
+.calendar-wrapper .fc-timegrid-axis-cushion {
+  font-size: 11px;
+  color: #a5a3ae;
+}
+
+/* ==========================================================================
+   4. List View
+   ========================================================================== */
+.calendar-wrapper .fc-list-table {
+  border-color: var(--fc-border-color) !important;
+}
+
+.calendar-wrapper .fc-list-day-cushion {
+  background-color: #f8f7fa !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #5d596c !important;
+  padding: 10px 14px !important;
+  border-top: 1px solid var(--fc-border-color) !important;
+  border-bottom: 1px solid var(--fc-border-color) !important;
+}
+
+.calendar-wrapper .fc-list-event {
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f2 !important;
+}
+
+.calendar-wrapper .fc-list-event:hover td {
+  background-color: #f8f7fa !important;
+}
+
+.calendar-wrapper .fc-list-event-time {
+  font-size: 12px;
+  color: #6f6b7d;
+  width: 140px;
+  padding: 10px 14px !important;
+}
+
+.calendar-wrapper .fc-list-event-title {
+  font-size: 13px;
+  color: #32475c;
+  font-weight: 500;
+  padding: 10px 14px !important;
+}

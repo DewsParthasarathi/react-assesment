@@ -141,9 +141,10 @@ export const IncomeChartCard: React.FC = () => {
   const chartOptions: Highcharts.Options = {
     chart: {
       type: "areaspline",
-      height: 190,
+      height: 210,
+      width: 320,
       backgroundColor: "transparent",
-      margin: [25, 16, 30, 0],
+      margin: [25, 16, 30, 30],
       spacing: [0, 0, 0, 0],
     },
     title: { text: undefined },

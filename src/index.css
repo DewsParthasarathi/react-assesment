@@ -287,7 +287,27 @@ body {
   color: var(--fg);
 }
 
-/* img {
-  width: 100%;
-  height: auto;
-} */
+/* Custom WebKit scrollbar styling scoped for Chat and Email scrollable containers */
+.chat-email-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.chat-email-scrollbar::-webkit-scrollbar-track {
+  background: #f8f7fa;
+  border-radius: 9999px;
+}
+
+.chat-email-scrollbar::-webkit-scrollbar-thumb {
+  background: #dbdade;
+  border-radius: 9999px;
+}
+
+.chat-email-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a5a3ae;
+}
+
+.chat-email-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #dbdade #f8f7fa;
+}
