@@ -118,6 +118,16 @@ export const Sidebar: React.FC = () => {
           title: "Preview",
           path: "/apps/invoice/preview",
         },
+        {
+          id: "invoice-edit",
+          title: "Edit",
+          path: "/apps/invoice/edit",
+        },
+        {
+          id: "invoice-add",
+          title: "Add",
+          path: "/apps/invoice/add",
+        },
       ],
     },
     {
@@ -233,7 +243,7 @@ export const Sidebar: React.FC = () => {
     location.pathname === "/ecommerce";
 
   return (
-    <aside className="sticky top-0 h-screen w-[16%]  shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20">
+    <aside className="sticky top-0 h-screen w-[18%]  shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20">
       {/* Top Dashboards Navigation Group using CustomButton */}
       <div className="px-3 mb-1">
         <CustomButton
@@ -319,7 +329,19 @@ export const Sidebar: React.FC = () => {
       {/* Main Navigation List */}
       <div className="flex-1 px-3 space-y-0.5 overflow-y-auto [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-[#dbdade]/80 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#a5a3ae]">
         {navItems.map((item) => {
-          const isGroupExpanded = Boolean(expandedGroups[item.id]);
+          const isChildActive = Boolean(
+            item.subItems?.some(
+              (sub) =>
+                location.pathname === sub.path ||
+                (item.id === "invoice" &&
+                  (location.pathname.startsWith("/apps/invoice") ||
+                    location.pathname.startsWith("/invoice"))),
+            ),
+          );
+          const isGroupExpanded =
+            expandedGroups[item.id] !== undefined
+              ? expandedGroups[item.id]
+              : isChildActive;
 
           if (item.hasSubmenu) {
             return (
@@ -327,16 +349,26 @@ export const Sidebar: React.FC = () => {
                 <CustomButton
                   variant="ghost"
                   onClick={() => toggleGroup(item.id)}
-                  className="w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs14 !text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c] transition cursor-pointer"
+                  className={`w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs14 transition cursor-pointer ${
+                    isChildActive
+                      ? "!bg-[#e7e7ff] !text-[#696cff] font-medium"
+                      : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-[#6f6b7d]">{item.icon}</span>
+                    <span
+                      className={
+                        isChildActive ? "text-[#696cff]" : "text-[#6f6b7d]"
+                      }
+                    >
+                      {item.icon}
+                    </span>
                     <span>{item.title}</span>
                   </div>
                   <svg
-                    className={`w-3.5 h-3.5 text-[#a5a3ae] transition-transform duration-200 ${
-                      isGroupExpanded ? "rotate-90" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      isChildActive ? "text-[#696cff]" : "text-[#a5a3ae]"
+                    } ${isGroupExpanded ? "rotate-90" : ""}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -364,8 +396,16 @@ export const Sidebar: React.FC = () => {
                           }`
                         }
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#a5a3ae]" />
-                        <span>{sub.title}</span>
+                        {({ isActive }) => (
+                          <>
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                                isActive ? "bg-[#696cff]" : "bg-[#a5a3ae]"
+                              }`}
+                            />
+                            <span>{sub.title}</span>
+                          </>
+                        )}
                       </NavLink>
                     ))}
                   </div>

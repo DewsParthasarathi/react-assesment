@@ -1,4 +1,4 @@
-/* Scoped FullCalendar styling matching 06_Calender.png */
+/* Scoped FullCalendar styling matching 06_Calender.png and reference screenshots */
 
 .calendar-wrapper {
   --fc-border-color: #dbdade;
@@ -8,16 +8,22 @@
   --fc-list-event-hover-bg-color: #f8f7fa;
   font-family: inherit;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .calendar-wrapper .fc {
   font-size: 13px;
   color: #5d596c;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 /* Ensure clean table border collapse */
 .calendar-wrapper table {
   border-collapse: collapse !important;
+  max-width: 100% !important;
 }
 
 /* ==========================================================================
@@ -54,11 +60,46 @@
   border-left: 1px solid var(--fc-border-color) !important;
 }
 
-/* Day of week headers */
+/* ==========================================================================
+   Sticky Weekday Header & Layering Fixes (Issue 1 & Issue 2)
+   ========================================================================== */
+
+/* Sticky container: Keep header pinned at top with opaque background and elevated z-index */
+.calendar-wrapper .fc-5M,
+.calendar-wrapper .fc-col-header,
+.calendar-wrapper thead,
+.calendar-wrapper [role="rowgroup"]:has([role="columnheader"]) {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 25 !important;
+  background-color: #ffffff !important;
+  margin: 0 !important;
+}
+
+/* Ensure all header rows and wrapper sub-containers stay completely opaque white */
+.calendar-wrapper .fc-5M > div,
+.calendar-wrapper [role="rowgroup"]:has([role="columnheader"]) [role="row"],
+.calendar-wrapper [role="columnheader"],
+.calendar-wrapper .fc-col-header-cell {
+  background-color: #ffffff !important;
+}
+
+/* Ensure clean border between sticky header and scrolling grid rows without double borders */
+.calendar-wrapper .fc-5M,
+.calendar-wrapper [role="rowgroup"]:has([role="columnheader"]) [role="row"] {
+  border-bottom: 1px solid var(--fc-border-color) !important;
+}
+
+.calendar-wrapper .fc-daygrid-body [role="row"]:first-child,
+.calendar-wrapper [role="rowgroup"]:not(:first-child) > [role="row"]:first-child {
+  border-top: none !important;
+}
+
+/* Issue 2: Weekday labels centered horizontally without breaking table cell layouts */
 .calendar-wrapper [role="columnheader"],
 .calendar-wrapper .fc-col-header-cell,
 .calendar-wrapper th {
-  padding: 12px 0 !important;
+  padding: 8px 0 !important;
   background-color: #ffffff !important;
   font-weight: 500 !important;
   font-size: 13px !important;
@@ -66,11 +107,17 @@
   text-align: center !important;
 }
 
+.calendar-wrapper [role="columnheader"] > div,
 .calendar-wrapper .fc-col-header-cell-cushion {
   color: #6f6b7d !important;
   text-decoration: none !important;
   font-weight: 500 !important;
-  display: inline-block;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
   padding: 2px 4px;
 }
 
@@ -78,9 +125,9 @@
    2. Spacious Date Cells (Month View)
    ========================================================================== */
 
-/* Set generous minimum height for each day cell to prevent congestion */
-.calendar-wrapper [role="cell"],
-.calendar-wrapper [role="gridcell"],
+/* Set generous minimum height strictly for Month view day cells to prevent congestion */
+.calendar-wrapper .fc-daygrid-body [role="cell"],
+.calendar-wrapper .fc-daygrid-body [role="gridcell"],
 .calendar-wrapper .fc-daygrid-day {
   min-height: 120px !important;
   height: auto !important;
@@ -180,63 +227,114 @@
 }
 
 /* ==========================================================================
-   3. TimeGrid (Week & Day views)
+   3. TimeGrid (Week & Day views matching reference images)
    ========================================================================== */
-.calendar-wrapper .fc-timegrid-slot {
-  height: 2.75em !important;
-  border-bottom: 1px solid #eceef1 !important;
+/* Prevent inner scrollbars inside calendar */
+.calendar-wrapper .fc-scroller {
+  overflow-y: hidden !important;
+}
+
+/* Reset heights for TimeGrid header and all-day rows to avoid stretching */
+.calendar-wrapper thead [role="cell"],
+.calendar-wrapper [role="rowgroup"]:first-child [role="cell"],
+.calendar-wrapper [role="columnheader"] {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 6px 0 !important;
+}
+
+/* All day row container height & label alignment matching reference */
+.calendar-wrapper [role="row"]:has([role="rowheader"]) {
+  min-height: 44px !important;
+  border-bottom: 1px solid var(--fc-border-color) !important;
+}
+
+.calendar-wrapper [role="rowheader"] {
+  font-size: 12px !important;
+  color: #6f6b7d !important;
+  font-weight: 400 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 8px !important;
+}
+
+/* Crisp visible row grid lines using [data-time] */
+.calendar-wrapper [data-time] {
+  border-bottom: 1px dashed #ebebef !important;
+  min-height: 28px !important;
+}
+
+/* Distinct hour lines */
+.calendar-wrapper [data-time*=":00"] {
+  border-bottom: 1px dashed #dbdade !important;
 }
 
 .calendar-wrapper .fc-timegrid-col {
   border-right: 1px solid var(--fc-border-color) !important;
 }
 
+.calendar-wrapper .fc-timegrid-slot-label {
+  vertical-align: top !important;
+}
+
 .calendar-wrapper .fc-timegrid-slot-label-cushion {
-  font-size: 11px;
-  color: #a5a3ae;
+  font-size: 12px !important;
+  color: #6f6b7d !important;
+  text-transform: lowercase !important;
+  font-weight: 400 !important;
+  padding: 4px 8px !important;
 }
 
 .calendar-wrapper .fc-timegrid-axis-cushion {
-  font-size: 11px;
-  color: #a5a3ae;
+  font-size: 12px !important;
+  color: #6f6b7d !important;
+  text-transform: lowercase !important;
+  font-weight: 400 !important;
+  padding: 8px !important;
+}
+
+.calendar-wrapper .fc-timegrid-divider {
+  padding: 0 !important;
+  border-bottom: 1px solid var(--fc-border-color) !important;
+}
+
+/* All day row styling */
+.calendar-wrapper .fc-timegrid-col-all-day {
+  min-height: 48px !important;
+}
+
+.calendar-wrapper .fc-timegrid-event-harness {
+  margin: 1px 2px !important;
 }
 
 /* ==========================================================================
-   4. List View
+   4. List View (Matching reference images)
    ========================================================================== */
 .calendar-wrapper .fc-list-table {
   border-color: var(--fc-border-color) !important;
+  width: 100% !important;
 }
 
+.calendar-wrapper .fc-custom-list-day-header,
 .calendar-wrapper .fc-list-day-cushion {
   background-color: #f8f7fa !important;
   font-size: 13px !important;
   font-weight: 600 !important;
   color: #5d596c !important;
-  padding: 10px 14px !important;
+  padding: 10px 18px !important;
   border-top: 1px solid var(--fc-border-color) !important;
   border-bottom: 1px solid var(--fc-border-color) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
 }
 
 .calendar-wrapper .fc-list-event {
-  cursor: pointer;
+  cursor: pointer !important;
   border-bottom: 1px solid #f0f0f2 !important;
+  transition: background-color 0.15s ease;
 }
 
 .calendar-wrapper .fc-list-event:hover td {
   background-color: #f8f7fa !important;
-}
-
-.calendar-wrapper .fc-list-event-time {
-  font-size: 12px;
-  color: #6f6b7d;
-  width: 140px;
-  padding: 10px 14px !important;
-}
-
-.calendar-wrapper .fc-list-event-title {
-  font-size: 13px;
-  color: #32475c;
-  font-weight: 500;
-  padding: 10px 14px !important;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CustomButton } from "../../../components/ui/CustomButton";
+import { CustomModal } from "../../../components/ui/CustomModal";
 import type { CalendarEvent, CalendarEventCategory } from "../../../api/types";
 
 interface EventModalProps {
@@ -95,26 +96,14 @@ export const EventModal: React.FC<EventModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 select-none animate-fadeIn">
-      <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg border border-[#dbdade]/70 overflow-hidden transform transition-all flex flex-col max-h-[92vh]">
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#dbdade]/60 bg-[#fafafb]">
-          <h2 className="text-fs18 font-semibold text-[#32475c]">
-            {isEditMode ? "Edit Event" : "Add Event"}
-          </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Form Body */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
+    <CustomModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={isEditMode ? "Edit Event" : "Add Event"}
+      size="lg"
+      bodyClassName="!p-0"
+    >
+      <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
           {/* Title */}
           <div>
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
@@ -341,8 +330,7 @@ export const EventModal: React.FC<EventModalProps> = ({
             </div>
           </div>
         </form>
-      </div>
-    </div>
+    </CustomModal>
   );
 };
 

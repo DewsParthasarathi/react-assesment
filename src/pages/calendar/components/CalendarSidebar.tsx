@@ -24,14 +24,15 @@ export const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
   onFilterChange,
 }) => {
   return (
-    <aside className="w-full md:w-[260px] lg:w-[280px] shrink-0 border-b md:border-b-0 md:border-r border-[#dbdade]/50 p-6 flex flex-col gap-6 bg-white overflow-y-auto">
-      {/* ADD EVENT Button matching 06_Calender.png */}
+    <aside className="w-full md:w-[260px] lg:w-[280px] shrink-0 border-b md:border-b-0 md:border-r border-[#dbdade]/50 p-6 flex flex-col gap-6 bg-white">
+      {/* ADD EVENT Button matching reference images */}
       <CustomButton
         variant="primary"
         onClick={onAddEventClick}
-        className="w-full !h-10 uppercase tracking-wider font-medium text-fs14 rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center cursor-pointer"
+        className="w-full !h-10 uppercase tracking-wider font-medium text-fs14 rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer"
       >
-        ADD EVENT
+        <span className="text-fs18 font-light leading-none">+</span>
+        <span>ADD EVENT</span>
       </CustomButton>
 
       {/* Mini Calendar */}

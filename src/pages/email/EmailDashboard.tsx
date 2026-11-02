@@ -14,7 +14,7 @@ import {
   useEmptyTrashMutation,
   useUpdateEmailMutation,
 } from "../../hooks/useEmailsQuery";
-import ConfirmationModal from "./components/ConfirmationModal";
+import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
 import EmailComposeModal from "./components/EmailComposeModal";
 import EmailDetailsView from "./components/EmailDetailsView";
 import EmailList from "./components/EmailList";
@@ -29,13 +29,12 @@ export const EmailDashboard: React.FC = () => {
   const [activeEmail, setActiveEmail] = useState<EmailItem | null>(null);
 
   const [isComposeOpen, setIsComposeOpen] = useState(false);
-  const [composeInitialData, setComposeInitialData] = useState<EmailItem | null>(
-    null,
-  );
+  const [composeInitialData, setComposeInitialData] =
+    useState<EmailItem | null>(null);
   const [isEmptyTrashConfirmOpen, setIsEmptyTrashConfirmOpen] = useState(false);
-  const [isBatchDeleteConfirmOpen, setIsBatchDeleteConfirmOpen] = useState(false);
+  const [isBatchDeleteConfirmOpen, setIsBatchDeleteConfirmOpen] =
+    useState(false);
 
-  // Queries & Mutations
   const { data, isLoading, refetch } = useEmailsQuery({
     folder: currentFolder,
     search: searchQuery,
@@ -59,7 +58,6 @@ export const EmailDashboard: React.FC = () => {
     trash: 0,
   };
 
-  // Toggle selection for an individual email
   const handleToggleSelect = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     setSelectedIds((prev) =>
@@ -67,17 +65,14 @@ export const EmailDashboard: React.FC = () => {
     );
   };
 
-  // Select all visible emails
   const handleSelectAll = () => {
     setSelectedIds(emails.map((e) => e.id));
   };
 
-  // Deselect all
   const handleDeselectAll = () => {
     setSelectedIds([]);
   };
 
-  // Star / unstar toggle
   const handleToggleStar = (
     id: string,
     currentStarred: boolean,
@@ -89,20 +84,19 @@ export const EmailDashboard: React.FC = () => {
       updates: { isStarred: !currentStarred },
     });
     if (activeEmail && activeEmail.id === id) {
-      setActiveEmail((prev) => (prev ? { ...prev, isStarred: !currentStarred } : null));
+      setActiveEmail((prev) =>
+        prev ? { ...prev, isStarred: !currentStarred } : null,
+      );
     }
   };
 
-  // Open an email row
   const handleOpenEmail = (email: EmailItem) => {
-    // If it's a draft, open directly in Compose modal to continue editing!
     if (email.folder === "draft") {
       setComposeInitialData(email);
       setIsComposeOpen(true);
       return;
     }
 
-    // Mark as read if not already read
     if (!email.isRead) {
       updateMutation.mutate({
         id: email.id,
@@ -113,7 +107,6 @@ export const EmailDashboard: React.FC = () => {
     setActiveEmail(email);
   };
 
-  // Batch delete / move to trash
   const handleDeleteSelected = () => {
     if (selectedIds.length === 0) return;
 
@@ -134,7 +127,6 @@ export const EmailDashboard: React.FC = () => {
     setIsBatchDeleteConfirmOpen(false);
   };
 
-  // Batch mark as read
   const handleMarkAsReadSelected = () => {
     if (selectedIds.length === 0) return;
     batchUpdateMutation.mutate({
@@ -144,7 +136,6 @@ export const EmailDashboard: React.FC = () => {
     setSelectedIds([]);
   };
 
-  // Batch mark as unread
   const handleMarkAsUnreadSelected = () => {
     if (selectedIds.length === 0) return;
     batchUpdateMutation.mutate({
@@ -154,7 +145,6 @@ export const EmailDashboard: React.FC = () => {
     setSelectedIds([]);
   };
 
-  // Move selected to folder
   const handleMoveToFolder = (
     folder: "inbox" | "sent" | "draft" | "spam" | "trash",
   ) => {
@@ -166,10 +156,8 @@ export const EmailDashboard: React.FC = () => {
     setSelectedIds([]);
   };
 
-  // Toggle label on selected
   const handleToggleLabel = (label: EmailLabel) => {
     if (selectedIds.length === 0) return;
-    // For all selected, toggle the label
     selectedIds.forEach((id) => {
       const email = emails.find((e) => e.id === id);
       if (!email) return;
@@ -185,7 +173,6 @@ export const EmailDashboard: React.FC = () => {
     setSelectedIds([]);
   };
 
-  // Delete from single details view
   const handleDeleteSingle = (id: string) => {
     if (currentFolder === "trash") {
       deleteMutation.mutate(id);
@@ -198,7 +185,6 @@ export const EmailDashboard: React.FC = () => {
     setActiveEmail(null);
   };
 
-  // Mark single as unread
   const handleMarkAsUnreadSingle = (id: string) => {
     updateMutation.mutate({
       id,
@@ -207,37 +193,36 @@ export const EmailDashboard: React.FC = () => {
     setActiveEmail(null);
   };
 
-  // Reply from details view
   const handleReplySingle = (email: EmailItem, replyText: string) => {
     createMutation.mutate({
       to: email.from.email,
-      subject: email.subject.startsWith("Re:") ? email.subject : `Re: ${email.subject}`,
+      subject: email.subject.startsWith("Re:")
+        ? email.subject
+        : `Re: ${email.subject}`,
       message: replyText,
       isDraft: false,
     });
   };
 
-  // Forward from details view
   const handleForwardSingle = (email: EmailItem) => {
     setComposeInitialData({
       ...email,
       to: "",
-      subject: email.subject.startsWith("Fwd:") ? email.subject : `Fwd: ${email.subject}`,
+      subject: email.subject.startsWith("Fwd:")
+        ? email.subject
+        : `Fwd: ${email.subject}`,
       message: `\n\n---------- Forwarded message ---------\nFrom: ${email.from.name} <${email.from.email}>\nDate: ${email.timestamp}\nSubject: ${email.subject}\n\n${email.message}`,
     });
     setIsComposeOpen(true);
   };
 
-  // Compose / Send action
   const handleSendCompose = (payload: EmailComposePayload) => {
-    // If updating existing draft, delete old draft or update
     if (composeInitialData && composeInitialData.folder === "draft") {
       deleteMutation.mutate(composeInitialData.id);
     }
     createMutation.mutate(payload);
   };
 
-  // Save Draft action
   const handleSaveDraftCompose = (payload: EmailComposePayload) => {
     if (composeInitialData && composeInitialData.folder === "draft") {
       deleteMutation.mutate(composeInitialData.id);
@@ -245,7 +230,6 @@ export const EmailDashboard: React.FC = () => {
     createMutation.mutate(payload);
   };
 
-  // Switch folder
   const handleSelectFolder = (folder: EmailFolder) => {
     setCurrentFolder(folder);
     setSelectedLabel(null);
@@ -253,7 +237,6 @@ export const EmailDashboard: React.FC = () => {
     setActiveEmail(null);
   };
 
-  // Switch label
   const handleSelectLabel = (label: EmailLabel | null) => {
     setSelectedLabel(label);
     setSelectedIds([]);
@@ -262,9 +245,7 @@ export const EmailDashboard: React.FC = () => {
 
   return (
     <div className="w-full h-full flex-1 min-h-0 flex flex-col">
-      {/* Outer Card Container matching 04_Email.png */}
       <div className="w-full h-full bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 overflow-hidden flex flex-row min-h-0">
-        {/* Left Sub-Sidebar (Folders, Badges, Labels, Compose button) */}
         <EmailSidebar
           currentFolder={currentFolder}
           onSelectFolder={handleSelectFolder}
@@ -278,7 +259,6 @@ export const EmailDashboard: React.FC = () => {
           onEmptyTrash={() => setIsEmptyTrashConfirmOpen(true)}
         />
 
-        {/* Right Content Panel */}
         <div className="flex-1 flex flex-col min-w-0 bg-white h-full overflow-hidden">
           {activeEmail ? (
             <EmailDetailsView
@@ -292,9 +272,7 @@ export const EmailDashboard: React.FC = () => {
             />
           ) : (
             <>
-              {/* Sticky Top Header Section: Search Header + Toolbar */}
               <div className="shrink-0 sticky top-0 z-10 bg-white">
-                {/* Search Mail Bar */}
                 <div className="px-5 py-3.5 border-b border-[#dbdade]/50 flex items-center gap-3 bg-white">
                   <svg
                     className="w-5 h-5 text-[#a5a3ae] shrink-0"
@@ -327,8 +305,6 @@ export const EmailDashboard: React.FC = () => {
                     </button>
                   )}
                 </div>
-
-                {/* Toolbar */}
                 <EmailToolbar
                   totalCount={emails.length}
                   selectedCount={selectedIds.length}
@@ -344,7 +320,6 @@ export const EmailDashboard: React.FC = () => {
                 />
               </div>
 
-              {/* Scrollable Email List */}
               <EmailList
                 emails={emails}
                 selectedIds={selectedIds}
@@ -359,7 +334,6 @@ export const EmailDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating / Modal Compose Window */}
       <EmailComposeModal
         isOpen={isComposeOpen}
         onClose={() => {
@@ -371,7 +345,6 @@ export const EmailDashboard: React.FC = () => {
         initialData={composeInitialData}
       />
 
-      {/* Confirm Empty Trash Modal */}
       <ConfirmationModal
         isOpen={isEmptyTrashConfirmOpen}
         title="Empty Trash?"
@@ -386,7 +359,6 @@ export const EmailDashboard: React.FC = () => {
         onCancel={() => setIsEmptyTrashConfirmOpen(false)}
       />
 
-      {/* Confirm Batch Delete Modal */}
       <ConfirmationModal
         isOpen={isBatchDeleteConfirmOpen}
         title="Delete Permanently?"

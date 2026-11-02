@@ -7,7 +7,7 @@ interface CalendarHeaderToolbarProps {
   activeView: CalendarViewType;
   onPrev: () => void;
   onNext: () => void;
-  onToday: () => void;
+  onToday?: () => void;
   onViewChange: (view: CalendarViewType) => void;
 }
 
@@ -16,7 +16,6 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
   activeView,
   onPrev,
   onNext,
-  onToday,
   onViewChange,
 }) => {
   const views: Array<{ type: CalendarViewType; label: string }> = [
@@ -28,7 +27,7 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-2 border-b border-[#dbdade]/50 select-none">
-      {/* Left: Chevrons & Title matching 06_Calender.png */}
+      {/* Left: Chevrons & Title matching reference screenshots */}
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -52,18 +51,9 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
           </svg>
         </button>
 
-        <h2 className="text-fs18 md:text-fs20 font-medium text-[#5d596c] tracking-tight">
+        <h2 className="text-fs16 md:text-fs18 font-medium text-[#5d596c] tracking-tight">
           {currentTitle}
         </h2>
-
-        <button
-          type="button"
-          onClick={onToday}
-          title="Go to Today"
-          className="ml-2 text-fs12 font-medium px-2.5 py-1 rounded border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c] transition cursor-pointer"
-        >
-          Today
-        </button>
       </div>
 
       {/* Right: Segmented view switcher matching 06_Calender.png */}

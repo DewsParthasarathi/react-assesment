@@ -688,6 +688,155 @@ function mockApiPlugin(): Plugin {
           return;
         }
 
+        // 8. INVOICE ENDPOINTS
+        // 8.1. GET /api/invoices
+        if (req.method === "GET" && pathname === "/api/invoices") {
+          const data = getDashboardData();
+          const invoices = data?.invoices || [];
+          res.statusCode = 200;
+          res.end(JSON.stringify(invoices));
+          return;
+        }
+
+        // 8.2. POST /api/invoices/batch-delete
+        if (req.method === "POST" && pathname === "/api/invoices/batch-delete") {
+          readJsonBody().then((body) => {
+            const data = getDashboardData();
+            const idsToDelete = (body.ids as string[]) || [];
+            if (data?.invoices) {
+              data.invoices = (data.invoices as Array<{ id: string }>).filter(
+                (inv) => !idsToDelete.includes(inv.id),
+              );
+              saveDashboardData(data);
+            }
+            res.statusCode = 200;
+            res.end(JSON.stringify({ success: true, deletedCount: idsToDelete.length }));
+          });
+          return;
+        }
+
+        // 8.3. POST /api/invoices/batch-status
+        if (req.method === "POST" && pathname === "/api/invoices/batch-status") {
+          readJsonBody().then((body) => {
+            const data = getDashboardData();
+            const ids = (body.ids as string[]) || [];
+            const newStatus = (body.status as string) || "Paid";
+            if (data?.invoices) {
+              data.invoices = (data.invoices as Array<{ id: string; status: string; balance: number; total: number; paidAmount: number }>).map(
+                (inv) => {
+                  if (ids.includes(inv.id)) {
+                    const isPaid = newStatus.toLowerCase() === "paid";
+                    return {
+                      ...inv,
+                      status: newStatus,
+                      balance: isPaid ? 0 : inv.balance,
+                      paidAmount: isPaid ? inv.total : inv.paidAmount,
+                    };
+                  }
+                  return inv;
+                },
+              );
+              saveDashboardData(data);
+            }
+            res.statusCode = 200;
+            res.end(JSON.stringify({ success: true, updatedCount: ids.length }));
+          });
+          return;
+        }
+
+        // 8.4. POST /api/invoices
+        if (req.method === "POST" && pathname === "/api/invoices") {
+          readJsonBody().then((body) => {
+            const data = getDashboardData();
+            if (!data.invoices) data.invoices = [];
+            const newId = (body.id as string) || String(Math.floor(4000 + Math.random() * 2000));
+            const total = Number(body.total) || 0;
+            const balance = body.balance !== undefined ? Number(body.balance) : total;
+            const newInvoice = {
+              id: newId,
+              invoiceNumber: (body.invoiceNumber as string) || `#${newId}`,
+              clientId: (body.clientId as string) || "c-new",
+              clientName: (body.clientName as string) || "New Client",
+              clientEmail: (body.clientEmail as string) || "client@example.com",
+              clientAvatar: (body.clientAvatar as string) || "member1",
+              total,
+              paidAmount: total - balance,
+              balance,
+              status: (body.status as string) || (balance === 0 ? "Paid" : "Pending"),
+              issueDate: (body.issueDate as string) || new Date().toISOString().split("T")[0],
+              dueDate: (body.dueDate as string) || new Date().toISOString().split("T")[0],
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            };
+
+            data.invoices.unshift(newInvoice);
+            saveDashboardData(data);
+
+            res.statusCode = 201;
+            res.end(JSON.stringify(newInvoice));
+          });
+          return;
+        }
+
+        // 8.5. GET /api/invoices/:id
+        const singleInvoiceMatch = pathname.match(/^\/api\/invoices\/([^/]+)$/);
+        if (req.method === "GET" && singleInvoiceMatch) {
+          const invId = singleInvoiceMatch[1];
+          const data = getDashboardData();
+          const invoice = (data?.invoices || []).find((i: { id: string }) => i.id === invId);
+          if (invoice) {
+            res.statusCode = 200;
+            res.end(JSON.stringify(invoice));
+          } else {
+            res.statusCode = 404;
+            res.end(JSON.stringify({ error: "Invoice not found" }));
+          }
+          return;
+        }
+
+        // 8.6. PUT/PATCH /api/invoices/:id
+        if ((req.method === "PUT" || req.method === "PATCH") && singleInvoiceMatch) {
+          const invId = singleInvoiceMatch[1];
+          readJsonBody().then((updates) => {
+            const data = getDashboardData();
+            const invoices = (data?.invoices || []) as Array<Record<string, unknown>>;
+            const invIndex = invoices.findIndex((i) => i.id === invId);
+
+            if (invIndex === -1) {
+              res.statusCode = 404;
+              res.end(JSON.stringify({ error: "Invoice not found" }));
+              return;
+            }
+
+            const updatedInvoice = {
+              ...invoices[invIndex],
+              ...updates,
+              updatedAt: new Date().toISOString(),
+            };
+            invoices[invIndex] = updatedInvoice;
+            saveDashboardData(data);
+
+            res.statusCode = 200;
+            res.end(JSON.stringify(updatedInvoice));
+          });
+          return;
+        }
+
+        // 8.7. DELETE /api/invoices/:id
+        if (req.method === "DELETE" && singleInvoiceMatch) {
+          const invId = singleInvoiceMatch[1];
+          const data = getDashboardData();
+          if (data?.invoices) {
+            data.invoices = (data.invoices as Array<{ id: string }>).filter(
+              (i) => i.id !== invId,
+            );
+            saveDashboardData(data);
+          }
+          res.statusCode = 200;
+          res.end(JSON.stringify({ success: true }));
+          return;
+        }
+
         // 4. GET /api/dashboard
         if (req.method === "GET" && pathname === "/api/dashboard") {
           const data = getDashboardData();

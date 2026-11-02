@@ -138,9 +138,9 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         </button>
       </div>
 
-      {/* Weekdays Row: S M T W T F S */}
+      {/* Weekdays Row matching reference images: Su Mo Tu We Th Fr Sa */}
       <div className="grid grid-cols-7 gap-1 text-center mb-2">
-        {["S", "M", "T", "W", "T", "F", "S"].map((day, idx) => (
+        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, idx) => (
           <div key={idx} className="text-fs12 font-medium text-[#a5a3ae]">
             {day}
           </div>

@@ -637,6 +637,8 @@ export interface CalendarEvent {
   category: CalendarEventCategory;
   location?: string;
   color?: string;
+  url?: string;
+  guests?: string;
 }
 
 export interface CalendarFilterState {
@@ -647,6 +649,40 @@ export interface CalendarFilterState {
   holiday: boolean;
   etc: boolean;
 }
+
+export type InvoiceStatus =
+  | "Paid"
+  | "Unpaid"
+  | "Pending"
+  | "Overdue"
+  | "Draft"
+  | "Cancelled"
+  | "Downloaded"
+  | "Sent";
+
+export interface Invoice {
+  id: string;
+  invoiceNumber: string;
+  clientId: string;
+  clientName: string;
+  clientEmail: string;
+  clientAvatar: string;
+  total: number;
+  paidAmount: number;
+  balance: number;
+  status: InvoiceStatus;
+  issueDate: string;
+  dueDate: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface InvoiceFilterState {
+  status: string;
+  dateRange: string;
+  search: string;
+}
+
 
 
 

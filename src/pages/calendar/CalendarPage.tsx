@@ -19,20 +19,42 @@ import CalendarHeaderToolbar, {
   type CalendarViewType,
 } from "./components/CalendarHeaderToolbar";
 import CalendarSidebar from "./components/CalendarSidebar";
-import DeleteConfirmModal from "./components/DeleteConfirmModal";
-import EventDetailsModal from "./components/EventDetailsModal";
-import EventModal from "./components/EventModal";
+import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
+import EventDrawer from "./components/EventDrawer";
+
+const formatTime12 = (timeStr?: string): string => {
+  if (!timeStr) return "";
+  const [hStr, mStr] = timeStr.split(":");
+  let h = parseInt(hStr, 10);
+  const m = mStr || "00";
+  const ampm = h >= 12 ? "pm" : "am";
+  h = h % 12;
+  if (h === 0) h = 12;
+  return `${h}:${m}${ampm}`;
+};
+
+const formatTimeShort = (timeStr?: string): string => {
+  if (!timeStr) return "";
+  const [hStr, mStr] = timeStr.split(":");
+  let h = parseInt(hStr, 10);
+  const m = mStr || "00";
+  const ampm = h >= 12 ? "p" : "a";
+  h = h % 12;
+  if (h === 0) h = 12;
+  return m === "00" ? `${h}${ampm}` : `${h}:${m}${ampm}`;
+};
 
 export const CalendarPage: React.FC = () => {
   const calendar = useCalendarController();
 
-  // Initial reference date: Jan 23, 2023 matching 06_Calender.png
-  const [currentDate, setCurrentDate] = useState<Date>(new Date(2023, 0, 15));
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 0, 23));
-  const [calendarTitle, setCalendarTitle] = useState("January 2023");
-  const [activeView, setActiveView] = useState<CalendarViewType>("dayGridMonth");
+  // Reference date: March 3, 2023 matching reference images
+  const [currentDate, setCurrentDate] = useState<Date>(new Date(2023, 2, 3));
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 2, 3));
+  const [calendarTitle, setCalendarTitle] = useState("March 2023");
+  const [activeView, setActiveView] =
+    useState<CalendarViewType>("dayGridMonth");
 
-  // Filters matching 06_Calender.png
+  // Filters matching reference images
   const [filters, setFilters] = useState<CalendarFilterState>({
     viewAll: true,
     personal: true,
@@ -42,15 +64,16 @@ export const CalendarPage: React.FC = () => {
     etc: true,
   });
 
-  // Modal states
-  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
-  const [editingEvent, setEditingEvent] = useState<Partial<CalendarEvent> | null>(null);
-
-  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
-  const [selectedEventForDetails, setSelectedEventForDetails] = useState<CalendarEvent | null>(null);
+  // Drawer & Modal states
+  const [isEventDrawerOpen, setIsEventDrawerOpen] = useState(false);
+  const [editingEvent, setEditingEvent] =
+    useState<Partial<CalendarEvent> | null>(null);
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [eventToDelete, setEventToDelete] = useState<{ id: string; title: string } | null>(null);
+  const [eventToDelete, setEventToDelete] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
 
   // TanStack Query
   const { data: rawEvents = [], isLoading } = useCalendarEventsQuery();
@@ -58,35 +81,40 @@ export const CalendarPage: React.FC = () => {
   const updateMutation = useUpdateCalendarEventMutation();
   const deleteMutation = useDeleteCalendarEventMutation();
 
-  // Category visual styles matching 06_Calender.png
+  // Category visual styles
   const categoryStyles: Record<
     CalendarEventCategory,
-    { bg: string; border: string; text: string }
+    { bg: string; border: string; text: string; dotColor: string }
   > = {
     personal: {
       bg: "bg-[#ffe5e5]",
       border: "border-[#ff4c51]",
       text: "text-[#ff4c51]",
+      dotColor: "#ff4c51",
     },
     business: {
       bg: "bg-[#ecebfd]",
       border: "border-[#696cff]",
       text: "text-[#696cff]",
+      dotColor: "#696cff",
     },
     family: {
       bg: "bg-[#e8fadf]",
       border: "border-[#71dd37]",
       text: "text-[#71dd37]",
+      dotColor: "#71dd37",
     },
     holiday: {
       bg: "bg-[#fff2d6]",
       border: "border-[#ffab00]",
       text: "text-[#ffab00]",
+      dotColor: "#ffab00",
     },
     etc: {
       bg: "bg-[#e1f8fc]",
       border: "border-[#03c3ec]",
       text: "text-[#03c3ec]",
+      dotColor: "#03c3ec",
     },
   };
 
@@ -113,17 +141,19 @@ export const CalendarPage: React.FC = () => {
       end = `${evt.endDate || evt.startDate}T${evt.endTime}:00`;
     }
 
+    const catStyle = categoryStyles[evt.category] || categoryStyles.business;
+
     return {
       id: evt.id,
       title: evt.title,
       start,
       end,
       allDay: evt.allDay,
+      color: catStyle.dotColor,
       extendedProps: { ...evt },
     };
   });
 
-  // Navigation handlers
   const handlePrev = () => {
     calendar.prev();
     const d = calendar.getDate();
@@ -136,16 +166,11 @@ export const CalendarPage: React.FC = () => {
     if (d) setCurrentDate(d);
   };
 
-  const handleToday = () => {
-    calendar.today();
-    const today = calendar.getDate() || new Date();
-    setCurrentDate(today);
-    setSelectedDate(today);
-  };
-
   const handleViewChange = (view: CalendarViewType) => {
     setActiveView(view);
+    const targetDate = selectedDate || new Date(2023, 2, 3);
     calendar.changeView(view);
+    calendar.gotoDate(targetDate);
   };
 
   const handleSelectMiniCalendarDate = (date: Date) => {
@@ -159,35 +184,40 @@ export const CalendarPage: React.FC = () => {
     calendar.gotoDate(newDate);
   };
 
-  // CRUD Handlers
-  const handleOpenAddEventModal = (initialDateStr?: string) => {
+  const handleOpenAddEventDrawer = (initialDateStr?: string) => {
     setEditingEvent({
-      startDate: initialDateStr || new Date().toISOString().split("T")[0],
-      endDate: initialDateStr || new Date().toISOString().split("T")[0],
+      startDate: initialDateStr || "2023-03-04",
+      endDate: initialDateStr || "2023-03-04",
       startTime: "09:00",
       endTime: "10:00",
       category: "business",
-      allDay: false,
+      allDay: true,
     });
-    setIsEventModalOpen(true);
+    setIsEventDrawerOpen(true);
   };
 
-  const handleSaveEvent = (eventData: Omit<CalendarEvent, "id"> & { id?: string }) => {
+  const handleOpenEditEventDrawer = (event: CalendarEvent) => {
+    setEditingEvent(event);
+    setIsEventDrawerOpen(true);
+  };
+
+  const handleSaveEvent = (
+    eventData: Omit<CalendarEvent, "id"> & { id?: string },
+  ) => {
     if (eventData.id) {
       updateMutation.mutate(
         { id: eventData.id, updates: eventData },
         {
           onSuccess: () => {
-            setIsEventModalOpen(false);
+            setIsEventDrawerOpen(false);
             setEditingEvent(null);
-            setIsDetailsModalOpen(false);
           },
         },
       );
     } else {
       createMutation.mutate(eventData, {
         onSuccess: () => {
-          setIsEventModalOpen(false);
+          setIsEventDrawerOpen(false);
           setEditingEvent(null);
         },
       });
@@ -206,41 +236,35 @@ export const CalendarPage: React.FC = () => {
       onSuccess: () => {
         setIsDeleteModalOpen(false);
         setEventToDelete(null);
-        setIsDetailsModalOpen(false);
-        setIsEventModalOpen(false);
+        setIsEventDrawerOpen(false);
+        setEditingEvent(null);
       },
     });
   };
 
   return (
     <div className="w-full flex-1 flex flex-col min-w-0">
-      {/* Outer Card Container matching 06_Calender.png */}
       <div className="w-full bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 flex flex-col md:flex-row min-h-[780px]">
-        {/* Left Sidebar */}
         <CalendarSidebar
           currentDate={currentDate}
           selectedDate={selectedDate}
           filters={filters}
-          onAddEventClick={() => handleOpenAddEventModal()}
+          onAddEventClick={() => handleOpenAddEventDrawer()}
           onSelectDate={handleSelectMiniCalendarDate}
           onMonthChange={handleMiniCalendarMonthChange}
           onFilterChange={setFilters}
         />
 
-        {/* Right Main Calendar Section */}
-        <main className="flex-1 flex flex-col min-w-0 p-4 md:p-6 bg-white">
-          {/* Header Toolbar */}
+        <main className="flex-1 flex flex-col min-w-0 p-4 md:p-6 bg-white overflow-hidden">
           <CalendarHeaderToolbar
             currentTitle={calendarTitle}
             activeView={activeView}
             onPrev={handlePrev}
             onNext={handleNext}
-            onToday={handleToday}
             onViewChange={handleViewChange}
           />
 
-          {/* Calendar Grid Container */}
-          <div className="calendar-wrapper flex-1 relative">
+          <div className="calendar-wrapper flex-1 relative min-w-0 w-full overflow-hidden">
             {isLoading && (
               <div className="absolute inset-0 bg-white/60 z-20 flex items-center justify-center">
                 <span className="text-fs14 font-medium text-[#696cff] animate-pulse">
@@ -252,35 +276,102 @@ export const CalendarPage: React.FC = () => {
             <Calendar
               controller={calendar}
               initialView="dayGridMonth"
-              initialDate="2023-01-15"
+              initialDate="2023-03-03"
               headerToolbar={false}
               height="auto"
               dayMaxEvents={2}
               events={fcEvents}
               editable={true}
               selectable={true}
+              allDaySlot={true}
+              allDayText="all-day"
+              slotMinTime="06:00:00"
+              slotMaxTime="22:00:00"
+              listDayHeaderClass="fc-custom-list-day-header"
+              views={{
+                dayGridMonth: {
+                  dayHeaderFormat: { weekday: "short" },
+                },
+                timeGridWeek: {
+                  dayHeaderFormat: {
+                    weekday: "short",
+                    month: "numeric",
+                    day: "numeric",
+                    omitCommas: true,
+                  },
+                  titleFormat: {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  },
+                },
+                timeGridDay: {
+                  dayHeaderFormat: { weekday: "long" },
+                },
+              }}
               datesSet={(dateInfo) => {
                 setCalendarTitle(dateInfo.view.title);
                 setCurrentDate(dateInfo.view.currentStart);
+                if (dateInfo.view.type !== activeView) {
+                  setActiveView(dateInfo.view.type as CalendarViewType);
+                }
               }}
               dateClick={(arg) => {
-                handleOpenAddEventModal(arg.dateStr);
+                setSelectedDate(arg.date);
+                handleOpenAddEventDrawer(arg.dateStr);
               }}
               eventClick={(info) => {
                 const eventObj = info.event.extendedProps as CalendarEvent;
-                setSelectedEventForDetails(eventObj);
-                setIsDetailsModalOpen(true);
+                handleOpenEditEventDrawer(eventObj);
               }}
               eventContent={(eventInfo) => {
                 const props = eventInfo.event.extendedProps as CalendarEvent;
                 const cat = props.category || "business";
                 const style = categoryStyles[cat] || categoryStyles.business;
 
+                if (eventInfo.view.type === "listMonth") {
+                  let timeDisplay = "all-day";
+                  if (!props.allDay && props.startTime) {
+                    const start12 = formatTime12(props.startTime);
+                    const end12 = props.endTime
+                      ? formatTime12(props.endTime)
+                      : "";
+                    timeDisplay = end12 ? `${start12} - ${end12}` : start12;
+                  }
+
+                  return (
+                    <div className="w-full flex items-center py-2.5 px-3 hover:bg-[#f8f7fa] transition cursor-pointer select-none">
+                      <div className="w-36 sm:w-44 shrink-0 text-fs13 text-[#6f6b7d] font-normal lowercase">
+                        {timeDisplay}
+                      </div>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span
+                          className="w-2.5 h-2.5 rounded-full shrink-0"
+                          style={{ backgroundColor: style.dotColor }}
+                        />
+                        <span className="text-fs13 font-medium text-[#5d596c] truncate">
+                          {eventInfo.event.title}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+
+                let timePrefix = "";
+                if (
+                  !props.allDay &&
+                  props.startTime &&
+                  eventInfo.view.type === "dayGridMonth"
+                ) {
+                  timePrefix = formatTimeShort(props.startTime) + " ";
+                }
+
                 return (
                   <div
-                    className={`w-full px-2.5 py-1 rounded-[4px] border ${style.bg} ${style.border} ${style.text} flex items-center justify-between transition-opacity hover:opacity-90 shadow-2xs overflow-hidden select-none`}
+                    className={`w-full px-2.5 py-1 rounded-[4px] border ${style.bg} ${style.border} ${style.text} flex items-center justify-between transition-opacity hover:opacity-90 shadow-2xs overflow-hidden select-none cursor-pointer`}
                   >
                     <span className="text-fs12 font-medium truncate">
+                      {timePrefix}
                       {eventInfo.event.title}
                     </span>
                   </div>
@@ -291,48 +382,38 @@ export const CalendarPage: React.FC = () => {
         </main>
       </div>
 
-      {/* Add / Edit Event Modal */}
-      {isEventModalOpen && (
-        <EventModal
-          key={editingEvent?.id || "new-event"}
-          isOpen={isEventModalOpen}
-          initialEvent={editingEvent}
-          onClose={() => {
-            setIsEventModalOpen(false);
-            setEditingEvent(null);
-          }}
-          onSave={handleSaveEvent}
-          onDelete={(id) => handlePromptDelete(id, editingEvent?.title)}
-          isSaving={createMutation.isPending || updateMutation.isPending}
-        />
-      )}
-
-      {/* Event Details Popup */}
-      <EventDetailsModal
-        isOpen={isDetailsModalOpen}
-        event={selectedEventForDetails}
+      <EventDrawer
+        key={editingEvent?.id || (isEventDrawerOpen ? "open-new" : "closed")}
+        isOpen={isEventDrawerOpen}
+        initialEvent={editingEvent}
         onClose={() => {
-          setIsDetailsModalOpen(false);
-          setSelectedEventForDetails(null);
+          setIsEventDrawerOpen(false);
+          setEditingEvent(null);
         }}
-        onEdit={(event) => {
-          setIsDetailsModalOpen(false);
-          setEditingEvent(event);
-          setIsEventModalOpen(true);
-        }}
-        onDelete={(id) => handlePromptDelete(id, selectedEventForDetails?.title)}
+        onSave={handleSaveEvent}
+        onDelete={(id) => handlePromptDelete(id, editingEvent?.title)}
+        isSaving={createMutation.isPending || updateMutation.isPending}
       />
 
-      {/* Delete Confirmation Popup */}
-      <DeleteConfirmModal
+      <ConfirmationModal
         isOpen={isDeleteModalOpen}
-        eventTitle={eventToDelete?.title || ""}
+        title="Delete Event"
+        subtitle="This action cannot be undone."
+        message={
+          <>
+            Are you sure you want to delete{" "}
+            <strong className="text-[#32475c]">"{eventToDelete?.title}"</strong>?
+          </>
+        }
+        confirmText="Delete Event"
+        variant="danger"
+        icon="trash"
         onConfirm={handleConfirmDelete}
         onCancel={() => {
           setIsDeleteModalOpen(false);
           setEventToDelete(null);
         }}
-        isDeleting={deleteMutation.isPending}
+        isLoading={deleteMutation.isPending}
       />
     </div>
   );
