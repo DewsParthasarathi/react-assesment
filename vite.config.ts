@@ -837,6 +837,99 @@ function mockApiPlugin(): Plugin {
           return;
         }
 
+        // 9. ROLE ENDPOINTS
+        // 9.1. GET /api/roles
+        if (req.method === "GET" && pathname === "/api/roles") {
+          const data = getDashboardData();
+          const roles = data?.roles || [];
+          res.statusCode = 200;
+          res.end(JSON.stringify(roles));
+          return;
+        }
+
+        // 9.2. POST /api/roles
+        if (req.method === "POST" && pathname === "/api/roles") {
+          readJsonBody().then((body) => {
+            const data = getDashboardData();
+            if (!data.roles) data.roles = [];
+            const newId = String(Date.now());
+            const newRole = {
+              id: (body.id as string) || newId,
+              name: (body.name as string) || "New Role",
+              description: (body.description as string) || "",
+              totalUsers: Number(body.totalUsers) || 0,
+              assignedUsers: (body.assignedUsers as Array<unknown>) || [],
+              permissions: (body.permissions as Array<unknown>) || [],
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            };
+            data.roles.push(newRole);
+            saveDashboardData(data);
+            res.statusCode = 201;
+            res.end(JSON.stringify(newRole));
+          });
+          return;
+        }
+
+        // 9.3. GET /api/roles/:id
+        const singleRoleMatch = pathname.match(/^\/api\/roles\/([^/]+)$/);
+        if (req.method === "GET" && singleRoleMatch) {
+          const roleId = singleRoleMatch[1];
+          const data = getDashboardData();
+          const role = (data?.roles || []).find((r: { id: string }) => r.id === roleId);
+          if (role) {
+            res.statusCode = 200;
+            res.end(JSON.stringify(role));
+          } else {
+            res.statusCode = 404;
+            res.end(JSON.stringify({ error: "Role not found" }));
+          }
+          return;
+        }
+
+        // 9.4. PUT/PATCH /api/roles/:id
+        if ((req.method === "PUT" || req.method === "PATCH") && singleRoleMatch) {
+          const roleId = singleRoleMatch[1];
+          readJsonBody().then((updates) => {
+            const data = getDashboardData();
+            const roles = (data?.roles || []) as Array<Record<string, unknown>>;
+            const roleIndex = roles.findIndex((r) => r.id === roleId);
+
+            if (roleIndex === -1) {
+              res.statusCode = 404;
+              res.end(JSON.stringify({ error: "Role not found" }));
+              return;
+            }
+
+            const updatedRole = {
+              ...roles[roleIndex],
+              ...updates,
+              updatedAt: new Date().toISOString(),
+            };
+            roles[roleIndex] = updatedRole;
+            saveDashboardData(data);
+
+            res.statusCode = 200;
+            res.end(JSON.stringify(updatedRole));
+          });
+          return;
+        }
+
+        // 9.5. DELETE /api/roles/:id
+        if (req.method === "DELETE" && singleRoleMatch) {
+          const roleId = singleRoleMatch[1];
+          const data = getDashboardData();
+          if (data?.roles) {
+            data.roles = (data.roles as Array<{ id: string }>).filter(
+              (r) => r.id !== roleId,
+            );
+            saveDashboardData(data);
+          }
+          res.statusCode = 200;
+          res.end(JSON.stringify({ success: true }));
+          return;
+        }
+
         // 4. GET /api/dashboard
         if (req.method === "GET" && pathname === "/api/dashboard") {
           const data = getDashboardData();

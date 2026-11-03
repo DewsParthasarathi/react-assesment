@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CustomButton } from "../../components/ui/CustomButton";
+import { CustomInput } from "../../components/ui/CustomInput";
+import { CustomDropdown } from "../../components/ui/CustomDropdown";
 import {
   useCreateInvoiceMutation,
   useInvoicesQuery,
@@ -185,11 +187,13 @@ export const InvoiceAddPage: React.FC = () => {
               <span className="text-fs14 font-semibold text-[#32475c] w-24 sm:text-right">
                 Invoice
               </span>
-              <input
+              <CustomInput
                 type="text"
                 value={invoiceNumber}
                 onChange={(e) => setInvoiceNumber(e.target.value)}
-                className="w-48 sm:w-56 h-9 px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+                sizeVariant="sm"
+                containerClassName="w-48 sm:w-56"
+                className="rounded-[6px] !px-3"
               />
             </div>
 
@@ -198,11 +202,13 @@ export const InvoiceAddPage: React.FC = () => {
               <span className="text-fs13 text-[#6f6b7d] w-24 sm:text-right">
                 Data Issued:
               </span>
-              <input
+              <CustomInput
                 type="text"
                 value={issueDate}
                 onChange={(e) => setIssueDate(e.target.value)}
-                className="w-48 sm:w-56 h-9 px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+                sizeVariant="sm"
+                containerClassName="w-48 sm:w-56"
+                className="rounded-[6px] !px-3"
               />
             </div>
 
@@ -211,11 +217,13 @@ export const InvoiceAddPage: React.FC = () => {
               <span className="text-fs13 text-[#6f6b7d] w-24 sm:text-right">
                 Data Due:
               </span>
-              <input
+              <CustomInput
                 type="text"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-48 sm:w-56 h-9 px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+                sizeVariant="sm"
+                containerClassName="w-48 sm:w-56"
+                className="rounded-[6px] !px-3"
               />
             </div>
           </div>
@@ -228,23 +236,16 @@ export const InvoiceAddPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div>
             <h3 className="text-fs14 font-semibold text-[#5d596c] mb-3">Invoice To:</h3>
-            <div className="relative w-full max-w-xs">
-              <select
+            <div className="w-full max-w-xs">
+              <CustomDropdown
                 value={selectedClientName}
-                onChange={(e) => setSelectedClientName(e.target.value)}
-                className="w-full h-10 px-3.5 pr-8 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white cursor-pointer appearance-none"
-              >
-                {availableClients.map((c) => (
-                  <option key={c.name} value={c.name}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-[#6f6b7d]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+                onChange={(val) => setSelectedClientName(String(val))}
+                sizeVariant="md"
+                options={availableClients.map((c) => ({
+                  label: c.name,
+                  value: c.name,
+                }))}
+              />
             </div>
           </div>
 
@@ -300,45 +301,59 @@ export const InvoiceAddPage: React.FC = () => {
                 >
                   {/* Top row */}
                   <div className="grid grid-cols-12 gap-2 sm:gap-3 items-center">
-                    {/* Item Select */}
-                    <div className="col-span-12 sm:col-span-5 relative min-w-0">
-                      <select
+                    {/* Item Select using CustomDropdown */}
+                    <div className="col-span-12 sm:col-span-5 min-w-0">
+                      <CustomDropdown
                         value={row.item}
-                        onChange={(e) => handleUpdateItem(row.id, "item", e.target.value)}
-                        className="w-full min-w-0 h-9 px-3 pr-7 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white cursor-pointer appearance-none truncate"
-                      >
-                        <option value="Jordan Stevenson">Jordan Stevenson</option>
-                        <option value="Customization & Bug Fixes">Customization & Bug Fixes</option>
-                        <option value="Web Design">Web Design</option>
-                        <option value="App Development">App Development</option>
-                        <option value="Template Design">Template Design</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#6f6b7d]">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
+                        onChange={(val) =>
+                          handleUpdateItem(row.id, "item", String(val))
+                        }
+                        sizeVariant="sm"
+                        options={[
+                          {
+                            label: "Jordan Stevenson",
+                            value: "Jordan Stevenson",
+                          },
+                          {
+                            label: "Customization & Bug Fixes",
+                            value: "Customization & Bug Fixes",
+                          },
+                          { label: "Web Design", value: "Web Design" },
+                          {
+                            label: "App Development",
+                            value: "App Development",
+                          },
+                          {
+                            label: "Template Design",
+                            value: "Template Design",
+                          },
+                        ]}
+                      />
                     </div>
 
                     {/* Cost Input */}
                     <div className="col-span-4 sm:col-span-2 min-w-0">
-                      <input
+                      <CustomInput
                         type="number"
                         min="0"
                         value={row.cost}
                         onChange={(e) => handleUpdateItem(row.id, "cost", Number(e.target.value))}
-                        className="w-full min-w-0 h-9 px-2 sm:px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white text-center sm:text-left"
+                        sizeVariant="sm"
+                        containerClassName="w-full min-w-0"
+                        className="rounded-[6px] !px-2 sm:!px-3 text-center sm:text-left"
                       />
                     </div>
 
                     {/* Hours Input */}
                     <div className="col-span-4 sm:col-span-2 min-w-0">
-                      <input
+                      <CustomInput
                         type="number"
                         min="1"
                         value={row.hours}
                         onChange={(e) => handleUpdateItem(row.id, "hours", Number(e.target.value))}
-                        className="w-full min-w-0 h-9 px-2 sm:px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white text-center sm:text-left"
+                        sizeVariant="sm"
+                        containerClassName="w-full min-w-0"
+                        className="rounded-[6px] !px-2 sm:!px-3 text-center sm:text-left"
                       />
                     </div>
 
@@ -409,23 +424,27 @@ export const InvoiceAddPage: React.FC = () => {
           <div className="space-y-3 w-full sm:w-auto">
             <div className="flex items-center gap-3">
               <span className="text-fs13 font-medium text-[#5d596c] w-24">Invoice To:</span>
-              <input
+              <CustomInput
                 type="text"
                 value={salesperson}
                 onChange={(e) => setSalesperson(e.target.value)}
                 placeholder="Salesperson"
-                className="w-56 h-9 px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+                sizeVariant="sm"
+                containerClassName="w-56"
+                className="rounded-[6px] !px-3"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <span className="w-24 shrink-0" />
-              <input
+              <CustomInput
                 type="text"
                 value={thanksMessage}
                 onChange={(e) => setThanksMessage(e.target.value)}
                 placeholder="Customer message"
-                className="w-56 h-9 px-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+                sizeVariant="sm"
+                containerClassName="w-56"
+                className="rounded-[6px] !px-3"
               />
             </div>
           </div>
@@ -506,30 +525,20 @@ export const InvoiceAddPage: React.FC = () => {
           </CustomButton>
         </div>
 
-        {/* Accept Payment Via Dropdown */}
+        {/* Accept Payment Via Dropdown using CustomDropdown */}
         <div className="pt-2">
-          <div className="relative">
-            <label className="block text-fs12 font-medium text-[#a5a3ae] mb-1">
-              Accept payment via
-            </label>
-            <div className="relative">
-              <select
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full h-10 px-3.5 pr-8 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white cursor-pointer appearance-none"
-              >
-                <option value="Internet Banking">Internet Banking</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-                <option value="Credit Card">Credit Card</option>
-                <option value="Paypal">Paypal</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-[#6f6b7d]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </div>
-          </div>
+          <CustomDropdown
+            label="Accept payment via"
+            value={paymentMethod}
+            onChange={(val) => setPaymentMethod(String(val))}
+            sizeVariant="md"
+            options={[
+              { label: "Internet Banking", value: "Internet Banking" },
+              { label: "Bank Transfer", value: "Bank Transfer" },
+              { label: "Credit Card", value: "Credit Card" },
+              { label: "Paypal", value: "Paypal" },
+            ]}
+          />
         </div>
 
         {/* Toggles List */}

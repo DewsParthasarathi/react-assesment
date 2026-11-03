@@ -1,8 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Invoice, InvoiceStatus } from "../../api/types";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomCheckbox } from "../../components/ui/CustomCheckbox";
+import { CustomInput } from "../../components/ui/CustomInput";
+import { CustomDropdown } from "../../components/ui/CustomDropdown";
+import { CustomTable, type TableColumn } from "../../components/ui/Table";
 import {
   useBatchDeleteInvoicesMutation,
   useBatchUpdateInvoiceStatusMutation,
@@ -124,7 +127,7 @@ export const InvoiceListPage: React.FC = () => {
     paginatedInvoices.length > 0 &&
     paginatedInvoices.every((inv) => selectedIds.includes(inv.id));
 
-  const handleSelectAll = () => {
+  const handleSelectAll = useCallback(() => {
     if (isAllSelected) {
       const pageIds = paginatedInvoices.map((inv) => inv.id);
       setSelectedIds((prev) => prev.filter((id) => !pageIds.includes(id)));
@@ -132,13 +135,13 @@ export const InvoiceListPage: React.FC = () => {
       const pageIds = paginatedInvoices.map((inv) => inv.id);
       setSelectedIds((prev) => Array.from(new Set([...prev, ...pageIds])));
     }
-  };
+  }, [isAllSelected, paginatedInvoices]);
 
-  const handleSelectRow = (id: string) => {
+  const handleSelectRow = useCallback((id: string) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
     );
-  };
+  }, []);
 
   // Delete Action Handlers
   const handleOpenSingleDelete = (inv: Invoice) => {
@@ -194,6 +197,257 @@ export const InvoiceListPage: React.FC = () => {
     );
   };
 
+  // Reusable CustomTable columns definition
+  const tableColumns = useMemo<TableColumn<Invoice>[]>(() => {
+    return [
+      {
+        id: "select",
+        header: (
+          <CustomCheckbox
+            checked={isAllSelected}
+            onChange={handleSelectAll}
+            aria-label="Select all invoices"
+          />
+        ),
+        width: "48px",
+        align: "center",
+        headerClassName: "py-3.5 px-4 w-12 text-center",
+        className: "py-3.5 px-4 text-center",
+        render: (inv) => (
+          <CustomCheckbox
+            checked={selectedIds.includes(inv.id)}
+            onChange={() => handleSelectRow(inv.id)}
+            aria-label={`Select invoice ${inv.invoiceNumber}`}
+          />
+        ),
+      },
+      {
+        id: "id",
+        header: "#ID",
+        headerClassName: "py-3.5 px-4 font-semibold text-fs12",
+        className: "py-3.5 px-4 font-medium",
+        render: (inv) => (
+          <button
+            type="button"
+            onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
+            className="text-[#696cff] hover:underline font-medium cursor-pointer"
+          >
+            {inv.invoiceNumber}
+          </button>
+        ),
+      },
+      {
+        id: "status-icon",
+        header: (
+          <svg
+            className="w-4 h-4 mx-auto text-[#6f6b7d]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            />
+          </svg>
+        ),
+        width: "48px",
+        align: "center",
+        headerClassName: "py-3.5 px-3 w-12 text-center",
+        className: "py-3.5 px-3 text-center",
+        render: (inv) => (
+          <div className="flex items-center justify-center">
+            <InvoiceStatusIcon status={inv.status} />
+          </div>
+        ),
+      },
+      {
+        id: "client",
+        header: "CLIENT",
+        headerClassName: "py-3.5 px-4 min-w-[220px]",
+        className: "py-3.5 px-4",
+        render: (inv) => (
+          <div className="flex items-center gap-3">
+            <img
+              src={getMemberAvatar(inv.clientAvatar)}
+              alt={inv.clientName}
+              className="w-9 h-9 rounded-full object-cover shrink-0 border border-[#dbdade]/60"
+            />
+            <div className="flex flex-col min-w-0">
+              <span
+                onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
+                className="text-fs14 font-medium text-[#5d596c] hover:text-[#696cff] transition truncate cursor-pointer"
+              >
+                {inv.clientName}
+              </span>
+              <span className="text-fs12 text-[#a5a3ae] truncate">
+                {inv.clientEmail}
+              </span>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: "total",
+        header: "TOTAL",
+        headerClassName: "py-3.5 px-4 min-w-[100px]",
+        className: "py-3.5 px-4 text-[#6f6b7d] font-normal whitespace-nowrap",
+        render: (inv) => `$ ${inv.total}`,
+      },
+      {
+        id: "issueDate",
+        header: "ISSUE DATE",
+        headerClassName: "py-3.5 px-4 min-w-[130px]",
+        className: "py-3.5 px-4 text-[#6f6b7d] font-normal whitespace-nowrap",
+        render: (inv) => formatDateDisplay(inv.issueDate),
+      },
+      {
+        id: "balance",
+        header: "BALANCE",
+        headerClassName: "py-3.5 px-4 min-w-[110px]",
+        className: "py-3.5 px-4 whitespace-nowrap",
+        render: (inv) => {
+          const isPaid =
+            inv.balance === 0 || inv.status.toLowerCase() === "paid";
+          return isPaid ? (
+            <span className="bg-[#e8fadf] text-[#71dd37] text-fs11 font-semibold uppercase px-2 py-0.5 rounded-[4px] inline-block tracking-wide">
+              PAID
+            </span>
+          ) : (
+            <span className="text-[#6f6b7d] font-normal">$ {inv.balance}</span>
+          );
+        },
+      },
+      {
+        id: "actions",
+        header: "ACTIONS",
+        align: "center",
+        headerClassName: "py-3.5 px-4 text-center w-28",
+        className: "py-3.5 px-4 text-center",
+        render: (inv) => {
+          const isMenuOpen = activeMenuInvoiceId === inv.id;
+          return (
+            <div className="relative inline-flex items-center justify-center gap-1.5 text-[#a5a3ae]">
+              <CustomButton
+                type="button"
+                variant="icon"
+                title="Delete"
+                onClick={() => handleOpenSingleDelete(inv)}
+                className="p-1 hover:text-[#ff4c51] transition cursor-pointer"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.8}
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
+              </CustomButton>
+
+              <CustomButton
+                type="button"
+                variant="icon"
+                title="Preview Invoice"
+                onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
+                className="p-1 hover:text-[#696cff] transition cursor-pointer"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.8}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.8}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+              </CustomButton>
+
+              <div className="relative inline-block">
+                <CustomButton
+                  type="button"
+                  variant="icon"
+                  title="More Options"
+                  onClick={() =>
+                    setActiveMenuInvoiceId((prev) =>
+                      prev === inv.id ? null : inv.id,
+                    )
+                  }
+                  className="p-1 hover:text-[#5d596c] transition cursor-pointer"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 5v.01M12 12v.01M12 19v.01"
+                    />
+                  </svg>
+                </CustomButton>
+
+                {isMenuOpen && (
+                  <div className="absolute right-0 mt-1 w-36 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(165,163,174,0.3)] border border-[#dbdade]/70 py-1.5 z-40 text-left animate-fade-in">
+                    <CustomButton
+                      type="button"
+                      variant="ghost"
+                      onClick={() => {
+                        setActiveMenuInvoiceId(null);
+                        navigate(`/apps/invoice/edit?id=${inv.id}`);
+                      }}
+                      className="w-full px-3 py-1.5 text-fs13 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                    >
+                      <span>Edit</span>
+                    </CustomButton>
+                    <CustomButton
+                      type="button"
+                      variant="ghost"
+                      onClick={() => {
+                        setActiveMenuInvoiceId(null);
+                        navigate(`/apps/invoice/preview?id=${inv.id}`);
+                      }}
+                      className="w-full px-3 py-1.5 text-fs13 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                    >
+                      <span>Download</span>
+                    </CustomButton>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        },
+      },
+    ];
+  }, [
+    isAllSelected,
+    selectedIds,
+    activeMenuInvoiceId,
+    handleSelectAll,
+    handleSelectRow,
+    navigate,
+  ]);
+
   return (
     <div className="w-full flex-1 flex flex-col min-w-0 space-y-6">
       {/* 1. FILTERS SECTION CARD (Matching reference image) */}
@@ -203,35 +457,29 @@ export const InvoiceListPage: React.FC = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Invoice Status Filter */}
-          <div className="relative">
-            <select
-              value={statusFilter}
-              onChange={(e) => {
-                setStatusFilter(e.target.value);
-                setCurrentPage(1);
-              }}
-              className="w-full h-10 px-3.5 pr-8 bg-white border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] transition cursor-pointer appearance-none"
-            >
-              <option value="all">Invoice Status</option>
-              <option value="Paid">Paid</option>
-              <option value="Pending">Pending</option>
-              <option value="Overdue">Overdue</option>
-              <option value="Draft">Draft</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="Downloaded">Downloaded</option>
-              <option value="Sent">Sent</option>
-            </select>
-            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#a5a3ae]">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
+          {/* Invoice Status Filter using CustomDropdown */}
+          <CustomDropdown
+            value={statusFilter}
+            onChange={(val) => {
+              setStatusFilter(String(val));
+              setCurrentPage(1);
+            }}
+            sizeVariant="md"
+            options={[
+              { label: "Invoice Status", value: "all" },
+              { label: "Paid", value: "Paid" },
+              { label: "Pending", value: "Pending" },
+              { label: "Overdue", value: "Overdue" },
+              { label: "Draft", value: "Draft" },
+              { label: "Cancelled", value: "Cancelled" },
+              { label: "Downloaded", value: "Downloaded" },
+              { label: "Sent", value: "Sent" },
+            ]}
+          />
 
           {/* Invoice Date Filter */}
           <div className="relative">
-            <input
+            <CustomInput
               type="date"
               value={dateFilter}
               onChange={(e) => {
@@ -239,7 +487,8 @@ export const InvoiceListPage: React.FC = () => {
                 setCurrentPage(1);
               }}
               placeholder="Invoice Date"
-              className="w-full h-10 px-3.5 bg-white border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] placeholder-[#a5a3ae] focus:outline-none focus:border-[#696cff] transition"
+              sizeVariant="md"
+              className="rounded-[6px] !px-3.5"
             />
             {dateFilter && (
               <button
@@ -314,7 +563,7 @@ export const InvoiceListPage: React.FC = () => {
           {/* Right: Search & Create Invoice Button */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
-              <input
+              <CustomInput
                 type="text"
                 placeholder="Search Invoice"
                 value={searchQuery}
@@ -322,7 +571,9 @@ export const InvoiceListPage: React.FC = () => {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-56 md:w-64 h-10 px-3.5 bg-white border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] placeholder-[#a5a3ae] focus:outline-none focus:border-[#696cff] transition"
+                sizeVariant="md"
+                containerClassName="w-56 md:w-64"
+                className="rounded-[6px] !px-3.5"
               />
               {searchQuery && (
                 <button
@@ -370,230 +621,45 @@ export const InvoiceListPage: React.FC = () => {
           </div>
         )}
 
-        {/* Main Table */}
+        {/* Main Table using reusable CustomTable */}
         {!isLoading && !isError && filteredInvoices.length > 0 && (
-          <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-[#dbdade]/60 text-fs12 font-medium text-[#5d596c] tracking-wider uppercase bg-[#fafafb]/70">
-                  {/* 1. Checkbox Header */}
-                  <th className="py-3.5 px-4 w-12 text-center">
-                    <CustomCheckbox
-                      checked={isAllSelected}
-                      onChange={handleSelectAll}
-                      aria-label="Select all invoices"
-                    />
-                  </th>
-
-                  {/* 2. #ID */}
-                  <th className="py-3.5 px-4 font-semibold text-fs12">#ID</th>
-
-                  {/* 3. Status Trending Icon */}
-                  <th className="py-3.5 px-3 w-12 text-center" title="Invoice Status">
-                    <svg className="w-4 h-4 mx-auto text-[#6f6b7d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </th>
-
-                  {/* 4. CLIENT */}
-                  <th className="py-3.5 px-4 min-w-[220px]">CLIENT</th>
-
-                  {/* 5. TOTAL */}
-                  <th className="py-3.5 px-4 min-w-[100px]">TOTAL</th>
-
-                  {/* 6. ISSUE DATE */}
-                  <th className="py-3.5 px-4 min-w-[130px]">ISSUE DATE</th>
-
-                  {/* 7. BALANCE */}
-                  <th className="py-3.5 px-4 min-w-[110px]">BALANCE</th>
-
-                  {/* 8. ACTIONS */}
-                  <th className="py-3.5 px-4 text-center w-28">ACTIONS</th>
-                </tr>
-              </thead>
-
-              <tbody className="divide-y divide-[#dbdade]/40 text-fs14">
-                {paginatedInvoices.map((inv) => {
-                  const isSelected = selectedIds.includes(inv.id);
-                  const isMenuOpen = activeMenuInvoiceId === inv.id;
-
-                  return (
-                    <tr
-                      key={inv.id}
-                      className={`hover:bg-[#f8f7fa] transition ${
-                        isSelected ? "bg-[#ecebfd]/30" : "bg-white"
-                      }`}
-                    >
-                      {/* 1. Checkbox */}
-                      <td className="py-3 px-4 text-center">
-                        <CustomCheckbox
-                          checked={isSelected}
-                          onChange={() => handleSelectRow(inv.id)}
-                          aria-label={`Select invoice ${inv.invoiceNumber}`}
-                        />
-                      </td>
-
-                      {/* 2. #ID (Clickable Purple Link) */}
-                      <td className="py-3 px-4 font-medium">
-                        <button
-                          type="button"
-                          onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
-                          className="text-[#696cff] hover:underline font-medium cursor-pointer"
-                        >
-                          {inv.invoiceNumber}
-                        </button>
-                      </td>
-
-                      {/* 3. Status Circular Badge */}
-                      <td className="py-3 px-3 text-center">
-                        <div className="flex items-center justify-center">
-                          <InvoiceStatusIcon status={inv.status} />
-                        </div>
-                      </td>
-
-                      {/* 4. Client Info (Avatar, Name, Email) */}
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={getMemberAvatar(inv.clientAvatar)}
-                            alt={inv.clientName}
-                            className="w-9 h-9 rounded-full object-cover shrink-0 border border-[#dbdade]/60"
-                          />
-                          <div className="flex flex-col min-w-0">
-                            <span
-                              onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
-                              className="text-fs14 font-medium text-[#5d596c] hover:text-[#696cff] transition truncate cursor-pointer"
-                            >
-                              {inv.clientName}
-                            </span>
-                            <span className="text-fs12 text-[#a5a3ae] truncate">
-                              {inv.clientEmail}
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-
-                      {/* 5. Total Amount */}
-                      <td className="py-3 px-4 text-[#6f6b7d] font-normal whitespace-nowrap">
-                        $ {inv.total}
-                      </td>
-
-                      {/* 6. Issue Date */}
-                      <td className="py-3 px-4 text-[#6f6b7d] font-normal whitespace-nowrap">
-                        {formatDateDisplay(inv.issueDate)}
-                      </td>
-
-                      {/* 7. Balance (Paid badge or Amount) */}
-                      <td className="py-3 px-4 whitespace-nowrap">
-                        {inv.balance === 0 || inv.status.toLowerCase() === "paid" ? (
-                          <span className="bg-[#e8fadf] text-[#71dd37] text-fs11 font-semibold uppercase px-2 py-0.5 rounded-[4px] inline-block tracking-wide">
-                            PAID
-                          </span>
-                        ) : (
-                          <span className="text-[#6f6b7d] font-normal">
-                            $ {inv.balance}
-                          </span>
-                        )}
-                      </td>
-
-                      {/* 8. Actions (Trash, View, More) */}
-                      <td className="py-3 px-4 text-center">
-                        <div className="relative inline-flex items-center justify-center gap-1.5 text-[#a5a3ae]">
-                          {/* Delete Icon */}
-                          <button
-                            type="button"
-                            title="Delete"
-                            onClick={() => handleOpenSingleDelete(inv)}
-                            className="p-1 hover:text-[#ff4c51] transition cursor-pointer"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          </button>
-
-                          {/* View Eye Icon */}
-                          <button
-                            type="button"
-                            title="Preview Invoice"
-                            onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
-                            className="p-1 hover:text-[#696cff] transition cursor-pointer"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                          </button>
-
-                          {/* More Options Dropdown */}
-                          <div className="relative inline-block">
-                            <button
-                              type="button"
-                              title="More Options"
-                              onClick={() =>
-                                setActiveMenuInvoiceId((prev) =>
-                                  prev === inv.id ? null : inv.id,
-                                )
-                              }
-                              className="p-1 hover:text-[#5d596c] transition cursor-pointer"
-                            >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01" />
-                              </svg>
-                            </button>
-
-                            {isMenuOpen && (
-                              <div className="absolute right-0 mt-1 w-36 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(165,163,174,0.3)] border border-[#dbdade]/70 py-1.5 z-40 text-left animate-fade-in">
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setActiveMenuInvoiceId(null);
-                                    navigate(`/apps/invoice/edit?id=${inv.id}`);
-                                  }}
-                                  className="w-full px-3 py-1.5 text-fs13 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center gap-2 cursor-pointer"
-                                >
-                                  <span>Edit</span>
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setActiveMenuInvoiceId(null);
-                                    navigate(`/apps/invoice/preview?id=${inv.id}`);
-                                  }}
-                                  className="w-full px-3 py-1.5 text-fs13 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center gap-2 cursor-pointer"
-                                >
-                                  <span>Download</span>
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          <CustomTable<Invoice>
+            columns={tableColumns}
+            data={paginatedInvoices}
+            keyExtractor={(inv) => inv.id}
+            className="w-full overflow-x-auto"
+            tableClassName="w-full text-left border-collapse"
+            headerRowClassName="border-b border-[#dbdade]/60 text-fs12 font-medium text-[#5d596c] tracking-wider uppercase bg-[#fafafb]/70"
+            bodyClassName="divide-y divide-[#dbdade]/40 text-fs14"
+            bodyRowClassName={(inv) =>
+              selectedIds.includes(inv.id)
+                ? "bg-[#ecebfd]/30 hover:bg-[#ecebfd]/40 transition"
+                : "bg-white hover:bg-[#f8f7fa] transition"
+            }
+            emptyText="No invoices found"
+          />
         )}
 
-        {/* 3. PAGINATION TOOLBAR (Matching reference image) */}
+        {/* 3. PAGINATION TOOLBAR using CustomDropdown & CustomButton */}
         {!isLoading && !isError && filteredInvoices.length > 0 && (
           <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs13 text-[#6f6b7d] bg-white">
-            {/* Rows Per Page Selector */}
+            {/* Rows Per Page Selector using CustomDropdown */}
             <div className="flex items-center gap-2">
               <span>Rows per page:</span>
-              <select
+              <CustomDropdown
                 value={rowsPerPage}
-                onChange={(e) => {
-                  setRowsPerPage(Number(e.target.value));
+                onChange={(val) => {
+                  setRowsPerPage(Number(val));
                   setCurrentPage(1);
                 }}
-                className="h-8 px-2 bg-transparent border-none text-fs13 text-[#5d596c] font-medium focus:outline-none cursor-pointer"
-              >
-                <option value={10}>10</option>
-                <option value={25}>25</option>
-                <option value={50}>50</option>
-              </select>
+                sizeVariant="sm"
+                containerClassName="w-20"
+                options={[
+                  { label: "10", value: 10 },
+                  { label: "25", value: 25 },
+                  { label: "50", value: 50 },
+                ]}
+              />
             </div>
 
             {/* Record Range Counter */}
@@ -601,10 +667,11 @@ export const InvoiceListPage: React.FC = () => {
               {startRecord}-{endRecord} of {totalRecords}
             </div>
 
-            {/* Prev / Next Controls */}
+            {/* Prev / Next Controls using CustomButton */}
             <div className="flex items-center gap-1 text-[#6f6b7d]">
-              <button
+              <CustomButton
                 type="button"
+                variant="icon"
                 disabled={validCurrentPage <= 1}
                 onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                 className="p-1 rounded hover:bg-[#f8f7fa] disabled:opacity-30 disabled:cursor-not-allowed transition cursor-pointer"
@@ -613,10 +680,11 @@ export const InvoiceListPage: React.FC = () => {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-              </button>
+              </CustomButton>
 
-              <button
+              <CustomButton
                 type="button"
+                variant="icon"
                 disabled={validCurrentPage >= totalPages}
                 onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
                 className="p-1 rounded hover:bg-[#f8f7fa] disabled:opacity-30 disabled:cursor-not-allowed transition cursor-pointer"
@@ -625,7 +693,7 @@ export const InvoiceListPage: React.FC = () => {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </CustomButton>
             </div>
           </div>
         )}

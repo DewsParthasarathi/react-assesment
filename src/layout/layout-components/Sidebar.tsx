@@ -15,6 +15,7 @@ interface NavItem {
   path?: string;
   hasSubmenu?: boolean;
   subItems?: SubmenuItem[];
+  showArrow?: boolean;
 }
 
 export const Sidebar: React.FC = () => {
@@ -133,7 +134,9 @@ export const Sidebar: React.FC = () => {
     {
       id: "user",
       title: "User",
-      hasSubmenu: true,
+      path: "/apps/user",
+      hasSubmenu: false,
+      showArrow: true,
       icon: (
         <svg
           className="w-5 h-5 shrink-0"
@@ -149,10 +152,6 @@ export const Sidebar: React.FC = () => {
           />
         </svg>
       ),
-      subItems: [
-        { id: "user-list", title: "List", path: "/apps/user/list" },
-        { id: "user-view", title: "View", path: "/apps/user/view" },
-      ],
     },
     {
       id: "roles",
@@ -335,7 +334,10 @@ export const Sidebar: React.FC = () => {
                 location.pathname === sub.path ||
                 (item.id === "invoice" &&
                   (location.pathname.startsWith("/apps/invoice") ||
-                    location.pathname.startsWith("/invoice"))),
+                    location.pathname.startsWith("/invoice"))) ||
+                (item.id === "roles" &&
+                  (location.pathname.startsWith("/apps/roles") ||
+                    location.pathname.startsWith("/roles"))),
             ),
           );
           const isGroupExpanded =
@@ -429,8 +431,12 @@ export const Sidebar: React.FC = () => {
                       location.pathname.startsWith("/apps/chat"))) ||
                   (item.id === "calendar" &&
                     (location.pathname === "/calendar" ||
-                      location.pathname.startsWith("/apps/calendar")));
-                return `flex items-center gap-3 px-3 py-2 rounded-md text-fs14 transition ${
+                      location.pathname.startsWith("/apps/calendar"))) ||
+                  (item.id === "user" &&
+                    (location.pathname === "/user" ||
+                      location.pathname.startsWith("/apps/user") ||
+                      location.pathname.startsWith("/user")));
+                return `flex items-center justify-between px-3 py-2 rounded-md text-fs14 transition ${
                   isItemActive
                     ? "bg-[#e7e7ff] text-[#696cff] font-medium"
                     : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c]"
@@ -448,17 +454,40 @@ export const Sidebar: React.FC = () => {
                       location.pathname.startsWith("/apps/chat"))) ||
                   (item.id === "calendar" &&
                     (location.pathname === "/calendar" ||
-                      location.pathname.startsWith("/apps/calendar")));
+                      location.pathname.startsWith("/apps/calendar"))) ||
+                  (item.id === "user" &&
+                    (location.pathname === "/user" ||
+                      location.pathname.startsWith("/apps/user") ||
+                      location.pathname.startsWith("/user")));
                 return (
                   <>
-                    <span
-                      className={
-                        isItemActive ? "text-[#696cff]" : "text-[#6f6b7d]"
-                      }
-                    >
-                      {item.icon}
-                    </span>
-                    <span>{item.title}</span>
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={
+                          isItemActive ? "text-[#696cff]" : "text-[#6f6b7d]"
+                        }
+                      >
+                        {item.icon}
+                      </span>
+                      <span>{item.title}</span>
+                    </div>
+                    {item.showArrow && (
+                      <svg
+                        className={`w-3.5 h-3.5 transition-colors ${
+                          isItemActive ? "text-[#696cff]" : "text-[#a5a3ae]"
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    )}
                   </>
                 );
               }}

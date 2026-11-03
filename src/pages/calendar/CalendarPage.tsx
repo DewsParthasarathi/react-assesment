@@ -47,14 +47,12 @@ const formatTimeShort = (timeStr?: string): string => {
 export const CalendarPage: React.FC = () => {
   const calendar = useCalendarController();
 
-  // Reference date: March 3, 2023 matching reference images
   const [currentDate, setCurrentDate] = useState<Date>(new Date(2023, 2, 3));
   const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 2, 3));
   const [calendarTitle, setCalendarTitle] = useState("March 2023");
   const [activeView, setActiveView] =
     useState<CalendarViewType>("dayGridMonth");
 
-  // Filters matching reference images
   const [filters, setFilters] = useState<CalendarFilterState>({
     viewAll: true,
     personal: true,
@@ -64,7 +62,6 @@ export const CalendarPage: React.FC = () => {
     etc: true,
   });
 
-  // Drawer & Modal states
   const [isEventDrawerOpen, setIsEventDrawerOpen] = useState(false);
   const [editingEvent, setEditingEvent] =
     useState<Partial<CalendarEvent> | null>(null);
@@ -75,13 +72,11 @@ export const CalendarPage: React.FC = () => {
     title: string;
   } | null>(null);
 
-  // TanStack Query
   const { data: rawEvents = [], isLoading } = useCalendarEventsQuery();
   const createMutation = useCreateCalendarEventMutation();
   const updateMutation = useUpdateCalendarEventMutation();
   const deleteMutation = useDeleteCalendarEventMutation();
 
-  // Category visual styles
   const categoryStyles: Record<
     CalendarEventCategory,
     { bg: string; border: string; text: string; dotColor: string }
@@ -118,13 +113,11 @@ export const CalendarPage: React.FC = () => {
     },
   };
 
-  // Filter events based on active category checkboxes
   const filteredEvents = rawEvents.filter((evt) => {
     if (filters.viewAll) return true;
     return Boolean(filters[evt.category]);
   });
 
-  // Map to FullCalendar event format
   const fcEvents = filteredEvents.map((evt) => {
     let start = evt.startDate;
     if (!evt.allDay && evt.startTime) {
@@ -133,7 +126,6 @@ export const CalendarPage: React.FC = () => {
 
     let end = evt.endDate || evt.startDate;
     if (evt.allDay) {
-      // FullCalendar allDay end is exclusive
       const d = new Date(end);
       d.setDate(d.getDate() + 1);
       end = d.toISOString().split("T")[0];
@@ -402,7 +394,8 @@ export const CalendarPage: React.FC = () => {
         message={
           <>
             Are you sure you want to delete{" "}
-            <strong className="text-[#32475c]">"{eventToDelete?.title}"</strong>?
+            <strong className="text-[#32475c]">"{eventToDelete?.title}"</strong>
+            ?
           </>
         }
         confirmText="Delete Event"

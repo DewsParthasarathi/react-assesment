@@ -1,6 +1,7 @@
 import React from "react";
 import type { ChatContact } from "../../../api/types";
 import { renderChatAvatar } from "../utils/chatAvatarHelper";
+import { CustomInput } from "../../../components/ui/CustomInput";
 
 interface ChatSidebarProps {
   contacts: ChatContact[];
@@ -47,12 +48,14 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
-          <input
+          <CustomInput
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search for contact..."
-            className="w-full pl-9 pr-3 py-1.5 bg-white border border-[#dbdade]/70 rounded-full text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden focus:border-[#696cff] transition"
+            sizeVariant="sm"
+            className="!pl-9 !pr-8 !py-1.5 !rounded-full border-[#dbdade]/70"
+            containerClassName="w-full"
           />
           {searchQuery && (
             <button

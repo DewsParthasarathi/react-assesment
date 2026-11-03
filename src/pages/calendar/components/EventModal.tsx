@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { CustomButton } from "../../../components/ui/CustomButton";
 import { CustomModal } from "../../../components/ui/CustomModal";
+import { CustomInput } from "../../../components/ui/CustomInput";
+import { CustomCheckbox } from "../../../components/ui/CustomCheckbox";
+import { CustomDropdown } from "../../../components/ui/CustomDropdown";
 import type { CalendarEvent, CalendarEventCategory } from "../../../api/types";
 
 interface EventModalProps {
@@ -109,55 +112,39 @@ export const EventModal: React.FC<EventModalProps> = ({
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Event Title <span className="text-red-500">*</span>
             </label>
-            <input
+            <CustomInput
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Sales Team Meeting"
-              className={`w-full h-10 px-3.5 rounded-[6px] border text-fs14 text-[#32475c] bg-white transition focus:outline-hidden ${
-                errors.title
-                  ? "border-red-500 focus:border-red-500"
-                  : "border-[#dbdade] focus:border-[#696cff]"
-              }`}
+              error={errors.title}
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
-            {errors.title && (
-              <p className="mt-1 text-fs12 text-red-500">{errors.title}</p>
-            )}
           </div>
 
-          {/* Category */}
+          {/* Category using CustomDropdown */}
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
-              Category <span className="text-red-500">*</span>
-            </label>
-            <select
+            <CustomDropdown
+              label="Category"
               value={category}
-              onChange={(e) => setCategory(e.target.value as CalendarEventCategory)}
-              className="w-full h-10 px-3.5 rounded-[6px] border border-[#dbdade] text-fs14 text-[#32475c] bg-white transition focus:outline-hidden focus:border-[#696cff] cursor-pointer"
-            >
-              {categoryOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+              onChange={(val) => setCategory(String(val) as CalendarEventCategory)}
+              sizeVariant="md"
+              options={categoryOptions.map((opt) => ({
+                label: opt.label,
+                value: opt.value,
+              }))}
+            />
           </div>
 
           {/* All Day Checkbox */}
           <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
+            <CustomCheckbox
               id="allDayCheckbox"
+              label="All Day Event"
               checked={allDay}
               onChange={(e) => setAllDay(e.target.checked)}
-              className="w-4 h-4 rounded border-[#dbdade] text-[#696cff] focus:ring-[#696cff] cursor-pointer accent-[#696cff]"
             />
-            <label
-              htmlFor="allDayCheckbox"
-              className="text-fs13 font-medium text-[#5d596c] cursor-pointer select-none"
-            >
-              All Day Event
-            </label>
           </div>
 
           {/* Dates & Times */}
@@ -167,19 +154,14 @@ export const EventModal: React.FC<EventModalProps> = ({
               <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
                 Start Date <span className="text-red-500">*</span>
               </label>
-              <input
+              <CustomInput
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className={`w-full h-10 px-3 rounded-[6px] border text-fs13 text-[#32475c] bg-white transition focus:outline-hidden ${
-                  errors.startDate
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-[#dbdade] focus:border-[#696cff]"
-                }`}
+                error={errors.startDate}
+                sizeVariant="md"
+                className="!px-3 rounded-[6px]"
               />
-              {errors.startDate && (
-                <p className="mt-1 text-fs12 text-red-500">{errors.startDate}</p>
-              )}
             </div>
 
             {/* Start Time */}
@@ -188,11 +170,12 @@ export const EventModal: React.FC<EventModalProps> = ({
                 <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
                   Start Time
                 </label>
-                <input
+                <CustomInput
                   type="time"
                   value={startTime}
                   onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full h-10 px-3 rounded-[6px] border border-[#dbdade] text-fs13 text-[#32475c] bg-white transition focus:outline-hidden focus:border-[#696cff]"
+                  sizeVariant="md"
+                  className="!px-3 rounded-[6px]"
                 />
               </div>
             )}
@@ -202,19 +185,14 @@ export const EventModal: React.FC<EventModalProps> = ({
               <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
                 End Date <span className="text-red-500">*</span>
               </label>
-              <input
+              <CustomInput
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className={`w-full h-10 px-3 rounded-[6px] border text-fs13 text-[#32475c] bg-white transition focus:outline-hidden ${
-                  errors.endDate
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-[#dbdade] focus:border-[#696cff]"
-                }`}
+                error={errors.endDate}
+                sizeVariant="md"
+                className="!px-3 rounded-[6px]"
               />
-              {errors.endDate && (
-                <p className="mt-1 text-fs12 text-red-500">{errors.endDate}</p>
-              )}
             </div>
 
             {/* End Time */}
@@ -223,19 +201,14 @@ export const EventModal: React.FC<EventModalProps> = ({
                 <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
                   End Time
                 </label>
-                <input
+                <CustomInput
                   type="time"
                   value={endTime}
                   onChange={(e) => setEndTime(e.target.value)}
-                  className={`w-full h-10 px-3 rounded-[6px] border text-fs13 text-[#32475c] bg-white transition focus:outline-hidden ${
-                    errors.endTime
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-[#dbdade] focus:border-[#696cff]"
-                  }`}
+                  error={errors.endTime}
+                  sizeVariant="md"
+                  className="!px-3 rounded-[6px]"
                 />
-                {errors.endTime && (
-                  <p className="mt-1 text-fs12 text-red-500">{errors.endTime}</p>
-                )}
               </div>
             )}
           </div>
@@ -245,12 +218,13 @@ export const EventModal: React.FC<EventModalProps> = ({
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Location
             </label>
-            <input
+            <CustomInput
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="e.g. Conference Room A, Zoom"
-              className="w-full h-10 px-3.5 rounded-[6px] border border-[#dbdade] text-fs14 text-[#32475c] bg-white transition focus:outline-hidden focus:border-[#696cff]"
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
           </div>
 
@@ -274,7 +248,7 @@ export const EventModal: React.FC<EventModalProps> = ({
               Event Color
             </label>
             <div className="flex items-center gap-3">
-              <input
+              <CustomInput
                 type="color"
                 value={
                   color ||
@@ -282,7 +256,8 @@ export const EventModal: React.FC<EventModalProps> = ({
                   "#696cff"
                 }
                 onChange={(e) => setColor(e.target.value)}
-                className="w-9 h-9 p-0.5 rounded-[6px] border border-[#dbdade] bg-white cursor-pointer"
+                containerClassName="w-auto"
+                className="!w-9 !h-9 !p-0.5 rounded-[6px] border border-[#dbdade] bg-white cursor-pointer"
               />
               <span className="text-fs13 text-[#6f6b7d]">
                 {color ? color : "Auto-matched by category"}

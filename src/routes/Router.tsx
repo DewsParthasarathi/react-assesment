@@ -10,6 +10,8 @@ import { InvoiceListPage } from "../pages/invoice/InvoiceListPage";
 import { InvoicePreviewPage } from "../pages/invoice/InvoicePreviewPage";
 import { InvoiceAddPage } from "../pages/invoice/InvoiceAddPage";
 import { InvoiceEditPage } from "../pages/invoice/InvoiceEditPage";
+import { UserPage } from "../pages/user/UserPage";
+import { RolesPage } from "../pages/roles/RolesPage";
 import Login from "../pages/login-pages/Login";
 import NotFound from "../pages/NotFound";
 
@@ -66,6 +68,30 @@ export const router = createBrowserRouter([
       {
         path: "calendar",
         element: <CalendarPage />,
+      },
+      {
+        path: "apps/user",
+        element: <UserPage />,
+      },
+      {
+        path: "user",
+        element: <UserPage />,
+      },
+      {
+        path: "apps/roles/list",
+        element: <RolesPage />,
+      },
+      {
+        path: "apps/roles",
+        element: <RolesPage />,
+      },
+      {
+        path: "roles/list",
+        element: <RolesPage />,
+      },
+      {
+        path: "roles",
+        element: <RolesPage />,
       },
       {
         path: "apps/invoice/list",

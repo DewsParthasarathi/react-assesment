@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import type { CalendarEvent, CalendarEventCategory } from "../../../api/types";
+import { CustomInput } from "../../../components/ui/CustomInput";
+import { CustomDropdown } from "../../../components/ui/CustomDropdown";
 
 interface EventDrawerProps {
   isOpen: boolean;
@@ -188,43 +190,29 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 Title
               </label>
-              <input
+              <CustomInput
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
-                className={`w-full h-11 px-3.5 rounded-[6px] border text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden ${
-                  errors.title
-                    ? "border-[#ff4c51] focus:border-[#ff4c51]"
-                    : "border-[#dbdade] focus:border-[#696cff]"
-                }`}
+                error={errors.title}
+                sizeVariant="md"
+                className="!h-11 px-3.5 rounded-[6px]"
               />
-              {errors.title && (
-                <p className="mt-1 text-fs12 text-[#ff4c51]">{errors.title}</p>
-              )}
             </div>
 
-            {/* Calendar (Category) Select */}
+            {/* Calendar (Category) Select using CustomDropdown */}
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
-                Calendar
-              </label>
-              <select
+              <CustomDropdown
+                label="Calendar"
                 value={category}
-                onChange={(e) => setCategory(e.target.value as CalendarEventCategory)}
-                className="w-full h-11 px-3.5 pr-8 rounded-[6px] border border-[#dbdade] text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff] cursor-pointer appearance-none capitalize"
-              >
-                {categoryOptions.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#a5a3ae]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+                onChange={(val) => setCategory(String(val) as CalendarEventCategory)}
+                sizeVariant="md"
+                options={categoryOptions.map((opt) => ({
+                  label: opt.label,
+                  value: opt.value,
+                }))}
+              />
             </div>
 
             {/* Start Date */}
@@ -232,19 +220,14 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 Start Date
               </label>
-              <input
+              <CustomInput
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className={`w-full h-11 px-3.5 rounded-[6px] border text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden ${
-                  errors.startDate
-                    ? "border-[#ff4c51] focus:border-[#ff4c51]"
-                    : "border-[#dbdade] focus:border-[#696cff]"
-                }`}
+                error={errors.startDate}
+                sizeVariant="md"
+                className="!h-11 px-3.5 rounded-[6px]"
               />
-              {errors.startDate && (
-                <p className="mt-1 text-fs12 text-[#ff4c51]">{errors.startDate}</p>
-              )}
             </div>
 
             {/* End Date */}
@@ -252,19 +235,14 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 End Date
               </label>
-              <input
+              <CustomInput
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className={`w-full h-11 px-3.5 rounded-[6px] border text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden ${
-                  errors.endDate
-                    ? "border-[#ff4c51] focus:border-[#ff4c51]"
-                    : "border-[#dbdade] focus:border-[#696cff]"
-                }`}
+                error={errors.endDate}
+                sizeVariant="md"
+                className="!h-11 px-3.5 rounded-[6px]"
               />
-              {errors.endDate && (
-                <p className="mt-1 text-fs12 text-[#ff4c51]">{errors.endDate}</p>
-              )}
             </div>
 
             {/* All Day Toggle Switch */}
@@ -299,22 +277,24 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                   <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                     Start Time
                   </label>
-                  <input
+                  <CustomInput
                     type="time"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-[6px] border border-[#dbdade] text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff]"
+                    sizeVariant="md"
+                    className="!h-11 px-3.5 rounded-[6px]"
                   />
                 </div>
                 <div className="relative">
                   <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                     End Time
                   </label>
-                  <input
+                  <CustomInput
                     type="time"
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-[6px] border border-[#dbdade] text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff]"
+                    sizeVariant="md"
+                    className="!h-11 px-3.5 rounded-[6px]"
                   />
                 </div>
               </div>
@@ -325,37 +305,33 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 Event URL
               </label>
-              <input
+              <CustomInput
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Event URL"
-                className="w-full h-11 px-3.5 rounded-[6px] border border-[#dbdade] text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff]"
+                sizeVariant="md"
+                className="!h-11 px-3.5 rounded-[6px]"
               />
             </div>
 
-            {/* Guests Select */}
+            {/* Guests Select using CustomDropdown */}
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
-                Guests
-              </label>
-              <select
+              <CustomDropdown
+                label="Guests"
                 value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="w-full h-11 px-3.5 pr-8 rounded-[6px] border border-[#dbdade] text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff] cursor-pointer appearance-none"
-              >
-                <option value="">Guests</option>
-                <option value="Jane Smith">Jane Smith</option>
-                <option value="John Doe">John Doe</option>
-                <option value="Robert Johnson">Robert Johnson</option>
-                <option value="Emily Davis">Emily Davis</option>
-                <option value="Michael Brown">Michael Brown</option>
-              </select>
-              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#a5a3ae]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+                onChange={(val) => setGuests(String(val))}
+                placeholder="Guests"
+                sizeVariant="md"
+                options={[
+                  { label: "Guests", value: "" },
+                  { label: "Jane Smith", value: "Jane Smith" },
+                  { label: "John Doe", value: "John Doe" },
+                  { label: "Robert Johnson", value: "Robert Johnson" },
+                  { label: "Emily Davis", value: "Emily Davis" },
+                  { label: "Michael Brown", value: "Michael Brown" },
+                ]}
+              />
             </div>
 
             {/* Description Textarea */}

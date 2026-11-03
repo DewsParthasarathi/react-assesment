@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CustomButton } from "../../../components/ui/CustomButton";
+import { CustomInput } from "../../../components/ui/CustomInput";
 
 interface ChatMessageInputProps {
   onSendMessage: (text: string) => void;
@@ -40,14 +41,15 @@ export const ChatMessageInput: React.FC<ChatMessageInputProps> = ({
         method="dialog"
         className="border border-[#dbdade]/70 rounded-[6px] flex items-center px-4 py-1.5 bg-white shadow-2xs focus-within:border-[#696cff] transition"
       >
-        <input
+        <CustomInput
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={disabled}
           placeholder="Type Your Messge here..."
-          className="flex-1 text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden bg-transparent"
+          containerClassName="flex-1"
+          className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
         />
 
         {/* Action icons & Send button */}

@@ -16,12 +16,9 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
     </>
   ),
 }) => {
-  // Format description into exactly two lines
   const renderDescription = () => {
     if (typeof description === "string") {
       const trimmed = description.trim();
-
-      // Case 1: Two sentences separated by a period
       const dotIndex = trimmed.indexOf(". ");
       if (dotIndex !== -1 && dotIndex < trimmed.length - 2) {
         return (
@@ -33,7 +30,6 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
         );
       }
 
-      // Case 2: Explicit "Check your new badge" boundary
       if (trimmed.includes("Check your new badge")) {
         const parts = trimmed.split("Check your new badge");
         return (
@@ -45,7 +41,6 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
         );
       }
 
-      // Case 3: Single sentence - break around middle at word boundary
       const words = trimmed.split(" ");
       if (words.length >= 5) {
         const mid = Math.ceil(words.length / 2);

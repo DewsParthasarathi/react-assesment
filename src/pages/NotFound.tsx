@@ -14,10 +14,8 @@ export const NotFound: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#f5f5f9] p-4 sm:p-6 text-center select-none relative overflow-hidden">
-      {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#696cff]/5 via-[#696cff]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-0" />
 
-      {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-2xl flex flex-col items-center py-8">
         <h1 className="text-fs28 sm:text-fs34 md:text-fs38 font-bold text-[#566a7f] tracking-tight leading-tight">
           Page Not Found :(
@@ -46,7 +44,6 @@ export const NotFound: React.FC = () => {
           Back to Home
         </Link>
 
-        {/* 404 Illustration */}
         <div className="mt-8 sm:mt-10 w-full flex justify-center items-center">
           <img
             src={notFoundIllustration}

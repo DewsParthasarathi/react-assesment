@@ -4,6 +4,34 @@ export interface User {
   name: string;
   role: string;
   avatar: string;
+  username?: string;
+  plan?: string;
+  billing?: string;
+  status?: "Active" | "Pending" | "Inactive";
+}
+
+export interface RolePermission {
+  module: string;
+  read: boolean;
+  write: boolean;
+  create: boolean;
+}
+
+export interface AssignedUser {
+  id: string;
+  name: string;
+  avatar?: string;
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  description?: string;
+  totalUsers: number;
+  assignedUsers?: AssignedUser[];
+  permissions: RolePermission[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface LoginCredentials {

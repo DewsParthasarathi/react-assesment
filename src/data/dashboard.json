@@ -47,6 +47,72 @@
       "name": "Jessica Taylor",
       "role": "Marketing Lead",
       "avatar": "member6"
+    },
+    {
+      "id": "u-1",
+      "name": "Jordan stevenson",
+      "username": "dan85@johnson.com",
+      "email": "gslixby0@abc.net.au",
+      "role": "Editor",
+      "plan": "Enterprise",
+      "billing": "Auto Debit",
+      "status": "Inactive",
+      "avatar": "member1"
+    },
+    {
+      "id": "u-2",
+      "name": "Stephanie Burns",
+      "username": "brenda49@taylor.info",
+      "email": "hredmore1@imgur.com",
+      "role": "Author",
+      "plan": "Team",
+      "billing": "Manual - Paypal",
+      "status": "Pending",
+      "avatar": "member2"
+    },
+    {
+      "id": "u-3",
+      "name": "Tony herrera",
+      "username": "smithfany@powers.com",
+      "email": "msicely2@who.int",
+      "role": "Maintainer",
+      "plan": "Enterprise",
+      "billing": "Manual - Cash",
+      "status": "Active",
+      "avatar": "member3"
+    },
+    {
+      "id": "u-4",
+      "name": "Kevin Patton",
+      "username": "brenda49@taylor.info",
+      "email": "crisby3@wordpress.com",
+      "role": "SubScriber",
+      "plan": "Team",
+      "billing": "Auto Debit",
+      "status": "Inactive",
+      "avatar": "member4"
+    },
+    {
+      "id": "u-5",
+      "name": "Mrs. Julie Donovan MD",
+      "username": "smithfany@powers.com",
+      "email": "mhurran4@yahoo.co.jp",
+      "role": "SubScriber",
+      "plan": "Enterprise",
+      "billing": "Auto Debit",
+      "status": "Pending",
+      "avatar": "member5"
+    },
+    {
+      "id": "u-6",
+      "name": "Tony herrera",
+      "username": "smithfany@powers.com",
+      "email": "shalstead5@shinstat.com",
+      "role": "Maintainer",
+      "plan": "Team",
+      "billing": "Manul - Credit Card",
+      "status": "Active",
+      "avatar": "member6"
     }
   ],
   "profiles": [
@@ -4325,6 +4391,19 @@
       "category": "business",
       "location": "",
       "color": ""
+    },
+    {
+      "id": "evt-1793702726578",
+      "title": "fun day",
+      "description": "",
+      "startDate": "2023-03-14",
+      "startTime": "09:00",
+      "endDate": "2023-03-14",
+      "endTime": "12:00",
+      "allDay": false,
+      "category": "business",
+      "location": "",
+      "color": ""
     }
   ],
   "invoices": [
@@ -4647,6 +4726,423 @@
       "dueDate": "2023-03-18",
       "createdAt": "2023-02-18T10:00:00Z",
       "updatedAt": "2023-02-18T10:00:00Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "name": "Administrator",
+      "description": "Full access to all system features, settings, and user management.",
+      "totalUsers": 4,
+      "assignedUsers": [
+        {
+          "id": "u-1",
+          "name": "Jordan Stevenson",
+          "avatar": "member1"
+        },
+        {
+          "id": "u-2",
+          "name": "Stephanie Burns",
+          "avatar": "member2"
+        },
+        {
+          "id": "u-3",
+          "name": "Tony Herrera",
+          "avatar": "member3"
+        },
+        {
+          "id": "u-4",
+          "name": "Kevin Patton",
+          "avatar": "member4"
+        }
+      ],
+      "permissions": [
+        {
+          "module": "User Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Content Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Disputes Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Database Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Financial Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Reporting",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "API Control",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Repository",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Payroll",
+          "read": true,
+          "write": true,
+          "create": true
+        }
+      ],
+      "createdAt": "2023-01-01T00:00:00Z",
+      "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Manager",
+      "description": "Can manage content, view user reports, and handle basic operations.",
+      "totalUsers": 7,
+      "assignedUsers": [
+        {
+          "id": "u-1",
+          "name": "Jordan Stevenson",
+          "avatar": "member1"
+        },
+        {
+          "id": "u-2",
+          "name": "Stephanie Burns",
+          "avatar": "member2"
+        },
+        {
+          "id": "u-3",
+          "name": "Tony Herrera",
+          "avatar": "member3"
+        },
+        {
+          "id": "u-4",
+          "name": "Kevin Patton",
+          "avatar": "member4"
+        }
+      ],
+      "permissions": [
+        {
+          "module": "User Management",
+          "read": true,
+          "write": true,
+          "create": false
+        },
+        {
+          "module": "Content Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Disputes Management",
+          "read": true,
+          "write": true,
+          "create": false
+        },
+        {
+          "module": "Database Management",
+          "read": true,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Financial Management",
+          "read": true,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Reporting",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "API Control",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Repository",
+          "read": true,
+          "write": true,
+          "create": false
+        },
+        {
+          "module": "Payroll",
+          "read": false,
+          "write": false,
+          "create": false
+        }
+      ],
+      "createdAt": "2023-01-02T00:00:00Z",
+      "updatedAt": "2023-01-02T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Users",
+      "description": "Standard regular users with access to public contents and personal profile.",
+      "totalUsers": 5,
+      "assignedUsers": [
+        {
+          "id": "u-1",
+          "name": "Jordan Stevenson",
+          "avatar": "member1"
+        },
+        {
+          "id": "u-2",
+          "name": "Stephanie Burns",
+          "avatar": "member2"
+        },
+        {
+          "id": "u-3",
+          "name": "Tony Herrera",
+          "avatar": "member3"
+        },
+        {
+          "id": "u-4",
+          "name": "Kevin Patton",
+          "avatar": "member4"
+        }
+      ],
+      "permissions": [
+        {
+          "module": "User Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Content Management",
+          "read": true,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Disputes Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Database Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Financial Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Reporting",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "API Control",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Repository",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Payroll",
+          "read": false,
+          "write": false,
+          "create": false
+        }
+      ],
+      "createdAt": "2023-01-03T00:00:00Z",
+      "updatedAt": "2023-01-03T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Support",
+      "description": "Support personnel capable of viewing users, resolving disputes, and viewing reports.",
+      "totalUsers": 3,
+      "assignedUsers": [
+        {
+          "id": "u-1",
+          "name": "Jordan Stevenson",
+          "avatar": "member1"
+        },
+        {
+          "id": "u-2",
+          "name": "Stephanie Burns",
+          "avatar": "member2"
+        },
+        {
+          "id": "u-3",
+          "name": "Tony Herrera",
+          "avatar": "member3"
+        }
+      ],
+      "permissions": [
+        {
+          "module": "User Management",
+          "read": true,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Content Management",
+          "read": true,
+          "write": true,
+          "create": false
+        },
+        {
+          "module": "Disputes Management",
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        {
+          "module": "Database Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Financial Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Reporting",
+          "read": true,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "API Control",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Repository",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Payroll",
+          "read": false,
+          "write": false,
+          "create": false
+        }
+      ],
+      "createdAt": "2023-01-04T00:00:00Z",
+      "updatedAt": "2023-01-04T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Restricted User",
+      "description": "Restricted accounts with strictly read-only capabilities for limited sections.",
+      "totalUsers": 2,
+      "assignedUsers": [
+        {
+          "id": "u-1",
+          "name": "Jordan Stevenson",
+          "avatar": "member1"
+        },
+        {
+          "id": "u-2",
+          "name": "Stephanie Burns",
+          "avatar": "member2"
+        }
+      ],
+      "permissions": [
+        {
+          "module": "User Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Content Management",
+          "read": true,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Disputes Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Database Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Financial Management",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Reporting",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "API Control",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Repository",
+          "read": false,
+          "write": false,
+          "create": false
+        },
+        {
+          "module": "Payroll",
+          "read": false,
+          "write": false,
+          "create": false
+        }
+      ],
+      "createdAt": "2023-01-05T00:00:00Z",
+      "updatedAt": "2023-01-05T00:00:00Z"
     }
   ]
 }

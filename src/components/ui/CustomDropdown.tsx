@@ -6,6 +6,8 @@ export interface DropdownOption {
   disabled?: boolean;
 }
 
+export type DropdownSize = 'sm' | 'md' | 'lg';
+
 export interface CustomDropdownProps {
   options: DropdownOption[];
   value?: string | number;
@@ -18,7 +20,14 @@ export interface CustomDropdownProps {
   className?: string;
   containerClassName?: string;
   id?: string;
+  sizeVariant?: DropdownSize;
 }
+
+const sizeStyles: Record<DropdownSize, string> = {
+  sm: 'h-8 px-2.5 text-fs12',
+  md: 'h-10 px-3.5 text-fs14',
+  lg: 'h-12 px-3.5 text-fs14',
+};
 
 export const CustomDropdown: React.FC<CustomDropdownProps> = ({
   options,
@@ -32,6 +41,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
   className = '',
   containerClassName = '',
   id,
+  sizeVariant = 'lg',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string | number | undefined>(defaultValue);
@@ -95,7 +105,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
         onKeyDown={handleKeyDown}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className={`w-full h-12 px-3.5 rounded-md border text-fs14 bg-white flex items-center justify-between text-left transition outline-none cursor-pointer ${
+        className={`w-full ${sizeStyles[sizeVariant]} rounded-md border bg-white flex items-center justify-between text-left transition outline-none cursor-pointer ${
           error
             ? 'border-red-500 focus:ring-1 focus:ring-red-500'
             : 'border-[#dbdade] hover:border-[#b8b7be] focus:border-[#696cff] focus:ring-1 focus:ring-[#696cff]'

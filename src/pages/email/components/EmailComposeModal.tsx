@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CustomButton } from "../../../components/ui/CustomButton";
+import { CustomInput } from "../../../components/ui/CustomInput";
 import type { EmailComposePayload, EmailItem } from "../../../api/types";
 
 interface EmailComposeModalProps {
@@ -135,13 +136,14 @@ const EmailComposeForm: React.FC<{
             >
               To:
             </label>
-            <input
+            <CustomInput
               id="email-to"
               type="email"
               value={to}
               onChange={(e) => setTo(e.target.value)}
               placeholder="recipient@example.com"
-              className="flex-1 text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden"
+              containerClassName="flex-1"
+              className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
               autoFocus
             />
             <div className="flex items-center gap-2 text-fs12 text-[#696cff] shrink-0 font-medium ml-2">
@@ -175,13 +177,14 @@ const EmailComposeForm: React.FC<{
               >
                 Cc:
               </label>
-              <input
+              <CustomInput
                 id="email-cc"
                 type="text"
                 value={cc}
                 onChange={(e) => setCc(e.target.value)}
                 placeholder="cc-recipient@example.com"
-                className="flex-1 text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden"
+                containerClassName="flex-1"
+                className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
               />
             </div>
           )}
@@ -195,13 +198,14 @@ const EmailComposeForm: React.FC<{
               >
                 Bcc:
               </label>
-              <input
+              <CustomInput
                 id="email-bcc"
                 type="text"
                 value={bcc}
                 onChange={(e) => setBcc(e.target.value)}
                 placeholder="bcc-recipient@example.com"
-                className="flex-1 text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden"
+                containerClassName="flex-1"
+                className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
               />
             </div>
           )}
@@ -214,13 +218,14 @@ const EmailComposeForm: React.FC<{
             >
               Subject:
             </label>
-            <input
+            <CustomInput
               id="email-subject"
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Meeting agenda, sales inquiry..."
-              className="flex-1 text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden"
+              containerClassName="flex-1"
+              className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
             />
           </div>
 

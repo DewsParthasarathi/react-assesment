@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomModal } from "../../components/ui/CustomModal";
+import { CustomInput } from "../../components/ui/CustomInput";
+import { CustomDropdown } from "../../components/ui/CustomDropdown";
+import { CustomTable, type TableColumn } from "../../components/ui/Table";
 import {
   useInvoiceByIdQuery,
   useInvoicesQuery,
@@ -136,6 +139,49 @@ export const InvoicePreviewPage: React.FC = () => {
     },
   ];
 
+  const itemColumns: TableColumn<(typeof items)[0]>[] = [
+    {
+      id: "item",
+      header: "ITEM",
+      headerClassName:
+        "py-3.5 pr-4 font-bold text-fs12 text-[#5d596c] uppercase tracking-wider",
+      className: "py-4 pr-4 font-medium text-[#5d596c] whitespace-nowrap",
+      render: (row) => row.item,
+    },
+    {
+      id: "description",
+      header: "DESCRIPTION",
+      headerClassName:
+        "py-3.5 px-4 font-bold text-fs12 text-[#5d596c] uppercase tracking-wider",
+      className: "py-4 px-4 whitespace-nowrap",
+      render: (row) => row.description,
+    },
+    {
+      id: "hours",
+      header: "HOURS",
+      headerClassName:
+        "py-3.5 px-4 font-bold text-fs12 text-[#5d596c] uppercase tracking-wider",
+      className: "py-4 px-4 whitespace-nowrap",
+      render: (row) => row.hours,
+    },
+    {
+      id: "qty",
+      header: "QTY",
+      headerClassName:
+        "py-3.5 px-4 font-bold text-fs12 text-[#5d596c] uppercase tracking-wider",
+      className: "py-4 px-4 whitespace-nowrap",
+      render: (row) => row.qty,
+    },
+    {
+      id: "total",
+      header: "TOTAL",
+      headerClassName:
+        "py-3.5 pl-4 font-bold text-fs12 text-[#5d596c] uppercase tracking-wider",
+      className: "py-4 pl-4 whitespace-nowrap font-medium text-[#5d596c]",
+      render: (row) => row.total,
+    },
+  ];
+
   return (
     <div className="w-full max-w-full flex-1 flex flex-col lg:flex-row items-start gap-6 min-w-0 pb-10">
       {/* Toast Notification */}
@@ -222,34 +268,18 @@ export const InvoicePreviewPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Items Table */}
+        {/* Items Table using CustomTable */}
         <div className="mt-8 overflow-x-auto">
-          <table className="w-full text-left border-collapse text-fs14">
-            <thead>
-              <tr className="border-y border-[#dbdade]/70 text-fs12 font-bold text-[#5d596c] uppercase tracking-wider">
-                <th className="py-3.5 pr-4 font-bold">ITEM</th>
-                <th className="py-3.5 px-4 font-bold">DESCRIPTION</th>
-                <th className="py-3.5 px-4 font-bold">HOURS</th>
-                <th className="py-3.5 px-4 font-bold">QTY</th>
-                <th className="py-3.5 pl-4 font-bold">TOTAL</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#dbdade]/40 text-fs13 text-[#6f6b7d]">
-              {items.map((row, idx) => (
-                <tr key={idx} className="hover:bg-[#fafafb]/60 transition-colors">
-                  <td className="py-4 pr-4 font-medium text-[#5d596c] whitespace-nowrap">
-                    {row.item}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap">{row.description}</td>
-                  <td className="py-4 px-4 whitespace-nowrap">{row.hours}</td>
-                  <td className="py-4 px-4 whitespace-nowrap">{row.qty}</td>
-                  <td className="py-4 pl-4 whitespace-nowrap font-medium text-[#5d596c]">
-                    {row.total}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <CustomTable
+            columns={itemColumns}
+            data={items}
+            keyExtractor={(_, idx) => idx}
+            className="w-full overflow-x-auto"
+            tableClassName="w-full text-left border-collapse text-fs14"
+            headerRowClassName="border-y border-[#dbdade]/70 text-fs12 font-bold text-[#5d596c] uppercase tracking-wider"
+            bodyClassName="divide-y divide-[#dbdade]/40 text-fs13 text-[#6f6b7d]"
+            bodyRowClassName="hover:bg-[#fafafb]/60 transition-colors"
+          />
         </div>
 
         {/* Salesperson & Financial Summary */}
@@ -363,12 +393,13 @@ export const InvoicePreviewPage: React.FC = () => {
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Recipient Email *
             </label>
-            <input
+            <CustomInput
               type="email"
               required
               value={sendToEmail}
               onChange={(e) => setSendToEmail(e.target.value)}
-              className="w-full h-10 px-3.5 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
           </div>
 
@@ -376,12 +407,13 @@ export const InvoicePreviewPage: React.FC = () => {
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Subject
             </label>
-            <input
+            <CustomInput
               type="text"
               required
               value={sendSubject}
               onChange={(e) => setSendSubject(e.target.value)}
-              className="w-full h-10 px-3.5 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
           </div>
 
@@ -435,14 +467,15 @@ export const InvoicePreviewPage: React.FC = () => {
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Payment Amount ($) *
             </label>
-            <input
+            <CustomInput
               type="number"
               min="1"
               max={invoice.balance || 99999}
               required
               value={paymentAmount}
               onChange={(e) => setPaymentAmount(Number(e.target.value))}
-              className="w-full h-10 px-3.5 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
           </div>
 
@@ -450,41 +483,42 @@ export const InvoicePreviewPage: React.FC = () => {
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Payment Date *
             </label>
-            <input
+            <CustomInput
               type="date"
               required
               value={paymentDate}
               onChange={(e) => setPaymentDate(e.target.value)}
-              className="w-full h-10 px-3.5 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
           </div>
 
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
-              Payment Method
-            </label>
-            <select
+            <CustomDropdown
+              label="Payment Method"
               value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-              className="w-full h-10 px-3.5 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white cursor-pointer"
-            >
-              <option value="Bank Transfer">Bank Transfer</option>
-              <option value="Credit Card">Credit Card</option>
-              <option value="Paypal">Paypal</option>
-              <option value="Cash">Cash</option>
-            </select>
+              onChange={(val) => setPaymentMethod(String(val))}
+              sizeVariant="md"
+              options={[
+                { label: "Bank Transfer", value: "Bank Transfer" },
+                { label: "Credit Card", value: "Credit Card" },
+                { label: "Paypal", value: "Paypal" },
+                { label: "Cash", value: "Cash" },
+              ]}
+            />
           </div>
 
           <div>
             <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
               Internal Note (Optional)
             </label>
-            <input
+            <CustomInput
               type="text"
               placeholder="e.g. Wire transfer received via America Bank"
               value={paymentNote}
               onChange={(e) => setPaymentNote(e.target.value)}
-              className="w-full h-10 px-3.5 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              sizeVariant="md"
+              className="rounded-[6px]"
             />
           </div>
 
