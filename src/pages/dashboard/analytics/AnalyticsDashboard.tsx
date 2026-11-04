@@ -1,5 +1,6 @@
 import React from "react";
-import { useAppSelector } from "../../../store/hooks";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store";
 import { useDashboardQuery } from "../../../hooks/useDashboardQuery";
 import { WelcomeCard } from "./WelcomeCard";
 import { OrderCard } from "./OrderCard";
@@ -15,7 +16,7 @@ import { ActivityTimelineCard } from "./ActivityTimelineCard";
 import { BrowserAnalyticsCard } from "./BrowserAnalyticsCard";
 
 export const AnalyticsDashboard: React.FC = () => {
-  const currentUser = useAppSelector((state) => state.auth.user);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
   const userId = currentUser?.id || "1";
 
   const {
@@ -156,14 +157,14 @@ export const AnalyticsDashboard: React.FC = () => {
 
       {/* ROW 4: Activity Timeline (5 cols) + Browser Analytics (7 cols) */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-5">
+        <div className="col-span-12 lg:col-span-6">
           <ActivityTimelineCard
             activities={profile.activities}
             years={profile.activitiesYears}
             availableYears={profile.availableYears}
           />
         </div>
-        <div className="col-span-12 lg:col-span-7">
+        <div className="col-span-12 lg:col-span-6">
           <BrowserAnalyticsCard />
         </div>
       </div>

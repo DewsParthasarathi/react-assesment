@@ -168,6 +168,8 @@ function mockApiPlugin(): Plugin {
         const saveDashboardData = (newData: unknown) => {
           try {
             fs.writeFileSync(dataFilePath, JSON.stringify(newData, null, 2), "utf-8");
+            const dbFilePath = path.resolve(__dirname, "db.json");
+            fs.writeFileSync(dbFilePath, JSON.stringify(newData, null, 2), "utf-8");
           } catch (e) {
             console.error("Error saving dashboard.json:", e);
           }
@@ -927,6 +929,156 @@ function mockApiPlugin(): Plugin {
           }
           res.statusCode = 200;
           res.end(JSON.stringify({ success: true }));
+          return;
+        }
+
+        // 10. PERMISSION ENDPOINTS
+        // 10.1. GET /api/permissions
+        if (req.method === "GET" && pathname === "/api/permissions") {
+          const data = getDashboardData();
+          const permissions = data?.permissions || [];
+          res.statusCode = 200;
+          res.end(JSON.stringify(permissions));
+          return;
+        }
+
+        // 10.2. POST /api/permissions
+        if (req.method === "POST" && pathname === "/api/permissions") {
+          readJsonBody().then((body) => {
+            const data = getDashboardData();
+            if (!data.permissions) data.permissions = [];
+            const newId = `perm-${Date.now()}`;
+            const now = new Date();
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let hours = now.getHours();
+            const ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12;
+            const formattedDate = `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}, ${hours}:${now.getMinutes().toString().padStart(2, "0")} ${ampm}`;
+
+            const newPerm = {
+              id: (body.id as string) || newId,
+              name: (body.name as string) || "New Permission",
+              assignedTo: Array.isArray(body.assignedTo) && body.assignedTo.length > 0 ? body.assignedTo : ["Administrator"],
+              createdDate: (body.createdDate as string) || formattedDate,
+              createdAt: now.toISOString(),
+              category: (body.category as string) || "Basic",
+              isCore: Boolean(body.isCore),
+            };
+            data.permissions.unshift(newPerm);
+            saveDashboardData(data);
+            res.statusCode = 201;
+            res.end(JSON.stringify(newPerm));
+          });
+          return;
+        }
+
+        // 10.3. GET /api/permissions/:id
+        const singlePermMatch = pathname.match(/^\/api\/permissions\/([^/]+)$/);
+        if (req.method === "GET" && singlePermMatch) {
+          const permId = singlePermMatch[1];
+          const data = getDashboardData();
+          const perm = (data?.permissions || []).find((p: { id: string }) => p.id === permId);
+          if (perm) {
+            res.statusCode = 200;
+            res.end(JSON.stringify(perm));
+          } else {
+            res.statusCode = 404;
+            res.end(JSON.stringify({ error: "Permission not found" }));
+          }
+          return;
+        }
+
+        // 10.4. PUT /api/permissions/:id
+        if ((req.method === "PUT" || req.method === "PATCH") && singlePermMatch) {
+          const permId = singlePermMatch[1];
+          readJsonBody().then((body) => {
+            const data = getDashboardData();
+            const perms = (data?.permissions || []) as Array<Record<string, unknown>>;
+            const permIndex = perms.findIndex((p) => p.id === permId);
+            if (permIndex === -1) {
+              res.statusCode = 404;
+              res.end(JSON.stringify({ error: "Permission not found" }));
+              return;
+            }
+
+            const updatedPerm = {
+              ...perms[permIndex],
+              ...body,
+              id: permId,
+            };
+            perms[permIndex] = updatedPerm;
+            data.permissions = perms;
+            saveDashboardData(data);
+            res.statusCode = 200;
+            res.end(JSON.stringify(updatedPerm));
+          });
+          return;
+        }
+
+        // 10.5. DELETE /api/permissions/:id
+        if (req.method === "DELETE" && singlePermMatch) {
+          const permId = singlePermMatch[1];
+          const data = getDashboardData();
+          if (data?.permissions) {
+            data.permissions = (data.permissions as Array<{ id: string }>).filter(
+              (p) => p.id !== permId,
+            );
+            saveDashboardData(data);
+          }
+          res.statusCode = 200;
+          res.end(JSON.stringify({ success: true }));
+          return;
+        }
+
+        // 11. PROFILE ENDPOINTS
+        // 11.1. GET /api/profile
+        if (req.method === "GET" && pathname === "/api/profile") {
+          const data = getDashboardData();
+          res.statusCode = 200;
+          res.end(JSON.stringify(data?.userProfile || null));
+          return;
+        }
+
+        // 11.2. GET /api/profile/projects
+        if (req.method === "GET" && pathname === "/api/profile/projects") {
+          const data = getDashboardData();
+          res.statusCode = 200;
+          res.end(JSON.stringify(data?.userProfile?.projects || []));
+          return;
+        }
+
+        // 11.3. GET /api/profile/teams
+        if (req.method === "GET" && pathname === "/api/profile/teams") {
+          const data = getDashboardData();
+          res.statusCode = 200;
+          res.end(JSON.stringify(data?.userProfile?.teams || []));
+          return;
+        }
+
+        // 11.4. GET /api/profile/connections
+        if (req.method === "GET" && pathname === "/api/profile/connections") {
+          const data = getDashboardData();
+          res.statusCode = 200;
+          res.end(JSON.stringify(data?.userProfile?.connections || []));
+          return;
+        }
+
+        // 11.5. PATCH /api/profile/connection/:id (Toggle Connection)
+        const toggleConnMatch = pathname.match(/^\/api\/profile\/connection\/([^/]+)$/);
+        if (req.method === "PATCH" && toggleConnMatch) {
+          const connId = toggleConnMatch[1];
+          const data = getDashboardData();
+          const connections = data?.userProfile?.connections || [];
+          const found = connections.find((c: { id: string }) => c.id === connId);
+          if (found) {
+            found.isConnected = !found.isConnected;
+            saveDashboardData(data);
+            res.statusCode = 200;
+            res.end(JSON.stringify(found));
+          } else {
+            res.statusCode = 404;
+            res.end(JSON.stringify({ error: "Connection not found" }));
+          }
           return;
         }
 

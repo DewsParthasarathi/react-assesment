@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomImage } from "../../components/ui/CustomImage";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../store";
 import { logout } from "../../store/slices/authSlice";
 import { getMemberAvatar } from "../../utils/userAvatars";
 
@@ -13,9 +14,9 @@ export const Navbar: React.FC = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentUser = useAppSelector((state) => state.auth.user);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
   const avatarUrl = getMemberAvatar(currentUser?.avatar || currentUser?.id);
   const memberName = currentUser?.name || "John Doe";
   const memberEmail = currentUser?.email || "user1@example.com";
@@ -231,7 +232,7 @@ export const Navbar: React.FC = () => {
                   type="button"
                   onClick={() => {
                     setShowProfileMenu(false);
-                    navigate("/dashboard");
+                    navigate("/pages/profile");
                   }}
                   className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#32475c] transition"
                 >

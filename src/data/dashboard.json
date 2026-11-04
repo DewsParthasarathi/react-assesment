@@ -5144,5 +5144,1082 @@
       "createdAt": "2023-01-05T00:00:00Z",
       "updatedAt": "2023-01-05T00:00:00Z"
     }
-  ]
+  ],
+  "permissions": [
+    {
+      "id": "perm-1",
+      "name": "Management",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "14 Apr 2021, 8:43 PM",
+      "category": "Basic",
+      "isCore": true
+    },
+    {
+      "id": "perm-2",
+      "name": "Management Billing & Roles",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "16 Apr 2021, 5:20 PM",
+      "category": "Basic",
+      "isCore": true
+    },
+    {
+      "id": "perm-3",
+      "name": "Add & Remove Users",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "14 Oct 2021, 10:20 AM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-4",
+      "name": "Project Planning",
+      "assignedTo": [
+        "Administrator",
+        "Users",
+        "Support"
+      ],
+      "createdDate": "23 Oct 2021, 5:20 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-5",
+      "name": "Manage Email Sequences",
+      "assignedTo": [
+        "Administrator",
+        "Users",
+        "Support"
+      ],
+      "createdDate": "23 Aug 2021, 2:00 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-6",
+      "name": "Client Communication",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "23 Aug 2021, 11:30 AM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-7",
+      "name": "Financial Reports & Auditing",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "12 Sep 2021, 4:15 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-8",
+      "name": "Database Backup & Restore",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "19 Sep 2021, 9:00 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-9",
+      "name": "Content Management System",
+      "assignedTo": [
+        "Administrator",
+        "Manager",
+        "Users"
+      ],
+      "createdDate": "01 Nov 2021, 1:45 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-10",
+      "name": "Customer Support Tickets",
+      "assignedTo": [
+        "Administrator",
+        "Support"
+      ],
+      "createdDate": "05 Nov 2021, 10:15 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-11",
+      "name": "API Key Generation & Scopes",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "18 Nov 2021, 3:30 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-12",
+      "name": "Disputes & Chargeback Handling",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "22 Nov 2021, 11:20 AM",
+      "category": "Business",
+      "isCore": false
+    },
+    {
+      "id": "perm-13",
+      "name": "Payroll Processing",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "03 Dec 2021, 8:00 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-14",
+      "name": "Analytics & KPI Dashboards",
+      "assignedTo": [
+        "Administrator",
+        "Manager",
+        "Users"
+      ],
+      "createdDate": "15 Dec 2021, 2:10 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-15",
+      "name": "Third-Party Integrations",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "28 Dec 2021, 6:40 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-16",
+      "name": "Product Catalog Management",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "07 Jan 2022, 10:30 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-17",
+      "name": "Order Fulfillment & Shipping",
+      "assignedTo": [
+        "Administrator",
+        "Manager",
+        "Support"
+      ],
+      "createdDate": "12 Jan 2022, 3:20 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-18",
+      "name": "System Security & Two-Factor Auth",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "25 Jan 2022, 11:45 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-19",
+      "name": "Email Campaign Templates",
+      "assignedTo": [
+        "Administrator",
+        "Users"
+      ],
+      "createdDate": "04 Feb 2022, 9:15 AM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-20",
+      "name": "User Role Assignment",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "18 Feb 2022, 1:00 PM",
+      "category": "Basic",
+      "isCore": true
+    },
+    {
+      "id": "perm-21",
+      "name": "Tax Rates & Compliance",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "02 Mar 2022, 4:50 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-22",
+      "name": "Discount Codes & Promotions",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "15 Mar 2022, 11:10 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-23",
+      "name": "Live Chat Supervision",
+      "assignedTo": [
+        "Administrator",
+        "Support"
+      ],
+      "createdDate": "29 Mar 2022, 2:25 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-24",
+      "name": "Inventory Stock Alerts",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "10 Apr 2022, 8:40 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-25",
+      "name": "Audit Log Monitoring",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "24 Apr 2022, 5:35 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-26",
+      "name": "Custom Domain Settings",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "08 May 2022, 12:15 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-27",
+      "name": "Customer Reviews Moderation",
+      "assignedTo": [
+        "Administrator",
+        "Manager",
+        "Support"
+      ],
+      "createdDate": "21 May 2022, 3:50 PM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-28",
+      "name": "Webhook Configuration",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "05 Jun 2022, 10:05 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-29",
+      "name": "Export & Download Customer Data",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "19 Jun 2022, 4:30 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-30",
+      "name": "SSL Certificate Renewal",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "03 Jul 2022, 9:20 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-31",
+      "name": "Affiliate Program Tracking",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "17 Jul 2022, 1:40 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-32",
+      "name": "Multi-Currency Settings",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "31 Jul 2022, 6:10 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-33",
+      "name": "Subscription Plan Upgrades",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "14 Aug 2022, 11:55 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-34",
+      "name": "Bulk User Import & Onboarding",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "28 Aug 2022, 8:30 AM",
+      "category": "Basic",
+      "isCore": true
+    },
+    {
+      "id": "perm-35",
+      "name": "Vendor & Supplier Management",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "11 Sep 2022, 3:15 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-36",
+      "name": "Payment Gateway Configuration",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "25 Sep 2022, 10:40 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-37",
+      "name": "Knowledge Base Articles Publishing",
+      "assignedTo": [
+        "Administrator",
+        "Support",
+        "Users"
+      ],
+      "createdDate": "09 Oct 2022, 2:05 PM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-38",
+      "name": "Invoice Template Customization",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "23 Oct 2022, 5:20 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-39",
+      "name": "Server Performance Metrics",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "06 Nov 2022, 11:30 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-40",
+      "name": "GDPR Data Deletion Requests",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "20 Nov 2022, 4:00 PM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-41",
+      "name": "Social Media Accounts Sync",
+      "assignedTo": [
+        "Administrator",
+        "Users"
+      ],
+      "createdDate": "04 Dec 2022, 9:45 AM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-42",
+      "name": "Sales Quotas & Targets Setting",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "18 Dec 2022, 1:15 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-43",
+      "name": "Fraud Detection Rules",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "02 Jan 2023, 10:50 AM",
+      "category": "Business",
+      "isCore": true
+    },
+    {
+      "id": "perm-44",
+      "name": "Lead Assignment Automation",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "16 Jan 2023, 3:35 PM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-45",
+      "name": "Helpdesk SLA Policy Management",
+      "assignedTo": [
+        "Administrator",
+        "Support"
+      ],
+      "createdDate": "30 Jan 2023, 8:20 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-46",
+      "name": "Refund Authorization",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "13 Feb 2023, 2:50 PM",
+      "category": "Business",
+      "isCore": false
+    },
+    {
+      "id": "perm-47",
+      "name": "SMS Notification Gateways",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "27 Feb 2023, 11:15 AM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-48",
+      "name": "Brand Assets & Media Library",
+      "assignedTo": [
+        "Administrator",
+        "Manager",
+        "Users"
+      ],
+      "createdDate": "13 Mar 2023, 4:40 PM",
+      "category": "Basic",
+      "isCore": false
+    },
+    {
+      "id": "perm-49",
+      "name": "Custom Report Builder",
+      "assignedTo": [
+        "Administrator",
+        "Manager"
+      ],
+      "createdDate": "27 Mar 2023, 10:00 AM",
+      "category": "Professional",
+      "isCore": false
+    },
+    {
+      "id": "perm-50",
+      "name": "Master System Settings",
+      "assignedTo": [
+        "Administrator"
+      ],
+      "createdDate": "10 Apr 2023, 5:30 PM",
+      "category": "Business",
+      "isCore": true
+    }
+  ],
+  "userProfile": {
+    "id": "1",
+    "name": "John Doe",
+    "designation": "Administrator",
+    "location": "Vatican city",
+    "joinedDate": "Joined April 2021",
+    "avatar": "member1",
+    "isConnected": true,
+    "about": {
+      "fullName": "John Doe",
+      "status": "Active",
+      "role": "Administrator",
+      "country": "USA",
+      "language": "English"
+    },
+    "contact": {
+      "phone": "(123) 456-7890",
+      "skype": "john.doe",
+      "email": "user1@example.com"
+    },
+    "overview": {
+      "taskCompiled": "13.5k",
+      "connectionsCount": "897",
+      "projectsCompiled": "146"
+    },
+    "sidebarTeams": [
+      {
+        "name": "Backend Developer",
+        "membersCount": 126,
+        "icon": "github"
+      },
+      {
+        "name": "React Developer",
+        "membersCount": 98,
+        "icon": "react"
+      }
+    ],
+    "timeline": [
+      {
+        "id": "tl-1",
+        "title": "Client Meeting",
+        "date": "Today",
+        "description": "Project meeting with John @10:15 am",
+        "color": "warning",
+        "client": {
+          "name": "Lester McCarthy (Client)",
+          "role": "CEO of Infibeam",
+          "avatar": "member2"
+        }
+      },
+      {
+        "id": "tl-2",
+        "title": "Create a new Project for client",
+        "date": "2 Days Ago",
+        "description": "Add files to new design folder",
+        "color": "info"
+      },
+      {
+        "id": "tl-3",
+        "title": "Shared 2 New Project files",
+        "date": "6 days ago",
+        "description": "Sent by Malic Dixon 👏",
+        "color": "primary",
+        "attachments": [
+          {
+            "name": "App Guidelines",
+            "type": "pdf",
+            "size": "2.4mb"
+          },
+          {
+            "name": "Testing Results",
+            "type": "excel",
+            "size": "1.1mb"
+          }
+        ]
+      },
+      {
+        "id": "tl-4",
+        "title": "Project status updated",
+        "date": "10 days ago",
+        "description": "woocommerce iOS App Completed",
+        "color": "success"
+      }
+    ],
+    "connections": [
+      {
+        "id": "conn-1",
+        "name": "Cecilia Payne",
+        "connectionsCount": "45 Connections",
+        "avatar": "member3",
+        "isConnected": true,
+        "department": "Marketing",
+        "projectsCount": 18
+      },
+      {
+        "id": "conn-2",
+        "name": "Curtis Fletcher",
+        "connectionsCount": "1.32K Connections",
+        "avatar": "member4",
+        "isConnected": true,
+        "department": "UI/UX Design",
+        "projectsCount": 32
+      },
+      {
+        "id": "conn-3",
+        "name": "Alice Stone",
+        "connectionsCount": "125 connections",
+        "avatar": "member5",
+        "isConnected": false,
+        "department": "Engineering",
+        "projectsCount": 14
+      },
+      {
+        "id": "conn-4",
+        "name": "Darrell Barnes",
+        "connectionsCount": "456 connections",
+        "avatar": "member6",
+        "isConnected": false,
+        "department": "Support",
+        "projectsCount": 21
+      },
+      {
+        "id": "conn-5",
+        "name": "Eugenia Moore",
+        "connectionsCount": "1.2K connections",
+        "avatar": "member8",
+        "isConnected": true,
+        "department": "Management",
+        "projectsCount": 45
+      },
+      {
+        "id": "conn-6",
+        "name": "Rachel Kelly",
+        "connectionsCount": "320 connections",
+        "avatar": "member1",
+        "isConnected": true,
+        "department": "Front End",
+        "projectsCount": 19
+      },
+      {
+        "id": "conn-7",
+        "name": "Bradley Wood",
+        "connectionsCount": "512 connections",
+        "avatar": "member2",
+        "isConnected": false,
+        "department": "DevOps",
+        "projectsCount": 26
+      },
+      {
+        "id": "conn-8",
+        "name": "Sara Moreno",
+        "connectionsCount": "890 connections",
+        "avatar": "member3",
+        "isConnected": true,
+        "department": "Product",
+        "projectsCount": 38
+      }
+    ],
+    "teams": [
+      {
+        "id": "team-1",
+        "name": "React Developer",
+        "membersCount": 25,
+        "extraMembers": 25,
+        "badge": "React",
+        "badgeColor": "primary",
+        "icon": "react",
+        "description": "we don't make assumptions about the rest of your technology stack,so you can develops new features in React.",
+        "avatarGroup": [
+          "member1",
+          "member2",
+          "member3",
+          "member4"
+        ],
+        "badges": [
+          {
+            "label": "REACT",
+            "color": "purple"
+          },
+          {
+            "label": "MUI",
+            "color": "cyan"
+          }
+        ]
+      },
+      {
+        "id": "team-2",
+        "name": "Vue.js Dev Team",
+        "membersCount": 15,
+        "extraMembers": 15,
+        "badge": "Vuejs",
+        "badgeColor": "success",
+        "icon": "vue",
+        "description": "The development of vue and its ecosystem is guided by an international team,some of whom have chosen to be featured below.",
+        "avatarGroup": [
+          "member5",
+          "member6",
+          "member1"
+        ],
+        "badges": [
+          {
+            "label": "VUEJS",
+            "color": "green"
+          },
+          {
+            "label": "DEVELOPER",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "id": "team-3",
+        "name": "Creative Designers",
+        "membersCount": 55,
+        "extraMembers": 55,
+        "badge": "Sketch",
+        "badgeColor": "warning",
+        "icon": "xd",
+        "description": "A design or product team is more than just people on it.A team includes the people,the roles they Play.",
+        "avatarGroup": [
+          "member2",
+          "member3",
+          "member4",
+          "member8"
+        ],
+        "badges": [
+          {
+            "label": "SKETCH",
+            "color": "orange"
+          },
+          {
+            "label": "XD",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "id": "team-4",
+        "name": "Support Team",
+        "membersCount": 35,
+        "extraMembers": 35,
+        "badge": "Zendesk",
+        "badgeColor": "info",
+        "icon": "support",
+        "description": "Support your team.Your Customer team is fielding the good,the bad,and the ugly day in and day out.",
+        "avatarGroup": [
+          "member5",
+          "member6",
+          "member2",
+          "member1"
+        ],
+        "badges": [
+          {
+            "label": "ZENDESK",
+            "color": "cyan"
+          }
+        ]
+      },
+      {
+        "id": "team-5",
+        "name": "Digital Marketing",
+        "membersCount": 19,
+        "extraMembers": 19,
+        "badge": "Twitter",
+        "badgeColor": "primary",
+        "icon": "marketing",
+        "description": "Digital marketing refers to advertising delivered through digital channels such as search engines,websites...",
+        "avatarGroup": [
+          "member3",
+          "member4",
+          "member5"
+        ],
+        "badges": [
+          {
+            "label": "TWITTER",
+            "color": "purple"
+          },
+          {
+            "label": "EMAIL",
+            "color": "cyan"
+          }
+        ]
+      },
+      {
+        "id": "team-6",
+        "name": "Events",
+        "membersCount": 16,
+        "extraMembers": 16,
+        "badge": "Hubilo",
+        "badgeColor": "success",
+        "icon": "event",
+        "description": "Events id defined as a particular contest which is part of a program of contests.AN example of an events is the long...",
+        "avatarGroup": [
+          "member1",
+          "member2",
+          "member3",
+          "member4"
+        ],
+        "badges": [
+          {
+            "label": "HUBILO",
+            "color": "green"
+          }
+        ]
+      },
+      {
+        "id": "team-7",
+        "name": "Figma Resources",
+        "membersCount": 45,
+        "extraMembers": 45,
+        "badge": "UI/UX",
+        "badgeColor": "success",
+        "icon": "figma",
+        "description": "Explore,install,use,and remix thousands of plugins and files published to the figma community by designers and developers.",
+        "avatarGroup": [
+          "member5",
+          "member6",
+          "member8"
+        ],
+        "badges": [
+          {
+            "label": "UI/UX",
+            "color": "green"
+          },
+          {
+            "label": "FIGMA",
+            "color": "secondary"
+          }
+        ]
+      },
+      {
+        "id": "team-8",
+        "name": "Only Beginners",
+        "membersCount": 45,
+        "extraMembers": 45,
+        "badge": "CSS",
+        "badgeColor": "info",
+        "icon": "html",
+        "description": "Learn the basics of how websites work,front-end vs back-end,and using code editor,learn basics HTML,CSS,and...",
+        "avatarGroup": [
+          "member1",
+          "member2"
+        ],
+        "badges": [
+          {
+            "label": "CSS",
+            "color": "cyan"
+          },
+          {
+            "label": "HTML",
+            "color": "orange"
+          }
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "name": "Social Banners",
+        "date": "14 Feb 2021",
+        "icon": "SB",
+        "iconBg": "#f1f1f2",
+        "leader": "Christian Jimenez",
+        "client": "Christian Jimenez",
+        "totalBudget": "$24.8k/$18.2k",
+        "startDate": "14/2/21",
+        "deadline": "28/2/22",
+        "description": "we are Consulting,software Development and Web Development Services.",
+        "allHours": "380/244",
+        "daysLeft": "28 DAYS LEFT",
+        "taskCount": "328/344",
+        "completedPercentage": 95,
+        "progress": 95,
+        "team": [
+          "member1",
+          "member2",
+          "member3",
+          "member4"
+        ],
+        "membersCountLabel": "280 members",
+        "commentsCount": 15
+      },
+      {
+        "id": "proj-2",
+        "name": "Admin Template",
+        "date": "14 Feb 2021",
+        "icon": "AT",
+        "iconBg": "#dcf6f8",
+        "leader": "Jeffrey Philips",
+        "client": "Jeffrey Philips",
+        "totalBudget": "$24.8k/$18.2k",
+        "startDate": "14/2/21",
+        "deadline": "28/2/22",
+        "description": "we are Consulting,software Development and Web Development Services.",
+        "allHours": "380/244",
+        "daysLeft": "15 DAYS LEFT",
+        "taskCount": "328/344",
+        "completedPercentage": 42,
+        "progress": 42,
+        "team": [
+          "member5",
+          "member6",
+          "member1"
+        ],
+        "membersCountLabel": "1.1k members",
+        "commentsCount": 15
+      },
+      {
+        "id": "proj-3",
+        "name": "App Design",
+        "date": "14 Feb 2021",
+        "icon": "AD",
+        "iconBg": "#e8fadf",
+        "leader": "Ricky McDonald",
+        "client": "Ricky McDonald",
+        "totalBudget": "$24.8k/$18.2k",
+        "startDate": "14/2/21",
+        "deadline": "28/2/22",
+        "description": "App design combines the user interface (UI) and user experience (UX).",
+        "allHours": "380/244",
+        "daysLeft": "45 DAYS LEFT",
+        "taskCount": "328/344",
+        "completedPercentage": 68,
+        "progress": 68,
+        "team": [
+          "member2",
+          "member3",
+          "member4",
+          "member8"
+        ],
+        "membersCountLabel": "458 members",
+        "commentsCount": 98
+      },
+      {
+        "id": "proj-4",
+        "name": "Create Website",
+        "date": "14 Feb 2021",
+        "icon": "CW",
+        "iconBg": "#fff1e3",
+        "leader": "Hulda Wright",
+        "client": "Hulda Wright",
+        "totalBudget": "$24.8k/$18.2k",
+        "startDate": "14/2/21",
+        "deadline": "28/2/22",
+        "description": "we are Consulting,software Development and Web Development Services.",
+        "allHours": "380/244",
+        "daysLeft": "25 DAYS LEFT",
+        "taskCount": "328/344",
+        "completedPercentage": 72,
+        "progress": 72,
+        "team": [
+          "member1",
+          "member2",
+          "member5",
+          "member6"
+        ],
+        "membersCountLabel": "280 members",
+        "commentsCount": 15
+      },
+      {
+        "id": "proj-5",
+        "name": "Figma Dashboard",
+        "date": "14 Feb 2021",
+        "icon": "FD",
+        "iconBg": "#ffe2e3",
+        "leader": "Jeffrey Philips",
+        "client": "Jeffrey Philips",
+        "totalBudget": "$24.8k/$18.2k",
+        "startDate": "14/2/21",
+        "deadline": "28/2/22",
+        "description": "we are Consulting,software Development and Web Development Services.",
+        "allHours": "380/244",
+        "daysLeft": "15 DAYS LEFT",
+        "taskCount": "328/344",
+        "completedPercentage": 42,
+        "progress": 42,
+        "team": [
+          "member3",
+          "member4",
+          "member1"
+        ],
+        "membersCountLabel": "1.1k members",
+        "commentsCount": 20
+      },
+      {
+        "id": "proj-6",
+        "name": "Logo Design",
+        "date": "14 Feb 2021",
+        "icon": "LD",
+        "iconBg": "#f3e8ff",
+        "leader": "Olive Strickland",
+        "client": "Olive Strickland",
+        "totalBudget": "$24.8k/$18.2k",
+        "startDate": "14/2/21",
+        "deadline": "28/2/22",
+        "description": "Premium logo design created by top logo designers. Create the branding of business.",
+        "allHours": "380/244",
+        "daysLeft": "45 DAYS LEFT",
+        "taskCount": "328/344",
+        "completedPercentage": 88,
+        "progress": 88,
+        "team": [
+          "member2",
+          "member3",
+          "member4",
+          "member8"
+        ],
+        "membersCountLabel": "458 members",
+        "commentsCount": 98
+      },
+      {
+        "id": "proj-7",
+        "name": "Mobile E-commerce App",
+        "date": "14 Feb 2022",
+        "icon": "ME",
+        "iconBg": "#e8e7fd",
+        "leader": "Jordan",
+        "team": [
+          "member2",
+          "member3",
+          "member5"
+        ],
+        "progress": 84
+      },
+      {
+        "id": "proj-8",
+        "name": "Customer Support Portal",
+        "date": "06 Jun 2022",
+        "icon": "CS",
+        "iconBg": "#e8fadf",
+        "leader": "Stephanie",
+        "team": [
+          "member6",
+          "member8"
+        ],
+        "progress": 61
+      }
+    ]
+  }
 }

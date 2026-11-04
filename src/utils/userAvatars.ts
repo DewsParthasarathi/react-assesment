@@ -4,6 +4,7 @@ import member3 from "../assets/images/member3.jpg";
 import member4 from "../assets/images/member4.jpg";
 import member5 from "../assets/images/member5.jpg";
 import member6 from "../assets/images/member6.jpg";
+import member8 from "../assets/images/member8.jpg";
 
 export const memberAvatars: Record<string, string> = {
   "1": member1,
@@ -12,12 +13,14 @@ export const memberAvatars: Record<string, string> = {
   "4": member4,
   "5": member5,
   "6": member6,
+  "8": member8,
   member1,
   member2,
   member3,
   member4,
   member5,
   member6,
+  member8,
 };
 
 /**

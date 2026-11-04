@@ -711,7 +711,121 @@ export interface InvoiceFilterState {
   search: string;
 }
 
+export interface Permission {
+  id: string;
+  name: string;
+  assignedTo: string[];
+  createdDate: string;
+  createdAt?: string;
+  category?: "Basic" | "Professional" | "Business";
+  isCore?: boolean;
+}
 
+export interface ProfileTimelineAttachment {
+  name: string;
+  type: "pdf" | "excel" | "doc";
+  size?: string;
+}
 
+export interface ProfileTimelineEvent {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+  color: "warning" | "info" | "primary" | "success";
+  client?: {
+    name: string;
+    role: string;
+    avatar: string;
+  };
+  attachments?: ProfileTimelineAttachment[];
+}
+
+export interface ProfileConnection {
+  id: string;
+  name: string;
+  connectionsCount: string;
+  avatar: string;
+  isConnected: boolean;
+  department?: string;
+  projectsCount?: number;
+}
+
+export interface ProfileTeamBadge {
+  label: string;
+  color?: string;
+}
+
+export interface ProfileTeam {
+  id: string;
+  name: string;
+  membersCount: number;
+  badge: string;
+  badgeColor: string;
+  icon: string;
+  description?: string;
+  avatarGroup?: string[];
+  extraMembers?: number;
+  badges?: ProfileTeamBadge[];
+  isStarred?: boolean;
+}
+
+export interface ProfileProject {
+  id: string;
+  name: string;
+  date: string;
+  icon: string;
+  iconBg: string;
+  leader: string;
+  team: string[];
+  progress: number;
+  client?: string;
+  totalBudget?: string;
+  startDate?: string;
+  deadline?: string;
+  description?: string;
+  allHours?: string;
+  daysLeft?: string;
+  taskCount?: string;
+  completedPercentage?: number;
+  commentsCount?: number;
+  membersCountLabel?: string;
+}
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  designation: string;
+  location: string;
+  joinedDate: string;
+  avatar: string;
+  isConnected: boolean;
+  about: {
+    fullName: string;
+    status: string;
+    role: string;
+    country: string;
+    language: string;
+  };
+  contact: {
+    phone: string;
+    skype: string;
+    email: string;
+  };
+  overview: {
+    taskCompiled: string;
+    connectionsCount: string;
+    projectsCompiled: string;
+  };
+  sidebarTeams: Array<{
+    name: string;
+    membersCount: number;
+    icon: string;
+  }>;
+  timeline: ProfileTimelineEvent[];
+  connections: ProfileConnection[];
+  teams: ProfileTeam[];
+  projects: ProfileProject[];
+}
 
 
