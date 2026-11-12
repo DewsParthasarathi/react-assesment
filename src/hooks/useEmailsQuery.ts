@@ -14,9 +14,7 @@ import type { EmailComposePayload, EmailItem } from "../api/types";
 
 export const EMAILS_QUERY_KEY = "emails";
 
-/**
- * Hook to retrieve email list and folder counts with folder/search/label filters.
- */
+
 export const useEmailsQuery = (params?: FetchEmailsParams) => {
   return useQuery<EmailListResponse, Error>({
     queryKey: [
@@ -30,9 +28,7 @@ export const useEmailsQuery = (params?: FetchEmailsParams) => {
   });
 };
 
-/**
- * Hook to update an email (toggle starred, read/unread, move folder, labels).
- */
+
 export const useUpdateEmailMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -49,9 +45,7 @@ export const useUpdateEmailMutation = () => {
   });
 };
 
-/**
- * Hook to batch update multiple emails.
- */
+
 export const useBatchUpdateEmailsMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -68,9 +62,7 @@ export const useBatchUpdateEmailsMutation = () => {
   });
 };
 
-/**
- * Hook to compose and send or draft an email.
- */
+
 export const useCreateEmailMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -81,9 +73,7 @@ export const useCreateEmailMutation = () => {
   });
 };
 
-/**
- * Hook to delete an email permanently.
- */
+
 export const useDeleteEmailMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -94,9 +84,7 @@ export const useDeleteEmailMutation = () => {
   });
 };
 
-/**
- * Hook to batch delete emails permanently.
- */
+
 export const useBatchDeleteEmailsMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -107,9 +95,7 @@ export const useBatchDeleteEmailsMutation = () => {
   });
 };
 
-/**
- * Hook to empty all emails in the trash folder.
- */
+
 export const useEmptyTrashMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({

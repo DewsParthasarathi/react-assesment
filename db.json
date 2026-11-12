@@ -3759,7 +3759,7 @@
       "timestamp": "01:30 PM",
       "date": "2026-10-30T13:30:00Z",
       "folder": "inbox",
-      "isRead": false,
+      "isRead": true,
       "isStarred": false,
       "labels": [
         "personal"
@@ -3800,7 +3800,7 @@
       "timestamp": "09:12 AM",
       "date": "2026-10-30T09:12:00Z",
       "folder": "inbox",
-      "isRead": false,
+      "isRead": true,
       "isStarred": true,
       "labels": [
         "company"

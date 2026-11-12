@@ -5,6 +5,7 @@ import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomDropdown } from "../../components/ui/CustomDropdown";
 import { CustomTable, type TableColumn } from "../../components/ui/Table";
+import { AnchoredPortal } from "../../components/ui/FloatingPortal";
 import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
 
 import sessionIcon from "../../assets/images/Session.svg";
@@ -380,55 +381,59 @@ export const UserPage: React.FC = () => {
         render: (user) => {
           const isDropdownOpen = openDropdownId === user.id;
           return (
-            <div className="relative inline-flex items-center justify-center">
-              <CustomButton
-                type="button"
-                variant="icon"
-                onClick={() =>
-                  setOpenDropdownId(isDropdownOpen ? null : user.id)
-                }
-                className="p-1.5 text-[#a5a3ae] hover:text-[#5d596c] hover:bg-[#f5f5f9] rounded transition cursor-pointer"
-                title="More options"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <AnchoredPortal
+              isOpen={isDropdownOpen}
+              onClose={() => setOpenDropdownId(null)}
+              align="right"
+              wrapperClassName="relative inline-flex items-center justify-center"
+              trigger={
+                <CustomButton
+                  type="button"
+                  variant="icon"
+                  onClick={() =>
+                    setOpenDropdownId(isDropdownOpen ? null : user.id)
+                  }
+                  className="p-1.5 text-[#a5a3ae] hover:text-[#5d596c] hover:bg-[#f5f5f9] rounded transition cursor-pointer"
+                  title="More options"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                  />
-                </svg>
-              </CustomButton>
-
-              {isDropdownOpen && (
-                <div className="absolute right-0 top-8 z-30 w-36 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[#dbdade]/70 py-1 text-left">
-                  <CustomButton
-                    type="button"
-                    variant="ghost"
-                    onClick={() => setOpenDropdownId(null)}
-                    className="w-full px-4 py-2 text-fs14 text-[#5d596c] hover:bg-[#f5f5f9] hover:text-[#696cff] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <span>Edit User</span>
-                  </CustomButton>
-                  <CustomButton
-                    type="button"
-                    variant="ghost"
-                    onClick={() => {
-                      handleDeleteUserClick(user);
-                      setOpenDropdownId(null);
-                    }}
-                    className="w-full px-4 py-2 text-fs14 text-[#ea5455] hover:bg-[#ffebee] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
-                  >
-                    <span>Delete</span>
-                  </CustomButton>
-                </div>
-              )}
-            </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                    />
+                  </svg>
+                </CustomButton>
+              }
+            >
+              <div className="w-36 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[#dbdade]/70 py-1 text-left">
+                <CustomButton
+                  type="button"
+                  variant="ghost"
+                  onClick={() => setOpenDropdownId(null)}
+                  className="w-full px-4 py-2 text-fs14 text-[#5d596c] hover:bg-[#f5f5f9] hover:text-[#696cff] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                >
+                  <span>Edit User</span>
+                </CustomButton>
+                <CustomButton
+                  type="button"
+                  variant="ghost"
+                  onClick={() => {
+                    handleDeleteUserClick(user);
+                    setOpenDropdownId(null);
+                  }}
+                  className="w-full px-4 py-2 text-fs14 text-[#ea5455] hover:bg-[#ffebee] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                >
+                  <span>Delete</span>
+                </CustomButton>
+              </div>
+            </AnchoredPortal>
           );
         },
       },

@@ -79,21 +79,21 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between">
+    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between">
       <div className="flex flex-col items-start gap-1">
-        <h3 className="text-fs22 font-medium text-[#444050]">Profit Report</h3>
-        <span className="inline-block px-2.5 py-0.5 rounded-[5px] text-fs13 font-normal bg-[#fff1d6] text-[#ffab00]">
+        <h3 className="text-fs18 font-semibold text-[#444050]">Profit Report</h3>
+        <span className="inline-block px-2.5 py-0.5 rounded-[4px] text-fs12 font-medium bg-[#fff1d6] text-[#ffab00]">
           {year}
         </span>
       </div>
 
       <div className="grid grid-cols-12 items-center gap-2 mt-3">
         <div className="col-span-5">
-          <p className="text-fs16 font-normal text-[#71dd37] flex items-center gap-1">
+          <p className="text-fs13 font-medium text-[#71dd37] flex items-center gap-1">
             <span>↑</span>
             <span>{growth}</span>
           </p>
-          <p className="text-fs24 font-semibold text-[#444050] mt-0.5 tracking-tight">
+          <p className="text-fs24 font-bold text-[#444050] mt-0.5 tracking-tight">
             {value}
           </p>
         </div>

@@ -12,18 +12,24 @@ export const MainLayout: React.FC = () => {
     location.pathname.startsWith("/email");
 
   return (
-    <div className="h-screen bg-[#f8f7fa] flex text-[#32475c] overflow-hidden">
+    <div className="h-screen bg-[#f8f7fa] flex text-[#32475c] overflow-hidden print:h-auto print:bg-white print:overflow-visible print:block">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-        <Navbar />
+      <div
+        className={`flex-1 flex flex-col min-w-0 h-screen ${
+          isAppPage
+            ? "overflow-hidden"
+            : "overflow-x-hidden overflow-y-auto"
+        } print:h-auto print:overflow-visible print:block`}
+      >
+        <div className="sticky top-0 shrink-0 px-6 pt-6 bg-[#f8f7fa] z-30 print:hidden">
+          <Navbar />
+        </div>
 
         <main
-          className={`flex-1 min-h-0 p-4 max-[1440px]:p-3 max-[1024px]:p-4 ml-[1.5%] ${
-            isAppPage
-              ? "overflow-hidden flex flex-col"
-              : "overflow-x-hidden overflow-y-auto"
-          }`}
+          className={`flex-1 min-w-0 px-6 pt-6 ${
+            isAppPage ? "min-h-0 pb-6 overflow-hidden flex flex-col" : "pb-16"
+          } print:p-0 print:m-0`}
         >
           <Outlet />
         </main>

@@ -10,9 +10,9 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
   const options: Highcharts.Options = {
     chart: {
       type: "column",
-      height: 85,
+      height: 102,
       backgroundColor: "transparent",
-      margin: [5, 0, 20, 0],
+      margin: [4, 0, 26, 0],
       spacing: [0, 0, 0, 0],
     },
     title: { text: undefined },
@@ -24,7 +24,8 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
       tickWidth: 0,
       labels: {
         step: 1,
-        style: { color: "#a5a3ae", fontSize: "13px", fontFamily: "Poppins" },
+        y: 19,
+        style: { color: "#a5a3ae", fontSize: "12px", fontFamily: "Poppins" },
       },
     },
     yAxis: {
@@ -41,10 +42,10 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
     },
     plotOptions: {
       column: {
-        borderRadius: 0,
+        borderRadius: 3,
         borderWidth: 0,
         groupPadding: 0,
-        pointPadding: 0.22,
+        pointPadding: 0.25,
       },
     },
     series: [
@@ -52,22 +53,22 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
         type: "column",
         data: [
           { y: 15, color: "#e0e1ff" },
-          { y: 22, color: "#d7d8ff" },
+          { y: 22, color: "#e0e1ff" },
           { y: 18, color: "#e0e1ff" },
-          { y: 14, color: "#d7d8ff" },
+          { y: 14, color: "#e0e1ff" },
           { y: 32, color: "#696cff" },
           { y: 16, color: "#e0e1ff" },
-          { y: 24, color: "#d7d8ff" },
+          { y: 24, color: "#e0e1ff" },
         ],
       },
     ],
   };
 
   return (
-    <div className="bg-white rounded-[5px] p-4 pb-2 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
+    <div className="bg-white rounded-[6px] p-5 pb-3 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
       <div>
-        <p className="text-fs18 font-normal text-[#a5a3ae]">Revenue</p>
-        <p className="text-fs24 font-semibold text-[#444050] mt-1">{value}</p>
+        <p className="text-fs14 font-normal text-[#a5a3ae]">Revenue</p>
+        <p className="text-fs24 font-bold text-[#444050] mt-1">{value}</p>
       </div>
       <div className="mt-1">
         <Chart options={options} />

@@ -83,13 +83,13 @@ export const AnalyticsDashboard: React.FC = () => {
     <div className="w-full space-y-6">
       {/* ROW 1: Welcome Greeting Card (8 cols) + Order & Sales Summary Cards (4 cols) */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-8">
+        <div className="col-span-12 lg:col-span-8 flex flex-col h-full">
           <WelcomeCard
             greeting={profile.welcomeGreeting}
             description={profile.welcomeDescription}
           />
         </div>
-        <div className="col-span-12 lg:col-span-4">
+        <div className="col-span-12 lg:col-span-4 flex flex-col h-full">
           <div className="grid grid-cols-2 gap-6 h-full">
             <OrderCard value={profile.orders?.value || "276K"} />
             <SalesCard
@@ -104,7 +104,7 @@ export const AnalyticsDashboard: React.FC = () => {
 
       {/* ROW 2: Total Revenue & Growth Widget (8 cols) + Payments, Revenue, Profit Report (4 cols) */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-8 flex flex-col">
+        <div className="col-span-12 lg:col-span-8 flex flex-col h-full">
           <TotalRevenueCard
             data={profile.totalRevenue}
             growth={profile.totalRevenue?.growthIndicator || "78%"}
@@ -116,7 +116,7 @@ export const AnalyticsDashboard: React.FC = () => {
             availableYears={profile.availableYears}
           />
         </div>
-        <div className="col-span-12 lg:col-span-4 flex flex-col justify-between gap-6">
+        <div className="col-span-12 lg:col-span-4 flex flex-col justify-between gap-6 h-full">
           <div className="grid grid-cols-2 gap-6">
             <PaymentsCard
               value={profile.payments?.value || "$4,679"}
@@ -137,16 +137,16 @@ export const AnalyticsDashboard: React.FC = () => {
 
       {/* ROW 3: Order Statistics (4 cols) + Income / Expenses / Profit (4 cols) + Transactions (4 cols) */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-4">
+        <div className="col-span-12 lg:col-span-4 flex flex-col h-full">
           <OrderStatisticsCard
             years={profile.orderStatisticsYears}
             availableYears={profile.availableYears}
           />
         </div>
-        <div className="col-span-12 lg:col-span-4">
+        <div className="col-span-12 lg:col-span-4 flex flex-col h-full">
           <IncomeChartCard />
         </div>
-        <div className="col-span-12 lg:col-span-4">
+        <div className="col-span-12 lg:col-span-4 flex flex-col h-full">
           <TransactionsCard
             transactions={profile.transactions}
             years={profile.transactionsYears}
@@ -155,16 +155,16 @@ export const AnalyticsDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* ROW 4: Activity Timeline (5 cols) + Browser Analytics (7 cols) */}
+      {/* ROW 4: Activity Timeline (6 cols) + Browser Analytics (6 cols) */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-6 flex flex-col h-full">
           <ActivityTimelineCard
             activities={profile.activities}
             years={profile.activitiesYears}
             availableYears={profile.availableYears}
           />
         </div>
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-6 flex flex-col h-full">
           <BrowserAnalyticsCard />
         </div>
       </div>

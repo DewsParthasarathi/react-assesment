@@ -7,15 +7,17 @@ type UnknownRecord = Record<string, unknown>;
 const mod = HighchartsReactModule as unknown as UnknownRecord;
 const modDefault = mod.default as UnknownRecord | undefined;
 
-// Safely resolve the HighchartsReact component across ESM/CJS environments
-// Patch Highcharts SVGRenderer.prototype.html and SVGElement.prototype.updateTransform
-// to ensure coordinates and rotation origins are valid finite numbers instead of NaN.
 if (typeof Highcharts === "object" && Highcharts) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const svgProto = (Highcharts.SVGElement?.prototype || {}) as Record<string, any>;
+  const svgProto = (Highcharts.SVGElement?.prototype || {}) as Record<
+    string,
+    any
+  >;
   const origUpdateTransform = svgProto.updateTransform;
 
-  if (typeof origUpdateTransform === "function" && !svgProto._sanitizedTransform) {
+  if (
+    typeof origUpdateTransform === "function" &&
+    !svgProto._sanitizedTransform
+  ) {
     svgProto._sanitizedTransform = true;
     svgProto.updateTransform = function (attrib = "transform") {
       if (!Number.isFinite(this.translateX)) this.translateX = 0;
@@ -25,10 +27,16 @@ if (typeof Highcharts === "object" && Highcharts) {
       if (!Number.isFinite(this.scaleY)) this.scaleY = 1;
       if (this.x !== undefined && !Number.isFinite(this.x)) this.x = 0;
       if (this.y !== undefined && !Number.isFinite(this.y)) this.y = 0;
-      if (this.rotationOriginX !== undefined && !Number.isFinite(this.rotationOriginX)) {
+      if (
+        this.rotationOriginX !== undefined &&
+        !Number.isFinite(this.rotationOriginX)
+      ) {
         this.rotationOriginX = undefined;
       }
-      if (this.rotationOriginY !== undefined && !Number.isFinite(this.rotationOriginY)) {
+      if (
+        this.rotationOriginY !== undefined &&
+        !Number.isFinite(this.rotationOriginY)
+      ) {
         this.rotationOriginY = undefined;
       }
 
@@ -44,26 +52,28 @@ if (typeof Highcharts === "object" && Highcharts) {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renProto = (Highcharts.SVGRenderer?.prototype || {}) as Record<string, any>;
+  const renProto = (Highcharts.SVGRenderer?.prototype || {}) as Record<
+    string,
+    any
+  >;
   const origHtml = renProto.html;
   if (typeof origHtml === "function" && !renProto._sanitizedHtml) {
     renProto._sanitizedHtml = true;
     renProto.html = function (str: string, x?: number, y?: number) {
-      const safeX = typeof x === "number" && Number.isFinite(x) ? Math.round(x) : 0;
-      const safeY = typeof y === "number" && Number.isFinite(y) ? Math.round(y) : 0;
+      const safeX =
+        typeof x === "number" && Number.isFinite(x) ? Math.round(x) : 0;
+      const safeY =
+        typeof y === "number" && Number.isFinite(y) ? Math.round(y) : 0;
       return origHtml.call(this, str, safeX, safeY);
     };
   }
 }
 
-const HighchartsReactComponent = (
-  mod.HighchartsReact ||
+const HighchartsReactComponent = (mod.HighchartsReact ||
   modDefault?.HighchartsReact ||
   modDefault?.default ||
   mod.default ||
-  mod
-) as React.ComponentType<{
+  mod) as React.ComponentType<{
   options: Highcharts.Options;
   highcharts: typeof Highcharts;
   containerProps?: React.HTMLAttributes<HTMLDivElement>;

@@ -11,7 +11,6 @@ interface FormErrors {
   general?: string;
 }
 
-// 6x6 Decorative Dot Grid matching the reference screenshot exactly
 const DotGrid: React.FC<{ className?: string }> = ({ className = "" }) => (
   <svg
     width="114"
@@ -110,14 +109,12 @@ export const Login: React.FC = () => {
           <DotGrid />
         </div>
 
-        {/* Main Card */}
         <div className="relative z-10 w-full bg-white rounded-lg shadow-[0_2px_14px_rgba(47,43,61,0.08)] p-8 sm:p-10">
-          {/* Header */}
           <h1 className="text-fs22 font-bold text-[#32475c] mb-1.5">
-            Welcome to  XYX
+            Welcome to Sales Dashboard
           </h1>
           <p className="text-fs14 text-[#6f6b7d] mb-6 leading-relaxed">
-            Please  sign-in to your account and start the adventure
+            Please sign-in to your account and start the adventure
           </p>
 
           {/* Form */}

@@ -24,9 +24,9 @@ export const PaymentsCard: React.FC<PaymentsCardProps> = ({
   const isUp = (active.changeDirection ?? changeDirection) === "up" || (!displayChange.startsWith("-") && displayChange.startsWith("+"));
 
   return (
-    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
+    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
       <div className="flex items-center justify-between">
-        <div className="w-10 h-10 rounded-[5px] bg-[#ea5455]/15 flex items-center justify-center p-2.5">
+        <div className="w-10 h-10 rounded-lg bg-[#ea5455]/15 flex items-center justify-center p-2.5">
           <img
             src={paypalIcon}
             alt="Payments"
@@ -51,10 +51,10 @@ export const PaymentsCard: React.FC<PaymentsCardProps> = ({
       </div>
 
       <div>
-        <p className="text-fs18 font-normal text-[#a5a3ae]">Payments</p>
-        <p className="text-fs24 font-semibold text-[#444050] mt-0.5">{displayValue}</p>
+        <p className="text-fs14 font-normal text-[#a5a3ae]">Payments</p>
+        <p className="text-fs24 font-bold text-[#444050] mt-0.5">{displayValue}</p>
         <p
-          className={`text-fs16 font-normal mt-3 flex items-center gap-1 ${
+          className={`text-fs13 font-medium mt-2 flex items-center gap-1 ${
             isUp ? "text-[#71dd37]" : "text-[#ea5455]"
           }`}
         >

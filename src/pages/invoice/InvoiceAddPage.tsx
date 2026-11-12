@@ -25,14 +25,37 @@ export const InvoiceAddPage: React.FC = () => {
   // Extract unique clients from existing database records
   const availableClients = useMemo(() => {
     const defaultClients = [
-      { name: "Jordan Stevenson", email: "don85@johnson.com", avatar: "member1" },
-      { name: "Stephanie Burns", email: "brenda49@taylor.info", avatar: "member2" },
-      { name: "Tony Herrera", email: "smithfany@powers.com", avatar: "member3" },
-      { name: "Kevin Patton", email: "brenda49@taylor.info", avatar: "member4" },
-      { name: "Mrs. Julie Donovan MD", email: "smithfany@powers.com", avatar: "member5" },
+      {
+        name: "Jordan Stevenson",
+        email: "don85@johnson.com",
+        avatar: "member1",
+      },
+      {
+        name: "Stephanie Burns",
+        email: "brenda49@taylor.info",
+        avatar: "member2",
+      },
+      {
+        name: "Tony Herrera",
+        email: "smithfany@powers.com",
+        avatar: "member3",
+      },
+      {
+        name: "Kevin Patton",
+        email: "brenda49@taylor.info",
+        avatar: "member4",
+      },
+      {
+        name: "Mrs. Julie Donovan MD",
+        email: "smithfany@powers.com",
+        avatar: "member5",
+      },
     ];
 
-    const uniqueMap = new Map<string, { name: string; email: string; avatar: string }>();
+    const uniqueMap = new Map<
+      string,
+      { name: string; email: string; avatar: string }
+    >();
     defaultClients.forEach((c) => uniqueMap.set(c.name.toLowerCase(), c));
 
     allInvoices.forEach((inv) => {
@@ -52,9 +75,8 @@ export const InvoiceAddPage: React.FC = () => {
   const [invoiceNumber, setInvoiceNumber] = useState("# 4987");
   const [issueDate, setIssueDate] = useState("01/13/2023");
   const [dueDate, setDueDate] = useState("01/23/2023");
-  const [selectedClientName, setSelectedClientName] = useState(
-    "Jordan Stevenson",
-  );
+  const [selectedClientName, setSelectedClientName] =
+    useState("Jordan Stevenson");
 
   // Line items state
   const [items, setItems] = useState<LineItem[]>([
@@ -70,7 +92,9 @@ export const InvoiceAddPage: React.FC = () => {
 
   // Salesperson & Notes
   const [salesperson, setSalesperson] = useState("Tommy Shelby");
-  const [thanksMessage, setThanksMessage] = useState("Thanks for your business");
+  const [thanksMessage, setThanksMessage] = useState(
+    "Thanks for your business",
+  );
   const [noteText, setNoteText] = useState("Thank You !");
 
   // Right Panel Settings
@@ -81,7 +105,10 @@ export const InvoiceAddPage: React.FC = () => {
   const [successToast, setSuccessToast] = useState("");
 
   // Subtotal & Financial Calculations
-  const subtotal = items.reduce((sum, it) => sum + (it.cost || 0) * (it.hours || 0), 0);
+  const subtotal = items.reduce(
+    (sum, it) => sum + (it.cost || 0) * (it.hours || 0),
+    0,
+  );
   const tax = 0;
   const discount = 0;
   const total = subtotal - discount + tax;
@@ -163,9 +190,19 @@ export const InvoiceAddPage: React.FC = () => {
     <div className="w-full max-w-full flex-1 flex flex-col lg:flex-row items-start gap-6 min-w-0 pb-12">
       {/* Success Toast */}
       {successToast && (
-        <div className="fixed top-20 right-8 z-50 bg-[#e8fadf] text-[#71dd37] border border-[#71dd37]/40 px-4 py-3 rounded-md shadow-lg text-fs14 font-medium flex items-center gap-2 animate-in fade-in">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        <div className="fixed top-20 right-8 z-50 bg-[#e8fadf] text-[#71dd37] border border-[#71dd37]/40 px-4 py-3 rounded-md shadow-lg text-fs16 font-medium flex items-center gap-2 animate-in fade-in">
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
           <span>{successToast}</span>
         </div>
@@ -175,7 +212,7 @@ export const InvoiceAddPage: React.FC = () => {
       <div className="flex-1 min-w-0 w-full max-w-full bg-white rounded-lg shadow-[0_2px_8px_rgba(47,43,61,0.06)] border border-[#dbdade]/70 p-5 sm:p-7 lg:p-8 flex flex-col">
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-6 min-w-0">
-          <div className="text-fs14 text-[#6f6b7d] leading-relaxed">
+          <div className="text-fs16 text-[#6f6b7d] leading-relaxed">
             <p>450 south Brand Brooklyn</p>
             <p>San Diego Country,CA 91905,USA</p>
             <p>+1 (123) 456 789, 123465432456</p>
@@ -184,7 +221,7 @@ export const InvoiceAddPage: React.FC = () => {
           <div className="space-y-3 w-full sm:w-auto">
             {/* Invoice # Input */}
             <div className="flex items-center justify-between sm:justify-end gap-3">
-              <span className="text-fs14 font-semibold text-[#32475c] w-24 sm:text-right">
+              <span className="text-fs16 font-semibold text-[#32475c] w-28 sm:text-right">
                 Invoice
               </span>
               <CustomInput
@@ -197,9 +234,8 @@ export const InvoiceAddPage: React.FC = () => {
               />
             </div>
 
-            {/* Data Issued Input */}
             <div className="flex items-center justify-between sm:justify-end gap-3">
-              <span className="text-fs13 text-[#6f6b7d] w-24 sm:text-right">
+              <span className="text-fs15 text-[#6f6b7d] w-28 sm:text-right">
                 Data Issued:
               </span>
               <CustomInput
@@ -212,9 +248,8 @@ export const InvoiceAddPage: React.FC = () => {
               />
             </div>
 
-            {/* Data Due Input */}
             <div className="flex items-center justify-between sm:justify-end gap-3">
-              <span className="text-fs13 text-[#6f6b7d] w-24 sm:text-right">
+              <span className="text-fs15 text-[#6f6b7d] w-28 sm:text-right">
                 Data Due:
               </span>
               <CustomInput
@@ -235,7 +270,9 @@ export const InvoiceAddPage: React.FC = () => {
         {/* Invoice To / Bill To Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div>
-            <h3 className="text-fs14 font-semibold text-[#5d596c] mb-3">Invoice To:</h3>
+            <h3 className="text-fs16 font-semibold text-[#5d596c] mb-3">
+              Invoice To:
+            </h3>
             <div className="w-full max-w-xs">
               <CustomDropdown
                 value={selectedClientName}
@@ -250,8 +287,10 @@ export const InvoiceAddPage: React.FC = () => {
           </div>
 
           <div>
-            <h3 className="text-fs14 font-semibold text-[#5d596c] mb-3">Bill To:</h3>
-            <div className="space-y-1.5 text-fs13 text-[#6f6b7d]">
+            <h3 className="text-fs16 font-semibold text-[#5d596c] mb-3">
+              Bill To:
+            </h3>
+            <div className="space-y-1.5 text-fs15 text-[#6f6b7d]">
               <div className="flex">
                 <span className="w-28 text-[#6f6b7d]">Total Due :</span>
                 <span className="font-medium text-[#5d596c]">$12,110.55</span>
@@ -282,7 +321,7 @@ export const InvoiceAddPage: React.FC = () => {
         {/* Line Items Section */}
         <div>
           {/* Header row */}
-          <div className="grid grid-cols-12 gap-3 text-fs12 font-semibold text-[#5d596c] mb-2 px-1">
+          <div className="grid grid-cols-12 gap-3 text-fs14 font-semibold text-[#5d596c] mb-2 px-1">
             <div className="col-span-12 sm:col-span-5">Item</div>
             <div className="col-span-4 sm:col-span-2">Cost</div>
             <div className="col-span-4 sm:col-span-2">Hours</div>
@@ -337,7 +376,13 @@ export const InvoiceAddPage: React.FC = () => {
                         type="number"
                         min="0"
                         value={row.cost}
-                        onChange={(e) => handleUpdateItem(row.id, "cost", Number(e.target.value))}
+                        onChange={(e) =>
+                          handleUpdateItem(
+                            row.id,
+                            "cost",
+                            Number(e.target.value),
+                          )
+                        }
                         sizeVariant="sm"
                         containerClassName="w-full min-w-0"
                         className="rounded-[6px] !px-2 sm:!px-3 text-center sm:text-left"
@@ -350,7 +395,13 @@ export const InvoiceAddPage: React.FC = () => {
                         type="number"
                         min="1"
                         value={row.hours}
-                        onChange={(e) => handleUpdateItem(row.id, "hours", Number(e.target.value))}
+                        onChange={(e) =>
+                          handleUpdateItem(
+                            row.id,
+                            "hours",
+                            Number(e.target.value),
+                          )
+                        }
                         sizeVariant="sm"
                         containerClassName="w-full min-w-0"
                         className="rounded-[6px] !px-2 sm:!px-3 text-center sm:text-left"
@@ -358,7 +409,7 @@ export const InvoiceAddPage: React.FC = () => {
                     </div>
 
                     {/* Price Output */}
-                    <div className="col-span-4 sm:col-span-3 min-w-0 text-fs14 font-medium text-[#5d596c] flex items-center justify-between">
+                    <div className="col-span-4 sm:col-span-3 min-w-0 text-fs16 font-medium text-[#5d596c] flex items-center justify-between">
                       <span>${rowPrice}</span>
                     </div>
                   </div>
@@ -369,15 +420,21 @@ export const InvoiceAddPage: React.FC = () => {
                       <textarea
                         rows={2}
                         value={row.description}
-                        onChange={(e) => handleUpdateItem(row.id, "description", e.target.value)}
+                        onChange={(e) =>
+                          handleUpdateItem(
+                            row.id,
+                            "description",
+                            e.target.value,
+                          )
+                        }
                         placeholder="Description..."
-                        className="w-full p-2.5 border border-[#dbdade] rounded-[6px] text-fs13 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+                        className="w-full p-2.5 border border-[#dbdade] rounded-[6px] text-fs15 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
                       />
                     </div>
 
-                    <div className="col-span-12 sm:col-span-7 flex items-center gap-2 text-fs13 text-[#6f6b7d]">
+                    <div className="col-span-12 sm:col-span-7 flex items-center gap-2 text-fs15 text-[#6f6b7d]">
                       <span>Discount:</span>
-                      <span className="text-fs12 text-[#a5a3ae]">0% 0% 0%</span>
+                      <span className="text-fs14 text-[#a5a3ae]">0% 0% 0%</span>
                     </div>
                   </div>
 
@@ -389,8 +446,18 @@ export const InvoiceAddPage: React.FC = () => {
                       className="absolute top-2 right-2 text-[#a5a3ae] hover:text-[#ff4c51] p-1 transition cursor-pointer"
                       title="Remove item"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
                       </svg>
                     </button>
                   )}
@@ -405,10 +472,20 @@ export const InvoiceAddPage: React.FC = () => {
               type="button"
               variant="primary"
               onClick={handleAddItem}
-              className="!h-8 px-4 text-fs12 font-medium bg-[#696cff] hover:bg-[#5f61e6] text-white rounded-[6px] shadow-sm flex items-center gap-1.5 cursor-pointer uppercase tracking-wider"
+              className="!h-8 px-4 text-fs14 font-medium bg-[#696cff] hover:bg-[#5f61e6] text-white rounded-[6px] shadow-sm flex items-center gap-1.5 cursor-pointer uppercase tracking-wider"
             >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M12 4v16m8-8H4"
+                />
               </svg>
               <span>ADD ITEM</span>
             </CustomButton>
@@ -423,7 +500,9 @@ export const InvoiceAddPage: React.FC = () => {
           {/* Salesperson & message inputs */}
           <div className="space-y-3 w-full sm:w-auto">
             <div className="flex items-center gap-3">
-              <span className="text-fs13 font-medium text-[#5d596c] w-24">Invoice To:</span>
+              <span className="text-fs15 font-medium text-[#5d596c] w-24">
+                Invoice To:
+              </span>
               <CustomInput
                 type="text"
                 value={salesperson}
@@ -450,7 +529,7 @@ export const InvoiceAddPage: React.FC = () => {
           </div>
 
           {/* Summary calculations */}
-          <div className="w-full sm:w-60 space-y-2 text-fs14 text-[#6f6b7d]">
+          <div className="w-full sm:w-60 space-y-2 text-fs16 text-[#6f6b7d]">
             <div className="flex justify-between py-0.5">
               <span>Subtotal:</span>
               <span className="font-medium text-[#5d596c]">$00.00</span>
@@ -463,7 +542,7 @@ export const InvoiceAddPage: React.FC = () => {
               <span>Tax:</span>
               <span className="font-medium text-[#5d596c]">$00.00</span>
             </div>
-            <div className="flex justify-between py-1 text-fs15 font-semibold text-[#5d596c] border-t border-[#dbdade]/40 pt-2">
+            <div className="flex justify-between py-1 text-fs17 font-semibold text-[#5d596c] border-t border-[#dbdade]/40 pt-2">
               <span>Total:</span>
               <span className="text-[#5d596c]">$00.00</span>
             </div>
@@ -475,12 +554,12 @@ export const InvoiceAddPage: React.FC = () => {
 
         {/* Footer Note */}
         <div>
-          <h4 className="text-fs13 font-semibold text-[#5d596c] mb-2">Note:</h4>
+          <h4 className="text-fs15 font-semibold text-[#5d596c] mb-2">Note:</h4>
           <textarea
             rows={3}
             value={noteText}
             onChange={(e) => setNoteText(e.target.value)}
-            className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+            className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs16 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
           />
         </div>
       </div>
@@ -495,12 +574,24 @@ export const InvoiceAddPage: React.FC = () => {
             variant="primary"
             disabled={createMutation.isPending}
             onClick={() => handleSaveInvoice(true)}
-            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs14 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
           >
-            <svg className="w-4 h-4 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            <svg
+              className="w-4 h-4 -rotate-45"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+              />
             </svg>
-            <span>{createMutation.isPending ? "SENDING..." : "SEND INVOICE"}</span>
+            <span>
+              {createMutation.isPending ? "SENDING..." : "SEND INVOICE"}
+            </span>
           </CustomButton>
 
           {/* 2. PREVIEW */}
@@ -508,7 +599,7 @@ export const InvoiceAddPage: React.FC = () => {
             type="button"
             variant="outline"
             onClick={() => navigate("/apps/invoice/preview")}
-            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs14 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
           >
             <span>PREVIEW</span>
           </CustomButton>
@@ -519,7 +610,7 @@ export const InvoiceAddPage: React.FC = () => {
             variant="outline"
             disabled={createMutation.isPending}
             onClick={() => handleSaveInvoice(false)}
-            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs14 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
           >
             <span>{createMutation.isPending ? "SAVING..." : "SAVE"}</span>
           </CustomButton>
@@ -545,7 +636,7 @@ export const InvoiceAddPage: React.FC = () => {
         <div className="space-y-4 pt-2">
           {/* Payment Terms Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-fs14 text-[#6f6b7d]">Payment Terms</span>
+            <span className="text-fs16 text-[#6f6b7d]">Payment Terms</span>
             <button
               type="button"
               role="switch"
@@ -565,7 +656,7 @@ export const InvoiceAddPage: React.FC = () => {
 
           {/* Client Notes Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-fs14 text-[#6f6b7d]">Client Notes</span>
+            <span className="text-fs16 text-[#6f6b7d]">Client Notes</span>
             <button
               type="button"
               role="switch"
@@ -585,7 +676,7 @@ export const InvoiceAddPage: React.FC = () => {
 
           {/* Payment Stub Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-fs14 text-[#6f6b7d]">Payment Stub</span>
+            <span className="text-fs16 text-[#6f6b7d]">Payment Stub</span>
             <button
               type="button"
               role="switch"

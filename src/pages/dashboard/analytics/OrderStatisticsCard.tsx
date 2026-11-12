@@ -129,11 +129,11 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
   });
 
   return (
-    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs22 font-medium text-[#444050]">
+          <h3 className="text-fs18 font-semibold text-[#444050]">
             Order Statistics
           </h3>
           <YearSelectionPopup
@@ -152,12 +152,12 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
             </button>
           </YearSelectionPopup>
         </div>
-        <p className="text-fs16 text-[#a5a3ae] mt-0.5">{displayTotalSales}</p>
+        <p className="text-fs13 text-[#a5a3ae] mt-0.5">{displayTotalSales}</p>
 
         {/* Orders Count and Donut Chart */}
         <div className="flex items-center justify-between my-5">
           <div>
-            <span className="text-fs32 font-bold text-[#32475c] leading-none block">
+            <span className="text-fs28 font-bold text-[#444050] leading-none block">
               {displayTotalOrders}
             </span>
             <span className="text-fs13 text-[#a5a3ae] mt-1 block">
@@ -189,16 +189,16 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
                 />
               </div>
               <div>
-                <p className="text-fs18 font-medium text-[#444050] leading-tight">
+                <p className="text-fs15 font-medium text-[#444050] leading-tight">
                   {cat.name}
                 </p>
-                <p className="text-fs16 text-[#a5a3ae] leading-tight mt-1">
+                <p className="text-fs13 text-[#a5a3ae] leading-tight mt-1">
                   {cat.description}
                 </p>
               </div>
             </div>
             <div className="text-right">
-              <span className="text-fs16 font-medium text-[#444050]">
+              <span className="text-fs14 font-medium text-[#444050]">
                 {cat.value}
               </span>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { EmailFolder, EmailLabel } from "../../../api/types";
+import { AnchoredPortal } from "../../../components/ui/FloatingPortal";
 
 interface EmailToolbarProps {
   totalCount: number;
@@ -123,133 +124,141 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
           </button>
 
           {/* Move to Folder Icon with Dropdown */}
-          <div className="relative">
-            <button
-              type="button"
-              disabled={!hasSelection}
-              onClick={() => {
-                setShowFolderMenu((prev) => !prev);
-                setShowLabelMenu(false);
-                setShowMoreMenu(false);
-              }}
-              title="Move to Folder"
-              className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] hover:text-[#5d596c] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#6f6b7d] transition cursor-pointer"
-            >
-              <svg
-                className="w-4.5 h-4.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <AnchoredPortal
+            isOpen={showFolderMenu}
+            onClose={() => setShowFolderMenu(false)}
+            align="left"
+            offset={4}
+            trigger={
+              <button
+                type="button"
+                disabled={!hasSelection}
+                onClick={() => {
+                  setShowFolderMenu((prev) => !prev);
+                  setShowLabelMenu(false);
+                  setShowMoreMenu(false);
+                }}
+                title="Move to Folder"
+                className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] hover:text-[#5d596c] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#6f6b7d] transition cursor-pointer"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"
-                />
-              </svg>
-            </button>
-
-            {showFolderMenu && (
-              <div className="absolute left-0 mt-1 w-44 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(47,43,61,0.14)] border border-[#dbdade]/50 py-1.5 z-30">
-                <div className="px-3 py-1 text-fs11 font-semibold text-[#a5a3ae] uppercase">
-                  Move to
-                </div>
-                {currentFolder !== "inbox" && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onMoveToFolder("inbox");
-                      setShowFolderMenu(false);
-                    }}
-                    className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#696cff] transition cursor-pointer"
-                  >
-                    Inbox
-                  </button>
-                )}
-                {currentFolder !== "spam" && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onMoveToFolder("spam");
-                      setShowFolderMenu(false);
-                    }}
-                    className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#ea5455] transition cursor-pointer"
-                  >
-                    Spam
-                  </button>
-                )}
-                {currentFolder !== "trash" && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onMoveToFolder("trash");
-                      setShowFolderMenu(false);
-                    }}
-                    className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#ea5455] transition cursor-pointer"
-                  >
-                    Trash
-                  </button>
-                )}
+                <svg
+                  className="w-4.5 h-4.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.8}
+                    d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </button>
+            }
+          >
+            <div className="w-44 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(47,43,61,0.14)] border border-[#dbdade]/50 py-1.5">
+              <div className="px-3 py-1 text-fs11 font-semibold text-[#a5a3ae] uppercase">
+                Move to
               </div>
-            )}
-          </div>
+              {currentFolder !== "inbox" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onMoveToFolder("inbox");
+                    setShowFolderMenu(false);
+                  }}
+                  className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#696cff] transition cursor-pointer"
+                >
+                  Inbox
+                </button>
+              )}
+              {currentFolder !== "spam" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onMoveToFolder("spam");
+                    setShowFolderMenu(false);
+                  }}
+                  className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#ea5455] transition cursor-pointer"
+                >
+                  Spam
+                </button>
+              )}
+              {currentFolder !== "trash" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onMoveToFolder("trash");
+                    setShowFolderMenu(false);
+                  }}
+                  className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#ea5455] transition cursor-pointer"
+                >
+                  Trash
+                </button>
+              )}
+            </div>
+          </AnchoredPortal>
 
           {/* Label Tag Icon with Dropdown */}
-          <div className="relative">
-            <button
-              type="button"
-              disabled={!hasSelection}
-              onClick={() => {
-                setShowLabelMenu((prev) => !prev);
-                setShowFolderMenu(false);
-                setShowMoreMenu(false);
-              }}
-              title="Apply Label"
-              className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] hover:text-[#5d596c] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#6f6b7d] transition cursor-pointer"
-            >
-              <svg
-                className="w-4.5 h-4.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <AnchoredPortal
+            isOpen={showLabelMenu}
+            onClose={() => setShowLabelMenu(false)}
+            align="left"
+            offset={4}
+            trigger={
+              <button
+                type="button"
+                disabled={!hasSelection}
+                onClick={() => {
+                  setShowLabelMenu((prev) => !prev);
+                  setShowFolderMenu(false);
+                  setShowMoreMenu(false);
+                }}
+                title="Apply Label"
+                className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] hover:text-[#5d596c] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#6f6b7d] transition cursor-pointer"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                />
-              </svg>
-            </button>
-
-            {showLabelMenu && (
-              <div className="absolute left-0 mt-1 w-44 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(47,43,61,0.14)] border border-[#dbdade]/50 py-1.5 z-30">
-                <div className="px-3 py-1 text-fs11 font-semibold text-[#a5a3ae] uppercase">
-                  Labels
-                </div>
-                {[
-                  { id: "personal" as EmailLabel, name: "Personal", color: "bg-[#71dd37]" },
-                  { id: "company" as EmailLabel, name: "Company", color: "bg-[#696cff]" },
-                  { id: "important" as EmailLabel, name: "important", color: "bg-[#ffab00]" },
-                  { id: "private" as EmailLabel, name: "Private", color: "bg-[#ea5455]" },
-                ].map((lbl) => (
-                  <button
-                    key={lbl.id}
-                    type="button"
-                    onClick={() => {
-                      onToggleLabel(lbl.id);
-                      setShowLabelMenu(false);
-                    }}
-                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c] transition cursor-pointer text-left"
-                  >
-                    <span className={`w-2 h-2 rounded-full ${lbl.color}`} />
-                    <span>{lbl.name}</span>
-                  </button>
-                ))}
+                <svg
+                  className="w-4.5 h-4.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.8}
+                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                  />
+                </svg>
+              </button>
+            }
+          >
+            <div className="w-44 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(47,43,61,0.14)] border border-[#dbdade]/50 py-1.5">
+              <div className="px-3 py-1 text-fs11 font-semibold text-[#a5a3ae] uppercase">
+                Labels
               </div>
-            )}
-          </div>
+              {[
+                { id: "personal" as EmailLabel, name: "Personal", color: "bg-[#71dd37]" },
+                { id: "company" as EmailLabel, name: "Company", color: "bg-[#696cff]" },
+                { id: "important" as EmailLabel, name: "important", color: "bg-[#ffab00]" },
+                { id: "private" as EmailLabel, name: "Private", color: "bg-[#ea5455]" },
+              ].map((lbl) => (
+                <button
+                  key={lbl.id}
+                  type="button"
+                  onClick={() => {
+                    onToggleLabel(lbl.id);
+                    setShowLabelMenu(false);
+                  }}
+                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c] transition cursor-pointer text-left"
+                >
+                  <span className={`w-2 h-2 rounded-full ${lbl.color}`} />
+                  <span>{lbl.name}</span>
+                </button>
+              ))}
+            </div>
+          </AnchoredPortal>
         </div>
       </div>
 
@@ -278,55 +287,59 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
         </button>
 
         {/* More options menu */}
-        <div className="relative">
-          <button
-            type="button"
-            onClick={() => {
-              setShowMoreMenu((prev) => !prev);
-              setShowFolderMenu(false);
-              setShowLabelMenu(false);
-            }}
-            title="More Options"
-            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] hover:text-[#5d596c] transition cursor-pointer"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+        <AnchoredPortal
+          isOpen={showMoreMenu}
+          onClose={() => setShowMoreMenu(false)}
+          align="right"
+          offset={4}
+          trigger={
+            <button
+              type="button"
+              onClick={() => {
+                setShowMoreMenu((prev) => !prev);
+                setShowFolderMenu(false);
+                setShowLabelMenu(false);
+              }}
+              title="More Options"
+              className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] hover:text-[#5d596c] transition cursor-pointer"
             >
-              <circle cx="12" cy="5" r="2" />
-              <circle cx="12" cy="12" r="2" />
-              <circle cx="12" cy="19" r="2" />
-            </svg>
-          </button>
-
-          {showMoreMenu && (
-            <div className="absolute right-0 mt-1 w-44 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(47,43,61,0.14)] border border-[#dbdade]/50 py-1.5 z-30">
-              <button
-                type="button"
-                onClick={() => {
-                  onMarkAsReadSelected();
-                  setShowMoreMenu(false);
-                }}
-                disabled={!hasSelection}
-                className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c] disabled:opacity-40 transition cursor-pointer"
+              <svg
+                className="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
               >
-                Mark as read
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  onMarkAsUnreadSelected();
-                  setShowMoreMenu(false);
-                }}
-                disabled={!hasSelection}
-                className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c] disabled:opacity-40 transition cursor-pointer"
-              >
-                Mark as unread
-              </button>
-            </div>
-          )}
-        </div>
+                <circle cx="12" cy="5" r="2" />
+                <circle cx="12" cy="12" r="2" />
+                <circle cx="12" cy="19" r="2" />
+              </svg>
+            </button>
+          }
+        >
+          <div className="w-44 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(47,43,61,0.14)] border border-[#dbdade]/50 py-1.5">
+            <button
+              type="button"
+              onClick={() => {
+                onMarkAsReadSelected();
+                setShowMoreMenu(false);
+              }}
+              disabled={!hasSelection}
+              className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c] disabled:opacity-40 transition cursor-pointer"
+            >
+              Mark as read
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                onMarkAsUnreadSelected();
+                setShowMoreMenu(false);
+              }}
+              disabled={!hasSelection}
+              className="w-full text-left px-3 py-1.5 text-fs13 text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c] disabled:opacity-40 transition cursor-pointer"
+            >
+              Mark as unread
+            </button>
+          </div>
+        </AnchoredPortal>
       </div>
     </div>
   );

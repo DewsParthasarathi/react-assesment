@@ -311,3 +311,17 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #dbdade #f8f7fa;
 }
+
+@media print {
+  @page {
+    size: auto;
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+}

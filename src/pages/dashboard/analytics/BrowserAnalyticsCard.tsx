@@ -198,7 +198,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
               className="w-full h-full object-contain"
             />
           )}
-          <span className="font-semibold text-[#32475c]">{row.name}</span>
+          <span className="font-medium text-[#444050]">{row.name}</span>
         </div>
       ),
     },
@@ -222,7 +222,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
               style={{ width: `${row.width}%` }}
             />
           </div>
-          <span className="text-fs12 font-semibold text-[#32475c] w-12 text-right">
+          <span className="text-fs12 font-medium text-[#444050] w-12 text-right">
             {row.percentage}
           </span>
         </div>
@@ -267,12 +267,12 @@ export const BrowserAnalyticsCard: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white w-full rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white w-full rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       <Tabs
         tabs={tabItems}
         activeTab={activeTab}
         onChange={(tabId) => setActiveTab(tabId as AnalyticsTab)}
-        tabListClassName="flex items-center gap-1.5 p-1 bg-[#f8f7fa] rounded-lg w-fit mb-5"
+        tabListClassName="flex items-center gap-1.5 p-1 bg-[#f8f7fa] rounded-[6px] w-fit mb-5"
         contentClassName="w-full"
       />
     </div>

@@ -18,9 +18,7 @@ export const PROFILE_PROJECTS_QUERY_KEY = "profileProjects";
 export const PROFILE_TEAMS_QUERY_KEY = "profileTeams";
 export const PROFILE_CONNECTIONS_QUERY_KEY = "profileConnections";
 
-/**
- * Hook to retrieve full user profile data.
- */
+
 export const useProfileQuery = () => {
   return useQuery<UserProfile, Error>({
     queryKey: [PROFILE_QUERY_KEY],
@@ -29,9 +27,7 @@ export const useProfileQuery = () => {
   });
 };
 
-/**
- * Mutation hook to toggle connection status.
- */
+
 export const useToggleConnectionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<ProfileConnection, Error, string>({
@@ -43,9 +39,7 @@ export const useToggleConnectionMutation = () => {
   });
 };
 
-/**
- * Hook to retrieve projects.
- */
+
 export const useProfileProjectsQuery = () => {
   return useQuery<ProfileProject[], Error>({
     queryKey: [PROFILE_PROJECTS_QUERY_KEY],
@@ -54,9 +48,7 @@ export const useProfileProjectsQuery = () => {
   });
 };
 
-/**
- * Hook to retrieve teams.
- */
+
 export const useProfileTeamsQuery = () => {
   return useQuery<ProfileTeam[], Error>({
     queryKey: [PROFILE_TEAMS_QUERY_KEY],
@@ -65,9 +57,7 @@ export const useProfileTeamsQuery = () => {
   });
 };
 
-/**
- * Hook to retrieve connections.
- */
+
 export const useProfileConnectionsQuery = () => {
   return useQuery<ProfileConnection[], Error>({
     queryKey: [PROFILE_CONNECTIONS_QUERY_KEY],

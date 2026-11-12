@@ -173,7 +173,6 @@ export const CalendarPage: React.FC = () => {
 
   const handleMiniCalendarMonthChange = (newDate: Date) => {
     setCurrentDate(newDate);
-    calendar.gotoDate(newDate);
   };
 
   const handleOpenAddEventDrawer = (initialDateStr?: string) => {
@@ -280,6 +279,19 @@ export const CalendarPage: React.FC = () => {
               slotMinTime="06:00:00"
               slotMaxTime="22:00:00"
               listDayHeaderClass="fc-custom-list-day-header"
+              dayCellClass={(arg) =>
+                [
+                  arg.isOther ? "fc-day-other" : "",
+                  arg.isToday ? "fc-day-today" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")
+              }
+              dayCellTopInnerClass={(arg) =>
+                arg.isOther
+                  ? "fc-daygrid-day-number fc-other-day-number"
+                  : "fc-daygrid-day-number"
+              }
               views={{
                 dayGridMonth: {
                   dayHeaderFormat: { weekday: "short" },
@@ -330,7 +342,6 @@ export const CalendarPage: React.FC = () => {
                       : "";
                     timeDisplay = end12 ? `${start12} - ${end12}` : start12;
                   }
-
                   return (
                     <div className="w-full flex items-center py-2.5 px-3 hover:bg-[#f8f7fa] transition cursor-pointer select-none">
                       <div className="w-36 sm:w-44 shrink-0 text-fs13 text-[#6f6b7d] font-normal lowercase">

@@ -1,17 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useCallback } from "react";
+import { FloatingPortal } from "./FloatingPortal";
 
 export interface YearSelectionPopupProps {
-  /** Currently selected year (e.g. "2023") */
   selectedYear: string;
-  /** Callback fired when a year is selected */
   onSelectYear: (year: string) => void;
-  /** Available years list (e.g. ["2023", "2022"]) from database */
   availableYears?: string[];
-  /** Trigger element (e.g. more-options button) */
   children?: React.ReactNode;
-  /** Optional container class name */
   className?: string;
-  /** Custom popup menu class name */
   popupClassName?: string;
 }
 
@@ -24,39 +19,11 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
   popupClassName = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
-
-  // Close on Escape key
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOpen]);
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -69,10 +36,18 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
     setIsOpen(false);
   };
 
+  const align = popupClassName.includes("left-1/2") ? "center" : "right";
+  const cleanPopupClassName = popupClassName
+    .replace(/\b(left-1\/2|-translate-x-1\/2|right-auto)\b/g, "")
+    .trim();
+
   return (
-    <div className={`relative inline-block ${className}`} ref={containerRef}>
-      {/* Trigger: wraps children or renders default more button */}
-      <div onClick={handleToggle} className="cursor-pointer inline-flex">
+    <div className={`relative inline-block ${className}`}>
+      <div
+        ref={triggerRef}
+        onClick={handleToggle}
+        className="cursor-pointer inline-flex"
+      >
         {children ? (
           children
         ) : (
@@ -90,12 +65,17 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
         )}
       </div>
 
-      {/* Year Selection Popup Menu */}
-      {isOpen && (
+      <FloatingPortal
+        isOpen={isOpen}
+        anchorRef={triggerRef}
+        onClose={handleClose}
+        align={align}
+        offset={6}
+      >
         <div
           role="menu"
           aria-orientation="vertical"
-          className={`absolute right-0 top-full mt-1.5 z-50 w-28 bg-white border border-[#dbdade] shadow-[0_4px_16px_rgba(47,43,61,0.14)] rounded-[5px] py-1 text-fs13 focus:outline-none animate-in fade-in-50 duration-150 ${popupClassName}`}
+          className={`w-28 bg-white border border-[#dbdade] shadow-[0_4px_16px_rgba(47,43,61,0.14)] rounded-[5px] py-1 text-fs13 focus:outline-none animate-in fade-in-50 duration-150 ${cleanPopupClassName}`.trim()}
         >
           {availableYears.map((yr) => {
             const isSelected = yr === selectedYear;
@@ -131,7 +111,7 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
             );
           })}
         </div>
-      )}
+      </FloatingPortal>
     </div>
   );
 };

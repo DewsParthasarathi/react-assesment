@@ -99,16 +99,20 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
           <Chart options={chartOptions} />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          {/* Checkmark icon */}
-          <div className="w-5 h-5 flex items-center justify-center text-[#71dd37] mb-0.5">
+          {/* Net profit icon styled in Sales Status green (#71dd37) */}
+          <div className="w-7 h-7 flex items-center justify-center text-[#71dd37] mb-1.5">
             <svg
-              className="w-4 h-4"
+              className="w-[26px] h-[23px]"
+              viewBox="0 0 25 22"
               fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={3}
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M16.4387 2.12669L18.909 4.20749L11.479 15.0799L8.01781 10.2814L0 22L7.74648 13.6404L11.5514 20.082L22.1143 6.90369L24.6939 9.07682L25 0L16.4387 2.12669Z"
+                fill="currentColor"
+              />
             </svg>
           </div>
           <span className="text-fs24 font-semibold text-[#444050] leading-none">{percentage}%</span>

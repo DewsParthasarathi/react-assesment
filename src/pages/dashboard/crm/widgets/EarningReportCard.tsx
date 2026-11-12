@@ -47,9 +47,9 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
   const chartOptions: Highcharts.Options = {
     chart: {
       type: "column",
-      height: 110,
+      height: 115,
       backgroundColor: "transparent",
-      margin: [10, 5, 25, 5],
+      margin: [10, 5, 30, 5],
       spacing: [0, 0, 0, 0],
     },
     title: { text: undefined },
@@ -66,6 +66,7 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
     xAxis: {
       categories: days,
       labels: {
+        y: 20,
         style: {
           color: "#a5a3ae",
           fontSize: "12px",

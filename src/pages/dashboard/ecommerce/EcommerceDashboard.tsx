@@ -77,7 +77,7 @@ export const EcommerceDashboard: React.FC = () => {
   const availableYears = data.availableYears || ["2023", "2022"];
 
   return (
-    <div className="w-full px-4 sm:px-6 py-4 space-y-6 pb-10 select-none">
+    <div className="w-full space-y-6 select-none">
       {/* ROW 1: Congratulations Card (4 cols) + Shared (New Visitors & Activity) Card (8 cols) */}
       <div className="grid grid-cols-12 gap-6 items-stretch">
         <div className="col-span-12 xl:col-span-4 h-full">

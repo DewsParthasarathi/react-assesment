@@ -4,9 +4,7 @@ import type { User } from "../api/types";
 
 export const USERS_QUERY_KEY = "users";
 
-/**
- * Custom TanStack Query hook to fetch all available users.
- */
+
 export const useUsersQuery = () => {
   return useQuery<User[], Error>({
     queryKey: [USERS_QUERY_KEY],

@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
@@ -12,7 +13,9 @@ export const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
   const menuRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,9 +37,29 @@ export const Navbar: React.FC = () => {
     navigate("/login");
   };
 
+  const updateMenuPosition = useCallback(() => {
+    if (!menuRef.current) return;
+    const rect = menuRef.current.getBoundingClientRect();
+    setMenuPosition({
+      top: rect.bottom + 8,
+      right: document.documentElement.clientWidth - rect.right,
+    });
+  }, []);
+
+  const handleToggleProfileMenu = () => {
+    if (!showProfileMenu) {
+      updateMenuPosition();
+    }
+    setShowProfileMenu((prev) => !prev);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (
+        !menuRef.current?.contains(target) &&
+        !dropdownRef.current?.contains(target)
+      ) {
         setShowProfileMenu(false);
       }
     };
@@ -44,9 +67,18 @@ export const Navbar: React.FC = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!showProfileMenu) return;
+    window.addEventListener("resize", updateMenuPosition);
+    window.addEventListener("scroll", updateMenuPosition, true);
+    return () => {
+      window.removeEventListener("resize", updateMenuPosition);
+      window.removeEventListener("scroll", updateMenuPosition, true);
+    };
+  }, [showProfileMenu, updateMenuPosition]);
+
   return (
-    <header className="shrink-0 sticky top-[2.5%] z-30 w-[95%] mx-auto mt-[2.5%] bg-white/95 backdrop-blur-md px-6 max-[1440px]:px-5 max-[1024px]:px-4 h-[62px] flex items-center justify-between border-b border-[#dbdade]/40 shadow-[0_2px_4px_rgba(165,163,174,0.1)] rounded-[5px]">
-      {/* Search Input using CustomInput */}
+    <header className="shrink-0 relative z-30 w-full bg-white/95 backdrop-blur-md px-6 max-[1440px]:px-5 max-[1024px]:px-4 h-[62px] flex items-center justify-between border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] rounded-[6px]">
       <div className="flex items-center flex-1 max-w-md">
         <CustomInput
           type="text"
@@ -72,9 +104,7 @@ export const Navbar: React.FC = () => {
         />
       </div>
 
-      {/* Right-aligned Navigation Controls using CustomButton */}
       <div className="flex items-center gap-1.5 sm:gap-2">
-        {/* Language / Translation */}
         <CustomButton
           aria-label="Change Language"
           title="Language"
@@ -95,7 +125,6 @@ export const Navbar: React.FC = () => {
           </svg>
         </CustomButton>
 
-        {/* Dark Mode Toggle */}
         <CustomButton
           variant="icon"
           onClick={toggleDarkMode}
@@ -135,7 +164,6 @@ export const Navbar: React.FC = () => {
           )}
         </CustomButton>
 
-        {/* Application Grid */}
         <CustomButton
           variant="icon"
           aria-label="Applications"
@@ -156,7 +184,6 @@ export const Navbar: React.FC = () => {
           </svg>
         </CustomButton>
 
-        {/* Notifications */}
         <CustomButton
           variant="icon"
           aria-label="Notifications"
@@ -179,11 +206,10 @@ export const Navbar: React.FC = () => {
           <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#ea5455]" />
         </CustomButton>
 
-        {/* Dynamic User Profile Avatar & Dropdown */}
         <div className="relative ml-2" ref={menuRef}>
           <button
             type="button"
-            onClick={() => setShowProfileMenu((prev) => !prev)}
+            onClick={handleToggleProfileMenu}
             aria-label="User Profile Menu"
             className="relative cursor-pointer focus:outline-none"
           >
@@ -192,6 +218,7 @@ export const Navbar: React.FC = () => {
                 src={avatarUrl}
                 alt={memberName}
                 objectFit="cover"
+                className="w-full h-full"
                 fallback={
                   <span className="select-none">{memberName.charAt(0)}</span>
                 }
@@ -200,81 +227,88 @@ export const Navbar: React.FC = () => {
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#28c76f] border-2 border-white" />
           </button>
 
-          {/* User Profile Dropdown Menu */}
-          {showProfileMenu && (
-            <div className="absolute right-0 mt-2 w-64 bg-white rounded-[5px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[#dbdade]/60 py-3 z-50 animate-in fade-in duration-150">
-              {/* Header Info */}
-              <div className="flex items-center gap-3 px-4 pb-3 border-b border-[#dbdade]/40">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-[#dbdade] shrink-0">
-                  <CustomImage
-                    src={avatarUrl}
-                    alt={memberName}
-                    objectFit="cover"
-                    fallback={<span>{memberName.charAt(0)}</span>}
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-fs14 font-semibold text-[#32475c] truncate">
-                    {memberName}
-                  </p>
-                  <p className="text-fs12 text-[#6f6b7d] truncate">
-                    {memberEmail}
-                  </p>
-                  <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#696cff]/10 text-[#696cff] mt-0.5">
-                    {memberRole} (Member #{memberId})
-                  </span>
-                </div>
-              </div>
-
-              {/* Menu Actions */}
-              <div className="pt-2 px-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowProfileMenu(false);
-                    navigate("/pages/profile");
-                  }}
-                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#32475c] transition"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          {showProfileMenu &&
+            createPortal(
+              <div
+                ref={dropdownRef}
+                style={{
+                  top: `${menuPosition.top}px`,
+                  right: `${menuPosition.right}px`,
+                }}
+                className="fixed w-64 bg-white rounded-[5px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[#dbdade]/60 py-3 z-50 animate-in fade-in duration-150"
+              >
+                <div className="flex items-center gap-3 px-4 pb-3 border-b border-[#dbdade]/40">
+                  <div className="w-10 h-10 rounded-full overflow-hidden border border-[#dbdade] shrink-0">
+                    <CustomImage
+                      src={avatarUrl}
+                      alt={memberName}
+                      objectFit="cover"
+                      className="w-full h-full"
+                      fallback={<span>{memberName.charAt(0)}</span>}
                     />
-                  </svg>
-                  My Profile
-                </button>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-fs14 font-semibold text-[#32475c] truncate">
+                      {memberName}
+                    </p>
+                    <p className="text-fs12 text-[#6f6b7d] truncate">
+                      {memberEmail}
+                    </p>
+                    <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#696cff]/10 text-[#696cff] mt-0.5">
+                      {memberRole} (Member #{memberId})
+                    </span>
+                  </div>
+                </div>
 
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#ea5455] hover:bg-red-50 transition font-medium mt-1"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div className="pt-2 px-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowProfileMenu(false);
+                      navigate("/pages/profile");
+                    }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#32475c] transition"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    />
-                  </svg>
-                  Sign Out
-                </button>
-              </div>
-            </div>
-          )}
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                    My Profile
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#ea5455] hover:bg-red-50 transition font-medium mt-1"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                      />
+                    </svg>
+                    Sign Out
+                  </button>
+                </div>
+              </div>,
+              document.body,
+            )}
         </div>
       </div>
     </header>

@@ -166,7 +166,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
     <div className="w-full max-w-full flex-1 flex flex-col lg:flex-row items-start gap-6 min-w-0 pb-12">
       {/* Toast Notification */}
       {successToast && (
-        <div className="fixed top-20 right-8 z-50 bg-[#e8fadf] text-[#71dd37] border border-[#71dd37]/40 px-4 py-3 rounded-md shadow-lg text-fs14 font-medium flex items-center gap-2 animate-in fade-in">
+        <div className="fixed top-20 right-8 z-50 bg-[#e8fadf] text-[#71dd37] border border-[#71dd37]/40 px-4 py-3 rounded-md shadow-lg text-fs16 font-medium flex items-center gap-2 animate-in fade-in">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
@@ -178,7 +178,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
       <div className="flex-1 min-w-0 w-full max-w-full bg-white rounded-lg shadow-[0_2px_8px_rgba(47,43,61,0.06)] border border-[#dbdade]/70 p-5 sm:p-7 lg:p-8 flex flex-col">
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-6 min-w-0">
-          <div className="text-fs14 text-[#6f6b7d] leading-relaxed">
+          <div className="text-fs16 text-[#6f6b7d] leading-relaxed">
             <p>450 south Brand Brooklyn</p>
             <p>San Diego Country,CA 91905,USA</p>
             <p>+1 (123) 456 789, 123465432456</p>
@@ -187,7 +187,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           <div className="space-y-3 w-full sm:w-auto">
             {/* Invoice # Input */}
             <div className="flex items-center justify-between sm:justify-end gap-3">
-              <span className="text-fs14 font-semibold text-[#32475c] w-24 sm:text-right">
+              <span className="text-fs16 font-semibold text-[#32475c] w-28 sm:text-right">
                 Invoice
               </span>
               <CustomInput
@@ -202,7 +202,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
 
             {/* Data Issued Input */}
             <div className="flex items-center justify-between sm:justify-end gap-3">
-              <span className="text-fs13 text-[#6f6b7d] w-24 sm:text-right">
+              <span className="text-fs15 text-[#6f6b7d] w-28 sm:text-right">
                 Data Issued:
               </span>
               <CustomInput
@@ -217,7 +217,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
 
             {/* Data Due Input */}
             <div className="flex items-center justify-between sm:justify-end gap-3">
-              <span className="text-fs13 text-[#6f6b7d] w-24 sm:text-right">
+              <span className="text-fs15 text-[#6f6b7d] w-28 sm:text-right">
                 Data Due:
               </span>
               <CustomInput
@@ -238,7 +238,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
         {/* Invoice To / Bill To Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div>
-            <h3 className="text-fs14 font-semibold text-[#5d596c] mb-3">Invoice To:</h3>
+            <h3 className="text-fs16 font-semibold text-[#5d596c] mb-3">Invoice To:</h3>
             <div className="w-full max-w-xs mb-3">
               <CustomDropdown
                 value={selectedClientName}
@@ -250,7 +250,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                 }))}
               />
             </div>
-            <p className="text-fs13 text-[#6f6b7d] leading-relaxed max-w-xs">
+            <p className="text-fs15 text-[#6f6b7d] leading-relaxed max-w-xs">
               Lorem ipsum dolor sit amet,
               <br />
               consectetur adipiscing elit,
@@ -260,8 +260,8 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
 
           <div>
-            <h3 className="text-fs14 font-semibold text-[#5d596c] mb-3">Bill To:</h3>
-            <div className="space-y-1.5 text-fs13 text-[#6f6b7d]">
+            <h3 className="text-fs16 font-semibold text-[#5d596c] mb-3">Bill To:</h3>
+            <div className="space-y-1.5 text-fs15 text-[#6f6b7d]">
               <div className="flex">
                 <span className="w-28 text-[#6f6b7d]">Total Due :</span>
                 <span className="font-medium text-[#5d596c]">
@@ -294,7 +294,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
         {/* Line Items Section */}
         <div>
           {/* Header row */}
-          <div className="grid grid-cols-12 gap-3 text-fs12 font-semibold text-[#5d596c] mb-2 px-1">
+          <div className="grid grid-cols-12 gap-3 text-fs14 font-semibold text-[#5d596c] mb-2 px-1">
             <div className="col-span-12 sm:col-span-5">Item</div>
             <div className="col-span-4 sm:col-span-2">Cost</div>
             <div className="col-span-4 sm:col-span-2">Hours</div>
@@ -370,7 +370,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                     </div>
 
                     {/* Price Output */}
-                    <div className="col-span-4 sm:col-span-3 min-w-0 text-fs14 font-medium text-[#5d596c] flex items-center justify-between">
+                    <div className="col-span-4 sm:col-span-3 min-w-0 text-fs16 font-medium text-[#5d596c] flex items-center justify-between">
                       <span>${rowPrice}</span>
                     </div>
                   </div>
@@ -402,9 +402,9 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                       />
                     </div>
 
-                    <div className="col-span-12 sm:col-span-7 min-w-0 flex items-center gap-2 text-fs13 text-[#6f6b7d]">
+                    <div className="col-span-12 sm:col-span-7 min-w-0 flex items-center gap-2 text-fs15 text-[#6f6b7d]">
                       <span>Discount:</span>
-                      <span className="text-fs12 text-[#a5a3ae]">0% 0% 0%</span>
+                      <span className="text-fs14 text-[#a5a3ae]">0% 0% 0%</span>
                     </div>
                   </div>
 
@@ -432,7 +432,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               type="button"
               variant="primary"
               onClick={handleAddItem}
-              className="!h-8 px-4 text-fs12 font-medium bg-[#696cff] hover:bg-[#5f61e6] text-white rounded-[6px] shadow-sm flex items-center gap-1.5 cursor-pointer uppercase tracking-wider"
+              className="!h-8 px-4 text-fs14 font-medium bg-[#696cff] hover:bg-[#5f61e6] text-white rounded-[6px] shadow-sm flex items-center gap-1.5 cursor-pointer uppercase tracking-wider"
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
@@ -450,7 +450,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           {/* Salesperson & message inputs */}
           <div className="space-y-3 w-full sm:w-auto">
             <div className="flex items-center gap-3">
-              <span className="text-fs13 font-medium text-[#5d596c] w-24">Invoice To:</span>
+              <span className="text-fs15 font-medium text-[#5d596c] w-24">Invoice To:</span>
               <CustomInput
                 type="text"
                 value={salesperson}
@@ -477,7 +477,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
 
           {/* Summary calculations matching reference */}
-          <div className="w-full sm:w-60 space-y-2 text-fs14 text-[#6f6b7d]">
+          <div className="w-full sm:w-60 space-y-2 text-fs16 text-[#6f6b7d]">
             <div className="flex justify-between py-0.5">
               <span>Subtotal:</span>
               <span className="font-medium text-[#5d596c]">$5000.25</span>
@@ -490,7 +490,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               <span>Tax:</span>
               <span className="font-medium text-[#5d596c]">$100.00</span>
             </div>
-            <div className="flex justify-between py-1 text-fs15 font-semibold text-[#5d596c] border-t border-[#dbdade]/40 pt-2">
+            <div className="flex justify-between py-1 text-fs17 font-semibold text-[#5d596c] border-t border-[#dbdade]/40 pt-2">
               <span>Total:</span>
               <span className="text-[#5d596c]">$5100.25</span>
             </div>
@@ -502,12 +502,12 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
 
         {/* Footer Note */}
         <div>
-          <h4 className="text-fs13 font-semibold text-[#5d596c] mb-2">Note:</h4>
+          <h4 className="text-fs15 font-semibold text-[#5d596c] mb-2">Note:</h4>
           <textarea
             rows={3}
             value={noteText}
             onChange={(e) => setNoteText(e.target.value)}
-            className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
+            className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs16 text-[#5d596c] focus:outline-none focus:border-[#696cff] bg-white"
           />
         </div>
       </div>
@@ -522,7 +522,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
             variant="primary"
             disabled={isPending}
             onClick={() => handleSave(true)}
-            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs14 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
           >
             <svg className="w-4 h-4 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -536,7 +536,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               type="button"
               variant="outline"
               onClick={() => navigate(`/apps/invoice/preview?id=${invoice.id}`)}
-              className="w-full !h-11 px-4 rounded-[6px] font-medium text-fs14 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+              className="w-full !h-11 px-4 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
             >
               <span>PREVIEW</span>
             </CustomButton>
@@ -546,7 +546,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               variant="outline"
               disabled={isPending}
               onClick={() => handleSave(false)}
-              className="w-full !h-11 px-4 rounded-[6px] font-medium text-fs14 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+              className="w-full !h-11 px-4 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
             >
               <span>{isPending ? "SAVING..." : "SAVE"}</span>
             </CustomButton>
@@ -559,9 +559,9 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               setPaymentAmount(invoice.balance || 0);
               setIsPaymentModalOpen(true);
             }}
-            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs14 bg-[#71dd37] hover:bg-[#64c631] text-white shadow-[0_2px_4px_rgba(113,221,55,0.4)] flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
+            className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-[#71dd37] hover:bg-[#64c631] text-white shadow-[0_2px_4px_rgba(113,221,55,0.4)] flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
           >
-            <span className="font-bold text-fs15">$</span>
+            <span className="font-bold text-fs17">$</span>
             <span>ADD PAYMENT</span>
           </CustomButton>
         </div>
@@ -586,7 +586,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
         <div className="space-y-4 pt-2">
           {/* Payment Terms Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-fs14 text-[#6f6b7d]">Payment Terms</span>
+            <span className="text-fs16 text-[#6f6b7d]">Payment Terms</span>
             <button
               type="button"
               role="switch"
@@ -606,7 +606,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
 
           {/* Client Notes Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-fs14 text-[#6f6b7d]">Client Notes</span>
+            <span className="text-fs16 text-[#6f6b7d]">Client Notes</span>
             <button
               type="button"
               role="switch"
@@ -626,7 +626,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
 
           {/* Payment Stub Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-fs14 text-[#6f6b7d]">Payment Stub</span>
+            <span className="text-fs16 text-[#6f6b7d]">Payment Stub</span>
             <button
               type="button"
               role="switch"
@@ -655,13 +655,13 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
         size="md"
       >
         <form onSubmit={handleRecordPayment} className="space-y-4">
-          <div className="p-3 rounded bg-[#f8f7fa] flex justify-between items-center text-fs14">
+          <div className="p-3 rounded bg-[#f8f7fa] flex justify-between items-center text-fs16">
             <span className="text-[#6f6b7d]">Invoice Balance:</span>
-            <span className="font-bold text-[#ff4c51] text-fs16">${invoice.balance}</span>
+            <span className="font-bold text-[#ff4c51] text-fs18">${invoice.balance}</span>
           </div>
 
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
               Payment Amount ($) *
             </label>
             <CustomInput
@@ -677,7 +677,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
 
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
               Payment Date *
             </label>
             <CustomInput
@@ -695,14 +695,14 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               type="button"
               variant="outline"
               onClick={() => setIsPaymentModalOpen(false)}
-              className="!h-9 px-4 text-fs14 font-medium"
+              className="!h-9 px-4 text-fs16 font-medium"
             >
               Cancel
             </CustomButton>
             <CustomButton
               type="submit"
               variant="primary"
-              className="!h-9 px-5 text-fs14 font-medium bg-[#71dd37] hover:bg-[#64c631] text-white"
+              className="!h-9 px-5 text-fs16 font-medium bg-[#71dd37] hover:bg-[#64c631] text-white"
             >
               Record Payment
             </CustomButton>
@@ -728,7 +728,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           className="space-y-4"
         >
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
               Recipient Email *
             </label>
             <CustomInput
@@ -742,7 +742,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
 
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
               Subject
             </label>
             <CustomInput
@@ -756,14 +756,14 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
 
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
               Message
             </label>
             <textarea
               rows={4}
               value={sendMessage}
               onChange={(e) => setSendMessage(e.target.value)}
-              className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs14 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs16 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
             />
           </div>
 
@@ -772,14 +772,14 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               type="button"
               variant="outline"
               onClick={() => setIsSendModalOpen(false)}
-              className="!h-9 px-4 text-fs14 font-medium"
+              className="!h-9 px-4 text-fs16 font-medium"
             >
               Cancel
             </CustomButton>
             <CustomButton
               type="submit"
               variant="primary"
-              className="!h-9 px-5 text-fs14 font-medium bg-[#696cff] text-white"
+              className="!h-9 px-5 text-fs16 font-medium bg-[#696cff] text-white"
             >
               Send Invoice
             </CustomButton>
@@ -842,7 +842,7 @@ export const InvoiceEditPage: React.FC = () => {
   if (!invoice) {
     return (
       <div className="bg-white rounded-[6px] border border-[#dbdade]/70 p-12 text-center text-[#5d596c]">
-        <p className="text-fs16 font-semibold mb-4">Invoice not found</p>
+        <p className="text-fs18 font-semibold mb-4">Invoice not found</p>
         <CustomButton variant="primary" onClick={() => navigate("/apps/invoice/list")}>
           Back to Invoices
         </CustomButton>

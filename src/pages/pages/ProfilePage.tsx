@@ -12,6 +12,7 @@ import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomCheckbox } from "../../components/ui/CustomCheckbox";
 import { CustomTable, type TableColumn } from "../../components/ui/Table";
+import { AnchoredPortal } from "../../components/ui/FloatingPortal";
 import { CustomImage } from "../../components/ui/CustomImage";
 import profileBg from "../../assets/images/profile-bg.jpg";
 import socialBannersIcon from "../../assets/images/Social Banners.png";
@@ -553,38 +554,43 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
           "py-2.5 pl-2 pr-5 sm:pr-6 text-[11px] font-semibold text-[#5d596c] uppercase tracking-wider text-right",
         className: "py-3 pl-2 pr-5 sm:pr-6 text-right",
         render: (proj) => (
-          <div className="relative inline-flex items-center justify-end">
-            <button
-              type="button"
-              onClick={() =>
-                setOpenDropdownId(openDropdownId === proj.id ? null : proj.id)
-              }
-              className="p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
-              title="More actions"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-              </svg>
-            </button>
-            {openDropdownId === proj.id && (
-              <div className="absolute right-0 top-8 z-30 w-36 bg-white rounded-md shadow-lg border border-[#dbdade]/70 py-1 text-left">
-                <button
-                  type="button"
-                  onClick={() => setOpenDropdownId(null)}
-                  className="w-full px-4 py-2 text-fs13 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer"
-                >
-                  View Details
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setOpenDropdownId(null)}
-                  className="w-full px-4 py-2 text-fs13 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer"
-                >
-                  Edit Project
-                </button>
-              </div>
-            )}
-          </div>
+          <AnchoredPortal
+            isOpen={openDropdownId === proj.id}
+            onClose={() => setOpenDropdownId(null)}
+            align="right"
+            wrapperClassName="relative inline-flex items-center justify-end"
+            trigger={
+              <button
+                type="button"
+                onClick={() =>
+                  setOpenDropdownId(openDropdownId === proj.id ? null : proj.id)
+                }
+                className="p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
+                title="More actions"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                </svg>
+              </button>
+            }
+          >
+            <div className="w-36 bg-white rounded-md shadow-lg border border-[#dbdade]/70 py-1 text-left">
+              <button
+                type="button"
+                onClick={() => setOpenDropdownId(null)}
+                className="w-full px-4 py-2 text-fs13 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer"
+              >
+                View Details
+              </button>
+              <button
+                type="button"
+                onClick={() => setOpenDropdownId(null)}
+                className="w-full px-4 py-2 text-fs13 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer"
+              >
+                Edit Project
+              </button>
+            </div>
+          </AnchoredPortal>
         ),
       },
     ],

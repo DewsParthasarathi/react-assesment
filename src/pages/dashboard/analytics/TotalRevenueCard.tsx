@@ -131,15 +131,15 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
     : `${currentCompanyGrowth} Company Growth`;
 
   return (
-    <div className="bg-white rounded-[5px] border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] overflow-hidden h-full flex flex-col justify-between">
+    <div className="bg-white rounded-[6px] border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] overflow-hidden h-full flex flex-col justify-between">
       <div className="grid grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-[#dbdade]/50 h-full flex-1">
         {/* Left Column: Total Revenue Bar Chart */}
-        <div className="col-span-12 md:col-span-7 p-4 flex flex-col justify-between">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
-            <h3 className="text-fs22 font-medium text-[#444050]">
+        <div className="col-span-12 md:col-span-7 p-5 flex flex-col justify-between">
+          <div className="flex flex-col items-start gap-2.5 mb-2">
+            <h3 className="text-fs18 font-semibold text-[#444050]">
               Total Revenue
             </h3>
-            <div className="flex items-center gap-4 text-fs16 font-normal text-[#6f6b7d]">
+            <div className="flex items-center gap-4 text-fs14 font-normal text-[#6f6b7d]">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#696cff]" />
                 {legendItems[0]}
@@ -157,12 +157,13 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
         </div>
 
         {/* Right Column: Semicircular Radial Segmented Growth Gauge */}
-        <div className="col-span-12 md:col-span-5 p-4 flex flex-col justify-between items-center text-center">
-          <div className="w-full flex justify-end relative">
+        <div className="col-span-12 md:col-span-5 p-5 flex flex-col justify-between items-center text-center">
+          <div className="w-full flex justify-center relative">
             <YearSelectionPopup
               selectedYear={selectedYear}
               onSelectYear={setSelectedYear}
               availableYears={availableYears}
+              popupClassName="left-1/2 -translate-x-1/2 right-auto"
             >
               <button
                 type="button"
@@ -220,14 +221,14 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
               <span className="text-fs24 font-semibold text-[#444050] leading-none">
                 {currentGrowth}
               </span>
-              <span className="text-fs18 text-[#a5a3ae] mt-1.5 font-normal">
+              <span className="text-fs13 text-[#a5a3ae] mt-1 font-normal">
                 Growth
               </span>
             </div>
           </div>
 
           {/* Company Growth Text */}
-          <p className="text-fs18 font-medium text-[#6f6b7d] mb-5">
+          <p className="text-fs14 font-medium text-[#6f6b7d] mb-4">
             {formattedCompanyGrowth}
           </p>
 
@@ -246,10 +247,10 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
                   </svg>
                 </div>
                 <div className="text-left">
-                  <span className="block text-fs14 font-normal text-[#a5a3ae] leading-tight">
+                  <span className="block text-fs13 font-normal text-[#a5a3ae] leading-tight">
                     {item.year}
                   </span>
-                  <span className="block text-fs18 font-semibold text-[#444050] leading-tight mt-1">
+                  <span className="block text-fs16 font-semibold text-[#444050] leading-tight mt-0.5">
                     {item.amount}
                   </span>
                 </div>

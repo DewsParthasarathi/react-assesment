@@ -135,10 +135,10 @@ export const ActivityTimelineCard: React.FC<ActivityTimelineCardProps> = ({
   }));
 
   return (
-    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col h-full min-h-full">
+    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col h-full min-h-full">
       {/* Header */}
       <div className="flex items-center justify-between pb-3">
-        <h3 className="text-fs22 font-medium text-[#444050]">
+        <h3 className="text-fs18 font-semibold text-[#444050]">
           Activity Timeline
         </h3>
         <YearSelectionPopup
@@ -181,14 +181,14 @@ export const ActivityTimelineCard: React.FC<ActivityTimelineCardProps> = ({
             />
 
             <div className="flex flex-wrap items-start justify-between gap-2">
-              <h4 className="text-fs18 font-medium text-[#444050]">
+              <h4 className="text-fs14 font-semibold text-[#444050]">
                 {item.title}
               </h4>
-              <span className="text-fs14 font-normal text-[#a5a3ae] mt-1">
+              <span className="text-fs12 font-normal text-[#a5a3ae] mt-0.5">
                 {item.time}
               </span>
             </div>
-            <p className="text-fs16 font-normal text-[#6f6b7d] mt-2 leading-relaxed">
+            <p className="text-fs13 font-normal text-[#6f6b7d] mt-1 leading-relaxed">
               {item.description}
             </p>
           </div>

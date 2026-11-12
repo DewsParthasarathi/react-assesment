@@ -16,9 +16,7 @@ export interface FetchEmailsParams {
   label?: string;
 }
 
-/**
- * Retrieves the email list and dynamic folder counts.
- */
+
 export const fetchEmails = async (
   params?: FetchEmailsParams,
 ): Promise<EmailListResponse> => {
@@ -28,17 +26,13 @@ export const fetchEmails = async (
   return response.data;
 };
 
-/**
- * Retrieves a single email by its unique ID.
- */
+
 export const fetchEmailById = async (id: string): Promise<EmailItem> => {
   const response = await axiosClient.get<EmailItem>(`/emails/${id}`);
   return response.data;
 };
 
-/**
- * Sends a new email or saves it as a draft.
- */
+
 export const createEmail = async (
   payload: EmailComposePayload,
 ): Promise<EmailItem> => {
@@ -46,9 +40,7 @@ export const createEmail = async (
   return response.data;
 };
 
-/**
- * Updates properties of an existing email (e.g. read status, starred, folder, labels).
- */
+
 export const updateEmail = async (
   id: string,
   updates: Partial<EmailItem>,
@@ -57,9 +49,7 @@ export const updateEmail = async (
   return response.data;
 };
 
-/**
- * Permanently deletes an email by ID.
- */
+
 export const deleteEmail = async (id: string): Promise<{ success: boolean }> => {
   const response = await axiosClient.delete<{ success: boolean }>(
     `/emails/${id}`,
@@ -67,9 +57,7 @@ export const deleteEmail = async (id: string): Promise<{ success: boolean }> => 
   return response.data;
 };
 
-/**
- * Batch updates multiple emails at once (e.g. mark read/unread, move to trash, restore).
- */
+
 export const batchUpdateEmails = async (
   ids: string[],
   updates: Partial<EmailItem>,
@@ -81,9 +69,7 @@ export const batchUpdateEmails = async (
   return response.data;
 };
 
-/**
- * Batch deletes multiple emails permanently.
- */
+
 export const batchDeleteEmails = async (
   ids: string[],
 ): Promise<{ success: boolean }> => {
@@ -94,9 +80,7 @@ export const batchDeleteEmails = async (
   return response.data;
 };
 
-/**
- * Empties all emails currently residing in the Trash folder.
- */
+
 export const emptyTrash = async (): Promise<{ success: boolean }> => {
   const response = await axiosClient.post<{ success: boolean }>(
     "/emails/empty-trash",

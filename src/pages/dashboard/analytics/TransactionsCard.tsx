@@ -100,10 +100,10 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
   });
 
   return (
-    <div className="bg-white rounded-[5px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       {/* Header */}
       <div className="flex items-center justify-between pb-1">
-        <h3 className="text-fs22 font-medium text-[#444050]">Transactions</h3>
+        <h3 className="text-fs18 font-semibold text-[#444050]">Transactions</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}
@@ -136,20 +136,20 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
                 />
               </div>
               <div>
-                <p className="text-fs16 font-medium text-[#444050] leading-tight">
+                <p className="text-fs15 font-medium text-[#444050] leading-tight">
                   {t.type}
                 </p>
-                <p className="text-fs14 font-normal text-[#a5a3ae] leading-tight mt-1">
+                <p className="text-fs13 font-normal text-[#a5a3ae] leading-tight mt-1">
                   {t.description}
                 </p>
               </div>
             </div>
 
             <div className="text-right">
-              <span className="text-fs16 font-medium text-[#444050]">
+              <span className="text-fs15 font-medium text-[#444050]">
                 {t.amount}
               </span>
-              <span className="text-fs14 font-normal text-[#a5a3ae] ml-2 uppercase">
+              <span className="text-fs13 font-normal text-[#a5a3ae] ml-2 uppercase">
                 {t.currency}
               </span>
             </div>

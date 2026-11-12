@@ -10,9 +10,7 @@ import type { Permission } from "../api/types";
 
 export const PERMISSIONS_QUERY_KEY = "permissions";
 
-/**
- * Hook to retrieve all permissions.
- */
+
 export const usePermissionsQuery = () => {
   return useQuery<Permission[], Error>({
     queryKey: [PERMISSIONS_QUERY_KEY],
@@ -21,9 +19,7 @@ export const usePermissionsQuery = () => {
   });
 };
 
-/**
- * Hook to retrieve a single permission by ID.
- */
+
 export const usePermissionQuery = (id: string | null) => {
   return useQuery<Permission, Error>({
     queryKey: [PERMISSIONS_QUERY_KEY, id],
@@ -33,9 +29,7 @@ export const usePermissionQuery = (id: string | null) => {
   });
 };
 
-/**
- * Mutation hook to create a new permission.
- */
+
 export const useCreatePermissionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Permission, Error, Partial<Permission>>({
@@ -46,9 +40,7 @@ export const useCreatePermissionMutation = () => {
   });
 };
 
-/**
- * Mutation hook to update an existing permission.
- */
+
 export const useUpdatePermissionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Permission, Error, { id: string; updates: Partial<Permission> }>({
@@ -60,9 +52,7 @@ export const useUpdatePermissionMutation = () => {
   });
 };
 
-/**
- * Mutation hook to delete a permission.
- */
+
 export const useDeletePermissionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<{ success: boolean }, Error, string>({

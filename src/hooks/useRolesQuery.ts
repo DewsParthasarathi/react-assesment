@@ -10,9 +10,7 @@ import type { Role } from "../api/types";
 
 export const ROLES_QUERY_KEY = "roles";
 
-/**
- * Hook to retrieve all roles.
- */
+
 export const useRolesQuery = () => {
   return useQuery<Role[], Error>({
     queryKey: [ROLES_QUERY_KEY],
@@ -21,9 +19,7 @@ export const useRolesQuery = () => {
   });
 };
 
-/**
- * Hook to retrieve a single role by ID.
- */
+
 export const useRoleQuery = (id: string | null) => {
   return useQuery<Role, Error>({
     queryKey: [ROLES_QUERY_KEY, id],
@@ -33,9 +29,7 @@ export const useRoleQuery = (id: string | null) => {
   });
 };
 
-/**
- * Mutation hook to create a new role.
- */
+
 export const useCreateRoleMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Role, Error, Partial<Role>>({
@@ -46,9 +40,7 @@ export const useCreateRoleMutation = () => {
   });
 };
 
-/**
- * Mutation hook to update an existing role.
- */
+
 export const useUpdateRoleMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Role, Error, { id: string; updates: Partial<Role> }>({
@@ -60,9 +52,7 @@ export const useUpdateRoleMutation = () => {
   });
 };
 
-/**
- * Mutation hook to delete a role.
- */
+
 export const useDeleteRoleMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<{ success: boolean }, Error, string>({

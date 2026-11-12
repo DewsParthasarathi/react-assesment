@@ -18,9 +18,9 @@ interface CustomerTransactionsTableCardProps {
   transactions?: CustomerTransaction[];
 }
 
-export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCardProps> = ({
-  transactions,
-}) => {
+export const CustomerTransactionsTableCard: React.FC<
+  CustomerTransactionsTableCardProps
+> = ({ transactions }) => {
   if (!transactions) {
     return (
       <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
@@ -74,7 +74,8 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
     {
       id: "customer",
       header: "CUSTOMER",
-      headerClassName: "pb-2.5 font-medium text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName:
+        "pb-2.5 font-medium text-fs12 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 align-middle",
       render: (tx) => (
         <div className="flex items-center gap-2.5">
@@ -85,7 +86,9 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
             className="w-full h-full object-cover block rounded-full"
           />
           <div className="flex flex-col justify-center">
-            <p className="text-fs14 font-semibold text-[#32475c] leading-snug">{tx.name}</p>
+            <p className="text-fs14 font-semibold text-[#32475c] leading-snug">
+              {tx.name}
+            </p>
             <p className="text-fs12 text-[#a5a3ae] leading-tight">{tx.email}</p>
           </div>
         </div>
@@ -95,15 +98,18 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
       id: "amount",
       header: "AMOUNT",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
-      className: "py-2.5 text-center text-fs14 text-[#444050] font-medium align-middle",
+      headerClassName:
+        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      className:
+        "py-2.5 text-center text-fs14 text-[#444050] font-medium align-middle",
       render: (tx) => tx.amount,
     },
     {
       id: "status",
       header: "STATUS",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName:
+        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: (tx) => (
         <span
@@ -119,7 +125,8 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
       id: "paidBy",
       header: "PAID BY",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName:
+        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: (tx) => (
         <div className="inline-flex items-center justify-center h-full">
@@ -136,7 +143,8 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
       id: "actions",
       header: "ACTIONS",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName:
+        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: () => (
         <CustomButton
@@ -157,7 +165,6 @@ export const CustomerTransactionsTableCard: React.FC<CustomerTransactionsTableCa
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Table using reusable Table component */}
       <Table
         columns={columns}
         data={items}

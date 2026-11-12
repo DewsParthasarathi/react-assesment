@@ -1,48 +1,28 @@
 import React from "react";
 
 export interface TableColumn<T> {
-  /** Unique column identifier (falls back to accessorKey or index) */
   id?: string;
-  /** Header label or custom React node */
   header: React.ReactNode;
-  /** Key of the data property to display directly */
   accessorKey?: keyof T;
-  /** Custom render function for the cell */
   render?: (row: T, index: number) => React.ReactNode;
-  /** Optional column width (e.g., '120px', '25%', 120) */
   width?: string | number;
-  /** Alignment of column header and cells */
   align?: "left" | "center" | "right";
-  /** Custom CSS classes for the td cell */
   className?: string;
-  /** Custom CSS classes for the th header cell */
   headerClassName?: string;
 }
 
 export interface TableProps<T> {
-  /** Column definitions */
   columns: TableColumn<T>[];
-  /** Array of row data records */
   data: T[];
-  /** Function to extract a unique key per row */
   keyExtractor?: (row: T, index: number) => string | number;
-  /** Wrapper div className */
   className?: string;
-  /** HTML table element className */
   tableClassName?: string;
-  /** HTML thead element className */
   headerClassName?: string;
-  /** HTML thead tr element className */
   headerRowClassName?: string;
-  /** HTML tbody element className */
   bodyClassName?: string;
-  /** HTML tbody tr element className or resolver function */
   bodyRowClassName?: string | ((row: T, index: number) => string);
-  /** Content to display when data array is empty */
   emptyText?: React.ReactNode;
-  /** Callback fired when a row is clicked */
   onRowClick?: (row: T, index: number) => void;
-  /** Whether rows show hover background styling (defaults to true) */
   hoverable?: boolean;
 }
 
@@ -137,8 +117,8 @@ export function Table<T>({
                     const cellContent = col.render
                       ? col.render(row, rowIndex)
                       : col.accessorKey
-                      ? (row[col.accessorKey] as unknown as React.ReactNode)
-                      : null;
+                        ? (row[col.accessorKey] as unknown as React.ReactNode)
+                        : null;
 
                     return (
                       <td

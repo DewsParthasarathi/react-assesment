@@ -15,14 +15,12 @@ interface TopProductsByVolumeCardProps {
   availableYears?: string[];
 }
 
-export const TopProductsByVolumeCard: React.FC<TopProductsByVolumeCardProps> = ({
-  products,
-  years,
-  availableYears = ["2023", "2022"],
-}) => {
+export const TopProductsByVolumeCard: React.FC<
+  TopProductsByVolumeCardProps
+> = ({ products, years, availableYears = ["2023", "2022"] }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
 
-  const items = (years && years[selectedYear]) ? years[selectedYear] : products;
+  const items = years && years[selectedYear] ? years[selectedYear] : products;
 
   if (!items) {
     return (
@@ -88,12 +86,15 @@ export const TopProductsByVolumeCard: React.FC<TopProductsByVolumeCardProps> = (
             className="!p-1 text-[#a5a3ae] hover:text-[#5d596c]"
             aria-label="More options"
           >
-            <CustomImage src={moreIcon} alt="more" containerClassName="w-1 h-4" className="w-1 h-4 opacity-70" />
+            <CustomImage
+              src={moreIcon}
+              alt="more"
+              containerClassName="w-1 h-4"
+              className="w-1 h-4 opacity-70"
+            />
           </CustomButton>
         </YearSelectionPopup>
       </div>
-
-      {/* Product List */}
       <div className="space-y-4">
         {items.map((item, idx) => (
           <div key={item.id} className="flex items-center justify-between">
@@ -112,12 +113,18 @@ export const TopProductsByVolumeCard: React.FC<TopProductsByVolumeCardProps> = (
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <p className="text-fs16 font-medium text-[#444050] leading-snug">{item.name}</p>
-                <p className="text-fs14 text-[#a5a3ae] leading-tight">{item.brand}</p>
+                <p className="text-fs16 font-medium text-[#444050] leading-snug">
+                  {item.name}
+                </p>
+                <p className="text-fs14 text-[#a5a3ae] leading-tight">
+                  {item.brand}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <span className="text-fs16 font-medium text-[#444050]">{item.volume}</span>
+              <span className="text-fs16 font-medium text-[#444050]">
+                {item.volume}
+              </span>
               <span
                 className={`text-fs12 font-semibold px-2 py-0.5 rounded ${
                   item.isPositive

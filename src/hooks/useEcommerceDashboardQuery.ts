@@ -4,9 +4,7 @@ import type { EcommerceDashboardData } from "../api/types";
 
 export const ECOMMERCE_DASHBOARD_QUERY_KEY = "ecommerceDashboard";
 
-/**
- * Custom TanStack Query hook to fetch dynamic E-commerce dashboard dataset.
- */
+
 export const useEcommerceDashboardQuery = (year?: string) => {
   return useQuery<EcommerceDashboardData, Error>({
     queryKey: [ECOMMERCE_DASHBOARD_QUERY_KEY, year ?? "default"],

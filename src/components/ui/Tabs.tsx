@@ -1,44 +1,26 @@
 import React, { useState } from "react";
 
 export interface TabItem {
-  /** Unique identifier for the tab */
   id: string;
-  /** Label to display on the tab button */
   label: React.ReactNode;
-  /** Optional content to render when this tab is active */
   content?: React.ReactNode;
-  /** Optional icon to display before the label */
   icon?: React.ReactNode;
-  /** Optional badge to display next to the label */
   badge?: React.ReactNode;
-  /** Whether this tab is disabled */
   disabled?: boolean;
 }
 
 export interface TabsProps {
-  /** Array of tab configuration items */
   tabs: TabItem[];
-  /** Controlled active tab ID */
   activeTab?: string;
-  /** Default active tab ID for uncontrolled usage */
   defaultTab?: string;
-  /** Callback invoked when the active tab changes */
   onChange?: (tabId: string) => void;
-  /** Overall container className */
   className?: string;
-  /** Tab list container className */
   tabListClassName?: string;
-  /** Base className applied to every tab button */
   tabButtonClassName?: string;
-  /** ClassName applied to the active tab button */
   activeTabClassName?: string;
-  /** ClassName applied to inactive tab buttons */
   inactiveTabClassName?: string;
-  /** ClassName for the content container */
   contentClassName?: string;
-  /** Whether to render active tab content directly (defaults to true) */
   renderContent?: boolean;
-  /** Additional children rendered after tab list / content */
   children?: React.ReactNode;
 }
 
@@ -103,14 +85,12 @@ export const Tabs: React.FC<TabsProps> = ({
         })}
       </div>
 
-      {/* Render Active Tab Content if enabled and provided */}
       {renderContent && activeTabItem?.content && (
         <div className={contentClassName} role="tabpanel">
           {activeTabItem.content}
         </div>
       )}
 
-      {/* Render optional children */}
       {children}
     </div>
   );

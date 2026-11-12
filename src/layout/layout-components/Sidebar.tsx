@@ -219,13 +219,12 @@ export const Sidebar: React.FC = () => {
     location.pathname === "/ecommerce";
 
   return (
-    <aside className="sticky top-0 h-screen w-[18%]  shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20">
-      {/* Top Dashboards Navigation Group using CustomButton */}
+    <aside className="sticky top-0 h-screen w-[18%] shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20 print:hidden">
       <div className="px-3 mb-1">
         <CustomButton
           variant="ghost"
           onClick={() => setDashboardOpen((prev) => !prev)}
-          className={`w-full !justify-between px-3 !py-2.5 !h-auto rounded-lg text-fs14 font-medium transition cursor-pointer ${
+          className={`w-full !justify-between px-3 !py-2.5 !h-auto rounded-lg text-fs15 font-medium transition cursor-pointer ${
             isDashboardActive
               ? "!bg-[#e7e7ff] !text-[#696cff]"
               : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
@@ -295,14 +294,12 @@ export const Sidebar: React.FC = () => {
         )}
       </div>
 
-      {/* APPS & PAGES Section Heading */}
       <div className="px-5 pt-4 pb-1">
-        <span className="text-fs12 font-medium tracking-wider text-[#a5a3ae] uppercase">
+        <span className="text-fs13 font-semibold tracking-wider text-[#a5a3ae] uppercase">
           APPS & PAGES
         </span>
       </div>
 
-      {/* Main Navigation List */}
       <div className="flex-1 px-3 space-y-0.5 overflow-y-auto [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-[#dbdade]/80 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#a5a3ae]">
         {navItems.map((item) => {
           const isChildActive = Boolean(
@@ -314,8 +311,7 @@ export const Sidebar: React.FC = () => {
                 (item.id === "roles" &&
                   (location.pathname.startsWith("/apps/roles") ||
                     location.pathname.startsWith("/apps/permissions"))) ||
-                (item.id === "pages" &&
-                  location.pathname.startsWith("/pages")),
+                (item.id === "pages" && location.pathname.startsWith("/pages")),
             ),
           );
           const isGroupExpanded =
@@ -329,7 +325,7 @@ export const Sidebar: React.FC = () => {
                 <CustomButton
                   variant="ghost"
                   onClick={() => toggleGroup(item.id)}
-                  className={`w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs14 transition cursor-pointer ${
+                  className={`w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs15 font-medium transition cursor-pointer ${
                     isChildActive
                       ? "!bg-[#e7e7ff] !text-[#696cff] font-medium"
                       : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
@@ -369,7 +365,7 @@ export const Sidebar: React.FC = () => {
                         key={sub.id}
                         to={sub.path}
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-3 py-1.5 rounded-md text-fs13 transition ${
+                          `flex items-center gap-2 px-3 py-1.5 rounded-md text-fs14 font-medium transition ${
                             isActive
                               ? "text-[#696cff] font-medium"
                               : "text-[#6f6b7d] hover:text-[#5d596c] hover:bg-[#f5f5f9]"
@@ -414,7 +410,7 @@ export const Sidebar: React.FC = () => {
                     (location.pathname === "/user" ||
                       location.pathname.startsWith("/apps/user") ||
                       location.pathname.startsWith("/user")));
-                return `flex items-center justify-between px-3 py-2 rounded-md text-fs14 transition ${
+                return `flex items-center justify-between px-3 py-2 rounded-md text-fs15 font-medium transition ${
                   isItemActive
                     ? "bg-[#e7e7ff] text-[#696cff] font-medium"
                     : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c]"

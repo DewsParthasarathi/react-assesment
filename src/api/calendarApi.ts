@@ -1,17 +1,13 @@
 import axiosClient from "./axiosClient";
 import type { CalendarEvent } from "./types";
 
-/**
- * Retrieves all calendar events.
- */
+
 export const fetchCalendarEvents = async (): Promise<CalendarEvent[]> => {
   const response = await axiosClient.get<CalendarEvent[]>("/calendar/events");
   return response.data;
 };
 
-/**
- * Creates a new calendar event.
- */
+
 export const createCalendarEvent = async (
   event: Omit<CalendarEvent, "id"> & { id?: string },
 ): Promise<CalendarEvent> => {
@@ -19,9 +15,7 @@ export const createCalendarEvent = async (
   return response.data;
 };
 
-/**
- * Updates an existing calendar event by ID.
- */
+
 export const updateCalendarEvent = async (
   id: string,
   updates: Partial<CalendarEvent>,
@@ -33,9 +27,7 @@ export const updateCalendarEvent = async (
   return response.data;
 };
 
-/**
- * Deletes a calendar event by ID.
- */
+
 export const deleteCalendarEvent = async (
   id: string,
 ): Promise<{ success: boolean }> => {
