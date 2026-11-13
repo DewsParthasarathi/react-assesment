@@ -42,7 +42,6 @@ export const CalendarFilter: React.FC<CalendarFilterProps> = ({
       [key]: !filters[key],
     };
 
-    // If all individual categories are now true, set viewAll = true; otherwise false
     const allCategories: CalendarEventCategory[] = [
       "personal",
       "business",
@@ -71,7 +70,6 @@ export const CalendarFilter: React.FC<CalendarFilterProps> = ({
               onClick={() => handleToggle(item.key)}
               className="flex items-center gap-2.5 cursor-pointer group"
             >
-              {/* Custom colored checkbox matching 06_Calender.png */}
               <div
                 style={{
                   backgroundColor: isChecked ? item.color : "transparent",
@@ -113,4 +111,3 @@ export const CalendarFilter: React.FC<CalendarFilterProps> = ({
 };
 
 export default CalendarFilter;
-

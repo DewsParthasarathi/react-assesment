@@ -27,7 +27,6 @@ export const router = createBrowserRouter([
         index: true,
         element: <AnalyticsDashboard />,
       },
-      // 1. Dashboard Section (Nested)
       {
         path: "dashboard",
         element: <Outlet />,
@@ -46,7 +45,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      // 2. Apps Section (Nested)
       {
         path: "apps",
         element: <Outlet />,
@@ -67,7 +65,6 @@ export const router = createBrowserRouter([
             path: "user",
             element: <UserPage />,
           },
-          // 2.1 Invoice Routes (Nested)
           {
             path: "invoice",
             element: <Outlet />,
@@ -94,7 +91,6 @@ export const router = createBrowserRouter([
               },
             ],
           },
-          // 2.2 Roles & Permissions Routes (Nested)
           {
             path: "roles",
             element: <Outlet />,
@@ -119,7 +115,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      // 3. Pages Section (Nested)
       {
         path: "pages",
         element: <Outlet />,

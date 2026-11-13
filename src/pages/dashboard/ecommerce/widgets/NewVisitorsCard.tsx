@@ -20,7 +20,6 @@ export const NewVisitorsCard: React.FC<NewVisitorsCardProps> = ({
   const days = data?.days || ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
   const seriesData = data?.series || [18, 32, 22, 28, 48, 62, 34];
 
-  // In the reference, Saturday is the prominent highlighted bar
   const coloredData = seriesData.map((val, idx) => ({
     y: val,
     color: idx === 5 ? "#696cff" : "#d2d3ff",

@@ -41,10 +41,8 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
 
   return (
     <div className="flex-1 flex flex-col min-w-0 bg-white h-full overflow-hidden">
-      {/* Top Details Action Bar (Sticky) */}
       <div className="shrink-0 sticky top-0 z-10 px-5 py-3 border-b border-[#dbdade]/50 flex items-center justify-between bg-white select-none">
         <div className="flex items-center gap-3">
-          {/* Back button */}
           <button
             type="button"
             onClick={onBack}
@@ -69,7 +67,6 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
 
           <div className="h-4 w-px bg-[#dbdade] mx-1" />
 
-          {/* Delete Icon */}
           <button
             type="button"
             onClick={() => onDelete(email.id)}
@@ -91,7 +88,6 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
             </svg>
           </button>
 
-          {/* Mark as Unread */}
           <button
             type="button"
             onClick={() => onMarkAsUnread(email.id)}
@@ -114,7 +110,6 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
           </button>
         </div>
 
-        {/* Star Button */}
         <button
           type="button"
           onClick={() => onToggleStar(email.id, email.isStarred)}
@@ -146,9 +141,7 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
         </button>
       </div>
 
-      {/* Main Details Body */}
       <div className="flex-1 min-h-0 overflow-y-auto p-6 chat-email-scrollbar">
-        {/* Email Subject & Labels */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-[#dbdade]/50">
           <h2 className="text-fs20 font-bold text-[#32475c] leading-snug">
             {email.subject}

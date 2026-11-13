@@ -92,7 +92,6 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
         name: "Ratings",
         data: primarySeriesData.map((val, idx) => {
           if (idx === 3) {
-            // Highlight Apr
             return {
               y: val,
               marker: {
@@ -105,7 +104,6 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
             };
           }
           if (idx === primarySeriesData.length - 1) {
-            // Highlight Jul
             return {
               y: val,
               marker: {
@@ -135,7 +133,6 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
       <div>
         <div className="flex items-center justify-between">
           <h3 className="text-fs22 font-medium text-[#444050]">Customer Ratings</h3>
@@ -154,7 +151,6 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
           </YearSelectionPopup>
         </div>
 
-        {/* Rating and stars */}
         <div className="flex items-center gap-3 mt-3">
           <span className="text-fs32 font-bold text-[#32475c]">{rating.toFixed(1)}</span>
           <div className="flex items-center gap-1">
@@ -176,7 +172,6 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
           </div>
         </div>
 
-        {/* Badge */}
         {(() => {
           const match = badge?.match(/^([+-]?[0-9.]+)\s*(.*)$/);
           const badgeVal = match ? match[1] : "+5.0";
@@ -194,7 +189,6 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
         })()}
       </div>
 
-      {/* Chart */}
       <div className="mt-4 -mx-2">
         <Chart options={chartOptions} />
       </div>

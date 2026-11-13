@@ -14,7 +14,6 @@ import type { EmailComposePayload, EmailItem } from "../api/types";
 
 export const EMAILS_QUERY_KEY = "emails";
 
-
 export const useEmailsQuery = (params?: FetchEmailsParams) => {
   return useQuery<EmailListResponse, Error>({
     queryKey: [
@@ -24,10 +23,9 @@ export const useEmailsQuery = (params?: FetchEmailsParams) => {
       params?.label || "",
     ],
     queryFn: () => fetchEmails(params),
-    staleTime: 1000 * 30, // 30 seconds
+    staleTime: 1000 * 30,
   });
 };
-
 
 export const useUpdateEmailMutation = () => {
   const queryClient = useQueryClient();
@@ -45,7 +43,6 @@ export const useUpdateEmailMutation = () => {
   });
 };
 
-
 export const useBatchUpdateEmailsMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -62,7 +59,6 @@ export const useBatchUpdateEmailsMutation = () => {
   });
 };
 
-
 export const useCreateEmailMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -72,7 +68,6 @@ export const useCreateEmailMutation = () => {
     },
   });
 };
-
 
 export const useDeleteEmailMutation = () => {
   const queryClient = useQueryClient();
@@ -84,7 +79,6 @@ export const useDeleteEmailMutation = () => {
   });
 };
 
-
 export const useBatchDeleteEmailsMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -95,7 +89,6 @@ export const useBatchDeleteEmailsMutation = () => {
   });
 };
 
-
 export const useEmptyTrashMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -105,4 +98,3 @@ export const useEmptyTrashMutation = () => {
     },
   });
 };
-

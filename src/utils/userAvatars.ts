@@ -23,10 +23,6 @@ export const memberAvatars: Record<string, string> = {
   member8,
 };
 
-/**
- * Returns the resolved image asset for a given avatar key (e.g., 'member1') or user ID ('1').
- * Defaults to member1 if not found.
- */
 export const getMemberAvatar = (avatarKeyOrUserId?: string | null): string => {
   if (!avatarKeyOrUserId) return member1;
   return memberAvatars[avatarKeyOrUserId] || member1;

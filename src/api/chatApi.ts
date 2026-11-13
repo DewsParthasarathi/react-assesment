@@ -9,12 +9,10 @@ export interface ConversationResponse {
   messages: ChatMessage[];
 }
 
-
 export const fetchContacts = async (): Promise<ChatContact[]> => {
   const response = await axiosClient.get<ContactsResponse>("/chat/contacts");
   return response.data.contacts;
 };
-
 
 export const fetchConversation = async (
   contactId: string,
@@ -24,7 +22,6 @@ export const fetchConversation = async (
   );
   return response.data.messages;
 };
-
 
 export const sendChatMessage = async (
   contactId: string,
@@ -37,7 +34,6 @@ export const sendChatMessage = async (
   );
   return response.data.message;
 };
-
 
 export const sendGeminiChat = async (
   contactId: string,

@@ -21,7 +21,8 @@ axiosClient.interceptors.request.use(
           config.headers.Authorization = `Bearer ${parsed.token}`;
         }
       }
-    } catch {
+    } catch (_e) {
+      void _e;
     }
     return config;
   },

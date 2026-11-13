@@ -101,7 +101,6 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
 
   return (
     <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
-      {/* Header */}
       <div className="flex items-center justify-between pb-1">
         <h3 className="text-fs18 font-semibold text-[#444050]">Transactions</h3>
         <YearSelectionPopup
@@ -121,7 +120,6 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
         </YearSelectionPopup>
       </div>
 
-      {/* Transaction Rows */}
       <div className="space-y-4 my-auto pt-3">
         {items.map((t) => (
           <div key={t.id} className="flex items-center justify-between">

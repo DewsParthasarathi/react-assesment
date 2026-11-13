@@ -50,7 +50,6 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
     },
   ];
 
-  // Map current month points so the final point renders a hollow circle ring marker
   const currentSparklinePoints: Highcharts.PointOptionsObject[] = sparkline.map(
     (val, idx, arr) =>
       idx === arr.length - 1
@@ -70,7 +69,6 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
           },
   );
 
-  // Map last month points (faded line with no markers)
   const lastMonthPoints: Highcharts.PointOptionsObject[] =
     lastMonthSparkline.map((val) => ({
       y: val,

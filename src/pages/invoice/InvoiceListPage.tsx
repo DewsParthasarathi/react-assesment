@@ -17,7 +17,6 @@ import { getMemberAvatar } from "../../utils/userAvatars";
 import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
 import InvoiceStatusIcon from "./components/InvoiceStatusIcon";
 
-// Helper to format ISO date e.g. "2023-01-13" to "13 Jan 2023" matching reference
 const formatDateDisplay = (dateStr?: string): string => {
   if (!dateStr) return "";
   try {
@@ -740,4 +739,3 @@ export const InvoiceListPage: React.FC = () => {
 };
 
 export default InvoiceListPage;
-

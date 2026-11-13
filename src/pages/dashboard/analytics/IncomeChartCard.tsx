@@ -118,8 +118,6 @@ export const IncomeChartCard: React.FC = () => {
 
   const current = tabData[activeTab];
 
-  // Same values as before; only the end marker styling is normalised so the
-  // last point shows a white ring with a purple border, as in the reference.
   const seriesPoints: Highcharts.PointOptionsObject[] = (
     current.points as (number | Highcharts.PointOptionsObject)[]
   ).map((point, idx, all) => {
@@ -237,7 +235,7 @@ export const IncomeChartCard: React.FC = () => {
     <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full w-full min-w-0">
       {/* 3 Tabs at Top */}
       <div>
-        <div className="-mx-5 -mt-3 px-5 pb-3 border-b border-[#dbdade]/50">
+        <div className="-mx-5 mt-1 px-5 pb-3 border-b border-[#dbdade]/50">
           <Tabs
             tabs={tabItems}
             activeTab={activeTab}

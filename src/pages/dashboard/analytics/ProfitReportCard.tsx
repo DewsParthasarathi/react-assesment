@@ -47,7 +47,6 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
       },
     },
     series: [
-      // Soft, subtle glow layer behind the line
       {
         type: "spline",
         data: curveData,
@@ -56,7 +55,6 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
         enableMouseTracking: false,
         marker: { enabled: false },
       },
-      // Core glossy orange line
       {
         type: "spline",
         data: curveData,

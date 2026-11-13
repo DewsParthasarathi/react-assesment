@@ -60,7 +60,6 @@ export const TopProductsBySalesCard: React.FC<TopProductsBySalesCardProps> = ({
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-fs22 font-medium text-[#444050]">
           Top Products by <span className="text-[#696cff]">Sales</span>
@@ -80,7 +79,6 @@ export const TopProductsBySalesCard: React.FC<TopProductsBySalesCardProps> = ({
         </YearSelectionPopup>
       </div>
 
-      {/* Product List */}
       <div className="space-y-4">
         {items.map((item) => (
           <div key={item.id} className="flex items-center justify-between">

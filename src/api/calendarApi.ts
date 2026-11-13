@@ -1,12 +1,10 @@
 import axiosClient from "./axiosClient";
 import type { CalendarEvent } from "./types";
 
-
 export const fetchCalendarEvents = async (): Promise<CalendarEvent[]> => {
   const response = await axiosClient.get<CalendarEvent[]>("/calendar/events");
   return response.data;
 };
-
 
 export const createCalendarEvent = async (
   event: Omit<CalendarEvent, "id"> & { id?: string },
@@ -14,7 +12,6 @@ export const createCalendarEvent = async (
   const response = await axiosClient.post<CalendarEvent>("/calendar/events", event);
   return response.data;
 };
-
 
 export const updateCalendarEvent = async (
   id: string,
@@ -27,7 +24,6 @@ export const updateCalendarEvent = async (
   return response.data;
 };
 
-
 export const deleteCalendarEvent = async (
   id: string,
 ): Promise<{ success: boolean }> => {
@@ -36,4 +32,3 @@ export const deleteCalendarEvent = async (
   );
   return response.data;
 };
-

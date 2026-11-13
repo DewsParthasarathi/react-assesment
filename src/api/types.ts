@@ -657,10 +657,10 @@ export interface CalendarEvent {
   id: string;
   title: string;
   description?: string;
-  startDate: string; // YYYY-MM-DD
-  startTime?: string; // HH:mm
-  endDate: string; // YYYY-MM-DD
-  endTime?: string; // HH:mm
+  startDate: string;
+  startTime?: string;
+  endDate: string;
+  endTime?: string;
   allDay?: boolean;
   category: CalendarEventCategory;
   location?: string;
@@ -827,5 +827,3 @@ export interface UserProfile {
   teams: ProfileTeam[];
   projects: ProfileProject[];
 }
-
-

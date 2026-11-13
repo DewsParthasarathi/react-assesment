@@ -287,7 +287,6 @@ body {
   color: var(--fg);
 }
 
-/* Custom WebKit scrollbar styling scoped for Chat and Email scrollable containers */
 .chat-email-scrollbar::-webkit-scrollbar {
   width: 5px;
   height: 5px;

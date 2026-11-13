@@ -46,7 +46,6 @@ export const CustomModal: React.FC<CustomModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape key
   useEffect(() => {
     if (!isOpen || !closeOnEsc) return;
 
@@ -60,7 +59,6 @@ export const CustomModal: React.FC<CustomModalProps> = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closeOnEsc, onClose]);
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (!isOpen) return;
 
@@ -153,4 +151,3 @@ export const CustomModal: React.FC<CustomModalProps> = ({
 };
 
 export default CustomModal;
-

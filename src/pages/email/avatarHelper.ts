@@ -20,4 +20,3 @@ export const getAvatarUrl = (avatarName?: string): string => {
   if (!avatarName) return member1;
   return avatarMap[avatarName] || avatarName;
 };
-

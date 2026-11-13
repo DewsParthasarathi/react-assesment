@@ -22,7 +22,6 @@ export const InvoiceAddPage: React.FC = () => {
   const createMutation = useCreateInvoiceMutation();
   const { data: allInvoices = [] } = useInvoicesQuery();
 
-  // Extract unique clients from existing database records
   const availableClients = useMemo(() => {
     const defaultClients = [
       {
@@ -71,14 +70,12 @@ export const InvoiceAddPage: React.FC = () => {
     return Array.from(uniqueMap.values());
   }, [allInvoices]);
 
-  // Form fields matching reference screenshot
   const [invoiceNumber, setInvoiceNumber] = useState("# 4987");
   const [issueDate, setIssueDate] = useState("01/13/2023");
   const [dueDate, setDueDate] = useState("01/23/2023");
   const [selectedClientName, setSelectedClientName] =
     useState("Jordan Stevenson");
 
-  // Line items state
   const [items, setItems] = useState<LineItem[]>([
     {
       id: "item-1",
@@ -90,21 +87,18 @@ export const InvoiceAddPage: React.FC = () => {
     },
   ]);
 
-  // Salesperson & Notes
   const [salesperson, setSalesperson] = useState("Tommy Shelby");
   const [thanksMessage, setThanksMessage] = useState(
     "Thanks for your business",
   );
   const [noteText, setNoteText] = useState("Thank You !");
 
-  // Right Panel Settings
   const [paymentMethod, setPaymentMethod] = useState("Internet Banking");
   const [paymentTermsActive, setPaymentTermsActive] = useState(true);
   const [clientNotesActive, setClientNotesActive] = useState(false);
   const [paymentStubActive, setPaymentStubActive] = useState(false);
   const [successToast, setSuccessToast] = useState("");
 
-  // Subtotal & Financial Calculations
   const subtotal = items.reduce(
     (sum, it) => sum + (it.cost || 0) * (it.hours || 0),
     0,
@@ -414,7 +408,6 @@ export const InvoiceAddPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Bottom row: Description & Discount */}
                   <div className="grid grid-cols-12 gap-3 items-center pt-1">
                     <div className="col-span-12 sm:col-span-5">
                       <textarea
@@ -438,7 +431,6 @@ export const InvoiceAddPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Remove Button */}
                   {items.length > 1 && (
                     <button
                       type="button"
@@ -466,7 +458,6 @@ export const InvoiceAddPage: React.FC = () => {
             })}
           </div>
 
-          {/* + ADD ITEM Button */}
           <div className="mt-4">
             <CustomButton
               type="button"
@@ -492,12 +483,9 @@ export const InvoiceAddPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-8 border-t border-[#dbdade]/50" />
 
-        {/* Salesperson & Financial Summary */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
-          {/* Salesperson & message inputs */}
           <div className="space-y-3 w-full sm:w-auto">
             <div className="flex items-center gap-3">
               <span className="text-fs15 font-medium text-[#5d596c] w-24">
@@ -528,7 +516,6 @@ export const InvoiceAddPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Summary calculations */}
           <div className="w-full sm:w-60 space-y-2 text-fs16 text-[#6f6b7d]">
             <div className="flex justify-between py-0.5">
               <span>Subtotal:</span>
@@ -549,10 +536,8 @@ export const InvoiceAddPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-8 border-t border-[#dbdade]/50" />
 
-        {/* Footer Note */}
         <div>
           <h4 className="text-fs15 font-semibold text-[#5d596c] mb-2">Note:</h4>
           <textarea
@@ -564,11 +549,8 @@ export const InvoiceAddPage: React.FC = () => {
         </div>
       </div>
 
-      {/* RIGHT COLUMN: Actions & Settings Panel */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-4">
-        {/* Top Action Buttons */}
         <div className="space-y-3">
-          {/* 1. SEND INVOICE */}
           <CustomButton
             type="button"
             variant="primary"
@@ -594,7 +576,6 @@ export const InvoiceAddPage: React.FC = () => {
             </span>
           </CustomButton>
 
-          {/* 2. PREVIEW */}
           <CustomButton
             type="button"
             variant="outline"
@@ -604,7 +585,6 @@ export const InvoiceAddPage: React.FC = () => {
             <span>PREVIEW</span>
           </CustomButton>
 
-          {/* 3. SAVE */}
           <CustomButton
             type="button"
             variant="outline"
@@ -616,7 +596,6 @@ export const InvoiceAddPage: React.FC = () => {
           </CustomButton>
         </div>
 
-        {/* Accept Payment Via Dropdown using CustomDropdown */}
         <div className="pt-2">
           <CustomDropdown
             label="Accept payment via"
@@ -632,9 +611,7 @@ export const InvoiceAddPage: React.FC = () => {
           />
         </div>
 
-        {/* Toggles List */}
         <div className="space-y-4 pt-2">
-          {/* Payment Terms Toggle */}
           <div className="flex items-center justify-between">
             <span className="text-fs16 text-[#6f6b7d]">Payment Terms</span>
             <button

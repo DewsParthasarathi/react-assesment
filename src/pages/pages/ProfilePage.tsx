@@ -79,14 +79,12 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     );
   }, []);
 
-  // Toggle single project selection
   const handleToggleSelectProject = useCallback((id: string) => {
     setSelectedProjectIds((prev) =>
       prev.includes(id) ? prev.filter((pId) => pId !== id) : [...prev, id],
     );
   }, []);
 
-  // Filtered projects
   const filteredProjects = useMemo(() => {
     const list = profile?.projects || [];
     if (!projectSearch.trim()) return list;
@@ -97,7 +95,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     );
   }, [profile?.projects, projectSearch]);
 
-  // Select all projects
   const isAllProjectsSelected =
     filteredProjects.length > 0 &&
     filteredProjects.every((p) => selectedProjectIds.includes(p.id));
@@ -110,7 +107,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     }
   }, [isAllProjectsSelected, filteredProjects]);
 
-  // Handle connection toggle
   const handleToggleConnection = async (id: string) => {
     try {
       await toggleConnectionMutation.mutateAsync(id);
@@ -119,7 +115,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     }
   };
 
-  // Project icon renderer matching reference UI
   const renderProjectIcon = (proj: ProfileProject) => {
     const nameLower = proj.name.toLowerCase();
     if (nameLower.includes("social banners")) {
@@ -451,7 +446,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     );
   };
 
-  // Project Table Columns
   const projectColumns: TableColumn<ProfileProject>[] = useMemo(
     () => [
       {

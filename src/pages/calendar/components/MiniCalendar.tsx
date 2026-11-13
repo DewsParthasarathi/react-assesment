@@ -41,9 +41,8 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
     onMonthChange(next);
   };
 
-  // Generate 7x5 or 7x6 day grid
   const daysGrid = useMemo(() => {
-    const firstDayIndex = new Date(year, month, 1).getDay(); // 0 is Sun
+    const firstDayIndex = new Date(year, month, 1).getDay();
     const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
     const totalDaysInPrevMonth = new Date(year, month, 0).getDate();
 
@@ -55,7 +54,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
       isToday: boolean;
     }> = [];
 
-    // Prev month days
     for (let i = firstDayIndex - 1; i >= 0; i--) {
       const d = new Date(year, month - 1, totalDaysInPrevMonth - i);
       days.push({
@@ -67,7 +65,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
       });
     }
 
-    // Current month days
     const today = new Date();
     for (let i = 1; i <= totalDaysInMonth; i++) {
       const d = new Date(year, month, i);
@@ -89,7 +86,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
       });
     }
 
-    // Next month days to fill up to complete weeks (multiple of 7)
     const remaining = 7 - (days.length % 7);
     if (remaining < 7) {
       for (let i = 1; i <= remaining; i++) {
@@ -109,7 +105,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
 
   return (
     <div className="w-full select-none">
-      {/* Month Header matching 06_Calender.png */}
       <div className="flex items-center justify-between mb-4">
         <button
           type="button"
@@ -138,7 +133,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         </button>
       </div>
 
-      {/* Weekdays Row matching reference images: Su Mo Tu We Th Fr Sa */}
       <div className="grid grid-cols-7 gap-1 text-center mb-2">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, idx) => (
           <div key={idx} className="text-fs12 font-medium text-[#a5a3ae]">
@@ -147,7 +141,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         ))}
       </div>
 
-      {/* Days Grid */}
       <div className="grid grid-cols-7 gap-y-1 gap-x-1 text-center">
         {daysGrid.map((item, idx) => {
           return (
@@ -173,4 +166,3 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
 };
 
 export default MiniCalendar;
-

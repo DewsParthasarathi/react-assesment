@@ -25,7 +25,6 @@ export const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
 }) => {
   return (
     <aside className="w-full md:w-[260px] lg:w-[280px] shrink-0 border-b md:border-b-0 md:border-r border-[#dbdade]/50 p-6 flex flex-col gap-6 bg-white">
-      {/* ADD EVENT Button matching reference images */}
       <CustomButton
         variant="primary"
         onClick={onAddEventClick}
@@ -35,7 +34,6 @@ export const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
         <span>ADD EVENT</span>
       </CustomButton>
 
-      {/* Mini Calendar */}
       <div className="pt-2">
         <MiniCalendar
           currentDate={currentDate}
@@ -47,11 +45,9 @@ export const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
 
       <div className="h-px bg-[#dbdade]/40 w-full" />
 
-      {/* Category Filters */}
       <CalendarFilter filters={filters} onFilterChange={onFilterChange} />
     </aside>
   );
 };
 
 export default CalendarSidebar;
-

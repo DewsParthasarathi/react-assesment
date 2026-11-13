@@ -10,7 +10,6 @@ import type { Role } from "../api/types";
 
 export const ROLES_QUERY_KEY = "roles";
 
-
 export const useRolesQuery = () => {
   return useQuery<Role[], Error>({
     queryKey: [ROLES_QUERY_KEY],
@@ -18,7 +17,6 @@ export const useRolesQuery = () => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
 
 export const useRoleQuery = (id: string | null) => {
   return useQuery<Role, Error>({
@@ -29,7 +27,6 @@ export const useRoleQuery = (id: string | null) => {
   });
 };
 
-
 export const useCreateRoleMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Role, Error, Partial<Role>>({
@@ -39,7 +36,6 @@ export const useCreateRoleMutation = () => {
     },
   });
 };
-
 
 export const useUpdateRoleMutation = () => {
   const queryClient = useQueryClient();
@@ -52,7 +48,6 @@ export const useUpdateRoleMutation = () => {
   });
 };
 
-
 export const useDeleteRoleMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<{ success: boolean }, Error, string>({
@@ -62,4 +57,3 @@ export const useDeleteRoleMutation = () => {
     },
   });
 };
-

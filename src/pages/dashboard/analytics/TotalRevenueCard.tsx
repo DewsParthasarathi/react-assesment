@@ -109,14 +109,11 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
     })),
   };
 
-  // Segmented gauge: rectangular segments laid out on a 240deg arc.
-  // 0deg points right, angles grow clockwise (SVG convention).
   const totalTicks = 36;
   const parsedGrowth = parseInt(currentGrowth, 10);
   const numericGrowth = Number.isFinite(parsedGrowth)
     ? Math.min(100, Math.max(0, parsedGrowth))
     : 78;
-  // The remaining (100 - growth)% of segments render pale at the start of the arc
   const paleTicks = Math.round(totalTicks * (1 - numericGrowth / 100));
   const startAngle = 125;
   const endAngle = 365;

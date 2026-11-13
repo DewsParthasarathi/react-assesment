@@ -4,7 +4,6 @@ import type { EcommerceDashboardData } from "../api/types";
 
 export const ECOMMERCE_DASHBOARD_QUERY_KEY = "ecommerceDashboard";
 
-
 export const useEcommerceDashboardQuery = (year?: string) => {
   return useQuery<EcommerceDashboardData, Error>({
     queryKey: [ECOMMERCE_DASHBOARD_QUERY_KEY, year ?? "default"],
@@ -12,6 +11,3 @@ export const useEcommerceDashboardQuery = (year?: string) => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
-export default useEcommerceDashboardQuery;
-

@@ -27,7 +27,6 @@ const CATEGORIES: Array<"Basic" | "Professional" | "Business"> = [
   "Business",
 ];
 
-// Role badge helper matching reference UI design
 const getRoleBadgeInfo = (role: string) => {
   const lower = role.toLowerCase();
   if (lower.includes("manager")) {

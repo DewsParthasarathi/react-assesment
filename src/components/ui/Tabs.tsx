@@ -57,7 +57,6 @@ export const Tabs: React.FC<TabsProps> = ({
 
   return (
     <div className={className}>
-      {/* Tab Buttons Navigation */}
       <div className={tabListClassName} role="tablist">
         {tabs.map((tab) => {
           const isActive = tab.id === currentTabId;

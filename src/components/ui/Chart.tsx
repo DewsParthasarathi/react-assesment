@@ -7,11 +7,29 @@ type UnknownRecord = Record<string, unknown>;
 const mod = HighchartsReactModule as unknown as UnknownRecord;
 const modDefault = mod.default as UnknownRecord | undefined;
 
+interface SvgPrototype {
+  _sanitizedTransform?: boolean;
+  updateTransform?: (this: SvgPrototype, attrib?: string) => void;
+  translateX?: number;
+  translateY?: number;
+  rotation?: number;
+  scaleX?: number;
+  scaleY?: number;
+  x?: number;
+  y?: number;
+  rotationOriginX?: number;
+  rotationOriginY?: number;
+  foreignObject?: { element?: Element };
+  element?: Element;
+}
+
+interface RenPrototype {
+  _sanitizedHtml?: boolean;
+  html?: (this: unknown, str: string, x?: number, y?: number) => unknown;
+}
+
 if (typeof Highcharts === "object" && Highcharts) {
-  const svgProto = (Highcharts.SVGElement?.prototype || {}) as Record<
-    string,
-    any
-  >;
+  const svgProto = (Highcharts.SVGElement?.prototype || {}) as SvgPrototype;
   const origUpdateTransform = svgProto.updateTransform;
 
   if (
@@ -19,7 +37,7 @@ if (typeof Highcharts === "object" && Highcharts) {
     !svgProto._sanitizedTransform
   ) {
     svgProto._sanitizedTransform = true;
-    svgProto.updateTransform = function (attrib = "transform") {
+    svgProto.updateTransform = function (this: SvgPrototype, attrib = "transform") {
       if (!Number.isFinite(this.translateX)) this.translateX = 0;
       if (!Number.isFinite(this.translateY)) this.translateY = 0;
       if (!Number.isFinite(this.rotation)) this.rotation = 0;
@@ -52,14 +70,11 @@ if (typeof Highcharts === "object" && Highcharts) {
     };
   }
 
-  const renProto = (Highcharts.SVGRenderer?.prototype || {}) as Record<
-    string,
-    any
-  >;
+  const renProto = (Highcharts.SVGRenderer?.prototype || {}) as RenPrototype;
   const origHtml = renProto.html;
   if (typeof origHtml === "function" && !renProto._sanitizedHtml) {
     renProto._sanitizedHtml = true;
-    renProto.html = function (str: string, x?: number, y?: number) {
+    renProto.html = function (this: unknown, str: string, x?: number, y?: number) {
       const safeX =
         typeof x === "number" && Number.isFinite(x) ? Math.round(x) : 0;
       const safeY =

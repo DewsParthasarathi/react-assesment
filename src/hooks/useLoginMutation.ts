@@ -5,7 +5,6 @@ import type { LoginCredentials, LoginResponse } from "../api/types";
 import { loginSuccess, loginFailure } from "../store/slices/authSlice";
 import { DASHBOARD_QUERY_KEY } from "./useDashboardQuery";
 
-
 export const useLoginMutation = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
@@ -17,7 +16,6 @@ export const useLoginMutation = () => {
       localStorage.setItem("authUser", JSON.stringify(data.user));
       localStorage.removeItem("wasLoggedOut");
 
-   
       queryClient.invalidateQueries({
         queryKey: [DASHBOARD_QUERY_KEY],
       });
@@ -27,5 +25,3 @@ export const useLoginMutation = () => {
     },
   });
 };
-
-export default useLoginMutation;

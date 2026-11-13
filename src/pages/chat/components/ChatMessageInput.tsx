@@ -52,9 +52,7 @@ export const ChatMessageInput: React.FC<ChatMessageInputProps> = ({
           className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
         />
 
-        {/* Action icons & Send button */}
         <div className="flex items-center gap-3 shrink-0 ml-2">
-          {/* Microphone Icon */}
           <button
             type="button"
             title="Voice input"
@@ -75,7 +73,6 @@ export const ChatMessageInput: React.FC<ChatMessageInputProps> = ({
             </svg>
           </button>
 
-          {/* Paperclip / Attachment Icon */}
           <button
             type="button"
             title="Attach file"
@@ -96,7 +93,6 @@ export const ChatMessageInput: React.FC<ChatMessageInputProps> = ({
             </svg>
           </button>
 
-          {/* SEND Button matching 05_Chat.png */}
           <CustomButton
             type="button"
             onClick={handleSubmit}

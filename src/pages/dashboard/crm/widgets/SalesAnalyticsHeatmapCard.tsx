@@ -44,25 +44,23 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
   const getCellColor = (val: number) => {
     switch (val) {
       case 3:
-        return "#696cff"; // Dark vibrant purple
+        return "#696cff";
       case 2:
-        return "#8f93ff"; // Medium purple
+        return "#8f93ff";
       case 1:
-        return "#cfd3fb"; // Soft lavender
+        return "#cfd3fb";
       case 0:
       default:
-        return "#e7e7ff"; // Light lavender background cell
+        return "#e7e7ff";
     }
   };
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full relative">
-      {/* Header */}
       <div>
         <div className="flex items-center justify-between">
           <h3 className="text-fs22 font-medium text-[#444050]">Sales Analytics</h3>
 
-          {/* Year selector using reusable CustomDropdown */}
           <div className="relative w-20">
             <CustomDropdown
               options={availableYears.map((yr) => ({ label: yr, value: yr }))}
@@ -74,7 +72,6 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
           </div>
         </div>
 
-        {/* Subtitle badge */}
         <div className="flex items-center gap-2 mt-2">
           <span className="bg-[#e8fadf] text-[#71dd37] text-fs12 font-semibold px-2 py-0.5 rounded">
             {badge}
@@ -83,9 +80,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
         </div>
       </div>
 
-      {/* Heatmap Grid */}
       <div className="mt-4 flex">
-        {/* Y Axis Labels */}
         <div className="flex flex-col justify-between text-fs12 text-[#a5a3ae] pr-2.5 py-0.5 select-none text-right w-6">
           {yCategories.map((y) => (
             <span key={y} className="h-4 leading-4">
@@ -94,7 +89,6 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
           ))}
         </div>
 
-        {/* Matrix Container */}
         <div className="flex-1 flex flex-col justify-between">
           <div className="grid grid-rows-8 gap-1 w-full">
             {matrix.map((row, rowIdx) => (
@@ -118,7 +112,6 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
             ))}
           </div>
 
-          {/* X Axis Labels */}
           <div className="grid grid-cols-8 gap-1 text-center text-fs12 text-[#a5a3ae] mt-2 select-none">
             {months.map((m) => (
               <span key={m}>{m}</span>
@@ -127,7 +120,6 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
         </div>
       </div>
 
-      {/* Tooltip on hover */}
       {hoveredCell && (
         <div className="absolute bottom-12 right-6 bg-[#23272e] text-white text-fs12 py-1 px-2.5 rounded shadow pointer-events-none">
           {hoveredCell.month} ({hoveredCell.y}): Level {hoveredCell.value}

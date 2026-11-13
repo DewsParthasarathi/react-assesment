@@ -16,7 +16,6 @@ export interface FetchEmailsParams {
   label?: string;
 }
 
-
 export const fetchEmails = async (
   params?: FetchEmailsParams,
 ): Promise<EmailListResponse> => {
@@ -26,12 +25,10 @@ export const fetchEmails = async (
   return response.data;
 };
 
-
 export const fetchEmailById = async (id: string): Promise<EmailItem> => {
   const response = await axiosClient.get<EmailItem>(`/emails/${id}`);
   return response.data;
 };
-
 
 export const createEmail = async (
   payload: EmailComposePayload,
@@ -39,7 +36,6 @@ export const createEmail = async (
   const response = await axiosClient.post<EmailItem>("/emails", payload);
   return response.data;
 };
-
 
 export const updateEmail = async (
   id: string,
@@ -49,14 +45,12 @@ export const updateEmail = async (
   return response.data;
 };
 
-
 export const deleteEmail = async (id: string): Promise<{ success: boolean }> => {
   const response = await axiosClient.delete<{ success: boolean }>(
     `/emails/${id}`,
   );
   return response.data;
 };
-
 
 export const batchUpdateEmails = async (
   ids: string[],
@@ -69,7 +63,6 @@ export const batchUpdateEmails = async (
   return response.data;
 };
 
-
 export const batchDeleteEmails = async (
   ids: string[],
 ): Promise<{ success: boolean }> => {
@@ -80,11 +73,9 @@ export const batchDeleteEmails = async (
   return response.data;
 };
 
-
 export const emptyTrash = async (): Promise<{ success: boolean }> => {
   const response = await axiosClient.post<{ success: boolean }>(
     "/emails/empty-trash",
   );
   return response.data;
 };
-

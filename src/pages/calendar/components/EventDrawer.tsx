@@ -134,23 +134,19 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden select-none">
-      {/* Background Dimmed Overlay */}
       <div
         onClick={onClose}
         className="fixed inset-0 bg-[#2f3349]/50 backdrop-blur-xs transition-opacity duration-300"
       />
 
-      {/* Right-Side Sliding Drawer Container */}
       <div className="fixed inset-y-0 right-0 max-w-full flex">
         <div className="w-screen max-w-[400px] bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out">
-          {/* Drawer Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-[#dbdade]/60">
             <h3 className="text-fs18 font-medium text-[#5d596c]">
               {isEditMode ? "Update Event" : "Add Event"}
             </h3>
 
             <div className="flex items-center gap-2">
-              {/* Trash Icon for Deleting in Edit Mode */}
               {isEditMode && onDelete && initialEvent?.id && (
                 <button
                   type="button"
@@ -169,7 +165,6 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                 </button>
               )}
 
-              {/* Close Button */}
               <button
                 type="button"
                 onClick={onClose}
@@ -183,9 +178,7 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             </div>
           </div>
 
-          {/* Drawer Form Body */}
           <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
-            {/* Title Input */}
             <div className="relative">
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 Title
@@ -201,7 +194,6 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               />
             </div>
 
-            {/* Calendar (Category) Select using CustomDropdown */}
             <div className="relative">
               <CustomDropdown
                 label="Calendar"
@@ -215,7 +207,6 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               />
             </div>
 
-            {/* Start Date */}
             <div className="relative">
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 Start Date
@@ -230,7 +221,6 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               />
             </div>
 
-            {/* End Date */}
             <div className="relative">
               <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
                 End Date
@@ -245,7 +235,6 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               />
             </div>
 
-            {/* All Day Toggle Switch */}
             <div className="flex items-center gap-3 select-none py-1">
               <button
                 type="button"

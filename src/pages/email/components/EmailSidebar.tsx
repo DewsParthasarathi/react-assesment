@@ -171,7 +171,6 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
 
   return (
     <aside className="w-[230px] lg:w-[240px] shrink-0 border-r border-[#dbdade]/50 flex flex-col bg-white select-none h-full overflow-hidden">
-      {/* Sticky Top: Compose Button */}
       <div className="p-4 pt-5 shrink-0 sticky top-0 z-10 bg-white">
         <CustomButton
           variant="primary"
@@ -195,9 +194,7 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
         </CustomButton>
       </div>
 
-      {/* Scrollable Folders & Labels List */}
       <div className="flex-1 min-h-0 overflow-y-auto px-4 pb-4 chat-email-scrollbar">
-        {/* Folders List */}
         <div className="space-y-1">
           {folders.map((item) => {
             const isActive = currentFolder === item.id && !selectedLabel;

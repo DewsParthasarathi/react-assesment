@@ -35,7 +35,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  // Header inputs
   const [invoiceNumber, setInvoiceNumber] = useState(
     invoice.invoiceNumber || "# 4987",
   );
@@ -45,7 +44,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
     invoice.clientName || "Jordan Stevenson",
   );
 
-  // Line items state
   const [items, setItems] = useState<LineItem[]>([
     {
       id: "item-1",
@@ -57,20 +55,17 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
     },
   ]);
 
-  // Salesperson & Notes
   const [salesperson, setSalesperson] = useState("Tommy Shelby");
   const [thanksMessage, setThanksMessage] = useState("Thanks for your business");
   const [noteText, setNoteText] = useState(
     "It was a pleasure working with you and your team.we hope you will keep us in mind for future freelance project . Thank You !",
   );
 
-  // Right Panel Settings
   const [paymentMethod, setPaymentMethod] = useState("Internet Banking");
   const [paymentTermsActive, setPaymentTermsActive] = useState(true);
   const [clientNotesActive, setClientNotesActive] = useState(false);
   const [paymentStubActive, setPaymentStubActive] = useState(false);
 
-  // Modals & Action States
   const [isSendModalOpen, setIsSendModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [paymentAmount, setPaymentAmount] = useState<number>(invoice.balance || 0);
@@ -288,12 +283,9 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-8 border-t border-[#dbdade]/50" />
 
-        {/* Line Items Section */}
         <div>
-          {/* Header row */}
           <div className="grid grid-cols-12 gap-3 text-fs14 font-semibold text-[#5d596c] mb-2 px-1">
             <div className="col-span-12 sm:col-span-5">Item</div>
             <div className="col-span-4 sm:col-span-2">Cost</div>
@@ -301,7 +293,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
             <div className="col-span-4 sm:col-span-3">Price</div>
           </div>
 
-          {/* Items Cards */}
           <div className="space-y-4">
             {items.map((row) => {
               const rowPrice = ((row.cost || 0) * (row.hours || 0)).toFixed(2);
@@ -311,9 +302,7 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                   key={row.id}
                   className="border border-[#dbdade]/70 rounded-[6px] p-4 relative bg-white flex flex-col gap-3"
                 >
-                  {/* Top row */}
                   <div className="grid grid-cols-12 gap-2 sm:gap-3 items-center">
-                    {/* Item Select using CustomDropdown */}
                     <div className="col-span-12 sm:col-span-5 min-w-0">
                       <CustomDropdown
                         value={row.item}
@@ -343,7 +332,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                       />
                     </div>
 
-                    {/* Cost Input */}
                     <div className="col-span-4 sm:col-span-2 min-w-0">
                       <CustomInput
                         type="number"
@@ -356,7 +344,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                       />
                     </div>
 
-                    {/* Hours Input */}
                     <div className="col-span-4 sm:col-span-2 min-w-0">
                       <CustomInput
                         type="number"
@@ -369,13 +356,11 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                       />
                     </div>
 
-                    {/* Price Output */}
                     <div className="col-span-4 sm:col-span-3 min-w-0 text-fs16 font-medium text-[#5d596c] flex items-center justify-between">
                       <span>${rowPrice}</span>
                     </div>
                   </div>
 
-                  {/* Bottom row: Service Select & Discount */}
                   <div className="grid grid-cols-12 gap-3 items-center pt-1">
                     <div className="col-span-12 sm:col-span-5 min-w-0">
                       <CustomDropdown
@@ -408,7 +393,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
                     </div>
                   </div>
 
-                  {/* Remove Button */}
                   {items.length > 1 && (
                     <button
                       type="button"
@@ -426,7 +410,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
             })}
           </div>
 
-          {/* + ADD ITEM Button */}
           <div className="mt-4">
             <CustomButton
               type="button"
@@ -442,12 +425,9 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-8 border-t border-[#dbdade]/50" />
 
-        {/* Salesperson & Financial Summary */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
-          {/* Salesperson & message inputs */}
           <div className="space-y-3 w-full sm:w-auto">
             <div className="flex items-center gap-3">
               <span className="text-fs15 font-medium text-[#5d596c] w-24">Invoice To:</span>
@@ -476,7 +456,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
             </div>
           </div>
 
-          {/* Summary calculations matching reference */}
           <div className="w-full sm:w-60 space-y-2 text-fs16 text-[#6f6b7d]">
             <div className="flex justify-between py-0.5">
               <span>Subtotal:</span>
@@ -497,10 +476,8 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-8 border-t border-[#dbdade]/50" />
 
-        {/* Footer Note */}
         <div>
           <h4 className="text-fs15 font-semibold text-[#5d596c] mb-2">Note:</h4>
           <textarea
@@ -512,11 +489,8 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
         </div>
       </div>
 
-      {/* RIGHT COLUMN: Actions & Settings Panel */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-4">
-        {/* Top Action Buttons */}
         <div className="space-y-3">
-          {/* Row 1: SEND INVOICE */}
           <CustomButton
             type="button"
             variant="primary"
@@ -530,7 +504,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
             <span>{isPending ? "SENDING..." : "SEND INVOICE"}</span>
           </CustomButton>
 
-          {/* Row 2: PREVIEW and SAVE Side by Side */}
           <div className="grid grid-cols-2 gap-3">
             <CustomButton
               type="button"
@@ -710,7 +683,6 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
         </form>
       </CustomModal>
 
-      {/* Modal: Send Invoice */}
       <CustomModal
         isOpen={isSendModalOpen}
         onClose={() => setIsSendModalOpen(false)}

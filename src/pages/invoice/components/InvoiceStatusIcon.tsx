@@ -106,7 +106,6 @@ export const InvoiceStatusIcon: React.FC<InvoiceStatusIconProps> = ({ status }) 
     );
   }
 
-  // Cancelled or other fallback
   return (
     <div
       title={status}
@@ -120,4 +119,3 @@ export const InvoiceStatusIcon: React.FC<InvoiceStatusIconProps> = ({ status }) 
 };
 
 export default InvoiceStatusIcon;
-

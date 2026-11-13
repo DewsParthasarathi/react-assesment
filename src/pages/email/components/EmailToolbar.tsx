@@ -47,9 +47,7 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
 
   return (
     <div className="px-5 py-2.5 border-b border-[#dbdade]/50 flex items-center justify-between bg-white relative select-none">
-      {/* Left Action Buttons */}
       <div className="flex items-center gap-3">
-        {/* Master Checkbox */}
         <button
           type="button"
           onClick={handleMasterCheckboxClick}
@@ -75,9 +73,7 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
           )}
         </button>
 
-        {/* Action icons (Delete, Mark Read/Unread, Move Folder, Tag) */}
         <div className="flex items-center gap-1 ml-1 text-[#6f6b7d]">
-          {/* Delete Icon */}
           <button
             type="button"
             disabled={!hasSelection}
@@ -100,7 +96,6 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
             </svg>
           </button>
 
-          {/* Mark as Unread / Read Icon */}
           <button
             type="button"
             disabled={!hasSelection}
@@ -123,7 +118,6 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
             </svg>
           </button>
 
-          {/* Move to Folder Icon with Dropdown */}
           <AnchoredPortal
             isOpen={showFolderMenu}
             onClose={() => setShowFolderMenu(false)}
@@ -200,7 +194,6 @@ export const EmailToolbar: React.FC<EmailToolbarProps> = ({
             </div>
           </AnchoredPortal>
 
-          {/* Label Tag Icon with Dropdown */}
           <AnchoredPortal
             isOpen={showLabelMenu}
             onClose={() => setShowLabelMenu(false)}

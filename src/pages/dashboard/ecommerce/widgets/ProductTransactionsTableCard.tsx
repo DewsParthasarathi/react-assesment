@@ -6,10 +6,6 @@ interface ProductTransactionsTableCardProps {
   products?: EcommerceProduct[];
 }
 
-/**
- * Dedicated, recognizable product SVGs styled within circular badges
- * matching the reference screenshot exactly.
- */
 const ProductIcon: React.FC<{ name: string; brand: string }> = ({
   name,
   brand,

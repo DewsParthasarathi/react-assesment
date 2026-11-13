@@ -80,7 +80,6 @@ export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) 
           </p>
         </div>
 
-        {/* Circular Progress with Highcharts */}
         <div className="relative w-[100px] h-[100px] flex items-center justify-center">
           <Chart options={chartOptions} />
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">

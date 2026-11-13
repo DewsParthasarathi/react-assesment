@@ -18,7 +18,6 @@ export const PROFILE_PROJECTS_QUERY_KEY = "profileProjects";
 export const PROFILE_TEAMS_QUERY_KEY = "profileTeams";
 export const PROFILE_CONNECTIONS_QUERY_KEY = "profileConnections";
 
-
 export const useProfileQuery = () => {
   return useQuery<UserProfile, Error>({
     queryKey: [PROFILE_QUERY_KEY],
@@ -26,7 +25,6 @@ export const useProfileQuery = () => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
 
 export const useToggleConnectionMutation = () => {
   const queryClient = useQueryClient();
@@ -39,7 +37,6 @@ export const useToggleConnectionMutation = () => {
   });
 };
 
-
 export const useProfileProjectsQuery = () => {
   return useQuery<ProfileProject[], Error>({
     queryKey: [PROFILE_PROJECTS_QUERY_KEY],
@@ -47,7 +44,6 @@ export const useProfileProjectsQuery = () => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
 
 export const useProfileTeamsQuery = () => {
   return useQuery<ProfileTeam[], Error>({
@@ -57,7 +53,6 @@ export const useProfileTeamsQuery = () => {
   });
 };
 
-
 export const useProfileConnectionsQuery = () => {
   return useQuery<ProfileConnection[], Error>({
     queryKey: [PROFILE_CONNECTIONS_QUERY_KEY],
@@ -65,4 +60,3 @@ export const useProfileConnectionsQuery = () => {
     staleTime: 1000 * 60 * 5,
   });
 };
-

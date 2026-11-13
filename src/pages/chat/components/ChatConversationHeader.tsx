@@ -14,7 +14,6 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
   return (
     <div className="shrink-0 sticky top-0 z-10 px-6 py-3.5 border-b border-[#dbdade]/50 flex items-center justify-between bg-white select-none">
       <div className="flex items-center gap-3.5">
-        {/* Back button for mobile responsiveness */}
         {onBackToContacts && (
           <button
             type="button"
@@ -38,7 +37,6 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
           </button>
         )}
 
-        {/* Contact Avatar */}
         {renderChatAvatar(
           contact.avatar,
           contact.name,
@@ -47,7 +45,6 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
           contact.isOnline,
         )}
 
-        {/* Name and Designation */}
         <div>
           <h3 className="text-fs15 font-bold text-[#32475c] leading-tight">
             {contact.name}
@@ -62,4 +59,3 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
 };
 
 export default ChatConversationHeader;
-

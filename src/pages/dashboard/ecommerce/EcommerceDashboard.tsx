@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useEcommerceDashboardQuery from "../../../hooks/useEcommerceDashboardQuery";
+import { useEcommerceDashboardQuery } from "../../../hooks/useEcommerceDashboardQuery";
 import CongratulationsCard from "./widgets/CongratulationsCard";
 import NewVisitorsCard from "./widgets/NewVisitorsCard";
 import ActivityCard from "./widgets/ActivityCard";
@@ -25,12 +25,10 @@ export const EcommerceDashboard: React.FC = () => {
   if (isLoading) {
     return (
       <div className="w-full space-y-6 animate-pulse">
-        {/* Row 1 skeleton */}
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 xl:col-span-4 h-44 bg-white rounded-[6px] border border-[#dbdade]/50" />
           <div className="col-span-12 xl:col-span-8 h-44 bg-white rounded-[6px] border border-[#dbdade]/50" />
         </div>
-        {/* Row 2 skeleton */}
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 xl:col-span-4 h-64 bg-white rounded-[6px] border border-[#dbdade]/50" />
           <div className="col-span-12 xl:col-span-8 h-64 bg-white rounded-[6px] border border-[#dbdade]/50" />
@@ -78,7 +76,6 @@ export const EcommerceDashboard: React.FC = () => {
 
   return (
     <div className="w-full space-y-6 select-none">
-      {/* ROW 1: Congratulations Card (4 cols) + Shared (New Visitors & Activity) Card (8 cols) */}
       <div className="grid grid-cols-12 gap-6 items-stretch">
         <div className="col-span-12 xl:col-span-4 h-full">
           <CongratulationsCard data={data.congratulations} />
@@ -89,9 +86,7 @@ export const EcommerceDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* ROW 2: Sales & Profit (2x2 subgrid, 4 cols) + Shared (Total Income & Report) Card (8 cols) */}
       <div className="grid grid-cols-12 gap-6 items-stretch">
-        {/* Sub-grid 2x2 for Sales, Profit, Expenses, Transactions */}
         <div className="col-span-12 xl:col-span-4 flex flex-col justify-between gap-6">
           <div className="grid grid-cols-2 gap-6 flex-1">
             <SalesSmallCard
@@ -113,7 +108,6 @@ export const EcommerceDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Shared Total Income & Report Card */}
         <div className="col-span-12 xl:col-span-8 h-full bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#dbdade]/50">
           <div className="lg:col-span-8 xl:col-span-8 h-full">
             <TotalIncomeCard data={data.totalIncome} isInsideSharedContainer />
@@ -130,9 +124,7 @@ export const EcommerceDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* ROW 3: Performance (4 cols) + Conversion Rate (4 cols) + Right stack (Sales, Profit target, Expenses bar) (4 cols) */}
       <div className="grid grid-cols-12 gap-6 items-stretch">
-        {/* Performance Radar card */}
         <div className="col-span-12 xl:col-span-4 h-full">
           <PerformanceRadarCard
             data={data.performance}
@@ -142,7 +134,6 @@ export const EcommerceDashboard: React.FC = () => {
           />
         </div>
 
-        {/* Conversion Rate card */}
         <div className="col-span-12 lg:col-span-6 xl:col-span-4 h-full">
           <ConversionRateCard
             data={data.conversionRate}
@@ -152,7 +143,6 @@ export const EcommerceDashboard: React.FC = () => {
           />
         </div>
 
-        {/* Right Stack: Sales summary + Profit target (row) and Expenses bar chart (row) */}
         <div className="col-span-12 lg:col-span-6 xl:col-span-4 flex flex-col justify-between gap-6">
           <div className="grid grid-cols-2 gap-6 flex-1">
             <SalesSummaryCard
@@ -169,7 +159,6 @@ export const EcommerceDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* ROW 4: Product Transactions Table (8 cols) + Total Balance (4 cols) */}
       <div className="grid grid-cols-12 gap-6 items-stretch">
         <div className="col-span-12 xl:col-span-8 h-full">
           <ProductTransactionsTableCard products={data.products} />

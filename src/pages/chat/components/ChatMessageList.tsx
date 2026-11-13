@@ -18,7 +18,6 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
   const prevContactIdRef = useRef<string>(contact.id);
   const prevMessagesLengthRef = useRef<number>(messages.length);
 
-  // Controlled intelligent auto-scroll
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -28,14 +27,9 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
     const lastMsg = messages[messages.length - 1];
     const isUserSentLast = lastMsg?.senderId === "user";
 
-    // Detect if user is already near the bottom (within 150px)
     const isNearBottom =
       container.scrollHeight - container.scrollTop - container.clientHeight < 150;
 
-    // Scroll to bottom when:
-    // 1. Switching to another contact's conversation
-    // 2. The user just sent a message
-    // 3. New message arrives or AI is typing AND user is already viewing the bottom
     if (
       isContactChanged ||
       isUserSentLast ||
@@ -86,7 +80,6 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
           const isLastInCluster = !nextMsg || nextMsg.senderId !== msg.senderId;
 
           if (isOutgoing) {
-            // Outgoing Message (Right-aligned, Purple Bubble)
             return (
               <div key={msg.id} className="flex flex-col items-end">
                 <div className="flex items-end gap-2.5 max-w-[80%] md:max-w-[70%]">
@@ -101,7 +94,6 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
                     )}
                   </div>
 
-                  {/* Outgoing User Avatar (member1) on last message of cluster */}
                   <div className="w-8 h-8 shrink-0">
                     {isLastInCluster ? (
                       renderChatAvatar("member1", "John Doe", "w-8 h-8", false)
@@ -114,11 +106,9 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
             );
           }
 
-          // Incoming Message - Always uses the selected employee's profile avatar
           return (
             <div key={msg.id} className="flex flex-col items-start">
               <div className="flex items-end gap-2.5 max-w-[80%] md:max-w-[70%]">
-                {/* Contact Avatar on last message of cluster */}
                 <div className="w-8 h-8 shrink-0">
                   {isLastInCluster ? (
                     renderChatAvatar(
@@ -148,7 +138,6 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
         })
       )}
 
-      {/* Typing Indicator */}
       {isAiTyping && (
         <div className="flex items-end gap-2.5 max-w-[70%] animate-in fade-in">
           <div className="w-8 h-8 shrink-0">

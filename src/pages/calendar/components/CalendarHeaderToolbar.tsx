@@ -27,7 +27,6 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-2 border-b border-[#dbdade]/50 select-none">
-      {/* Left: Chevrons & Title matching reference screenshots */}
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -56,7 +55,6 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
         </h2>
       </div>
 
-      {/* Right: Segmented view switcher matching 06_Calender.png */}
       <div className="inline-flex items-center p-1 bg-[#ecebfd]/70 rounded-[6px]">
         {views.map((v) => {
           const isActive = activeView === v.type;
@@ -81,4 +79,3 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
 };
 
 export default CalendarHeaderToolbar;
-

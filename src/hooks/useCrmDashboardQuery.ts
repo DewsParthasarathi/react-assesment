@@ -4,7 +4,6 @@ import type { CrmDashboardData } from "../api/types";
 
 export const CRM_DASHBOARD_QUERY_KEY = "crmDashboard";
 
-
 export const useCrmDashboardQuery = (year?: string) => {
   return useQuery<CrmDashboardData, Error>({
     queryKey: [CRM_DASHBOARD_QUERY_KEY, year ?? "default"],
@@ -12,5 +11,3 @@ export const useCrmDashboardQuery = (year?: string) => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
-export default useCrmDashboardQuery;

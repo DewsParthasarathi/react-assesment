@@ -27,7 +27,6 @@ const loadInitialUser = (): { user: User | null; isAuthenticated: boolean } => {
     console.error('Error loading stored user:', e);
   }
 
-  // If user hasn't explicitly clicked logout, default to User 1
   const wasLoggedOut = localStorage.getItem('wasLoggedOut');
   if (wasLoggedOut !== 'true') {
     const defaultUser: User = {

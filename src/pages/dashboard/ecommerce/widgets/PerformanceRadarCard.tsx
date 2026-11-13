@@ -5,9 +5,9 @@ import Chart from "../../../../components/ui/Chart";
 import type { EcommercePerformance } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 
-// Initialize HighchartsMore for polar / radar chart support
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const initMore: any = HighchartsMore;
+const initMore = HighchartsMore as unknown as
+  | ((hc: typeof Highcharts) => void)
+  | { default?: (hc: typeof Highcharts) => void };
 if (typeof initMore === "function") {
   initMore(Highcharts);
 } else if (initMore && typeof initMore.default === "function") {

@@ -42,7 +42,6 @@ export const AnalyticsDashboard: React.FC = () => {
     );
   }
 
-  // Error State with retry action
   if (isError || !profile) {
     return (
       <div className="w-full p-8 bg-white rounded-[5px] border border-[#ea5455]/30 text-center">
@@ -81,7 +80,6 @@ export const AnalyticsDashboard: React.FC = () => {
 
   return (
     <div className="w-full space-y-6">
-      {/* ROW 1: Welcome Greeting Card (8 cols) + Order & Sales Summary Cards (4 cols) */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-8 flex flex-col h-full">
           <WelcomeCard
@@ -102,7 +100,6 @@ export const AnalyticsDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* ROW 2: Total Revenue & Growth Widget (8 cols) + Payments, Revenue, Profit Report (4 cols) */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-8 flex flex-col h-full">
           <TotalRevenueCard

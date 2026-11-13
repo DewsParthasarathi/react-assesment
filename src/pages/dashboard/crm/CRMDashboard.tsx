@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useCrmDashboardQuery from "../../../hooks/useCrmDashboardQuery";
+import { useCrmDashboardQuery } from "../../../hooks/useCrmDashboardQuery";
 import CustomerRatingsCard from "./widgets/CustomerRatingsCard";
 import OverviewSalesActivityCard from "./widgets/OverviewSalesActivityCard";
 import SessionsCard from "./widgets/SessionsCard";

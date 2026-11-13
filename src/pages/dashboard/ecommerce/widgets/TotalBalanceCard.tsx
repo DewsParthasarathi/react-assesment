@@ -27,7 +27,6 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
   const subMessage =
     data?.subMessage || "check your new badge in your profile.";
 
-  // Highlighting the last point with a hollow circular marker matching the reference
   const seriesPoints: Highcharts.PointOptionsObject[] = seriesData.map(
     (val, idx, arr) =>
       idx === arr.length - 1
@@ -95,7 +94,6 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
       },
     },
     series: [
-      // 1. Soft glowing outer aura
       {
         type: "spline",
         name: "GlowAura",
@@ -106,7 +104,6 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
         showInLegend: false,
         marker: { enabled: false },
       },
-      // 2. Mid radiant highlight
       {
         type: "spline",
         name: "GlowMid",
@@ -117,7 +114,6 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
         showInLegend: false,
         marker: { enabled: false },
       },
-      // 3. Crisp central illuminated stroke
       {
         type: "spline",
         name: "Balance",
@@ -156,7 +152,6 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
           </YearSelectionPopup>
         </div>
 
-        {/* Balance summaries */}
         <div className="flex items-center  gap-18 mt-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-[6px] bg-[#fff1d6] flex items-center justify-center shrink-0">
@@ -208,7 +203,6 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
         <Chart options={chartOptions} />
       </div>
 
-      {/* Footer message with action button */}
       <div className="border-t border-[#dbdade]/40 pt-3 flex items-center justify-between mt-auto">
         <div>
           <span className="text-fs12 font-medium text-[#6f6b7d] block leading-tight">

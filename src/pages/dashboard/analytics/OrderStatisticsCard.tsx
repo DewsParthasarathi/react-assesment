@@ -130,7 +130,6 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
 
   return (
     <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
-      {/* Header */}
       <div>
         <div className="flex items-center justify-between">
           <h3 className="text-fs18 font-semibold text-[#444050]">
@@ -154,7 +153,6 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
         </div>
         <p className="text-fs13 text-[#a5a3ae] mt-0.5">{displayTotalSales}</p>
 
-        {/* Orders Count and Donut Chart */}
         <div className="flex items-center justify-between my-5">
           <div>
             <span className="text-fs28 font-bold text-[#444050] leading-none block">
@@ -174,7 +172,6 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
         </div>
       </div>
 
-      {/* Categories List */}
       <div className="space-y-4 pt-2">
         {categories.map((cat) => (
           <div key={cat.name} className="flex items-center justify-between">

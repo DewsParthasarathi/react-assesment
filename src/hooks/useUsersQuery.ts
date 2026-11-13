@@ -4,7 +4,6 @@ import type { User } from "../api/types";
 
 export const USERS_QUERY_KEY = "users";
 
-
 export const useUsersQuery = () => {
   return useQuery<User[], Error>({
     queryKey: [USERS_QUERY_KEY],
@@ -12,5 +11,3 @@ export const useUsersQuery = () => {
     staleTime: 1000 * 60 * 10,
   });
 };
-
-export default useUsersQuery;

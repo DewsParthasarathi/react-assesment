@@ -38,7 +38,6 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
     const shouldShowToggle = isPasswordType || enablePasswordToggle;
     const inputType = shouldShowToggle && showPassword ? "text" : type;
 
-    // Checkbox support
     if (type === "checkbox") {
       return (
         <div className={`inline-flex flex-col ${containerClassName}`}>

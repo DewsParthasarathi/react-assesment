@@ -10,7 +10,6 @@ import type { Permission } from "../api/types";
 
 export const PERMISSIONS_QUERY_KEY = "permissions";
 
-
 export const usePermissionsQuery = () => {
   return useQuery<Permission[], Error>({
     queryKey: [PERMISSIONS_QUERY_KEY],
@@ -18,7 +17,6 @@ export const usePermissionsQuery = () => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
 
 export const usePermissionQuery = (id: string | null) => {
   return useQuery<Permission, Error>({
@@ -29,7 +27,6 @@ export const usePermissionQuery = (id: string | null) => {
   });
 };
 
-
 export const useCreatePermissionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<Permission, Error, Partial<Permission>>({
@@ -39,7 +36,6 @@ export const useCreatePermissionMutation = () => {
     },
   });
 };
-
 
 export const useUpdatePermissionMutation = () => {
   const queryClient = useQueryClient();
@@ -52,7 +48,6 @@ export const useUpdatePermissionMutation = () => {
   });
 };
 
-
 export const useDeletePermissionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation<{ success: boolean }, Error, string>({
@@ -62,4 +57,3 @@ export const useDeletePermissionMutation = () => {
     },
   });
 };
-

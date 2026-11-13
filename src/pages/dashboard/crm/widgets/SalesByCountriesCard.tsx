@@ -64,7 +64,6 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
       <div>
         <div className="flex items-center justify-between">
           <h3 className="text-fs22 font-medium text-[#444050]">Sales by countries</h3>
@@ -85,7 +84,6 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
         <p className="text-fs16 font-normal text-[#a5a3ae] mt-0.5">Monthly Sales Overview</p>
       </div>
 
-      {/* Country Rows */}
       <div className="space-y-3.5 mt-3">
         {items.map((c) => (
           <div key={c.id} className="flex items-center justify-between">

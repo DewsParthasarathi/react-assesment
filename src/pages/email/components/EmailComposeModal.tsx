@@ -63,7 +63,6 @@ const EmailComposeForm: React.FC<{
   return (
     <div className="fixed inset-0 sm:inset-auto sm:right-8 sm:bottom-6 z-50 flex items-end sm:items-auto justify-center select-none pointer-events-auto">
       <div className="w-full sm:w-[540px] md:w-[600px] bg-white rounded-t-lg sm:rounded-lg shadow-[0_8px_32px_rgba(47,43,61,0.2)] border border-[#dbdade]/80 flex flex-col overflow-hidden max-h-[90vh]">
-        {/* Header */}
         <div className="bg-[#696cff] text-white px-5 py-3 flex items-center justify-between">
           <span className="text-fs14 font-semibold tracking-wide">
             {initialData ? "Continue Draft" : "Compose Mail"}
@@ -112,7 +111,6 @@ const EmailComposeForm: React.FC<{
           </div>
         </div>
 
-        {/* Validation message */}
         {error && (
           <div className="bg-[#ffe2e3] text-[#ea5455] text-fs12 px-4 py-1.5 border-b border-[#ea5455]/20 flex items-center justify-between">
             <span>{error}</span>
@@ -126,9 +124,7 @@ const EmailComposeForm: React.FC<{
           </div>
         )}
 
-        {/* Form */}
         <form onSubmit={handleSend} className="flex flex-col flex-1">
-          {/* TO Field */}
           <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50">
             <label
               htmlFor="email-to"
@@ -168,7 +164,6 @@ const EmailComposeForm: React.FC<{
             </div>
           </div>
 
-          {/* CC Field */}
           {showCc && (
             <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50 animate-in fade-in">
               <label
@@ -189,7 +184,6 @@ const EmailComposeForm: React.FC<{
             </div>
           )}
 
-          {/* BCC Field */}
           {showBcc && (
             <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50 animate-in fade-in">
               <label
@@ -210,7 +204,6 @@ const EmailComposeForm: React.FC<{
             </div>
           )}
 
-          {/* Subject Field */}
           <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50">
             <label
               htmlFor="email-subject"
@@ -229,7 +222,6 @@ const EmailComposeForm: React.FC<{
             />
           </div>
 
-          {/* Message Textarea */}
           <div className="p-4 flex-1">
             <textarea
               value={message}
@@ -240,7 +232,6 @@ const EmailComposeForm: React.FC<{
             />
           </div>
 
-          {/* Footer actions */}
           <div className="px-4 py-3 bg-[#f8f7fa] border-t border-[#dbdade]/50 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <CustomButton

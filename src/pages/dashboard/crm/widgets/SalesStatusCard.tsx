@@ -75,7 +75,6 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-fs22 font-medium text-[#444050]">Sales Status</h3>
         <YearSelectionPopup
@@ -93,13 +92,11 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
         </YearSelectionPopup>
       </div>
 
-      {/* Circular Progress Arc */}
       <div className="relative flex items-center justify-center my-auto py-2">
         <div className="w-[180px] h-[180px]">
           <Chart options={chartOptions} />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          {/* Net profit icon styled in Sales Status green (#71dd37) */}
           <div className="w-7 h-7 flex items-center justify-center text-[#71dd37] mb-1.5">
             <svg
               className="w-[26px] h-[23px]"
@@ -120,7 +117,6 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
         </div>
       </div>
 
-      {/* Bottom Legend */}
       <div className="flex items-center justify-center gap-4 text-fs13 text-[#a5a3ae] pt-2">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#696cff]" />

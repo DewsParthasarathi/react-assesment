@@ -4,7 +4,6 @@ import type { UserProfile } from "../api/types";
 
 export const DASHBOARD_QUERY_KEY = "dashboard";
 
-
 export const useDashboardQuery = (userId?: string | null) => {
   return useQuery<UserProfile, Error>({
     queryKey: [DASHBOARD_QUERY_KEY, userId || "1"],
@@ -13,5 +12,3 @@ export const useDashboardQuery = (userId?: string | null) => {
     staleTime: 1000 * 60 * 5,
   });
 };
-
-export default useDashboardQuery;
