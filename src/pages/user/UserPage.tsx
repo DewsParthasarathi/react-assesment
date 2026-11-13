@@ -7,6 +7,7 @@ import { CustomDropdown } from "../../components/ui/CustomDropdown";
 import { CustomTable, type TableColumn } from "../../components/ui/Table";
 import { AnchoredPortal } from "../../components/ui/FloatingPortal";
 import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
+import { CustomImage } from "../../components/ui/CustomImage";
 
 import sessionIcon from "../../assets/images/Session.svg";
 import paidUserIcon from "../../assets/images/Paid users.svg";
@@ -278,20 +279,20 @@ export const UserPage: React.FC = () => {
     switch (status) {
       case "Active":
         return (
-          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs11 font-bold tracking-wider uppercase bg-[#e8fadf] text-[#71dd37]">
+          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs12 font-bold tracking-wider uppercase bg-[#e8fadf] text-[#71dd37]">
             ACTIVE
           </span>
         );
       case "Pending":
         return (
-          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs11 font-bold tracking-wider uppercase bg-[#fff2d6] text-[#ffab00]">
+          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs12 font-bold tracking-wider uppercase bg-[#fff2d6] text-[#ffab00]">
             PENDING
           </span>
         );
       case "Inactive":
       default:
         return (
-          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs11 font-bold tracking-wider uppercase bg-[#dbdade]/70 text-[#8592a3]">
+          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs12 font-bold tracking-wider uppercase bg-[#dbdade]/70 text-[#8592a3]">
             INACTIVE
           </span>
         );
@@ -304,20 +305,22 @@ export const UserPage: React.FC = () => {
         id: "user",
         header: "USER",
         headerClassName:
-          "py-3.5 px-6 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-6 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-6",
         render: (user) => (
           <div className="flex items-center gap-3">
-            <img
+            <CustomImage
               src={getMemberAvatar(user.avatar || user.id)}
               alt={user.name}
-              className="w-9 h-9 rounded-full object-cover shrink-0"
+              containerClassName="w-9 h-9 rounded-full shrink-0 overflow-hidden"
+              className="w-full h-full"
+              objectFit="cover"
             />
             <div className="flex flex-col min-w-0">
-              <span className="text-fs14 font-medium text-[#5d596c] hover:text-[#696cff] transition cursor-pointer truncate">
+              <span className="text-fs15 font-medium text-[#5d596c] hover:text-[#696cff] transition cursor-pointer truncate">
                 {user.name}
               </span>
-              <span className="text-fs12 text-[#a5a3ae] truncate">
+              <span className="text-fs13 text-[#a5a3ae] truncate">
                 {user.email}
               </span>
             </div>
@@ -328,12 +331,12 @@ export const UserPage: React.FC = () => {
         id: "role",
         header: "ROLE",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => (
           <div className="flex items-center gap-2.5">
             {getRoleIcon(user.role)}
-            <span className="text-fs14 text-[#5d596c] font-normal">
+            <span className="text-fs15 text-[#5d596c] font-normal">
               {user.role}
             </span>
           </div>
@@ -343,10 +346,10 @@ export const UserPage: React.FC = () => {
         id: "plan",
         header: "PLAN",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => (
-          <span className="text-fs14 text-[#6f6b7d] font-normal">
+          <span className="text-fs15 text-[#6f6b7d] font-normal">
             {user.plan}
           </span>
         ),
@@ -355,10 +358,10 @@ export const UserPage: React.FC = () => {
         id: "billing",
         header: "BILLING",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => (
-          <span className="text-fs14 text-[#6f6b7d] font-normal">
+          <span className="text-fs15 text-[#6f6b7d] font-normal">
             {user.billing}
           </span>
         ),
@@ -367,7 +370,7 @@ export const UserPage: React.FC = () => {
         id: "status",
         header: "STATUS",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => getStatusBadge(user.status),
       },
@@ -376,7 +379,7 @@ export const UserPage: React.FC = () => {
         header: "ACTIONS",
         align: "center",
         headerClassName:
-          "py-3.5 px-6 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider text-center w-24",
+          "py-3.5 px-6 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider text-center w-24",
         className: "py-3.5 px-6 text-center w-24",
         render: (user) => {
           const isDropdownOpen = openDropdownId === user.id;
@@ -417,7 +420,7 @@ export const UserPage: React.FC = () => {
                   type="button"
                   variant="ghost"
                   onClick={() => setOpenDropdownId(null)}
-                  className="w-full px-4 py-2 text-fs14 text-[#5d596c] hover:bg-[#f5f5f9] hover:text-[#696cff] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                  className="w-full px-4 py-2 text-fs15 text-[#5d596c] hover:bg-[#f5f5f9] hover:text-[#696cff] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
                 >
                   <span>Edit User</span>
                 </CustomButton>
@@ -428,7 +431,7 @@ export const UserPage: React.FC = () => {
                     handleDeleteUserClick(user);
                     setOpenDropdownId(null);
                   }}
-                  className="w-full px-4 py-2 text-fs14 text-[#ea5455] hover:bg-[#ffebee] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                  className="w-full px-4 py-2 text-fs15 text-[#ea5455] hover:bg-[#ffebee] transition flex items-center justify-start gap-2 cursor-pointer rounded-none"
                 >
                   <span>Delete</span>
                 </CustomButton>
@@ -459,7 +462,7 @@ export const UserPage: React.FC = () => {
   if (isError) {
     return (
       <div className="w-full p-8 bg-white rounded-[6px] border border-[#ea5455]/30 text-center">
-        <p className="text-[#ea5455] font-medium text-fs16 mb-2">
+        <p className="text-[#ea5455] font-medium text-fs17 mb-2">
           Failed to load users: {error?.message || "Unknown error"}
         </p>
         <CustomButton
@@ -477,88 +480,96 @@ export const UserPage: React.FC = () => {
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 p-5 flex items-center justify-between">
           <div>
-            <p className="text-fs13 text-[#a5a3ae] mb-1">Session</p>
+            <p className="text-fs14 text-[#a5a3ae] mb-1">Session</p>
             <div className="flex items-center gap-2">
-              <span className="text-fs20 font-bold text-[#5d596c] tracking-tight">
+              <span className="text-fs21 font-bold text-[#5d596c] tracking-tight">
                 21,459
               </span>
-              <span className="text-fs12 font-medium text-[#71dd37]">
+              <span className="text-fs13 font-medium text-[#71dd37]">
                 (+29%)
               </span>
             </div>
-            <p className="text-fs12 text-[#a5a3ae] mt-1">Total Users</p>
+            <p className="text-fs13 text-[#a5a3ae] mt-1">Total Users</p>
           </div>
           <div className="w-10 h-10 rounded-[6px] bg-[#e7e7ff] text-[#696cff] flex items-center justify-center shrink-0">
-            <img
+            <CustomImage
               src={sessionIcon}
               alt="Session"
-              className="w-5 h-5 object-contain"
+              containerClassName="w-5 h-5 flex items-center justify-center shrink-0"
+              className="w-full h-full"
+              objectFit="contain"
             />
           </div>
         </div>
 
         <div className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 p-5 flex items-center justify-between">
           <div>
-            <p className="text-fs13 text-[#a5a3ae] mb-1">Paid users</p>
+            <p className="text-fs14 text-[#a5a3ae] mb-1">Paid users</p>
             <div className="flex items-center gap-2">
-              <span className="text-fs20 font-bold text-[#5d596c] tracking-tight">
+              <span className="text-fs21 font-bold text-[#5d596c] tracking-tight">
                 4.567
               </span>
-              <span className="text-fs12 font-medium text-[#71dd37]">
+              <span className="text-fs13 font-medium text-[#71dd37]">
                 (+18%)
               </span>
             </div>
-            <p className="text-fs12 text-[#a5a3ae] mt-1">Last week analytics</p>
+            <p className="text-fs13 text-[#a5a3ae] mt-1">Last week analytics</p>
           </div>
           <div className="w-10 h-10 rounded-[6px] bg-[#ffebee] text-[#ff4c51] flex items-center justify-center shrink-0">
-            <img
+            <CustomImage
               src={paidUserIcon}
               alt="Paid users"
-              className="w-5 h-5 object-contain"
+              containerClassName="w-5 h-5 flex items-center justify-center shrink-0"
+              className="w-full h-full"
+              objectFit="contain"
             />
           </div>
         </div>
 
         <div className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 p-5 flex items-center justify-between">
           <div>
-            <p className="text-fs13 text-[#a5a3ae] mb-1">Active users</p>
+            <p className="text-fs14 text-[#a5a3ae] mb-1">Active users</p>
             <div className="flex items-center gap-2">
-              <span className="text-fs20 font-bold text-[#5d596c] tracking-tight">
+              <span className="text-fs21 font-bold text-[#5d596c] tracking-tight">
                 19,860
               </span>
-              <span className="text-fs12 font-medium text-[#ea5455]">
+              <span className="text-fs13 font-medium text-[#ea5455]">
                 (-14%)
               </span>
             </div>
-            <p className="text-fs12 text-[#a5a3ae] mt-1">Last week analytics</p>
+            <p className="text-fs13 text-[#a5a3ae] mt-1">Last week analytics</p>
           </div>
           <div className="w-10 h-10 rounded-[6px] bg-[#e8fadf] text-[#71dd37] flex items-center justify-center shrink-0">
-            <img
+            <CustomImage
               src={activeUserIcon}
               alt="Active users"
-              className="w-5 h-5 object-contain"
+              containerClassName="w-5 h-5 flex items-center justify-center shrink-0"
+              className="w-full h-full"
+              objectFit="contain"
             />
           </div>
         </div>
 
         <div className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 p-5 flex items-center justify-between">
           <div>
-            <p className="text-fs13 text-[#a5a3ae] mb-1">Pending users</p>
+            <p className="text-fs14 text-[#a5a3ae] mb-1">Pending users</p>
             <div className="flex items-center gap-2">
-              <span className="text-fs20 font-bold text-[#5d596c] tracking-tight">
+              <span className="text-fs21 font-bold text-[#5d596c] tracking-tight">
                 237
               </span>
-              <span className="text-fs12 font-medium text-[#71dd37]">
+              <span className="text-fs13 font-medium text-[#71dd37]">
                 (+42%)
               </span>
             </div>
-            <p className="text-fs12 text-[#a5a3ae] mt-1">Last year analytics</p>
+            <p className="text-fs13 text-[#a5a3ae] mt-1">Last year analytics</p>
           </div>
           <div className="w-10 h-10 rounded-[6px] bg-[#fff2d6] text-[#ffab00] flex items-center justify-center shrink-0">
-            <img
+            <CustomImage
               src={pendingUserIcon}
               alt="Pending users"
-              className="w-5 h-5 object-contain"
+              containerClassName="w-5 h-5 flex items-center justify-center shrink-0"
+              className="w-full h-full"
+              objectFit="contain"
             />
           </div>
         </div>
@@ -566,7 +577,7 @@ export const UserPage: React.FC = () => {
 
       <section className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 overflow-hidden">
         <div className="p-6 pb-5">
-          <h2 className="text-fs18 font-medium text-[#5d596c] tracking-tight mb-4">
+          <h2 className="text-fs19 font-medium text-[#5d596c] tracking-tight mb-4">
             Search Filters
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -627,7 +638,7 @@ export const UserPage: React.FC = () => {
             type="button"
             variant="outline"
             size="md"
-            className="!h-10 !px-5 uppercase tracking-wider text-fs13 font-medium text-[#6f6b7d] hover:bg-[#f8f7fa] border-[#dbdade] rounded-[6px]"
+            className="!h-10 !px-5 uppercase tracking-wider text-fs14 font-medium text-[#6f6b7d] hover:bg-[#f8f7fa] border-[#dbdade] rounded-[6px]"
           >
             EXPORT
           </CustomButton>
@@ -643,13 +654,13 @@ export const UserPage: React.FC = () => {
                 }}
                 placeholder="Search User"
                 sizeVariant="md"
-                className="rounded-[6px] !px-3.5 !h-10 text-fs14"
+                className="rounded-[6px] !px-3.5 !h-10 text-fs15"
               />
             </div>
 
             <CustomButton
               type="button"
-              className="!h-10 !px-5 uppercase tracking-wider text-fs13 font-medium bg-[#696cff] hover:bg-[#5f61e6] text-white rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] whitespace-nowrap cursor-pointer"
+              className="!h-10 !px-5 uppercase tracking-wider text-fs14 font-medium bg-[#696cff] hover:bg-[#5f61e6] text-white rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] whitespace-nowrap cursor-pointer"
             >
               ADD USER
             </CustomButton>
@@ -662,13 +673,13 @@ export const UserPage: React.FC = () => {
           keyExtractor={(u) => u.id}
           className="w-full overflow-x-auto"
           tableClassName="w-full text-left border-collapse min-w-[850px]"
-          headerRowClassName="bg-white border-y border-[#dbdade]/60 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider"
+          headerRowClassName="bg-white border-y border-[#dbdade]/60 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider"
           bodyClassName="divide-y divide-[#dbdade]/40"
           bodyRowClassName="hover:bg-[#fafafb]/70 transition"
           emptyText="No users found matching your filters."
         />
 
-        <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs13 text-[#6f6b7d] bg-white">
+        <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs14 text-[#6f6b7d] bg-white">
           <div className="flex items-center gap-2">
             <span>Rows per page:</span>
             <CustomDropdown
@@ -687,7 +698,7 @@ export const UserPage: React.FC = () => {
             />
           </div>
 
-          <div className="text-fs13 text-[#6f6b7d] ml-4">
+          <div className="text-fs14 text-[#6f6b7d] ml-4">
             {startRecord}-{endRecord} of {totalRecords}
           </div>
 

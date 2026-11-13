@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store";
+import walletIcon from "../../../assets/images/wallet.svg";
 import Highcharts from "highcharts";
 import { Chart } from "../../../components/ui/Chart";
 import { Tabs, type TabItem } from "../../../components/ui/Tabs";
+import { CustomImage } from "../../../components/ui/CustomImage";
 
 type TabType = "INCOME" | "EXPENSES" | "PROFIT";
 
 export const IncomeChartCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>("INCOME");
+  const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
+  const isDark = themeMode === "dark";
 
   const tabData = {
     INCOME: {
@@ -157,7 +163,7 @@ export const IncomeChartCard: React.FC = () => {
               {
                 value: 3,
                 width: 1,
-                color: "#dbdade",
+                color: isDark ? "rgba(225, 222, 245, 0.2)" : "#dbdade",
                 dashStyle: "Dash",
                 zIndex: 1,
               },
@@ -169,9 +175,9 @@ export const IncomeChartCard: React.FC = () => {
         useHTML: true,
         formatter: function () {
           if (this.value === "Apr") {
-            return '<span style="display: inline-block; line-height: 1.2; background: #ebeef0; color: #32475c; font-weight: 600; padding: 3px 8px; border-radius: 4px; font-size: 14px;">Apr</span>';
+            return `<span style="display: inline-block; line-height: 1.2; background: ${isDark ? "#ffffff" : "#ebeef0"}; color: #32475c; font-weight: 600; padding: 3px 8px; border-radius: 4px; font-size: 14px;">Apr</span>`;
           }
-          return `<span style="display: inline-block; line-height: 1.2; color: #a5a3ae; font-size: 14px;">${this.value}</span>`;
+          return `<span style="display: inline-block; line-height: 1.2; color: ${isDark ? "#b6bee3" : "#a5a3ae"}; font-size: 14px;">${this.value}</span>`;
         },
       },
     },
@@ -183,7 +189,7 @@ export const IncomeChartCard: React.FC = () => {
       labels: { enabled: false },
       gridLineWidth: 1,
       gridLineDashStyle: "Dash",
-      gridLineColor: "#ebeef0",
+      gridLineColor: isDark ? "rgba(225, 222, 245, 0.08)" : "#ebeef0",
     },
     tooltip: {
       enabled: true,
@@ -232,50 +238,61 @@ export const IncomeChartCard: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full w-full min-w-0">
-      {/* 3 Tabs at Top */}
+    <div className="bg-white rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full w-full min-w-0">
       <div>
-        <div className="-mx-5 mt-1 px-5 pb-3 border-b border-[#dbdade]/50">
+        <div className="-mx-4 mt-1 px-4 pb-3 border-b border-[#dbdade]/50">
           <Tabs
             tabs={tabItems}
             activeTab={activeTab}
             onChange={(tabId) => setActiveTab(tabId as TabType)}
             renderContent={false}
             tabListClassName="flex flex-wrap items-center gap-1.5 sm:gap-2 w-full"
-            tabButtonClassName="px-3 sm:px-4 py-1.5 rounded-[6px] text-fs13 font-medium transition cursor-pointer flex items-center gap-2 select-none"
-            activeTabClassName="bg-[#696cff] text-white"
-            inactiveTabClassName="text-[#6f6b7d] hover:text-[#444050]"
+            tabButtonClassName="!px-3.5 sm:!px-4 !py-1.5 rounded-[6px] text-fs14 font-medium transition cursor-pointer flex items-center gap-2 select-none"
+            activeTabClassName="!bg-[#696cff] !text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
+            inactiveTabClassName="!bg-transparent !text-[#6f6b7d] hover:!text-[#444050] hover:!bg-[#ecebfd]/50"
           />
         </div>
 
-        <div className="mt-5 pl-2 sm:pl-5">
-          <p className="text-fs14 font-normal text-[#6f6b7d]">
-            {current.label}
-          </p>
-          <div className="flex items-center gap-4 mt-1">
-            <span className="text-fs22 font-bold text-[#444050]">
-              {current.value}
-            </span>
-            <span className="text-fs13 font-medium text-[#71dd37]">
-              {current.percentage}
-            </span>
+        <div className="flex items-center gap-3.5 mt-4 pl-1">
+          <div className="w-10 h-10 rounded-lg bg-[#696cff]/15 flex items-center justify-center p-2.5 shrink-0">
+            <CustomImage
+              src={walletIcon}
+              alt="Total Income"
+              containerClassName="w-full h-full shrink-0"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div>
+            <p className="text-fs15 font-normal text-[#6f6b7d]">
+              {current.label}
+            </p>
+            <div className="flex items-center gap-3 mt-0.5">
+              <span className="text-fs23 font-bold text-[#444050]">
+                {current.value}
+              </span>
+              <span className="text-fs14 font-medium text-[#71dd37] flex items-center gap-0.5">
+                <span>↑</span>
+                <span>{current.percentage}</span>
+              </span>
+            </div>
           </div>
         </div>
 
         <div className="relative w-full mt-1">
           <Chart
+            key={`${activeTab}-${themeMode}`}
             options={chartOptions}
             containerProps={{ className: "w-full" }}
           />
 
           {activeTab === "INCOME" && (
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-white rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.12)] border border-[#dbdade]/60 px-3 py-1.5 pointer-events-none">
-              <span className="text-fs14 font-medium text-[#444050] block text-left">
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 !bg-white rounded-[6px] shadow-[0_2px_8px_rgba(0,0,0,0.12)] border border-[#dbdade]/60 px-3 py-1.5 pointer-events-none">
+              <span className="text-fs15 font-medium !text-[#444050] block text-left">
                 Apr
               </span>
-              <span className="text-fs12 font-normal text-[#6f6b7d] flex items-center gap-1.5 mt-0.5">
+              <span className="text-fs13 font-normal !text-[#6f6b7d] flex items-center gap-1.5 mt-0.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#696cff]" />
-                Series - 1: <b className="font-medium text-[#444050]">42</b>
+                Series - 1: <b className="font-medium !text-[#444050]">42</b>
               </span>
             </div>
           )}
@@ -283,16 +300,16 @@ export const IncomeChartCard: React.FC = () => {
       </div>
 
       <div className="flex items-center justify-center gap-4 pt-2 mt-1">
-        <div className="w-10 h-10 rounded-full border-[3px] border-[#696cff] border-t-[#d7d8ff] flex items-center justify-center shrink-0">
-          <span className="text-fs12 font-normal text-[#6f6b7d] leading-none">
+        <div className={`w-10 h-10 rounded-full border-[3px] border-[#696cff] ${isDark ? "border-t-[rgba(225,222,245,0.15)]" : "border-t-[#d7d8ff]"} flex items-center justify-center shrink-0`}>
+          <span className="text-fs13 font-normal text-[#6f6b7d] leading-none">
             {current.indicator}
           </span>
         </div>
         <div>
-          <p className="text-fs14 font-medium text-[#6f6b7d] leading-tight">
+          <p className="text-fs15 font-medium text-[#6f6b7d] leading-tight">
             {current.summary}
           </p>
-          <p className="text-fs12 font-normal text-[#a5a3ae] leading-tight mt-0.5">
+          <p className="text-fs13 font-normal text-[#a5a3ae] leading-tight mt-0.5">
             {current.subSummary}
           </p>
         </div>

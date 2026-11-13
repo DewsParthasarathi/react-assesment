@@ -1,6 +1,8 @@
 import React from "react";
 import type { EcommerceReport } from "../../../../api/types";
 import paypalIcon from "../../../../assets/images/Paypal.svg";
+import { CustomButton } from "../../../../components/ui/CustomButton";
+import { CustomImage } from "../../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 
 interface ReportCardProps {
@@ -46,16 +48,16 @@ export const ReportCard: React.FC<ReportCardProps> = ({
 
   const containerClass = isInsideSharedContainer
     ? "p-4 flex flex-col justify-between h-full"
-    : "bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full min-h-[260px]";
+    : "bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full";
 
   return (
     <div className={containerClass}>
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-fs18 font-bold text-[#444050] tracking-tight">
+          <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
             {title}
           </h3>
-          <p className="text-fs12 text-[#a5a3ae] mt-0.5">{subtitle}</p>
+          <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
         </div>
 
         <YearSelectionPopup
@@ -63,8 +65,9 @@ export const ReportCard: React.FC<ReportCardProps> = ({
           onSelectYear={onSelectYear || (() => {})}
           availableYears={availableYears}
         >
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
             aria-label="Report options"
           >
@@ -73,7 +76,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({
               <circle cx="12" cy="12" r="2" />
               <circle cx="12" cy="19" r="2" />
             </svg>
-          </button>
+          </CustomButton>
         </YearSelectionPopup>
       </div>
 
@@ -96,10 +99,11 @@ export const ReportCard: React.FC<ReportCardProps> = ({
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-[6px] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] flex items-center justify-center shrink-0">
                   {isIncome && (
-                    <img
+                    <CustomImage
                       src={paypalIcon}
                       alt="Income PayPal"
-                      className="w-4 h-4 object-contain"
+                      containerClassName="w-4 h-4 shrink-0"
+                      className="w-full h-full object-contain"
                     />
                   )}
                   {isExpense && (
@@ -117,23 +121,23 @@ export const ReportCard: React.FC<ReportCardProps> = ({
                     </svg>
                   )}
                   {isProfit && (
-                    <span className="text-fs16 font-bold text-[#71dd37] leading-none">
+                    <span className="text-fs17 font-bold text-[#71dd37] leading-none">
                       $
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <span className="text-fs12 text-[#a5a3ae] block leading-none capitalize">
+                  <span className="text-fs13 text-[#a5a3ae] block leading-none capitalize">
                     {item.label}
                   </span>
-                  <span className="text-fs15 font-bold text-[#444050] block mt-1.5 leading-none">
+                  <span className="text-fs16 font-bold text-[#444050] block mt-1.5 leading-none">
                     {item.amount}
                   </span>
                 </div>
               </div>
 
-              <span className={`text-fs12 font-medium ${changeColor}`}>
+              <span className={`text-fs13 font-medium ${changeColor}`}>
                 {item.change}
               </span>
             </div>

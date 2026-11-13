@@ -2,6 +2,7 @@ import React from "react";
 import type { ChatContact } from "../../../api/types";
 import { renderChatAvatar } from "../utils/chatAvatarHelper";
 import { CustomInput } from "../../../components/ui/CustomInput";
+import { CustomButton } from "../../../components/ui/CustomButton";
 
 interface ChatSidebarProps {
   contacts: ChatContact[];
@@ -58,13 +59,14 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             containerClassName="w-full"
           />
           {searchQuery && (
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={() => onSearchChange("")}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-fs14 text-[#a5a3ae] hover:text-[#5d596c] font-bold cursor-pointer"
+              className="!p-0 !h-auto absolute right-2.5 top-1/2 -translate-y-1/2 text-fs15 text-[#a5a3ae] hover:text-[#5d596c] font-bold cursor-pointer"
             >
               &times;
-            </button>
+            </CustomButton>
           )}
         </div>
       </div>
@@ -72,7 +74,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       <div className="flex-1 min-h-0 overflow-y-auto py-2 chat-email-scrollbar">
         <div>
           <div className="px-5 pt-2 pb-1">
-            <h4 className="text-fs16 font-bold text-[#696cff] tracking-tight">
+            <h4 className="text-fs17 font-bold text-[#696cff] tracking-tight">
               Chats
             </h4>
           </div>
@@ -102,7 +104,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
                       <span
-                        className={`text-fs14 truncate ${
+                        className={`text-fs15 truncate ${
                           isActive
                             ? "font-semibold text-white"
                             : "font-semibold text-[#32475c]"
@@ -112,7 +114,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                       </span>
                     </div>
                     <p
-                      className={`text-fs12 truncate mt-0.5 ${
+                      className={`text-fs13 truncate mt-0.5 ${
                         isActive ? "text-white/80" : "text-[#a5a3ae]"
                       }`}
                     >
@@ -128,7 +130,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         {otherContacts.length > 0 && (
           <div className="mt-4">
             <div className="px-5 pt-2 pb-1">
-              <h4 className="text-fs16 font-bold text-[#696cff] tracking-tight lowercase">
+              <h4 className="text-fs17 font-bold text-[#696cff] tracking-tight lowercase">
                 contacts
               </h4>
             </div>
@@ -157,7 +159,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
 
                     <div className="flex-1 min-w-0">
                       <span
-                        className={`text-fs14 truncate block ${
+                        className={`text-fs15 truncate block ${
                           isActive
                             ? "font-semibold text-white"
                             : "font-semibold text-[#32475c]"
@@ -166,7 +168,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                         {contact.name}
                       </span>
                       <p
-                        className={`text-fs12 truncate mt-0.5 ${
+                        className={`text-fs13 truncate mt-0.5 ${
                           isActive ? "text-white/80" : "text-[#a5a3ae]"
                         }`}
                       >

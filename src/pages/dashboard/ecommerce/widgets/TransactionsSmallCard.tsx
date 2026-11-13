@@ -1,6 +1,7 @@
 import React from "react";
 import type { EcommerceMetricSmall } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+import { CustomButton } from "../../../../components/ui/CustomButton";
 
 interface TransactionsSmallCardProps {
   data?: EcommerceMetricSmall;
@@ -44,9 +45,10 @@ export const TransactionsSmallCard: React.FC<TransactionsSmallCardProps> = ({
           onSelectYear={onSelectYear || (() => {})}
           availableYears={availableYears}
         >
-          <button
+          <CustomButton
             type="button"
-            className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
+            variant="ghost"
+            className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
             aria-label="Transactions options"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -54,17 +56,17 @@ export const TransactionsSmallCard: React.FC<TransactionsSmallCardProps> = ({
               <circle cx="12" cy="12" r="2" />
               <circle cx="12" cy="19" r="2" />
             </svg>
-          </button>
+          </CustomButton>
         </YearSelectionPopup>
       </div>
 
       <div className="mt-3">
-        <span className="text-fs14 font-medium text-[#6f6b7d]">{title}</span>
-        <div className="text-fs22 font-bold text-[#444050] mt-0.5 leading-tight">
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>
         <div
-          className={`text-fs12 font-medium flex items-center gap-1 mt-1.5 ${
+          className={`text-fs13 font-medium flex items-center gap-1 mt-1.5 ${
             isUp ? "text-[#71dd37]" : "text-[#ea5455]"
           }`}
         >

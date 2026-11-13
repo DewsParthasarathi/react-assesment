@@ -1,6 +1,8 @@
 import React from "react";
 import type { EcommerceMetricSmall } from "../../../../api/types";
 import walletIcon from "../../../../assets/images/wallet.svg";
+import { CustomButton } from "../../../../components/ui/CustomButton";
+import { CustomImage } from "../../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 
 interface SalesSmallCardProps {
@@ -25,10 +27,11 @@ export const SalesSmallCard: React.FC<SalesSmallCardProps> = ({
     <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div className="flex items-center justify-between">
         <div className="w-10 h-10 rounded-[6px] bg-[#d9f8fc] flex items-center justify-center p-2">
-          <img
+          <CustomImage
             src={walletIcon}
             alt="Sales Wallet"
-            className="w-5 h-auto object-contain"
+            containerClassName="w-5 h-auto shrink-0"
+            className="w-full h-auto object-contain"
           />
         </div>
 
@@ -37,8 +40,9 @@ export const SalesSmallCard: React.FC<SalesSmallCardProps> = ({
           onSelectYear={onSelectYear || (() => {})}
           availableYears={availableYears}
         >
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
             aria-label="Sales options"
           >
@@ -47,17 +51,17 @@ export const SalesSmallCard: React.FC<SalesSmallCardProps> = ({
               <circle cx="12" cy="12" r="2" />
               <circle cx="12" cy="19" r="2" />
             </svg>
-          </button>
+          </CustomButton>
         </YearSelectionPopup>
       </div>
 
       <div className="mt-3">
-        <span className="text-fs14 font-medium text-[#6f6b7d]">{title}</span>
-        <div className="text-fs22 font-bold text-[#444050] mt-0.5 leading-tight">
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>
         <div
-          className={`text-fs12 font-medium flex items-center gap-1 mt-1.5 ${
+          className={`text-fs13 font-medium flex items-center gap-1 mt-1.5 ${
             isUp ? "text-[#71dd37]" : "text-[#ea5455]"
           }`}
         >

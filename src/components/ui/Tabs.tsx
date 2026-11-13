@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CustomButton } from "./CustomButton";
 
 export interface TabItem {
   id: string;
@@ -31,9 +32,9 @@ export const Tabs: React.FC<TabsProps> = ({
   onChange,
   className = "",
   tabListClassName = "flex items-center gap-1.5 p-1 bg-[#f8f7fa] rounded-lg w-fit",
-  tabButtonClassName = "px-3 py-1.5 rounded-md text-fs12 font-semibold transition cursor-pointer flex items-center gap-2 select-none",
-  activeTabClassName = "bg-[#696cff] text-white shadow-xs",
-  inactiveTabClassName = "text-[#6f6b7d] hover:text-[#32475c]",
+  tabButtonClassName = "!px-3.5 !py-1.5 rounded-md text-fs13 font-semibold transition cursor-pointer flex items-center gap-2 select-none",
+  activeTabClassName = "!bg-[#696cff] !text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)]",
+  inactiveTabClassName = "!bg-transparent !text-[#6f6b7d] hover:!text-[#32475c] hover:!bg-[#ecebfd]/50",
   contentClassName = "mt-5",
   renderContent = true,
   children,
@@ -65,21 +66,22 @@ export const Tabs: React.FC<TabsProps> = ({
             : inactiveTabClassName;
 
           return (
-            <button
+            <CustomButton
               key={tab.id}
               type="button"
               role="tab"
+              variant={isActive ? "primary" : "ghost"}
               aria-selected={isActive}
               disabled={tab.disabled}
               onClick={() => handleTabClick(tab)}
-              className={`${tabButtonClassName} ${statusClass} ${
+              className={`!h-auto ${tabButtonClassName} ${statusClass} ${
                 tab.disabled ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
               {tab.icon && <span>{tab.icon}</span>}
               <span>{tab.label}</span>
               {tab.badge && <span>{tab.badge}</span>}
-            </button>
+            </CustomButton>
           );
         })}
       </div>

@@ -4,6 +4,7 @@ import HighchartsMore from "highcharts/highcharts-more";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommercePerformance } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+import { CustomButton } from "../../../../components/ui/CustomButton";
 
 const initMore = HighchartsMore as unknown as
   | ((hc: typeof Highcharts) => void)
@@ -126,10 +127,10 @@ export const PerformanceRadarCard: React.FC<PerformanceRadarCardProps> = ({
   const formattedEarning = earning.startsWith("$") ? earning : `$${earning}`;
 
   return (
-    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full min-h-[340px]">
+    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs18 font-bold text-[#444050] tracking-tight">
+          <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
             {title}
           </h3>
 
@@ -138,9 +139,10 @@ export const PerformanceRadarCard: React.FC<PerformanceRadarCardProps> = ({
             onSelectYear={onSelectYear || (() => {})}
             availableYears={availableYears}
           >
-            <button
+            <CustomButton
               type="button"
-              className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
+              variant="ghost"
+              className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
               aria-label="Performance options"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -148,11 +150,11 @@ export const PerformanceRadarCard: React.FC<PerformanceRadarCardProps> = ({
                 <circle cx="12" cy="12" r="2" />
                 <circle cx="12" cy="19" r="2" />
               </svg>
-            </button>
+            </CustomButton>
           </YearSelectionPopup>
         </div>
 
-        <div className="flex items-center justify-between text-fs13 text-[#a5a3ae] mt-1">
+        <div className="flex items-center justify-between text-fs14 text-[#a5a3ae] mt-1">
           <span>Earning: {formattedEarning}</span>
           <span>Sales: {sales}</span>
         </div>
@@ -162,8 +164,7 @@ export const PerformanceRadarCard: React.FC<PerformanceRadarCardProps> = ({
         <Chart options={chartOptions} />
       </div>
 
-      {/* Legend */}
-      <div className="flex items-center justify-center gap-6 mt-1 text-fs12 text-[#6f6b7d]">
+      <div className="flex items-center justify-center gap-6 mt-1 text-fs13 text-[#6f6b7d]">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#696cff]" />
           <span>Income</span>

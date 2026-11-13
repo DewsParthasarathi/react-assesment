@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomModal } from "../../components/ui/CustomModal";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomDropdown } from "../../components/ui/CustomDropdown";
-import { CustomTable, type TableColumn } from "../../components/ui/Table";
+import { InvoicePreviewCard } from "./components/InvoicePreviewCard";
+import { downloadInvoicePdf } from "./utils/downloadInvoicePdf";
 import {
   useInvoiceByIdQuery,
   useInvoicesQuery,
@@ -31,6 +32,8 @@ export const InvoicePreviewPage: React.FC = () => {
   const [isSendModalOpen, setIsSendModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [sendSuccessMsg, setSendSuccessMsg] = useState("");
+  const previewCardRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
   const [paymentAmount, setPaymentAmount] = useState<number>(
     invoice?.balance ?? 0,
   );
@@ -52,6 +55,16 @@ export const InvoicePreviewPage: React.FC = () => {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleDownload = async () => {
+    if (!previewCardRef.current || !invoice) return;
+    setIsDownloading(true);
+    try {
+      await downloadInvoicePdf(previewCardRef.current, invoice.invoiceNumber);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   const handleSendInvoice = (e: React.FormEvent) => {
@@ -102,7 +115,7 @@ export const InvoicePreviewPage: React.FC = () => {
   if (!invoice) {
     return (
       <div className="bg-white rounded-[6px] border border-[#dbdade]/70 p-12 text-center text-[#5d596c]">
-        <p className="text-fs18 font-semibold mb-4">Invoice not found</p>
+        <p className="text-fs19 font-semibold mb-4">Invoice not found</p>
         <CustomButton
           variant="primary"
           onClick={() => navigate("/apps/invoice/list")}
@@ -113,84 +126,10 @@ export const InvoicePreviewPage: React.FC = () => {
     );
   }
 
-  const items = [
-    {
-      item: "Premium Branding Package",
-      description: "Branding & Promotion",
-      hours: 48,
-      qty: 1,
-      total: "$ 32",
-    },
-    {
-      item: "Social Media",
-      description: "Social media templates",
-      hours: 42,
-      qty: 1,
-      total: "$ 28",
-    },
-    {
-      item: "Web Design",
-      description: "Web Designing Package",
-      hours: 46,
-      qty: 1,
-      total: "$ 24",
-    },
-    {
-      item: "SEO",
-      description: "Search engine optimization",
-      hours: 40,
-      qty: 1,
-      total: "$ 22",
-    },
-  ];
-
-  const itemColumns: TableColumn<(typeof items)[0]>[] = [
-    {
-      id: "item",
-      header: "ITEM",
-      headerClassName:
-        "py-3.5 pr-4 font-bold text-fs14 text-[#5d596c] uppercase tracking-wider",
-      className: "py-4 pr-4 font-medium text-[#5d596c] whitespace-nowrap",
-      render: (row) => row.item,
-    },
-    {
-      id: "description",
-      header: "DESCRIPTION",
-      headerClassName:
-        "py-3.5 px-4 font-bold text-fs14 text-[#5d596c] uppercase tracking-wider",
-      className: "py-4 px-4 whitespace-nowrap print:whitespace-normal",
-      render: (row) => row.description,
-    },
-    {
-      id: "hours",
-      header: "HOURS",
-      headerClassName:
-        "py-3.5 px-4 font-bold text-fs14 text-[#5d596c] uppercase tracking-wider",
-      className: "py-4 px-4 whitespace-nowrap",
-      render: (row) => row.hours,
-    },
-    {
-      id: "qty",
-      header: "QTY",
-      headerClassName:
-        "py-3.5 px-4 font-bold text-fs14 text-[#5d596c] uppercase tracking-wider",
-      className: "py-4 px-4 whitespace-nowrap",
-      render: (row) => row.qty,
-    },
-    {
-      id: "total",
-      header: "TOTAL",
-      headerClassName:
-        "py-3.5 pl-4 font-bold text-fs14 text-[#5d596c] uppercase tracking-wider",
-      className: "py-4 pl-4 whitespace-nowrap font-medium text-[#5d596c]",
-      render: (row) => row.total,
-    },
-  ];
-
   return (
     <div className="w-full max-w-full flex-1 flex flex-col lg:flex-row items-start gap-6 min-w-0 pb-10 print:block print:pb-0">
       {sendSuccessMsg && (
-        <div className="fixed top-20 right-8 z-50 bg-[#e8fadf] text-[#71dd37] border border-[#71dd37]/40 px-4 py-3 rounded-md shadow-md text-fs16 font-medium flex items-center gap-2 animate-in fade-in print:hidden">
+        <div className="fixed top-20 right-8 z-50 bg-[#e8fadf] text-[#71dd37] border border-[#71dd37]/40 px-4 py-3 rounded-md shadow-md text-fs17 font-medium flex items-center gap-2 animate-in fade-in print:hidden">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -208,138 +147,14 @@ export const InvoicePreviewPage: React.FC = () => {
         </div>
       )}
 
-      <div className="flex-1 min-w-0 w-full max-w-full bg-white rounded-lg shadow-[0_2px_8px_rgba(47,43,61,0.06)] border border-[#dbdade]/70 p-5 sm:p-7 lg:p-8 flex flex-col print:border-none print:shadow-none print:rounded-none print:p-0">
-        <div className="flex flex-col sm:flex-row print:flex-row justify-between items-start gap-4 sm:gap-6 min-w-0">
-          <div className="text-fs16 text-[#6f6b7d] leading-relaxed">
-            <p>450 south Brand Brooklyn</p>
-            <p>San Diego Country,CA 91905,USA</p>
-            <p>+1 (123) 456 789, 123465432456</p>
-          </div>
-
-          <div className="text-left sm:text-right print:text-right space-y-1">
-            <h1 className="text-fs24 font-bold text-[#32475c] tracking-tight">
-              Invoice #{invoice.invoiceNumber.replace("#", "")}
-            </h1>
-            <p className="text-fs15 text-[#6f6b7d]">
-              <span className="font-normal">Data Issued:</span>{" "}
-              <span className="font-medium text-[#5d596c] ml-2">
-                {invoice.issueDate || "13 Jan 2023"}
-              </span>
-            </p>
-            <p className="text-fs15 text-[#6f6b7d]">
-              <span className="font-normal">Data Due:</span>{" "}
-              <span className="font-medium text-[#5d596c] ml-4">
-                {invoice.dueDate || "23 Jan 2023"}
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div className="my-8 border-t border-[#dbdade]/50" />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-8 items-start">
-          <div>
-            <h3 className="text-fs16 font-semibold text-[#5d596c] mb-3">
-              Invoice To:
-            </h3>
-            <p className="text-fs15 text-[#6f6b7d] leading-relaxed">
-              Lorem ipsum dolor sit amet,
-              <br />
-              consectetur adipiscing elit,
-              <br />
-              sed do eiusmod tempor.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-fs16 font-semibold text-[#5d596c] mb-3">
-              Bill To:
-            </h3>
-            <div className="space-y-1.5 text-fs15 text-[#6f6b7d]">
-              <div className="flex">
-                <span className="w-28 text-[#6f6b7d]">Total Due :</span>
-                <span className="font-medium text-[#5d596c]">
-                  ${invoice.balance?.toLocaleString() || "12,110.55"}
-                </span>
-              </div>
-              <div className="flex">
-                <span className="w-28 text-[#6f6b7d]">Bank name :</span>
-                <span className="text-[#6f6b7d]">America Bank</span>
-              </div>
-              <div className="flex">
-                <span className="w-28 text-[#6f6b7d]">Country :</span>
-                <span className="text-[#6f6b7d]">United States</span>
-              </div>
-              <div className="flex">
-                <span className="w-28 text-[#6f6b7d]">IBAN :</span>
-                <span className="text-[#6f6b7d]">ETD95xxxxxxxxxxxx</span>
-              </div>
-              <div className="flex">
-                <span className="w-28 text-[#6f6b7d]">SWIFT code :</span>
-                <span className="text-[#6f6b7d]">BRxxxxx21</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 overflow-x-auto print:overflow-visible">
-          <CustomTable
-            columns={itemColumns}
-            data={items}
-            keyExtractor={(_, idx) => idx}
-            className="w-full overflow-x-auto print:overflow-visible"
-            tableClassName="w-full text-left border-collapse text-fs16"
-            headerRowClassName="border-y border-[#dbdade]/70 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider"
-            bodyClassName="divide-y divide-[#dbdade]/40 text-fs15 text-[#6f6b7d]"
-            bodyRowClassName="hover:bg-[#fafafb]/60 transition-colors"
-          />
-        </div>
-
-        <div className="mt-6 pt-4 flex flex-col sm:flex-row print:flex-row justify-between items-start gap-6">
-          <div className="space-y-1">
-            <p className="text-fs16 font-medium text-[#5d596c]">
-              <span className="font-semibold text-[#5d596c]">Salesperson:</span>{" "}
-              Tommy Shelby
-            </p>
-            <p className="text-fs15 text-[#a5a3ae]">Thanks for your business</p>
-          </div>
-
-          <div className="w-full sm:w-60 print:w-60 space-y-2 text-fs16 text-[#6f6b7d]">
-            <div className="flex justify-between py-0.5">
-              <span>Subtotal:</span>
-              <span className="font-medium text-[#5d596c]">$154.25</span>
-            </div>
-            <div className="flex justify-between py-0.5">
-              <span>Discount:</span>
-              <span className="font-medium text-[#5d596c]">$00.00</span>
-            </div>
-            <div className="flex justify-between py-0.5">
-              <span>Tax:</span>
-              <span className="font-medium text-[#5d596c]">$50.00</span>
-            </div>
-            <div className="flex justify-between py-1 text-fs17 font-semibold text-[#5d596c]">
-              <span>Total:</span>
-              <span className="text-[#5d596c]">$204.25</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-[#dbdade]/60 text-fs15 text-[#6f6b7d] leading-relaxed">
-          <p>
-            <span className="font-semibold text-[#5d596c]">Note:</span> It was a
-            pleasure working with you and your team.we hope you will keep us in
-            mind for future freelance project.
-          </p>
-          <p className="mt-1">Thank You !</p>
-        </div>
-      </div>
+      <InvoicePreviewCard invoice={invoice} cardRef={previewCardRef} />
 
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-3.5 print:hidden">
         <CustomButton
           type="button"
           variant="primary"
           onClick={() => setIsSendModalOpen(true)}
-          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
+          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs17 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
         >
           <svg
             className="w-4 h-4 -rotate-45"
@@ -360,17 +175,18 @@ export const InvoicePreviewPage: React.FC = () => {
         <CustomButton
           type="button"
           variant="outline"
-          onClick={handlePrint}
-          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+          disabled={isDownloading}
+          onClick={handleDownload}
+          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs17 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider disabled:opacity-60"
         >
-          <span>DOWNLOAD</span>
+          <span>{isDownloading ? "DOWNLOADING..." : "DOWNLOAD"}</span>
         </CustomButton>
 
         <CustomButton
           type="button"
           variant="outline"
           onClick={handlePrint}
-          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs17 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
         >
           <span>PRINT</span>
         </CustomButton>
@@ -379,7 +195,7 @@ export const InvoicePreviewPage: React.FC = () => {
           type="button"
           variant="outline"
           onClick={() => navigate(`/apps/invoice/edit?id=${invoice.id}`)}
-          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
+          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs17 bg-white border border-[#dbdade] text-[#6f6b7d] hover:bg-[#f8f7fa] flex items-center justify-center cursor-pointer uppercase tracking-wider"
         >
           <span>EDIT INVOICE</span>
         </CustomButton>
@@ -391,9 +207,9 @@ export const InvoicePreviewPage: React.FC = () => {
             setPaymentAmount(invoice.balance || 0);
             setIsPaymentModalOpen(true);
           }}
-          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs16 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
+          className="w-full !h-11 px-6 rounded-[6px] font-medium text-fs17 bg-[#696cff] hover:bg-[#5f61e6] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
         >
-          <span className="font-bold text-fs17">$</span>
+          <span className="font-bold text-fs18">$</span>
           <span>ADD PAYMENT</span>
         </CustomButton>
       </div>
@@ -407,7 +223,7 @@ export const InvoicePreviewPage: React.FC = () => {
       >
         <form onSubmit={handleSendInvoice} className="space-y-4">
           <div>
-            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs16 font-medium text-[#5d596c] mb-1">
               Recipient Email *
             </label>
             <CustomInput
@@ -421,7 +237,7 @@ export const InvoicePreviewPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs16 font-medium text-[#5d596c] mb-1">
               Subject
             </label>
             <CustomInput
@@ -435,14 +251,14 @@ export const InvoicePreviewPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs16 font-medium text-[#5d596c] mb-1">
               Message
             </label>
             <textarea
               rows={4}
               value={sendMessage}
               onChange={(e) => setSendMessage(e.target.value)}
-              className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs16 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
+              className="w-full p-3 border border-[#dbdade] rounded-[6px] text-fs17 text-[#5d596c] focus:outline-none focus:border-[#696cff]"
             />
           </div>
 
@@ -451,14 +267,14 @@ export const InvoicePreviewPage: React.FC = () => {
               type="button"
               variant="outline"
               onClick={() => setIsSendModalOpen(false)}
-              className="!h-9 px-4 text-fs16 font-medium"
+              className="!h-9 px-4 text-fs17 font-medium"
             >
               Cancel
             </CustomButton>
             <CustomButton
               type="submit"
               variant="primary"
-              className="!h-9 px-5 text-fs16 font-medium bg-[#696cff] text-white"
+              className="!h-9 px-5 text-fs17 font-medium bg-[#696cff] text-white"
             >
               Send Invoice
             </CustomButton>
@@ -474,15 +290,15 @@ export const InvoicePreviewPage: React.FC = () => {
         size="md"
       >
         <form onSubmit={handleAddPayment} className="space-y-4">
-          <div className="p-3 rounded bg-[#f8f7fa] flex justify-between items-center text-fs16">
+          <div className="p-3 rounded bg-[#f8f7fa] flex justify-between items-center text-fs17">
             <span className="text-[#6f6b7d]">Invoice Balance:</span>
-            <span className="font-bold text-[#ff4c51] text-fs18">
+            <span className="font-bold text-[#ff4c51] text-fs19">
               ${invoice.balance}
             </span>
           </div>
 
           <div>
-            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs16 font-medium text-[#5d596c] mb-1">
               Payment Amount ($) *
             </label>
             <CustomInput
@@ -498,7 +314,7 @@ export const InvoicePreviewPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs16 font-medium text-[#5d596c] mb-1">
               Payment Date *
             </label>
             <CustomInput
@@ -527,7 +343,7 @@ export const InvoicePreviewPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-fs15 font-medium text-[#5d596c] mb-1">
+            <label className="block text-fs16 font-medium text-[#5d596c] mb-1">
               Internal Note (Optional)
             </label>
             <CustomInput
@@ -545,7 +361,7 @@ export const InvoicePreviewPage: React.FC = () => {
               type="button"
               variant="outline"
               onClick={() => setIsPaymentModalOpen(false)}
-              className="!h-9 px-4 text-fs16 font-medium"
+              className="!h-9 px-4 text-fs17 font-medium"
             >
               Cancel
             </CustomButton>
@@ -553,7 +369,7 @@ export const InvoicePreviewPage: React.FC = () => {
               type="submit"
               variant="primary"
               disabled={updateMutation.isPending}
-              className="!h-9 px-5 text-fs16 font-medium bg-[#696cff] text-white"
+              className="!h-9 px-5 text-fs17 font-medium bg-[#696cff] text-white"
             >
               {updateMutation.isPending
                 ? "Adding Payment..."

@@ -1,4 +1,5 @@
 import React from "react";
+import { CustomButton } from "../../../components/ui/CustomButton";
 
 export type CalendarViewType = "dayGridMonth" | "timeGridWeek" | "timeGridDay" | "listMonth";
 
@@ -28,29 +29,31 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-2 border-b border-[#dbdade]/50 select-none">
       <div className="flex items-center gap-3">
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={onPrev}
           title="Previous"
-          className="text-[#5d596c] hover:text-[#696cff] p-1 transition cursor-pointer"
+          className="!p-1 !h-auto text-[#5d596c] hover:text-[#696cff] transition cursor-pointer"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M15 19l-7-7 7-7" />
           </svg>
-        </button>
+        </CustomButton>
 
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={onNext}
           title="Next"
-          className="text-[#5d596c] hover:text-[#696cff] p-1 transition cursor-pointer"
+          className="!p-1 !h-auto text-[#5d596c] hover:text-[#696cff] transition cursor-pointer"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </CustomButton>
 
-        <h2 className="text-fs16 md:text-fs18 font-medium text-[#5d596c] tracking-tight">
+        <h2 className="text-fs17 md:text-fs19 font-medium text-[#5d596c] tracking-tight">
           {currentTitle}
         </h2>
       </div>
@@ -59,18 +62,19 @@ export const CalendarHeaderToolbar: React.FC<CalendarHeaderToolbarProps> = ({
         {views.map((v) => {
           const isActive = activeView === v.type;
           return (
-            <button
+            <CustomButton
               key={v.type}
               type="button"
+              variant={isActive ? "primary" : "ghost"}
               onClick={() => onViewChange(v.type)}
-              className={`px-3.5 py-1.5 rounded-[5px] text-fs13 font-medium transition cursor-pointer ${
+              className={`!px-3.5 !py-1.5 !h-auto rounded-[5px] text-fs14 font-medium transition cursor-pointer ${
                 isActive
-                  ? "bg-[#696cff] text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
-                  : "text-[#696cff] hover:bg-[#696cff]/10"
+                  ? "!bg-[#696cff] hover:!bg-[#5f61e6] !text-white shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
+                  : "!bg-transparent !text-[#696cff] hover:!bg-[#696cff]/10 hover:!text-[#696cff]"
               }`}
             >
               {v.label}
-            </button>
+            </CustomButton>
           );
         })}
       </div>

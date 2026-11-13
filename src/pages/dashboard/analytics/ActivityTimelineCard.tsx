@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
+import { CustomButton } from "../../../components/ui/CustomButton";
 import type { MemberActivity } from "../../../api/types";
 
 interface ActivityTimelineCardProps {
@@ -51,9 +52,9 @@ export const ActivityTimelineCard: React.FC<ActivityTimelineCardProps> = ({
   }));
 
   return (
-    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col h-full min-h-full">
+    <div className="bg-white rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col h-full min-h-full">
       <div className="flex items-center justify-between pb-3">
-        <h3 className="text-fs18 font-semibold text-[#444050]">
+        <h3 className="text-fs19 font-semibold text-[#444050]">
           Activity Timeline
         </h3>
         <YearSelectionPopup
@@ -61,15 +62,16 @@ export const ActivityTimelineCard: React.FC<ActivityTimelineCardProps> = ({
           onSelectYear={setSelectedYear}
           availableYears={availableYears}
         >
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             aria-label="Options"
-            className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
+            className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
             </svg>
-          </button>
+          </CustomButton>
         </YearSelectionPopup>
       </div>
 
@@ -93,14 +95,14 @@ export const ActivityTimelineCard: React.FC<ActivityTimelineCardProps> = ({
             />
 
             <div className="flex flex-wrap items-start justify-between gap-2">
-              <h4 className="text-fs14 font-semibold text-[#444050]">
+              <h4 className="text-fs15 font-semibold text-[#444050]">
                 {item.title}
               </h4>
-              <span className="text-fs12 font-normal text-[#a5a3ae] mt-0.5">
+              <span className="text-fs13 font-normal text-[#a5a3ae] mt-0.5">
                 {item.time}
               </span>
             </div>
-            <p className="text-fs13 font-normal text-[#6f6b7d] mt-1 leading-relaxed">
+            <p className="text-fs14 font-normal text-[#6f6b7d] mt-1 leading-relaxed">
               {item.description}
             </p>
           </div>

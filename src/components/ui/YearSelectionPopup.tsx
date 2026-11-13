@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import { FloatingPortal } from "./FloatingPortal";
+import { CustomButton } from "./CustomButton";
 
 export interface YearSelectionPopupProps {
   selectedYear: string;
@@ -51,17 +52,18 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
         {children ? (
           children
         ) : (
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             aria-label="More options"
             aria-haspopup="true"
             aria-expanded={isOpen}
-            className="p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
+            className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
             </svg>
-          </button>
+          </CustomButton>
         )}
       </div>
 
@@ -75,17 +77,18 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
         <div
           role="menu"
           aria-orientation="vertical"
-          className={`w-28 bg-white border border-[#dbdade] shadow-[0_4px_16px_rgba(47,43,61,0.14)] rounded-[5px] py-1 text-fs13 focus:outline-none animate-in fade-in-50 duration-150 ${cleanPopupClassName}`.trim()}
+          className={`w-28 bg-white border border-[#dbdade] shadow-[0_4px_16px_rgba(47,43,61,0.14)] rounded-[5px] py-1 text-fs14 focus:outline-none animate-in fade-in-50 duration-150 ${cleanPopupClassName}`.trim()}
         >
           {availableYears.map((yr) => {
             const isSelected = yr === selectedYear;
             return (
-              <button
+              <CustomButton
                 key={yr}
                 type="button"
                 role="menuitem"
+                variant="ghost"
                 onClick={(e) => handleSelect(yr, e)}
-                className={`w-full px-3 py-1.5 text-left text-fs13 transition flex items-center justify-between cursor-pointer ${
+                className={`w-full justify-between !h-auto !px-3 !py-1.5 text-left text-fs14 transition flex items-center cursor-pointer rounded-none font-normal ${
                   isSelected
                     ? "bg-[#e7e7ff] text-[#696cff] font-medium"
                     : "text-[#5d596c] hover:bg-[#f5f5f9] hover:text-[#32475c]"
@@ -107,7 +110,7 @@ export const YearSelectionPopup: React.FC<YearSelectionPopupProps> = ({
                     />
                   </svg>
                 )}
-              </button>
+              </CustomButton>
             );
           })}
         </div>

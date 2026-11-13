@@ -14,6 +14,7 @@ import { CustomCheckbox } from "../../components/ui/CustomCheckbox";
 import { CustomModal } from "../../components/ui/CustomModal";
 import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
 import { CustomTable, type TableColumn } from "../../components/ui/Table";
+import { CustomImage } from "../../components/ui/CustomImage";
 import { getMemberAvatar } from "../../utils/userAvatars";
 
 import addRoleIllustration from "../../assets/images/add-role-illustration-light.png";
@@ -275,20 +276,20 @@ export const RolesPage: React.FC = () => {
     switch (status) {
       case "Active":
         return (
-          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs11 font-bold tracking-wider uppercase bg-[#e8fadf] text-[#71dd37]">
+          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs12 font-bold tracking-wider uppercase bg-[#e8fadf] text-[#71dd37]">
             ACTIVE
           </span>
         );
       case "Pending":
         return (
-          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs11 font-bold tracking-wider uppercase bg-[#fff2d6] text-[#ffab00]">
+          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs12 font-bold tracking-wider uppercase bg-[#fff2d6] text-[#ffab00]">
             PENDING
           </span>
         );
       case "Inactive":
       default:
         return (
-          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs11 font-bold tracking-wider uppercase bg-[#dbdade]/70 text-[#8592a3]">
+          <span className="inline-flex items-center px-3 py-1 rounded-[4px] text-fs12 font-bold tracking-wider uppercase bg-[#dbdade]/70 text-[#8592a3]">
             INACTIVE
           </span>
         );
@@ -301,20 +302,22 @@ export const RolesPage: React.FC = () => {
         id: "user",
         header: "USER",
         headerClassName:
-          "py-3.5 px-6 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-6 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-6",
         render: (user) => (
           <div className="flex items-center gap-3">
-            <img
+            <CustomImage
               src={getMemberAvatar(user.avatar || user.id)}
               alt={user.name}
-              className="w-9 h-9 rounded-full object-cover shrink-0"
+              containerClassName="w-9 h-9 rounded-full shrink-0 overflow-hidden"
+              className="w-full h-full"
+              objectFit="cover"
             />
             <div className="flex flex-col min-w-0">
-              <span className="text-fs14 font-medium text-[#5d596c] hover:text-[#696cff] transition cursor-pointer truncate">
+              <span className="text-fs15 font-medium text-[#5d596c] hover:text-[#696cff] transition cursor-pointer truncate">
                 {user.name}
               </span>
-              <span className="text-fs12 text-[#a5a3ae] truncate">
+              <span className="text-fs13 text-[#a5a3ae] truncate">
                 {user.username || user.email}
               </span>
             </div>
@@ -325,10 +328,10 @@ export const RolesPage: React.FC = () => {
         id: "email",
         header: "EMAIL",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => (
-          <span className="text-fs14 text-[#6f6b7d] font-normal truncate">
+          <span className="text-fs15 text-[#6f6b7d] font-normal truncate">
             {user.email}
           </span>
         ),
@@ -337,12 +340,12 @@ export const RolesPage: React.FC = () => {
         id: "role",
         header: "ROLE",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => (
           <div className="flex items-center gap-2.5">
             {getRoleIcon(user.role)}
-            <span className="text-fs14 text-[#5d596c] font-normal">
+            <span className="text-fs15 text-[#5d596c] font-normal">
               {user.role}
             </span>
           </div>
@@ -352,10 +355,10 @@ export const RolesPage: React.FC = () => {
         id: "plan",
         header: "PLAN",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => (
-          <span className="text-fs14 text-[#6f6b7d] font-normal">
+          <span className="text-fs15 text-[#6f6b7d] font-normal">
             {user.plan}
           </span>
         ),
@@ -364,7 +367,7 @@ export const RolesPage: React.FC = () => {
         id: "status",
         header: "STATUS",
         headerClassName:
-          "py-3.5 px-4 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider",
+          "py-3.5 px-4 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider",
         className: "py-3.5 px-4",
         render: (user) => getStatusBadge(user.status),
       },
@@ -373,7 +376,7 @@ export const RolesPage: React.FC = () => {
         header: "ACTIONS",
         align: "center",
         headerClassName:
-          "py-3.5 px-6 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider text-center w-24",
+          "py-3.5 px-6 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider text-center w-24",
         className: "py-3.5 px-6 text-center w-24",
         render: (user) => (
           <CustomButton
@@ -418,10 +421,10 @@ export const RolesPage: React.FC = () => {
   return (
     <div className="w-full space-y-6 pb-12">
       <div>
-        <h1 className="text-fs22 font-medium text-[#5d596c] tracking-tight">
+        <h1 className="text-fs23 font-medium text-[#5d596c] tracking-tight">
           Roles List
         </h1>
-        <p className="text-fs14 text-[#a5a3ae] leading-relaxed mt-1">
+        <p className="text-fs15 text-[#a5a3ae] leading-relaxed mt-1">
           A role provides to Predefined menus and features so that depending on
           the assigned role,an administrator can have accessto what he needs.
         </p>
@@ -440,40 +443,40 @@ export const RolesPage: React.FC = () => {
               className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 py-5 px-3 flex flex-col justify-between hover:shadow-md transition"
             >
               <div className="flex items-center justify-between">
-                <span className="text-fs13 text-[#a5a3ae]">
+                <span className="text-fs14 text-[#a5a3ae]">
                   Total {count} users
                 </span>
                 <div className="flex items-center">
                   {displayAvatars.map((u, i) => (
-                    <img
+                    <CustomImage
                       key={u.id || i}
                       src={getMemberAvatar(u.avatar || `member${(i % 6) + 1}`)}
                       alt={u.name}
                       title={u.name}
-                      className="w-8 h-8 rounded-full border-2 border-white -ml-2 first:ml-0 object-cover shadow-sm shrink-0"
+                      containerClassName="w-8 h-8 rounded-full border-2 border-white -ml-2 first:ml-0 shadow-sm shrink-0 overflow-hidden"
+                      className="w-full h-full"
+                      objectFit="cover"
                     />
                   ))}
                   {remainingCount > 0 && (
-                    <div className="w-8 h-8 rounded-full bg-[#f1f0f2] text-[#6f6b7d] text-fs12 font-medium flex items-center justify-center -ml-2 border-2 border-white shrink-0 shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-[#f1f0f2] text-[#6f6b7d] text-fs13 font-medium flex items-center justify-center -ml-2 border-2 border-white shrink-0 shadow-sm">
                       +{remainingCount}
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Middle: Role Title */}
               <div className="my-1">
-                <h2 className="text-fs18 font-medium text-[#5d596c] tracking-tight">
+                <h2 className="text-fs19 font-medium text-[#5d596c] tracking-tight">
                   {role.name}
                 </h2>
               </div>
 
-              {/* Bottom: Edit Role Link & Actions */}
               <div className="flex items-center justify-between pt-1">
                 <CustomButton
                   variant="ghost"
                   onClick={() => handleOpenEdit(role)}
-                  className="!p-0 text-fs14 font-normal text-[#696cff] hover:underline cursor-pointer"
+                  className="!p-0 text-fs15 font-normal text-[#696cff] hover:underline cursor-pointer"
                 >
                   Edit Role
                 </CustomButton>
@@ -506,20 +509,22 @@ export const RolesPage: React.FC = () => {
         })}
 
         <div className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 p-5 flex items-center justify-between">
-          <img
+          <CustomImage
             src={addRoleIllustration}
             alt="Add Role"
-            className="h-28 object-contain shrink-0"
+            containerClassName="h-28 shrink-0 flex items-center"
+            className="h-28 w-auto"
+            objectFit="contain"
           />
           <div className="flex flex-col items-end text-right pl-4">
             <CustomButton
               variant="primary"
               onClick={handleOpenAdd}
-              className="uppercase font-medium px-4 !py-2 !h-auto text-fs13 shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
+              className="uppercase font-medium px-4 !py-2 !h-auto text-fs14 shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
             >
               ADD ROLE
             </CustomButton>
-            <p className="text-fs12 text-[#a5a3ae] mt-2">
+            <p className="text-fs13 text-[#a5a3ae] mt-2">
               Add role,if it doesn't exist
             </p>
           </div>
@@ -558,13 +563,13 @@ export const RolesPage: React.FC = () => {
           keyExtractor={(u) => u.id}
           className="w-full overflow-x-auto"
           tableClassName="w-full text-left border-collapse min-w-[850px]"
-          headerRowClassName="bg-white border-y border-[#dbdade]/60 text-fs14 font-bold text-[#5d596c] uppercase tracking-wider"
+          headerRowClassName="bg-white border-y border-[#dbdade]/60 text-fs15 font-bold text-[#5d596c] uppercase tracking-wider"
           bodyClassName="divide-y divide-[#dbdade]/40"
           bodyRowClassName="hover:bg-[#fafafb]/70 transition"
           emptyText="No users found matching your search."
         />
 
-        <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs13 text-[#6f6b7d] bg-white">
+        <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs14 text-[#6f6b7d] bg-white">
           <div className="flex items-center gap-2">
             <span>Rows per page:</span>
             <CustomDropdown
@@ -696,12 +701,12 @@ export const RolesPage: React.FC = () => {
           />
 
           <div>
-            <h3 className="text-fs16 font-medium text-[#5d596c] mb-3">
+            <h3 className="text-fs17 font-medium text-[#5d596c] mb-3">
               Role Permissions
             </h3>
 
             <div className="overflow-x-auto border border-[#dbdade]/70 rounded-[6px]">
-              <table className="w-full text-left text-fs14 border-collapse">
+              <table className="w-full text-left text-fs15 border-collapse">
                 <thead>
                   <tr className="bg-[#f8f7fa] border-b border-[#dbdade]/70">
                     <th className="p-3.5 text-[#5d596c] font-semibold">
@@ -800,18 +805,20 @@ export const RolesPage: React.FC = () => {
         {selectedUserForView && (
           <div className="space-y-4">
             <div className="flex items-center gap-4 p-4 rounded-lg bg-[#fafafb] border border-[#dbdade]/60">
-              <img
+              <CustomImage
                 src={getMemberAvatar(
                   selectedUserForView.avatar || selectedUserForView.id,
                 )}
                 alt={selectedUserForView.name}
-                className="w-14 h-14 rounded-full object-cover shrink-0"
+                containerClassName="w-14 h-14 rounded-full shrink-0 overflow-hidden"
+                className="w-full h-full"
+                objectFit="cover"
               />
               <div>
-                <h4 className="text-fs16 font-semibold text-[#5d596c]">
+                <h4 className="text-fs17 font-semibold text-[#5d596c]">
                   {selectedUserForView.name}
                 </h4>
-                <p className="text-fs13 text-[#a5a3ae]">
+                <p className="text-fs14 text-[#a5a3ae]">
                   {selectedUserForView.username || selectedUserForView.email}
                 </p>
                 <div className="mt-1">
@@ -820,27 +827,27 @@ export const RolesPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-fs14">
+            <div className="grid grid-cols-2 gap-3 text-fs15">
               <div className="p-3 rounded border border-[#dbdade]/50">
-                <span className="text-fs12 text-[#a5a3ae] block">Role</span>
+                <span className="text-fs13 text-[#a5a3ae] block">Role</span>
                 <span className="font-medium text-[#5d596c]">
                   {selectedUserForView.role}
                 </span>
               </div>
               <div className="p-3 rounded border border-[#dbdade]/50">
-                <span className="text-fs12 text-[#a5a3ae] block">Plan</span>
+                <span className="text-fs13 text-[#a5a3ae] block">Plan</span>
                 <span className="font-medium text-[#5d596c]">
                   {selectedUserForView.plan || "Enterprise"}
                 </span>
               </div>
               <div className="p-3 rounded border border-[#dbdade]/50">
-                <span className="text-fs12 text-[#a5a3ae] block">Email</span>
+                <span className="text-fs13 text-[#a5a3ae] block">Email</span>
                 <span className="font-medium text-[#5d596c] truncate block">
                   {selectedUserForView.email}
                 </span>
               </div>
               <div className="p-3 rounded border border-[#dbdade]/50">
-                <span className="text-fs12 text-[#a5a3ae] block">Billing</span>
+                <span className="text-fs13 text-[#a5a3ae] block">Billing</span>
                 <span className="font-medium text-[#5d596c]">
                   {selectedUserForView.billing || "Auto Debit"}
                 </span>

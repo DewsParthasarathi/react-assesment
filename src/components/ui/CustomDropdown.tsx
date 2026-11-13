@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import { FloatingPortal } from "./FloatingPortal";
+import { CustomButton } from "./CustomButton";
 
 export interface DropdownOption {
   label: string;
@@ -24,10 +25,13 @@ export interface CustomDropdownProps {
   sizeVariant?: DropdownSize;
 }
 
-const sizeStyles: Record<DropdownSize, string> = {
-  sm: "h-8 px-2.5 text-fs12",
-  md: "h-10 px-3.5 text-fs14",
-  lg: "h-12 px-3.5 text-fs14",
+const sizeStyles: Record<
+  DropdownSize,
+  { height: string; padding: string; text: string }
+> = {
+  sm: { height: "!h-9", padding: "!px-3.5", text: "text-fs13" },
+  md: { height: "!h-10", padding: "!px-3.5", text: "text-fs15" },
+  lg: { height: "!h-12", padding: "!px-3.5", text: "text-fs15" },
 };
 
 export const CustomDropdown: React.FC<CustomDropdownProps> = ({
@@ -77,6 +81,10 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
   };
 
   const hasWidthClass = /\b(!?w-|size-|min-w-|max-w-)/.test(containerClassName);
+  const hasCustomHeight = /\b(!?h-)/.test(className);
+  const hasCustomPadding = /\b(!?p[xy]?-)/.test(className);
+  const currentSize = sizeStyles[sizeVariant];
+  const computedSizeClasses = `${hasCustomHeight ? "" : currentSize.height} ${hasCustomPadding ? "" : currentSize.padding} ${currentSize.text}`;
 
   return (
     <div
@@ -85,26 +93,28 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
       {label && (
         <label
           htmlFor={id}
-          className="block text-fs14 font-medium text-[#32475c] mb-1"
+          className="block text-fs15 font-medium text-[#32475c] mb-1"
         >
           {label}
         </label>
       )}
 
-      <button
+      <CustomButton
         ref={triggerRef}
         id={id}
         type="button"
+        variant="ghost"
+        size={sizeVariant}
         disabled={disabled}
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className={`w-full ${sizeStyles[sizeVariant]} rounded-md border bg-white flex items-center justify-between gap-1.5 text-left transition outline-none cursor-pointer ${
+        className={`w-full !justify-between font-normal ${computedSizeClasses} rounded-md border !bg-white hover:!bg-white flex items-center gap-1.5 text-left transition outline-none cursor-pointer ${
           error
             ? "border-red-500 focus:ring-1 focus:ring-red-500"
             : "border-[#dbdade] hover:border-[#b8b7be] focus:border-[#696cff] focus:ring-1 focus:ring-[#696cff]"
-        } ${disabled ? "bg-[#f5f5f9] text-[#a5a3ae] cursor-not-allowed opacity-60" : ""} ${className}`}
+        } ${disabled ? "!bg-[#f5f5f9] text-[#a5a3ae] cursor-not-allowed opacity-60" : ""} ${className}`}
       >
         <span
           className={`truncate ${selectedOption ? "text-[#32475c]" : "text-[#a5a3ae]"}`}
@@ -126,7 +136,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </button>
+      </CustomButton>
 
       <FloatingPortal
         isOpen={isOpen}
@@ -139,10 +149,10 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
         <ul
           role="listbox"
           tabIndex={-1}
-          className="w-full bg-white border border-[#dbdade] rounded-md shadow-[0_4px_16px_rgba(47,43,61,0.12)] max-h-[min(15rem,var(--floating-max-h,15rem))] overflow-y-auto py-1 text-fs14 focus:outline-none"
+          className="w-full bg-white border border-[#dbdade] rounded-md shadow-[0_4px_16px_rgba(47,43,61,0.12)] max-h-[min(15rem,var(--floating-max-h,15rem))] overflow-y-auto py-1 text-fs15 focus:outline-none"
         >
           {options.length === 0 ? (
-            <li className="px-3.5 py-2.5 text-[#a5a3ae] text-fs13 text-center">
+            <li className="px-3.5 py-2.5 text-[#a5a3ae] text-fs14 text-center">
               No options available
             </li>
           ) : (
@@ -186,7 +196,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
       </FloatingPortal>
 
       {error && (
-        <p className="mt-1 text-fs12 text-red-500 font-normal">{error}</p>
+        <p className="mt-1 text-fs13 text-red-500 font-normal">{error}</p>
       )}
     </div>
   );

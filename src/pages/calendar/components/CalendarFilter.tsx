@@ -57,7 +57,7 @@ export const CalendarFilter: React.FC<CalendarFilterProps> = ({
 
   return (
     <div className="w-full select-none">
-      <h3 className="text-fs12 font-semibold uppercase tracking-wider text-[#a5a3ae] mb-3">
+      <h3 className="text-fs13 font-semibold uppercase tracking-wider text-[#a5a3ae] mb-3">
         FILTER
       </h3>
 
@@ -94,7 +94,7 @@ export const CalendarFilter: React.FC<CalendarFilterProps> = ({
               </div>
 
               <span
-                className={`text-fs14 transition-colors ${
+                className={`text-fs15 transition-colors ${
                   isChecked
                     ? "text-[#5d596c]"
                     : "text-[#a5a3ae] group-hover:text-[#6f6b7d]"

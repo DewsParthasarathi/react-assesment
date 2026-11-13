@@ -78,8 +78,8 @@ export const ProfitSmallCard: React.FC<ProfitSmallCardProps> = ({ data }) => {
   return (
     <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
-        <span className="text-fs14 font-medium text-[#6f6b7d]">{title}</span>
-        <div className="text-fs22 font-bold text-[#444050] mt-0.5 leading-tight">
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>
       </div>

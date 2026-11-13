@@ -86,12 +86,12 @@ export const OrderCard: React.FC<OrderCardProps> = ({ value = "276K" }) => {
   };
 
   return (
-    <div className="bg-white rounded-[6px] p-5 pb-2 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full overflow-hidden">
+    <div className="bg-white rounded-[6px] p-4 pb-2 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full overflow-hidden">
       <div>
-        <p className="text-fs14 font-normal text-[#a5a3ae]">Order</p>
-        <p className="text-fs24 font-bold text-[#444050] mt-1">{value}</p>
+        <p className="text-fs18 font-medium text-[#a5a3ae]">Order</p>
+        <p className="text-fs25 font-bold text-[#444050] mt-1">{value}</p>
       </div>
-      <div className="mt-auto -ml-5 -mr-5 overflow-hidden">
+      <div className="mt-auto -ml-4 -mr-4 overflow-hidden">
         <Chart options={options} />
       </div>
     </div>

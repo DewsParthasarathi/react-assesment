@@ -62,7 +62,7 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
     {
       id: "name",
       header: "NAME",
-      headerClassName: "pb-2.5 font-medium text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName: "pb-2.5 font-medium text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 align-middle",
       render: (emp) => (
         <div className="flex items-center gap-2.5">
@@ -73,8 +73,8 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
             className="w-full h-full object-cover block rounded-full"
           />
           <div className="flex flex-col justify-center">
-            <p className="text-fs14 font-semibold text-[#32475c] leading-snug">{emp.name}</p>
-            <p className="text-fs12 text-[#a5a3ae] leading-tight">{emp.role}</p>
+            <p className="text-fs15 font-semibold text-[#32475c] leading-snug">{emp.name}</p>
+            <p className="text-fs13 text-[#a5a3ae] leading-tight">{emp.role}</p>
           </div>
         </div>
       ),
@@ -83,11 +83,11 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
       id: "project",
       header: "PROJECT",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName: "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: (emp) => (
         <span
-          className={`text-fs12 font-semibold px-2 py-0.5 rounded tracking-wide ${
+          className={`text-fs13 font-semibold px-2 py-0.5 rounded tracking-wide ${
             emp.projectBg || "bg-gray-100 text-gray-600"
           }`}
         >
@@ -99,15 +99,15 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
       id: "tasks",
       header: "TASKS",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
-      className: "py-2.5 text-center text-fs14 text-[#6f6b7d] font-medium align-middle",
+      headerClassName: "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
+      className: "py-2.5 text-center text-fs15 text-[#6f6b7d] font-medium align-middle",
       render: (emp) => emp.tasks,
     },
     {
       id: "progress",
       header: "PROGRESS",
       align: "center",
-      headerClassName: "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+      headerClassName: "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: (emp) => {
         const radius = 9;
@@ -144,9 +144,9 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
+      
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-fs22 font-medium text-[#444050]">Sales Analytics</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">Sales Analytics</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}
@@ -162,13 +162,13 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
         </YearSelectionPopup>
       </div>
 
-      {/* Table using reusable Table component */}
+      
       <Table
         columns={columns}
         data={items}
         keyExtractor={(emp) => emp.id}
         tableClassName="w-full text-left"
-        headerRowClassName="border-b border-[#dbdade]/50 text-fs12 font-medium text-[#a5a3ae] uppercase tracking-wider"
+        headerRowClassName="border-b border-[#dbdade]/50 text-fs13 font-medium text-[#a5a3ae] uppercase tracking-wider"
         bodyClassName="divide-y divide-gray-50"
         bodyRowClassName="hover:bg-gray-50/50 transition-colors"
       />

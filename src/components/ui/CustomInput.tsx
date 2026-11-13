@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CustomButton } from "./CustomButton";
 
 export interface CustomInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -56,22 +57,22 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
               {...rest}
             />
             {label && (
-              <span className={`text-fs14 text-[#5d596c] ${labelClassName}`}>
+              <span className={`text-fs15 text-[#5d596c] ${labelClassName}`}>
                 {label}
               </span>
             )}
           </label>
-          {error && <p className="mt-1 text-fs12 text-red-500">{error}</p>}
+          {error && <p className="mt-1 text-fs13 text-red-500">{error}</p>}
         </div>
       );
     }
 
     const sizeClasses =
       {
-        sm: "h-9 text-fs13",
-        md: "h-10 text-fs14",
-        lg: "h-12 text-fs14",
-      }[sizeVariant] || "h-12 text-fs14";
+        sm: "h-9 text-fs14",
+        md: "h-10 text-fs15",
+        lg: "h-12 text-fs15",
+      }[sizeVariant] || "h-12 text-fs15";
 
     const hasCustomWidth =
       containerClassName.includes("w-") ||
@@ -87,7 +88,7 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
         {label && (
           <label
             htmlFor={id}
-            className={`block text-fs14 font-medium text-[#32475c] mb-1 ${labelClassName}`}
+            className={`block text-fs15 font-medium text-[#32475c] mb-1 ${labelClassName}`}
           >
             {label}
           </label>
@@ -118,12 +119,13 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
           />
 
           {shouldShowToggle && (
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={() => setShowPassword((prev) => !prev)}
               tabIndex={-1}
               disabled={disabled}
-              className="absolute right-3.5 text-[#8a8d93] hover:text-[#5d596c] transition cursor-pointer p-0.5"
+              className="!p-0.5 !h-auto absolute right-3.5 text-[#8a8d93] hover:text-[#5d596c] transition cursor-pointer"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? (
@@ -161,7 +163,7 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
                   />
                 </svg>
               )}
-            </button>
+            </CustomButton>
           )}
 
           {!shouldShowToggle && rightIcon && (
@@ -172,10 +174,10 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
         </div>
 
         {error && (
-          <p className="mt-1 text-fs12 text-red-500 font-normal">{error}</p>
+          <p className="mt-1 text-fs13 text-red-500 font-normal">{error}</p>
         )}
         {!error && helperText && (
-          <p className="mt-1 text-fs12 text-[#a5a3ae]">{helperText}</p>
+          <p className="mt-1 text-fs13 text-[#a5a3ae]">{helperText}</p>
         )}
       </div>
     );

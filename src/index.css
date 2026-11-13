@@ -324,3 +324,251 @@ body {
     background: #ffffff !important;
   }
 }
+
+html.dark {
+  color-scheme: dark;
+  --bg: #2f3349;
+  --fg: #cfcde4;
+  --card-bg: #2f3349;
+  --muted-bg: #353952;
+  --muted-hover-bg: #3c415e;
+  --border-color: #434968;
+  --muted-fg: #7983bb;
+  --page-bg: #25293c;
+  --primary: #696cff;
+  --primary-hover: #5f61e6;
+  --primary-muted: rgba(105, 108, 255, 0.16);
+  --fg-hover: #ffffff;
+  --border-hover: #5d648f;
+}
+
+html.dark body {
+  background-color: #25293c;
+  color: #cfcde4;
+}
+
+html.dark .bg-white,
+html.dark .bg-white\/95 {
+  background-color: #2f3349 !important;
+}
+
+html.dark .bg-\[\#f8f7fa\] {
+  background-color: #25293c !important;
+}
+
+html.dark .bg-\[\#fafafb\],
+html.dark .bg-\[\#fafafb\]\/70 {
+  background-color: #2b2e44 !important;
+}
+
+html.dark .bg-\[\#f5f5f9\] {
+  background-color: #353952 !important;
+}
+
+html.dark .bg-\[\#fcfcfd\] {
+  background-color: #2b2e42 !important;
+}
+
+html.dark .bg-\[\#e7e7ff\],
+html.dark .bg-\[\#ecebfd\],
+html.dark .bg-\[\#ecebfd\]\/30,
+html.dark .bg-\[\#ecebfd\]\/40 {
+  background-color: rgba(105, 108, 255, 0.16) !important;
+}
+
+html.dark .bg-\[\#e8fadf\] {
+  background-color: rgba(113, 221, 55, 0.16) !important;
+}
+
+html.dark .bg-\[\#ffe2e3\],
+html.dark .bg-\[\#ffe5e5\]\/50 {
+  background-color: rgba(234, 84, 85, 0.16) !important;
+}
+
+html.dark .bg-\[\#ffe0db\] {
+  background-color: rgba(234, 84, 85, 0.16) !important;
+}
+
+html.dark .bg-\[\#fff1d6\] {
+  background-color: rgba(255, 171, 0, 0.16) !important;
+}
+
+html.dark .bg-\[\#ea5455\]\/15 {
+  background-color: rgba(234, 84, 85, 0.16) !important;
+}
+
+html.dark .bg-\[\#03c3ec\]\/15 {
+  background-color: rgba(3, 195, 236, 0.16) !important;
+}
+
+html.dark .bg-\[\#696cff\]\/15 {
+  background-color: rgba(105, 108, 255, 0.16) !important;
+}
+
+html.dark .bg-\[\#8592a3\]\/15 {
+  background-color: rgba(133, 146, 163, 0.16) !important;
+}
+
+html.dark .bg-\[\#71dd37\]\/15 {
+  background-color: rgba(113, 221, 55, 0.16) !important;
+}
+
+html.dark .bg-\[\#d2f4fa\] {
+  background-color: rgba(3, 195, 236, 0.16) !important;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #353952 !important;
+}
+
+html.dark .border-\[\#dbdade\],
+html.dark .border-\[\#dbdade\]\/30,
+html.dark .border-\[\#dbdade\]\/40,
+html.dark .border-\[\#dbdade\]\/50,
+html.dark .border-\[\#dbdade\]\/60,
+html.dark .border-\[\#dbdade\]\/70,
+html.dark .border-\[\#dbdade\]\/80,
+html.dark [class*="border-[#dbdade]"] {
+  border-color: rgba(225, 222, 245, 0.12) !important;
+}
+
+html.dark [class*="divide-[#dbdade]"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(225, 222, 245, 0.10) !important;
+}
+
+html.dark .text-\[\#444050\] {
+  color: #e6e5e8 !important;
+}
+
+html.dark .text-\[\#32475c\] {
+  color: #cfcde4 !important;
+}
+
+html.dark .text-\[\#5d596c\] {
+  color: #cfcde4 !important;
+}
+
+html.dark .text-\[\#6f6b7d\] {
+  color: #b6bee3 !important;
+}
+
+html.dark .text-\[\#a5a3ae\] {
+  color: #7983bb !important;
+}
+
+html.dark .text-\[\#8592a3\],
+html.dark .text-\[\#8a8d93\] {
+  color: #868a9a !important;
+}
+
+html.dark .text-\[\#b8b7be\] {
+  color: #a8aaae !important;
+}
+
+html.dark .hover\:bg-\[\#f8f7fa\]:hover,
+html.dark .hover\:bg-\[\#f5f5f9\]:hover {
+  background-color: #353952 !important;
+}
+
+html.dark table tbody tr:hover,
+html.dark table tbody tr:hover > td,
+html.dark tr[class*="hover:bg-"]:hover,
+html.dark tr[class*="hover:bg-"]:hover > td,
+html.dark [class*="hover:bg-[#f8f7fa]"]:hover,
+html.dark [class*="hover:bg-[#fafafb]"]:hover,
+html.dark [class*="hover:bg-gray-50"]:hover {
+  background-color: #353952 !important;
+}
+
+html.dark table tbody tr[class*="bg-[#ecebfd]"]:hover,
+html.dark table tbody tr[class*="bg-[#ecebfd]"]:hover > td {
+  background-color: rgba(105, 108, 255, 0.25) !important;
+}
+
+html.dark .hover\:text-\[\#5d596c\]:hover {
+  color: #e6e5e8 !important;
+}
+
+html.dark .hover\:text-\[\#444050\]:hover {
+  color: #ffffff !important;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]),
+html.dark textarea,
+html.dark select {
+  background-color: #2f3349 !important;
+  border-color: #434968 !important;
+  color: #cfcde4 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #7983bb !important;
+}
+
+html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+}
+
+html.dark [class*="shadow-[0_2px_6px_rgba(47,43,61"],
+html.dark [class*="shadow-[0_2px_8px_rgba(47,43,61"],
+html.dark [class*="shadow-[0_2px_4px_rgba(165,163,174"],
+html.dark [class*="shadow-[0_4px_16px_rgba(47,43,61"],
+html.dark [class*="shadow-[0_4px_16px_rgba(165,163,174"],
+html.dark [class*="shadow-[0_4px_24px_rgba(47,43,61"],
+html.dark [class*="shadow-[0_8px_32px_rgba(47,43,61"] {
+  box-shadow: 0 4px 18px rgba(15, 20, 34, 0.42) !important;
+}
+
+html.dark .highcharts-background,
+html.dark .highcharts-plot-background {
+  fill: transparent !important;
+}
+
+html.dark .highcharts-axis-line {
+  stroke: #434968 !important;
+}
+
+html.dark .highcharts-grid-line {
+  stroke: rgba(225, 222, 245, 0.08) !important;
+}
+
+html.dark .highcharts-axis-labels text {
+  fill: #b6bee3 !important;
+}
+
+html.dark .highcharts-legend-item text {
+  fill: #cfcde4 !important;
+}
+
+html.dark .highcharts-data-label text {
+  fill: #e6e5e8 !important;
+}
+
+html.dark .highcharts-tooltip-box {
+  fill: #2f3349 !important;
+  stroke: #434968 !important;
+}
+
+html.dark .highcharts-tooltip text {
+  fill: #cfcde4 !important;
+}
+
+html.dark [class*="[scrollbar-width:thin]"]::-webkit-scrollbar-track,
+html.dark .chat-email-scrollbar::-webkit-scrollbar-track {
+  background: #25293c !important;
+}
+
+html.dark [class*="[scrollbar-width:thin]"]::-webkit-scrollbar-thumb,
+html.dark .chat-email-scrollbar::-webkit-scrollbar-thumb {
+  background: #434968 !important;
+}
+
+html.dark [class*="[scrollbar-width:thin]"]::-webkit-scrollbar-thumb:hover,
+html.dark .chat-email-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #5d648f !important;
+}
+
+html.dark .chat-email-scrollbar {
+  scrollbar-color: #434968 #25293c;
+}

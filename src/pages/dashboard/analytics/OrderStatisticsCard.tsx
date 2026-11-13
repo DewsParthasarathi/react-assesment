@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store";
 import Highcharts from "highcharts";
 import { Chart } from "../../../components/ui/Chart";
+import { CustomButton } from "../../../components/ui/CustomButton";
+import { CustomImage } from "../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
 import electronicIcon from "../../../assets/images/Electronic.svg";
 import fashionIcon from "../../../assets/images/Fashion.svg";
@@ -40,6 +44,8 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
+  const isDark = themeMode === "dark";
   const active = years && years[selectedYear] ? years[selectedYear] : { totalSales, totalOrders, growth };
   const displayTotalSales = active.totalSales ?? totalSales;
   const displayTotalOrders = active.totalOrders ?? totalOrders;
@@ -70,16 +76,16 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
     credits: { enabled: false },
     tooltip: {
       pointFormat: "<b>{point.name}</b>: {point.percentage:.1f}%",
-      backgroundColor: "#ffffff",
-      borderColor: "#dbdade",
+      backgroundColor: isDark ? "#2f3349" : "#ffffff",
+      borderColor: isDark ? "#434968" : "#dbdade",
       borderRadius: 6,
-      style: { fontSize: "11px", fontFamily: "Poppins" },
+      style: { color: isDark ? "#cfcde4" : "#32475c", fontSize: "11px", fontFamily: "Poppins" },
     },
     plotOptions: {
       pie: {
         innerSize: "75%",
         borderWidth: 2,
-        borderColor: "#ffffff",
+        borderColor: isDark ? "#2f3349" : "#ffffff",
         dataLabels: { enabled: false },
       },
     },
@@ -129,10 +135,10 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
   });
 
   return (
-    <div className="bg-white rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs18 font-semibold text-[#444050]">
+          <h3 className="text-fs19 font-semibold text-[#444050]">
             Order Statistics
           </h3>
           <YearSelectionPopup
@@ -140,33 +146,34 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
             onSelectYear={setSelectedYear}
             availableYears={availableYears}
           >
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               aria-label="Options"
               className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
               </svg>
-            </button>
+            </CustomButton>
           </YearSelectionPopup>
         </div>
-        <p className="text-fs13 text-[#a5a3ae] mt-0.5">{displayTotalSales}</p>
+        <p className="text-fs14 text-[#a5a3ae] mt-0.5">{displayTotalSales}</p>
 
         <div className="flex items-center justify-between my-5">
           <div>
-            <span className="text-fs28 font-bold text-[#444050] leading-none block">
+            <span className="text-fs29 font-bold text-[#444050] leading-none block">
               {displayTotalOrders}
             </span>
-            <span className="text-fs13 text-[#a5a3ae] mt-1 block">
+            <span className="text-fs14 text-[#a5a3ae] mt-1 block">
               Total Orders
             </span>
           </div>
           <div className="relative w-[120px] h-[120px] flex items-center justify-center">
-            <Chart key={selectedYear} options={donutOptions} />
+            <Chart key={`${selectedYear}-${themeMode}`} options={donutOptions} />
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-fs18 font-bold text-[#444050] leading-none">{displayGrowth}</span>
-              <span className="text-fs11 text-[#a5a3ae] leading-none mt-1">Growth</span>
+              <span className="text-fs19 font-bold text-[#444050] leading-none">{displayGrowth}</span>
+              <span className="text-fs12 text-[#a5a3ae] leading-none mt-1">Growth</span>
             </div>
           </div>
         </div>
@@ -179,23 +186,24 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
               <div
                 className={`w-10 h-10 rounded-lg ${cat.bg} flex items-center justify-center p-2.5 shrink-0`}
               >
-                <img
+                <CustomImage
                   src={cat.icon}
                   alt={cat.name}
+                  containerClassName="w-full h-full shrink-0"
                   className="w-full h-full object-contain"
                 />
               </div>
               <div>
-                <p className="text-fs15 font-medium text-[#444050] leading-tight">
+                <p className="text-fs16 font-medium text-[#444050] leading-tight">
                   {cat.name}
                 </p>
-                <p className="text-fs13 text-[#a5a3ae] leading-tight mt-1">
+                <p className="text-fs14 text-[#a5a3ae] leading-tight mt-1">
                   {cat.description}
                 </p>
               </div>
             </div>
             <div className="text-right">
-              <span className="text-fs14 font-medium text-[#444050]">
+              <span className="text-fs15 font-medium text-[#444050]">
                 {cat.value}
               </span>
             </div>

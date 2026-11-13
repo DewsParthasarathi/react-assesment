@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, type TableColumn } from "../../../../components/ui/Table";
+import { CustomButton } from "../../../../components/ui/CustomButton";
 import type { EcommerceProduct } from "../../../../api/types";
 
 interface ProductTransactionsTableCardProps {
@@ -12,7 +13,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
 }) => {
   const normalized = `${name} ${brand}`.toLowerCase();
 
-  // 1. OnePlus 7 Pro
   if (normalized.includes("oneplus")) {
     return (
       <div className="w-8 h-8 rounded-full bg-[#32475c] flex items-center justify-center shrink-0 shadow-xs">
@@ -33,7 +33,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
     );
   }
 
-  // 2. Apple Magic Mouse
   if (normalized.includes("mouse") && normalized.includes("apple")) {
     return (
       <div className="w-8 h-8 rounded-full bg-[#eef0f3] flex items-center justify-center shrink-0 shadow-xs border border-[#dbdade]/50">
@@ -48,7 +47,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
     );
   }
 
-  // 3. iMac Pro
   if (normalized.includes("imac")) {
     return (
       <div className="w-8 h-8 rounded-full bg-[#282a36] flex items-center justify-center shrink-0 shadow-xs">
@@ -68,7 +66,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
     );
   }
 
-  // 4. Samsung Galaxy Note 10
   if (normalized.includes("note")) {
     return (
       <div className="w-8 h-8 rounded-full bg-[#1e293b] flex items-center justify-center shrink-0 shadow-xs">
@@ -89,7 +86,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
     );
   }
 
-  // 5. iPhone 11 Pro
   if (normalized.includes("iphone")) {
     return (
       <div className="w-8 h-8 rounded-full bg-[#fce7e7] flex items-center justify-center shrink-0 shadow-xs border border-[#ffccd5]/50">
@@ -111,7 +107,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
     );
   }
 
-  // 6. Mi LED TV 4X
   if (normalized.includes("tv")) {
     return (
       <div className="w-8 h-8 rounded-full bg-[#18181b] flex items-center justify-center shrink-0 shadow-xs">
@@ -131,7 +126,6 @@ const ProductIcon: React.FC<{ name: string; brand: string }> = ({
     );
   }
 
-  // 7. Logitech MX Master
   return (
     <div className="w-8 h-8 rounded-full bg-[#27272a] flex items-center justify-center shrink-0 shadow-xs">
       <svg
@@ -161,10 +155,10 @@ export const ProductTransactionsTableCard: React.FC<
         <div className="flex items-center gap-2.5">
           <ProductIcon name={product.name} brand={product.brand} />
           <div>
-            <span className="text-fs13 font-semibold text-[#444050] block leading-tight">
+            <span className="text-fs14 font-semibold text-[#444050] block leading-tight">
               {product.name}
             </span>
-            <span className="text-fs11 text-[#a5a3ae] block leading-tight mt-0.5">
+            <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
               {product.brand}
             </span>
           </div>
@@ -175,7 +169,7 @@ export const ProductTransactionsTableCard: React.FC<
       id: "category",
       header: "CATEGORY",
       render: (product) => (
-        <span className="text-fs13 text-[#6f6b7d] capitalize">
+        <span className="text-fs14 text-[#6f6b7d] capitalize">
           {product.category}
         </span>
       ),
@@ -186,16 +180,16 @@ export const ProductTransactionsTableCard: React.FC<
       render: (product) => (
         <div>
           <div className="flex items-center gap-1 leading-tight">
-            <span className="text-fs13 font-semibold text-[#696cff]">
+            <span className="text-fs14 font-semibold text-[#696cff]">
               {product.paidAmount}
             </span>
             {product.totalAmount !== product.paidAmount && (
-              <span className="text-fs11 text-[#a5a3ae]">
+              <span className="text-fs12 text-[#a5a3ae]">
                 / {product.totalAmount}
               </span>
             )}
           </div>
-          <span className="text-fs11 text-[#a5a3ae] block leading-tight mt-0.5 capitalize">
+          <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5 capitalize">
             {product.paymentStatus}
           </span>
         </div>
@@ -206,7 +200,7 @@ export const ProductTransactionsTableCard: React.FC<
       header: "ORDER STATUS",
       render: (product) => (
         <span
-          className={`text-fs11 font-medium uppercase px-2 py-0.5 rounded-[4px] tracking-wide inline-block ${
+          className={`text-fs12 font-medium uppercase px-2 py-0.5 rounded-[4px] tracking-wide inline-block ${
             product.statusBadgeColor || "bg-[#e8fadf] text-[#71dd37]"
           }`}
         >
@@ -219,9 +213,10 @@ export const ProductTransactionsTableCard: React.FC<
       header: "ACTIONS",
       align: "center",
       render: () => (
-        <button
+        <CustomButton
           type="button"
-          className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
+          variant="ghost"
+          className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
           aria-label="Product actions"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -229,7 +224,7 @@ export const ProductTransactionsTableCard: React.FC<
             <circle cx="12" cy="12" r="2" />
             <circle cx="12" cy="19" r="2" />
           </svg>
-        </button>
+        </CustomButton>
       ),
     },
   ];
@@ -243,7 +238,7 @@ export const ProductTransactionsTableCard: React.FC<
           keyExtractor={(item) => item.id}
           className="w-full"
           tableClassName="w-full text-left"
-          headerRowClassName="border-b border-[#dbdade]/50 text-fs12 text-[#a5a3ae] font-semibold uppercase tracking-wider bg-transparent [&>th]:px-4 [&>th]:py-2.5"
+          headerRowClassName="border-b border-[#dbdade]/50 text-fs13 text-[#a5a3ae] font-semibold uppercase tracking-wider bg-transparent [&>th]:px-4 [&>th]:py-2.5"
           bodyRowClassName="border-b border-[#dbdade]/25 hover:bg-[#f8f7fa] transition [&>td]:px-4 [&>td]:py-1.5"
         />
       </div>

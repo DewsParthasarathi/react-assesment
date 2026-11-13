@@ -58,7 +58,7 @@ const getRoleBadgeInfo = (role: string) => {
 
 const renderRoleBadges = (rolesList: string[] = []) => {
   if (!rolesList || rolesList.length === 0) {
-    return <span className="text-[#a5a3ae] text-fs13">-</span>;
+    return <span className="text-[#a5a3ae] text-fs14">-</span>;
   }
 
   return (
@@ -69,7 +69,7 @@ const renderRoleBadges = (rolesList: string[] = []) => {
         return (
           <span
             key={role}
-            className={`inline-flex items-center px-2.5 py-1 rounded-[4px] text-fs11 font-semibold tracking-wider uppercase select-none ${badgeStyle}`}
+            className={`inline-flex items-center px-2.5 py-1 rounded-[4px] text-fs12 font-semibold tracking-wider uppercase select-none ${badgeStyle}`}
           >
             {displayText}
           </span>
@@ -86,17 +86,14 @@ export const PermissionsPage: React.FC = () => {
   const updatePermissionMutation = useUpdatePermissionMutation();
   const deletePermissionMutation = useDeletePermissionMutation();
 
-  // Search and Pagination
   const [searchQuery, setSearchQuery] = useState("");
   const [pageSize, setPageSize] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // Modal states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPerm, setEditingPerm] = useState<Permission | null>(null);
   const [permToDelete, setPermToDelete] = useState<Permission | null>(null);
 
-  // Form states
   const [formName, setFormName] = useState("");
   const [formRoles, setFormRoles] = useState<string[]>([]);
   const [formCategory, setFormCategory] = useState<
@@ -188,7 +185,6 @@ export const PermissionsPage: React.FC = () => {
     }
   };
 
-  // Filtered permissions based on search
   const filteredPermissions = useMemo(() => {
     if (!searchQuery.trim()) return permissions;
     const query = searchQuery.toLowerCase().trim();
@@ -202,7 +198,6 @@ export const PermissionsPage: React.FC = () => {
     });
   }, [permissions, searchQuery]);
 
-  // Paginated records
   const totalRecords = filteredPermissions.length;
   const totalPages = Math.ceil(totalRecords / pageSize) || 1;
 
@@ -211,7 +206,6 @@ export const PermissionsPage: React.FC = () => {
     return filteredPermissions.slice(start, start + pageSize);
   }, [filteredPermissions, currentPage, pageSize]);
 
-  // Export to CSV
   const handleExportCSV = useCallback(() => {
     if (filteredPermissions.length === 0) return;
     const headers = [
@@ -244,7 +238,6 @@ export const PermissionsPage: React.FC = () => {
     document.body.removeChild(link);
   }, [filteredPermissions]);
 
-  // Table Columns definition
   const tableColumns: TableColumn<Permission>[] = useMemo(
     () => [
       {
@@ -254,7 +247,7 @@ export const PermissionsPage: React.FC = () => {
           "pl-6 pr-4 py-4 text-[13px] font-semibold text-[#5d596c] uppercase tracking-wider",
         className: "pl-6 pr-4 !py-[10px]",
         render: (perm) => (
-          <span className="text-fs18 font-normal text-[#a5a3ae] leading-normal">
+          <span className="text-fs19 font-normal text-[#a5a3ae] leading-normal">
             {perm.name}
           </span>
         ),
@@ -274,7 +267,7 @@ export const PermissionsPage: React.FC = () => {
           "px-4 py-4 text-[13px] font-semibold text-[#5d596c] uppercase tracking-wider",
         className: "px-4 !py-[10px]",
         render: (perm) => (
-          <span className="text-fs17 font-normal text-[#a5a3ae] whitespace-nowrap">
+          <span className="text-fs18 font-normal text-[#a5a3ae] whitespace-nowrap">
             {perm.createdDate}
           </span>
         ),
@@ -287,10 +280,11 @@ export const PermissionsPage: React.FC = () => {
         className: "pl-4 pr-6 !py-[10px]",
         render: (perm) => (
           <div className="flex items-center gap-3">
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={() => handleOpenEdit(perm)}
-              className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-0.5"
+              className="!p-0.5 !h-auto text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
               title="Edit Permission"
             >
               <svg
@@ -306,12 +300,13 @@ export const PermissionsPage: React.FC = () => {
                   d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                 />
               </svg>
-            </button>
+            </CustomButton>
 
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={() => setPermToDelete(perm)}
-              className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-0.5"
+              className="!p-0.5 !h-auto text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
               title="Delete Permission"
             >
               <svg
@@ -327,7 +322,7 @@ export const PermissionsPage: React.FC = () => {
                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                 />
               </svg>
-            </button>
+            </CustomButton>
           </div>
         ),
       },
@@ -337,22 +332,18 @@ export const PermissionsPage: React.FC = () => {
 
   return (
     <div className="w-full flex-1 flex flex-col min-w-0 space-y-6">
-      {/* 1. Page Header */}
       <div>
         <h2 className="text-[22px] font-semibold text-[#5d596c] tracking-tight">
           Permission List
         </h2>
-        <p className="text-fs14 text-[#6f6b7d] mt-1">
+        <p className="text-fs15 text-[#6f6b7d] mt-1">
           Each category (Basic,Professional,and Business) includes the four
           predefined roles shown below.
         </p>
       </div>
 
-      {/* 2. Main Content Card */}
       <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 overflow-hidden flex flex-col">
-        {/* Toolbar: Export, Search User, Add Permission */}
         <div className="p-4 md:p-6 pb-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-          {/* Left: Export Button */}
           <div>
             <CustomButton
               type="button"
@@ -365,7 +356,6 @@ export const PermissionsPage: React.FC = () => {
             </CustomButton>
           </div>
 
-          {/* Right: Search User Input + Add Permission Button */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <div className="w-full sm:w-64">
               <CustomInput
@@ -377,7 +367,7 @@ export const PermissionsPage: React.FC = () => {
                   setCurrentPage(1);
                 }}
                 sizeVariant="sm"
-                className="!h-[38px] text-fs14"
+                className="!h-[38px] text-fs15"
               />
             </div>
 
@@ -393,7 +383,6 @@ export const PermissionsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. Permission Table */}
         <CustomTable<Permission>
           columns={tableColumns}
           data={currentRecords}
@@ -410,8 +399,7 @@ export const PermissionsPage: React.FC = () => {
           }
         />
 
-        {/* 4. Pagination matching reference UI */}
-        <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs13 text-[#6f6b7d] bg-white">
+        <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs14 text-[#6f6b7d] bg-white">
           <div className="flex items-center gap-2">
             <span>Rows per page:</span>
             <CustomDropdown
@@ -502,7 +490,6 @@ export const PermissionsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Add / Edit Permission Modal */}
       <CustomModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -515,7 +502,7 @@ export const PermissionsPage: React.FC = () => {
               type="button"
               variant="outline"
               onClick={handleCloseModal}
-              className="px-5 py-2 text-fs14 rounded-md"
+              className="px-5 py-2 text-fs15 rounded-md"
             >
               Discard
             </CustomButton>
@@ -527,7 +514,7 @@ export const PermissionsPage: React.FC = () => {
                 createPermissionMutation.isPending ||
                 updatePermissionMutation.isPending
               }
-              className="px-6 py-2 !bg-[#7367F0] hover:!bg-[#685dd8] text-white text-fs14 font-medium rounded-md shadow-sm"
+              className="px-6 py-2 !bg-[#7367F0] hover:!bg-[#685dd8] text-white text-fs15 font-medium rounded-md shadow-sm"
             >
               {editingPerm ? "Update" : "Submit"}
             </CustomButton>
@@ -536,7 +523,7 @@ export const PermissionsPage: React.FC = () => {
       >
         <form onSubmit={handleSavePermission} className="space-y-4 pt-1">
           {formError && (
-            <div className="p-3 bg-[#ffebee] text-[#ea5455] text-fs13 rounded-md border border-[#ea5455]/30">
+            <div className="p-3 bg-[#ffebee] text-[#ea5455] text-fs14 rounded-md border border-[#ea5455]/30">
               {formError}
             </div>
           )}
@@ -557,7 +544,7 @@ export const PermissionsPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-fs13 font-medium text-[#5d596c] mb-2">
+            <label className="block text-fs14 font-medium text-[#5d596c] mb-2">
               Assigned To
             </label>
             <div className="grid grid-cols-2 gap-2.5 p-3 rounded-md border border-[#dbdade]/70 bg-[#fafafb]">
@@ -575,7 +562,7 @@ export const PermissionsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
             <div>
-              <label className="block text-fs13 font-medium text-[#5d596c] mb-1.5">
+              <label className="block text-fs14 font-medium text-[#5d596c] mb-1.5">
                 Category
               </label>
               <CustomDropdown
@@ -601,7 +588,6 @@ export const PermissionsPage: React.FC = () => {
         </form>
       </CustomModal>
 
-      {/* 6. Delete Confirmation Modal */}
       <ConfirmationModal
         isOpen={Boolean(permToDelete)}
         title="Delete Permission"

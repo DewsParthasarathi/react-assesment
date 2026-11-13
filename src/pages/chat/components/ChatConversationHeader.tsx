@@ -1,5 +1,6 @@
 import React from "react";
 import type { ChatContact } from "../../../api/types";
+import { CustomButton } from "../../../components/ui/CustomButton";
 import { renderChatAvatar } from "../utils/chatAvatarHelper";
 
 interface ChatConversationHeaderProps {
@@ -15,10 +16,11 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
     <div className="shrink-0 sticky top-0 z-10 px-6 py-3.5 border-b border-[#dbdade]/50 flex items-center justify-between bg-white select-none">
       <div className="flex items-center gap-3.5">
         {onBackToContacts && (
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={onBackToContacts}
-            className="md:hidden p-1 rounded hover:bg-[#f8f7fa] text-[#6f6b7d] cursor-pointer"
+            className="!p-1 !h-auto md:hidden rounded hover:bg-[#f8f7fa] text-[#6f6b7d] cursor-pointer"
             aria-label="Back to contacts"
           >
             <svg
@@ -34,7 +36,7 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-          </button>
+          </CustomButton>
         )}
 
         {renderChatAvatar(
@@ -46,10 +48,10 @@ export const ChatConversationHeader: React.FC<ChatConversationHeaderProps> = ({
         )}
 
         <div>
-          <h3 className="text-fs15 font-bold text-[#32475c] leading-tight">
+          <h3 className="text-fs16 font-bold text-[#32475c] leading-tight">
             {contact.name}
           </h3>
-          <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
+          <span className="text-fs13 text-[#a5a3ae] block leading-tight mt-0.5">
             {contact.role}
           </span>
         </div>

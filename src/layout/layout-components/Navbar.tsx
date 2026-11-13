@@ -1,17 +1,18 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { CustomImage } from "../../components/ui/CustomImage";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store";
 import { logout } from "../../store/slices/authSlice";
+import { toggleTheme } from "../../store/slices/themeSlice";
+import { shuffleDashboard, type DashboardType } from "../../store/slices/shuffleSlice";
 import { getMemberAvatar } from "../../utils/userAvatars";
 
 export const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
   const menuRef = useRef<HTMLDivElement>(null);
@@ -19,7 +20,26 @@ export const Navbar: React.FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getActiveDashboard = (): DashboardType | null => {
+    const path = location.pathname;
+    if (path === "/" || path === "/dashboard" || path === "/dashboard/analytics") {
+      return "analytics";
+    }
+    if (path === "/dashboard/crm" || path === "/crm") {
+      return "crm";
+    }
+    if (path === "/dashboard/ecommerce" || path === "/ecommerce") {
+      return "ecommerce";
+    }
+    return null;
+  };
+  const activeDashboard = getActiveDashboard();
+
   const currentUser = useSelector((state: RootState) => state.auth.user);
+  const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
+  const isDarkMode = themeMode === "dark";
   const avatarUrl = getMemberAvatar(currentUser?.avatar || currentUser?.id);
   const memberName = currentUser?.name || "John Doe";
   const memberEmail = currentUser?.email || "user1@example.com";
@@ -27,8 +47,7 @@ export const Navbar: React.FC = () => {
   const memberId = currentUser?.id || "1";
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-    document.documentElement.classList.toggle("dark");
+    dispatch(toggleTheme());
   };
 
   const handleLogout = () => {
@@ -100,7 +119,7 @@ export const Navbar: React.FC = () => {
               />
             </svg>
           }
-          className="!h-10 !border-transparent !bg-transparent hover:!border-[#dbdade] focus:!border-[#696cff] !text-fs14"
+          className="!h-10 !border-transparent !bg-transparent hover:!border-[#dbdade] focus:!border-[#696cff] !text-fs15"
         />
       </div>
 
@@ -167,7 +186,13 @@ export const Navbar: React.FC = () => {
         <CustomButton
           variant="icon"
           aria-label="Applications"
-          title="Applications"
+          title={activeDashboard ? "Shuffle Dashboard Widgets" : "Applications"}
+          onClick={() => {
+            if (activeDashboard) {
+              dispatch(shuffleDashboard(activeDashboard));
+            }
+          }}
+          className={activeDashboard ? "hover:text-[#696cff] transition cursor-pointer" : "opacity-60 cursor-default"}
         >
           <svg
             className="w-5 h-5"
@@ -207,13 +232,14 @@ export const Navbar: React.FC = () => {
         </CustomButton>
 
         <div className="relative ml-2" ref={menuRef}>
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={handleToggleProfileMenu}
             aria-label="User Profile Menu"
-            className="relative cursor-pointer focus:outline-none"
+            className="!p-0 !h-auto relative cursor-pointer focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-full bg-[#696cff]/10 border border-[#dbdade] flex items-center justify-center overflow-hidden font-semibold text-fs14 text-[#696cff]">
+            <div className="w-9 h-9 rounded-full bg-[#696cff]/10 border border-[#dbdade] flex items-center justify-center overflow-hidden font-semibold text-fs15 text-[#696cff]">
               <CustomImage
                 src={avatarUrl}
                 alt={memberName}
@@ -225,7 +251,7 @@ export const Navbar: React.FC = () => {
               />
             </div>
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#28c76f] border-2 border-white" />
-          </button>
+          </CustomButton>
 
           {showProfileMenu &&
             createPortal(
@@ -248,10 +274,10 @@ export const Navbar: React.FC = () => {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-fs14 font-semibold text-[#32475c] truncate">
+                    <p className="text-fs15 font-semibold text-[#32475c] truncate">
                       {memberName}
                     </p>
-                    <p className="text-fs12 text-[#6f6b7d] truncate">
+                    <p className="text-fs13 text-[#6f6b7d] truncate">
                       {memberEmail}
                     </p>
                     <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#696cff]/10 text-[#696cff] mt-0.5">
@@ -261,13 +287,14 @@ export const Navbar: React.FC = () => {
                 </div>
 
                 <div className="pt-2 px-2">
-                  <button
+                  <CustomButton
                     type="button"
+                    variant="ghost"
                     onClick={() => {
                       setShowProfileMenu(false);
                       navigate("/pages/profile");
                     }}
-                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#32475c] transition"
+                    className="w-full justify-start !h-auto flex items-center gap-2.5 !px-3 !py-2 rounded-md text-fs15 text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#32475c] transition font-normal"
                   >
                     <svg
                       className="w-4 h-4"
@@ -283,12 +310,13 @@ export const Navbar: React.FC = () => {
                       />
                     </svg>
                     My Profile
-                  </button>
+                  </CustomButton>
 
-                  <button
+                  <CustomButton
                     type="button"
+                    variant="ghost"
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-fs14 text-[#ea5455] hover:bg-red-50 transition font-medium mt-1"
+                    className="w-full justify-start !h-auto flex items-center gap-2.5 !px-3 !py-2 rounded-md text-fs15 text-[#ea5455] hover:bg-red-50 transition font-medium mt-1"
                   >
                     <svg
                       className="w-4 h-4"
@@ -304,7 +332,7 @@ export const Navbar: React.FC = () => {
                       />
                     </svg>
                     Sign Out
-                  </button>
+                  </CustomButton>
                 </div>
               </div>,
               document.body,

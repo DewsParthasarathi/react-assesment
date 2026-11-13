@@ -123,17 +123,17 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       <div className="flex items-start gap-3.5">
         {renderIcon()}
         <div className="flex-1">
-          <h3 className="text-fs16 font-semibold text-[#5d596c] leading-snug">
+          <h3 className="text-fs17 font-semibold text-[#5d596c] leading-snug">
             {title}
           </h3>
           {subtitle && (
-            <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
+            <p className="text-fs14 text-[#a5a3ae] mt-0.5">{subtitle}</p>
           )}
         </div>
       </div>
 
       {(message || children) && (
-        <div className="text-fs14 text-[#6f6b7d] leading-relaxed">
+        <div className="text-fs15 text-[#6f6b7d] leading-relaxed">
           {message}
           {children}
         </div>
@@ -145,18 +145,19 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           size="sm"
           onClick={handleClose}
           disabled={loading}
-          className="!h-9 px-4 text-fs14 font-medium text-[#6f6b7d] border-[#dbdade] hover:bg-[#f8f7fa] cursor-pointer"
+          className="!h-9 px-4 text-fs15 font-medium text-[#6f6b7d] border-[#dbdade] hover:bg-[#f8f7fa] cursor-pointer"
         >
           {cancelText}
         </CustomButton>
-        <button
+        <CustomButton
           type="button"
           onClick={onConfirm}
           disabled={loading}
-          className={`h-9 px-4 rounded-[6px] text-fs14 font-medium transition cursor-pointer disabled:opacity-50 ${getConfirmButtonClasses()}`}
+          variant={variant === "danger" ? "danger" : "primary"}
+          className={`!h-9 !px-4 rounded-[6px] text-fs15 font-medium transition cursor-pointer disabled:opacity-50 ${getConfirmButtonClasses()}`}
         >
           {resolvedConfirmText}
-        </button>
+        </CustomButton>
       </div>
     </CustomModal>
   );

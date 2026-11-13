@@ -89,19 +89,19 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   return (
     <div className={containerClass}>
       <div className="flex items-center justify-between">
-        <h3 className="text-fs18 font-medium text-[#444050] tracking-tight">
+        <h3 className="text-fs19 font-medium text-[#444050] tracking-tight">
           {title}
         </h3>
-        <span className="text-fs13 text-[#a5a3ae]">{timeLabel}</span>
+        <span className="text-fs14 text-[#a5a3ae]">{timeLabel}</span>
       </div>
 
       <div className="flex items-end justify-between mt-3 gap-2">
         <div className="pb-1 shrink-0">
-          <span className="text-fs24 font-bold text-[#444050] leading-none">
+          <span className="text-fs25 font-bold text-[#444050] leading-none">
             {percentage}
           </span>
           <div
-            className={`text-fs12 font-medium flex items-center gap-1 mt-1.5 ${
+            className={`text-fs13 font-medium flex items-center gap-1 mt-1.5 ${
               isUp ? "text-[#71dd37]" : "text-[#ea5455]"
             }`}
           >

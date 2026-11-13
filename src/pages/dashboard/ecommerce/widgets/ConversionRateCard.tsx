@@ -3,6 +3,7 @@ import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommerceConversionRate } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+import { CustomButton } from "../../../../components/ui/CustomButton";
 
 interface ConversionRateCardProps {
   data?: EcommerceConversionRate;
@@ -118,14 +119,14 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full min-h-[340px]">
+    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-start justify-between">
           <div>
-            <h3 className="text-fs18 font-bold text-[#444050] tracking-tight">
+            <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
               {title}
             </h3>
-            <p className="text-fs12 text-[#a5a3ae] mt-0.5">{subtitle}</p>
+            <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
           </div>
 
           <YearSelectionPopup
@@ -133,9 +134,10 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
             onSelectYear={onSelectYear || (() => {})}
             availableYears={availableYears}
           >
-            <button
+            <CustomButton
               type="button"
-              className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
+              variant="ghost"
+              className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
               aria-label="Conversion rate options"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -143,12 +145,12 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
                 <circle cx="12" cy="12" r="2" />
                 <circle cx="12" cy="19" r="2" />
               </svg>
-            </button>
+            </CustomButton>
           </YearSelectionPopup>
         </div>
 
         <div className="flex items-center justify-between mt-3">
-          <span className="text-fs28 font-bold text-[#444050] leading-none">
+          <span className="text-fs29 font-bold text-[#444050] leading-none">
             {rate}
           </span>
           <div className="w-[95px] h-[42px]">
@@ -165,15 +167,15 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
               className="flex items-center justify-between"
             >
               <div>
-                <span className="text-fs13 font-medium text-[#444050] block leading-tight">
+                <span className="text-fs14 font-medium text-[#444050] block leading-tight">
                   {metric.label}
                 </span>
-                <span className="text-fs11 text-[#a5a3ae] block leading-tight mt-0.5">
+                <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
                   {metric.subtext}
                 </span>
               </div>
 
-              <span className="text-fs13 font-normal text-[#6f6b7d]">
+              <span className="text-fs14 font-normal text-[#6f6b7d]">
                 {metric.value}
               </span>
             </div>

@@ -20,7 +20,7 @@ export const ExpensesGaugeCard: React.FC<ExpensesGaugeCardProps> = ({
   return (
     <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
-        <span className="text-fs14 font-medium text-[#6f6b7d]">{title}</span>
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
       </div>
 
       <div className="relative w-full flex items-center justify-center my-auto pt-1">
@@ -49,7 +49,7 @@ export const ExpensesGaugeCard: React.FC<ExpensesGaugeCardProps> = ({
             x="60"
             y="57"
             textAnchor="middle"
-            className="font-bold fill-[#444050] text-[21px]"
+            className="font-bold fill-[#444050] dark:fill-[#e6e5e8] text-[21px]"
             style={{ fontFamily: "Poppins, sans-serif" }}
           >
             {percentage}%
@@ -58,7 +58,7 @@ export const ExpensesGaugeCard: React.FC<ExpensesGaugeCardProps> = ({
       </div>
 
       <div className="text-center mt-1">
-        <p className="text-fs12 text-[#a5a3ae] leading-snug">
+        <p className="text-fs13 text-[#a5a3ae] leading-snug">
           {comparisonText}
         </p>
       </div>

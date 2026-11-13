@@ -219,14 +219,14 @@ export const Sidebar: React.FC = () => {
     location.pathname === "/ecommerce";
 
   return (
-    <aside className="sticky top-0 h-screen w-[18%] shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-6 pb-3 select-none z-20 print:hidden">
+    <aside className="sticky top-0 h-screen w-[18%] shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-[86px] pb-3 select-none z-20 print:hidden">
       <div className="px-3 mb-1">
         <CustomButton
           variant="ghost"
           onClick={() => setDashboardOpen((prev) => !prev)}
-          className={`w-full !justify-between px-3 !py-2.5 !h-auto rounded-lg text-fs15 font-medium transition cursor-pointer ${
+          className={`w-full !justify-between px-3 !py-2.5 !h-auto rounded-lg text-fs16 font-medium transition cursor-pointer ${
             isDashboardActive
-              ? "!bg-[#e7e7ff] !text-[#696cff]"
+              ? "!bg-[#e7e7ff] !text-[#696cff] dark:!bg-[#696cff] dark:!text-white"
               : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
           }`}
         >
@@ -261,7 +261,6 @@ export const Sidebar: React.FC = () => {
           </svg>
         </CustomButton>
 
-        {/* Dashboard Submenu */}
         {dashboardOpen && (
           <div className="mt-1 pl-4 space-y-0.5">
             {dashboardItems.map((item) => {
@@ -273,7 +272,7 @@ export const Sidebar: React.FC = () => {
                 <NavLink
                   key={item.id}
                   to={item.path}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-md text-fs14 transition ${
+                  className={`flex items-center gap-3 px-3 py-2 rounded-md text-fs18 transition ${
                     active
                       ? "text-[#696cff] font-medium"
                       : "text-[#6f6b7d] hover:text-[#5d596c] hover:bg-[#f5f5f9]"
@@ -295,7 +294,7 @@ export const Sidebar: React.FC = () => {
       </div>
 
       <div className="px-5 pt-4 pb-1">
-        <span className="text-fs13 font-semibold tracking-wider text-[#a5a3ae] uppercase">
+        <span className="text-fs14 font-semibold tracking-wider text-[#a5a3ae] uppercase">
           APPS & PAGES
         </span>
       </div>
@@ -325,7 +324,7 @@ export const Sidebar: React.FC = () => {
                 <CustomButton
                   variant="ghost"
                   onClick={() => toggleGroup(item.id)}
-                  className={`w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs15 font-medium transition cursor-pointer ${
+                  className={`w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs16 font-medium transition cursor-pointer ${
                     isChildActive
                       ? "!bg-[#e7e7ff] !text-[#696cff] font-medium"
                       : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
@@ -365,7 +364,7 @@ export const Sidebar: React.FC = () => {
                         key={sub.id}
                         to={sub.path}
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-3 py-1.5 rounded-md text-fs14 font-medium transition ${
+                          `flex items-center gap-2 px-3 py-1.5 rounded-md text-fs17 font-medium transition ${
                             isActive
                               ? "text-[#696cff] font-medium"
                               : "text-[#6f6b7d] hover:text-[#5d596c] hover:bg-[#f5f5f9]"
@@ -410,7 +409,7 @@ export const Sidebar: React.FC = () => {
                     (location.pathname === "/user" ||
                       location.pathname.startsWith("/apps/user") ||
                       location.pathname.startsWith("/user")));
-                return `flex items-center justify-between px-3 py-2 rounded-md text-fs15 font-medium transition ${
+                return `flex items-center justify-between px-3 py-2 rounded-md text-fs16 font-medium transition ${
                   isItemActive
                     ? "bg-[#e7e7ff] text-[#696cff] font-medium"
                     : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c]"

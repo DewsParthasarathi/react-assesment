@@ -258,7 +258,7 @@ export const CalendarPage: React.FC = () => {
           <div className="calendar-wrapper flex-1 relative min-w-0 w-full overflow-hidden">
             {isLoading && (
               <div className="absolute inset-0 bg-white/60 z-20 flex items-center justify-center">
-                <span className="text-fs14 font-medium text-[#696cff] animate-pulse">
+                <span className="text-fs15 font-medium text-[#696cff] animate-pulse">
                   Loading calendar...
                 </span>
               </div>
@@ -344,7 +344,7 @@ export const CalendarPage: React.FC = () => {
                   }
                   return (
                     <div className="w-full flex items-center py-2.5 px-3 hover:bg-[#f8f7fa] transition cursor-pointer select-none">
-                      <div className="w-36 sm:w-44 shrink-0 text-fs13 text-[#6f6b7d] font-normal lowercase">
+                      <div className="w-36 sm:w-44 shrink-0 text-fs14 text-[#6f6b7d] font-normal lowercase">
                         {timeDisplay}
                       </div>
                       <div className="flex items-center gap-2 min-w-0">
@@ -352,7 +352,7 @@ export const CalendarPage: React.FC = () => {
                           className="w-2.5 h-2.5 rounded-full shrink-0"
                           style={{ backgroundColor: style.dotColor }}
                         />
-                        <span className="text-fs13 font-medium text-[#5d596c] truncate">
+                        <span className="text-fs14 font-medium text-[#5d596c] truncate">
                           {eventInfo.event.title}
                         </span>
                       </div>
@@ -373,7 +373,7 @@ export const CalendarPage: React.FC = () => {
                   <div
                     className={`w-full px-2.5 py-1 rounded-[4px] border ${style.bg} ${style.border} ${style.text} flex items-center justify-between transition-opacity hover:opacity-90 shadow-2xs overflow-hidden select-none cursor-pointer`}
                   >
-                    <span className="text-fs12 font-medium truncate">
+                    <span className="text-fs13 font-medium truncate">
                       {timePrefix}
                       {eventInfo.event.title}
                     </span>

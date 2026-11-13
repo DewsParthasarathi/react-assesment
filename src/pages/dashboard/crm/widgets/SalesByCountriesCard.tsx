@@ -66,7 +66,7 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs22 font-medium text-[#444050]">Sales by countries</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">Sales by countries</h3>
           <YearSelectionPopup
             selectedYear={selectedYear}
             onSelectYear={setSelectedYear}
@@ -81,7 +81,7 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
             </CustomButton>
           </YearSelectionPopup>
         </div>
-        <p className="text-fs16 font-normal text-[#a5a3ae] mt-0.5">Monthly Sales Overview</p>
+        <p className="text-fs17 font-normal text-[#a5a3ae] mt-0.5">Monthly Sales Overview</p>
       </div>
 
       <div className="space-y-3.5 mt-3">
@@ -95,11 +95,11 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
                 className="w-full h-full object-cover"
               />
               <div>
-                <p className="text-fs16 font-medium text-[#444050] leading-tight">{c.sales}</p>
-                <p className="text-fs14 text-[#a5a3ae]">{c.country}</p>
+                <p className="text-fs17 font-medium text-[#444050] leading-tight">{c.sales}</p>
+                <p className="text-fs15 text-[#a5a3ae]">{c.country}</p>
               </div>
             </div>
-            <span className="text-fs16 font-medium text-[#444050]">{c.total}</span>
+            <span className="text-fs17 font-medium text-[#444050]">{c.total}</span>
           </div>
         ))}
       </div>

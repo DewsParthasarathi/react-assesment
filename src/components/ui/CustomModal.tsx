@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { CustomButton } from "./CustomButton";
 
 export type ModalSize = "xs" | "sm" | "md" | "lg" | "xl" | "full";
 
@@ -98,22 +99,23 @@ export const CustomModal: React.FC<CustomModalProps> = ({
             <div className="flex-1 pr-4">
               {title &&
                 (typeof title === "string" ? (
-                  <h3 className="text-fs18 font-bold text-[#32475c] leading-snug">
+                  <h3 className="text-fs19 font-bold text-[#32475c] leading-snug">
                     {title}
                   </h3>
                 ) : (
                   title
                 ))}
               {subtitle && (
-                <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
+                <p className="text-fs14 text-[#a5a3ae] mt-0.5">{subtitle}</p>
               )}
             </div>
 
             {showCloseButton && (
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={onClose}
-                className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded-md transition cursor-pointer shrink-0"
+                className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded-md transition cursor-pointer shrink-0"
                 aria-label="Close"
               >
                 <svg
@@ -129,7 +131,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </button>
+              </CustomButton>
             )}
           </div>
         )}

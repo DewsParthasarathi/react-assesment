@@ -72,7 +72,7 @@ export const TopProductsByVolumeCard: React.FC<
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-fs22 font-medium text-[#444050]">
+        <h3 className="text-fs23 font-medium text-[#444050]">
           Top Products by <span className="text-[#696cff]">Volume</span>
         </h3>
         <YearSelectionPopup
@@ -112,20 +112,20 @@ export const TopProductsByVolumeCard: React.FC<
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <p className="text-fs16 font-medium text-[#444050] leading-snug">
+                <p className="text-fs17 font-medium text-[#444050] leading-snug">
                   {item.name}
                 </p>
-                <p className="text-fs14 text-[#a5a3ae] leading-tight">
+                <p className="text-fs15 text-[#a5a3ae] leading-tight">
                   {item.brand}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <span className="text-fs16 font-medium text-[#444050]">
+              <span className="text-fs17 font-medium text-[#444050]">
                 {item.volume}
               </span>
               <span
-                className={`text-fs12 font-semibold px-2 py-0.5 rounded ${
+                className={`text-fs13 font-semibold px-2 py-0.5 rounded ${
                   item.isPositive
                     ? "bg-[#e8fadf] text-[#71dd37]"
                     : "bg-[#ffe2e3] text-[#ff3e1d]"

@@ -59,29 +59,30 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full relative">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs22 font-medium text-[#444050]">Sales Analytics</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">Sales Analytics</h3>
 
           <div className="relative w-20">
             <CustomDropdown
               options={availableYears.map((yr) => ({ label: yr, value: yr }))}
               value={activeYear}
               onChange={(val) => handleYearSelect(String(val))}
+              sizeVariant="sm"
               containerClassName="!w-20"
-              className="!h-7 !py-0.5 !px-2 !text-fs12 !font-medium !text-[#696cff] !border-[#696cff] hover:!bg-[#e7e7ff]/30 !rounded"
+              className="!h-7 !py-0.5 !px-2 !text-fs13 !font-medium !text-[#696cff] !border-[#696cff] hover:!bg-[#e7e7ff]/30 !rounded"
             />
           </div>
         </div>
 
         <div className="flex items-center gap-2 mt-2">
-          <span className="bg-[#e8fadf] text-[#71dd37] text-fs12 font-semibold px-2 py-0.5 rounded">
+          <span className="bg-[#e8fadf] text-[#71dd37] text-fs13 font-semibold px-2 py-0.5 rounded">
             {badge}
           </span>
-          <span className="text-fs12 text-[#a5a3ae]">Than Last year</span>
+          <span className="text-fs13 text-[#a5a3ae]">Than Last year</span>
         </div>
       </div>
 
       <div className="mt-4 flex">
-        <div className="flex flex-col justify-between text-fs12 text-[#a5a3ae] pr-2.5 py-0.5 select-none text-right w-6">
+        <div className="flex flex-col justify-between text-fs13 text-[#a5a3ae] pr-2.5 py-0.5 select-none text-right w-6">
           {yCategories.map((y) => (
             <span key={y} className="h-4 leading-4">
               {y}
@@ -112,7 +113,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
             ))}
           </div>
 
-          <div className="grid grid-cols-8 gap-1 text-center text-fs12 text-[#a5a3ae] mt-2 select-none">
+          <div className="grid grid-cols-8 gap-1 text-center text-fs13 text-[#a5a3ae] mt-2 select-none">
             {months.map((m) => (
               <span key={m}>{m}</span>
             ))}
@@ -121,7 +122,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
       </div>
 
       {hoveredCell && (
-        <div className="absolute bottom-12 right-6 bg-[#23272e] text-white text-fs12 py-1 px-2.5 rounded shadow pointer-events-none">
+        <div className="absolute bottom-12 right-6 bg-[#23272e] text-white text-fs13 py-1 px-2.5 rounded shadow pointer-events-none">
           {hoveredCell.month} ({hoveredCell.y}): Level {hoveredCell.value}
         </div>
       )}

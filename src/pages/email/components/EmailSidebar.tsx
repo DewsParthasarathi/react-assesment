@@ -175,7 +175,7 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
         <CustomButton
           variant="primary"
           onClick={onCompose}
-          className="w-full !h-10 text-fs14 font-semibold rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full !h-10 text-fs15 font-semibold rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-2 cursor-pointer"
         >
           <svg
             className="w-4 h-4"
@@ -199,14 +199,15 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
           {folders.map((item) => {
             const isActive = currentFolder === item.id && !selectedLabel;
             return (
-              <button
+              <CustomButton
                 key={item.id}
                 type="button"
+                variant="ghost"
                 onClick={() => {
                   onSelectLabel(null);
                   onSelectFolder(item.id);
                 }}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-[6px] text-fs14 transition cursor-pointer text-left ${
+                className={`w-full !justify-between !h-auto !px-3.5 !py-2.5 rounded-[6px] text-fs15 transition cursor-pointer text-left font-normal ${
                   isActive
                     ? "text-[#696cff] font-medium bg-[#e7e7ff]/40"
                     : "text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c]"
@@ -223,20 +224,19 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
 
                 {item.badgeCount !== undefined && item.badgeCount > 0 && (
                   <span
-                    className={`text-fs11 font-semibold px-2 py-0.5 rounded-full min-w-5 text-center leading-tight ${item.badgeColor}`}
+                    className={`text-fs12 font-semibold px-2 py-0.5 rounded-full min-w-5 text-center leading-tight ${item.badgeColor}`}
                   >
                     {item.badgeCount}
                   </span>
                 )}
-              </button>
+              </CustomButton>
             );
           })}
         </div>
 
-        {/* LABELS Section */}
         <div className="mt-7">
           <div className="px-3.5 pb-2">
-            <span className="text-fs11 font-medium tracking-wider text-[#a5a3ae] uppercase">
+            <span className="text-fs12 font-medium tracking-wider text-[#a5a3ae] uppercase">
               LABELS
             </span>
           </div>
@@ -245,11 +245,12 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
             {labels.map((item) => {
               const isSelected = selectedLabel === item.id;
               return (
-                <button
+                <CustomButton
                   key={item.id}
                   type="button"
+                  variant="ghost"
                   onClick={() => onSelectLabel(isSelected ? null : item.id)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2 rounded-[6px] text-fs14 transition cursor-pointer text-left ${
+                  className={`w-full !justify-between !h-auto !px-3.5 !py-2 rounded-[6px] text-fs15 transition cursor-pointer text-left font-normal ${
                     isSelected
                       ? "text-[#696cff] font-medium bg-[#e7e7ff]/40"
                       : "text-[#6f6b7d] hover:bg-[#f8f7fa] hover:text-[#32475c]"
@@ -263,24 +264,24 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
                   </div>
 
                   {isSelected && (
-                    <span className="text-fs11 font-bold text-[#696cff]">
+                    <span className="text-fs12 font-bold text-[#696cff]">
                       &times;
                     </span>
                   )}
-                </button>
+                </CustomButton>
               );
             })}
           </div>
         </div>
       </div>
 
-      {/* Empty Trash Button if currently in Trash */}
       {currentFolder === "trash" && onEmptyTrash && counts.trash > 0 && (
         <div className="p-4 pt-2 border-t border-[#dbdade]/40 shrink-0 bg-white">
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={onEmptyTrash}
-            className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-[6px] text-fs13 font-medium text-[#ea5455] hover:bg-[#ffe2e3]/40 transition cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 !py-2 !px-3 !h-auto rounded-[6px] text-fs14 font-medium text-[#ea5455] hover:bg-[#ffe2e3]/40 transition cursor-pointer"
           >
             <svg
               className="w-4 h-4"
@@ -296,7 +297,7 @@ export const EmailSidebar: React.FC<EmailSidebarProps> = ({
               />
             </svg>
             <span>Empty Trash</span>
-          </button>
+          </CustomButton>
         </div>
       )}
     </aside>

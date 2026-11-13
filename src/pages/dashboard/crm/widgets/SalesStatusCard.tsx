@@ -76,7 +76,7 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div className="flex items-center justify-between">
-        <h3 className="text-fs22 font-medium text-[#444050]">Sales Status</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">Sales Status</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}
@@ -112,12 +112,12 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
               />
             </svg>
           </div>
-          <span className="text-fs24 font-semibold text-[#444050] leading-none">{percentage}%</span>
-          <span className="text-fs13 text-[#a5a3ae] mt-1 leading-none">Sales</span>
+          <span className="text-fs25 font-semibold text-[#444050] leading-none">{percentage}%</span>
+          <span className="text-fs14 text-[#a5a3ae] mt-1 leading-none">Sales</span>
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-4 text-fs13 text-[#a5a3ae] pt-2">
+      <div className="flex items-center justify-center gap-4 text-fs14 text-[#a5a3ae] pt-2">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#696cff]" />
           <span>Conversion Ratio</span>

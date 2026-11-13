@@ -16,21 +16,19 @@ function mockApiPlugin(): Plugin {
   return {
     name: "mock-api-plugin",
     configureServer(server) {
-      // Unwatch data directory and dashboard.json to prevent Vite from reloading on API data mutations
-      server.watcher.unwatch(path.resolve(__dirname, "src/data/**"));
-      server.watcher.unwatch(path.resolve(__dirname, "src/data/dashboard.json"));
+      server.watcher.unwatch(path.resolve(__dirname, "db.json"));
 
       server.middlewares.use((req, res, next) => {
         if (!req.url?.startsWith("/api")) {
           return next();
         }
 
-        const dataFilePath = path.resolve(__dirname, "src/data/dashboard.json");
+        const dataFilePath = path.resolve(__dirname, "db.json");
         const getDashboardData = () => {
           try {
             return JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
           } catch (e) {
-            console.error("Error reading dashboard.json:", e);
+            console.error("Error reading db.json:", e);
             return null;
           }
         };
@@ -168,10 +166,8 @@ function mockApiPlugin(): Plugin {
         const saveDashboardData = (newData: unknown) => {
           try {
             fs.writeFileSync(dataFilePath, JSON.stringify(newData, null, 2), "utf-8");
-            const dbFilePath = path.resolve(__dirname, "db.json");
-            fs.writeFileSync(dbFilePath, JSON.stringify(newData, null, 2), "utf-8");
           } catch (e) {
-            console.error("Error saving dashboard.json:", e);
+            console.error("Error saving db.json:", e);
           }
         };
 
@@ -1113,8 +1109,7 @@ export default defineConfig({
     cors: true,
     watch: {
       ignored: [
-        "**/src/data/**",
-        "**/src/data/dashboard.json",
+        "**/db.json",
         "**/.env*",
       ],
     },

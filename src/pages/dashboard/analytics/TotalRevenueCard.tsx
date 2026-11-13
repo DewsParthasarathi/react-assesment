@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Highcharts from "highcharts";
+import type { RootState } from "../../../store";
 import { Chart } from "../../../components/ui/Chart";
+import { CustomButton } from "../../../components/ui/CustomButton";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
 import type { TotalRevenueData } from "../../../api/types";
 
@@ -22,6 +25,8 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState("2023");
+  const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
+  const isDark = themeMode === "dark";
 
   const activeData = data?.years?.[selectedYear] || data;
   const currentGrowth = activeData?.growthIndicator || (selectedYear === "2022" ? "64%" : growth);
@@ -54,18 +59,18 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
     legend: { enabled: false },
     tooltip: {
       shared: true,
-      backgroundColor: "#ffffff",
-      borderColor: "#dbdade",
+      backgroundColor: isDark ? "#2f3349" : "#ffffff",
+      borderColor: isDark ? "#434968" : "#dbdade",
       borderRadius: 6,
       shadow: true,
-      style: { fontSize: "12px", fontFamily: "Poppins" },
+      style: { color: isDark ? "#cfcde4" : "#32475c", fontSize: "12px", fontFamily: "Poppins" },
     },
     xAxis: {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
       lineWidth: 0,
       tickWidth: 0,
       labels: {
-        style: { color: "#a5a3ae", fontSize: "13px", fontFamily: "Poppins" },
+        style: { color: isDark ? "#b6bee3" : "#a5a3ae", fontSize: "13px", fontFamily: "Poppins" },
         y: 20,
       },
     },
@@ -75,16 +80,16 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
       tickInterval: 10,
       title: { text: undefined },
       gridLineDashStyle: "Dash",
-      gridLineColor: "#ebeef0",
+      gridLineColor: isDark ? "rgba(225, 222, 245, 0.08)" : "#ebeef0",
       labels: {
         x: -6,
-        style: { color: "#c3c2c9", fontSize: "13px", fontFamily: "Poppins" },
+        style: { color: isDark ? "#b6bee3" : "#c3c2c9", fontSize: "13px", fontFamily: "Poppins" },
       },
       plotLines: [
         {
           value: 0,
           width: 1,
-          color: "#ebeef0",
+          color: isDark ? "rgba(225, 222, 245, 0.12)" : "#ebeef0",
           dashStyle: "Dash",
           zIndex: 1,
         },
@@ -95,7 +100,7 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
         stacking: "normal",
         pointWidth: 16,
         borderWidth: 5,
-        borderColor: "#ffffff",
+        borderColor: isDark ? "#2f3349" : "#ffffff",
         borderRadius: { radius: 8, scope: "point" },
         groupPadding: 0,
         pointPadding: 0,
@@ -114,7 +119,7 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
   const numericGrowth = Number.isFinite(parsedGrowth)
     ? Math.min(100, Math.max(0, parsedGrowth))
     : 78;
-  const paleTicks = Math.round(totalTicks * (1 - numericGrowth / 100));
+  const activeTicks = Math.round((totalTicks * numericGrowth) / 100);
   const startAngle = 125;
   const endAngle = 365;
   const angleStep = (endAngle - startAngle) / (totalTicks - 1);
@@ -130,13 +135,12 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
   return (
     <div className="bg-white rounded-[6px] border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] overflow-hidden h-full flex flex-col justify-between">
       <div className="grid grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-[#dbdade]/50 h-full flex-1">
-        {/* Left Column: Total Revenue Bar Chart */}
-        <div className="col-span-12 md:col-span-7 p-5 flex flex-col justify-between">
+        <div className="col-span-12 md:col-span-7 p-4 flex flex-col justify-between">
           <div className="flex flex-col items-start gap-2.5 mb-2">
-            <h3 className="text-fs18 font-semibold text-[#444050]">
+            <h3 className="text-fs19 font-semibold text-[#444050]">
               Total Revenue
             </h3>
-            <div className="flex items-center gap-4 text-fs14 font-normal text-[#6f6b7d]">
+            <div className="flex items-center gap-4 text-fs15 font-normal text-[#6f6b7d]">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#696cff]" />
                 {legendItems[0]}
@@ -149,12 +153,11 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
           </div>
 
           <div className="w-full my-auto">
-            <Chart key={selectedYear} options={revenueChartOptions} />
+            <Chart key={`${selectedYear}-${themeMode}`} options={revenueChartOptions} />
           </div>
         </div>
 
-        {/* Right Column: Semicircular Radial Segmented Growth Gauge */}
-        <div className="col-span-12 md:col-span-5 p-5 flex flex-col justify-between items-center text-center">
+        <div className="col-span-12 md:col-span-5 p-4 flex flex-col justify-between items-center text-center">
           <div className="w-full flex justify-center relative">
             <YearSelectionPopup
               selectedYear={selectedYear}
@@ -162,9 +165,10 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
               availableYears={availableYears}
               popupClassName="left-1/2 -translate-x-1/2 right-auto"
             >
-              <button
+              <CustomButton
                 type="button"
-                className="border border-[#dbdade] hover:border-[#696cff] text-[#696cff] px-2.5 py-1 rounded-[5px] text-fs12 font-medium flex items-center gap-1.5 transition cursor-pointer"
+                variant="outline"
+                className="!border-[#dbdade] hover:!border-[#696cff] !text-[#696cff] !px-2.5 !py-1 !h-auto rounded-[5px] text-fs13 font-medium flex items-center gap-1.5 transition cursor-pointer"
               >
                 <span>{selectedYear}</span>
                 <svg
@@ -180,22 +184,21 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </button>
+              </CustomButton>
             </YearSelectionPopup>
           </div>
 
-          {/* Segmented Semicircular Radial Gauge */}
           <div className="relative my-1 w-[190px] h-[190px] flex items-center justify-center">
             <svg className="w-full h-full" viewBox="0 0 200 200">
               {Array.from({ length: totalTicks }).map((_, idx) => {
                 const angle = startAngle + idx * angleStep;
-                // A segment drawn at the 12 o'clock position (270deg) needs no rotation
                 const rotation = angle - 270;
-                const isPale = idx < paleTicks;
-                // Fade the pale segments out towards the start of the arc
-                const opacity = isPale
-                  ? 0.15 + (idx / Math.max(paleTicks, 1)) * 0.35
-                  : 1;
+                const isActive = idx < activeTicks;
+                const tickColor = isActive
+                  ? "#696cff"
+                  : isDark
+                    ? "rgba(225, 222, 245, 0.12)"
+                    : "#ebeef0";
 
                 return (
                   <rect
@@ -205,31 +208,27 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
                     width={segmentWidth}
                     height={segmentHeight}
                     rx={1}
-                    fill="#696cff"
-                    opacity={Number.isFinite(opacity) ? opacity : 1}
+                    fill={tickColor}
                     transform={`rotate(${Number.isFinite(rotation) ? rotation : 0} ${gaugeCenter} ${gaugeCenter})`}
                   />
                 );
               })}
             </svg>
 
-            {/* Inner Center Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-fs24 font-semibold text-[#444050] leading-none">
+              <span className="text-fs25 font-semibold text-[#444050] leading-none">
                 {currentGrowth}
               </span>
-              <span className="text-fs13 text-[#a5a3ae] mt-1 font-normal">
+              <span className="text-fs14 text-[#a5a3ae] mt-1 font-normal">
                 Growth
               </span>
             </div>
           </div>
 
-          {/* Company Growth Text */}
-          <p className="text-fs14 font-medium text-[#6f6b7d] mb-4">
+          <p className="text-fs15 font-medium text-[#6f6b7d] mb-4">
             {formattedCompanyGrowth}
           </p>
 
-          {/* Comparison Metrics */}
           <div className="w-full flex items-center justify-center gap-6 pt-2">
             {comparisonItems.map((item, idx) => (
               <div key={item.year} className="flex items-center gap-3">
@@ -244,10 +243,10 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
                   </svg>
                 </div>
                 <div className="text-left">
-                  <span className="block text-fs13 font-normal text-[#a5a3ae] leading-tight">
+                  <span className="block text-fs14 font-normal text-[#a5a3ae] leading-tight">
                     {item.year}
                   </span>
-                  <span className="block text-fs16 font-semibold text-[#444050] leading-tight mt-0.5">
+                  <span className="block text-fs17 font-semibold text-[#444050] leading-tight mt-0.5">
                     {item.amount}
                   </span>
                 </div>

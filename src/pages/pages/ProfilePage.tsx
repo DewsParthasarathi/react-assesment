@@ -478,7 +478,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
           <div className="flex items-center gap-2.5">
             {renderProjectIcon(proj)}
             <div className="min-w-0">
-              <span className="block font-medium text-fs13 text-[#5d596c] hover:text-[#7367F0] cursor-pointer transition truncate">
+              <span className="block font-medium text-fs14 text-[#5d596c] hover:text-[#7367F0] cursor-pointer transition truncate">
                 {proj.name}
               </span>
               <span className="block text-[11px] text-[#a5a3ae] mt-0.5">
@@ -495,7 +495,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
           "py-2.5 px-3 border-r border-[#dbdade]/60 text-[11px] font-semibold text-[#5d596c] uppercase tracking-wider",
         className: "px-3 py-3",
         render: (proj) => (
-          <span className="text-fs13 text-[#a5a3ae] font-normal">
+          <span className="text-fs14 text-[#a5a3ae] font-normal">
             {proj.leader}
           </span>
         ),
@@ -554,35 +554,38 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             align="right"
             wrapperClassName="relative inline-flex items-center justify-end"
             trigger={
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={() =>
                   setOpenDropdownId(openDropdownId === proj.id ? null : proj.id)
                 }
-                className="p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
+                className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
                 title="More actions"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                 </svg>
-              </button>
+              </CustomButton>
             }
           >
             <div className="w-36 bg-white rounded-md shadow-lg border border-[#dbdade]/70 py-1 text-left">
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={() => setOpenDropdownId(null)}
-                className="w-full px-4 py-2 text-fs13 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer"
+                className="w-full justify-start !h-auto !px-4 !py-2 text-fs14 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer rounded-none font-normal"
               >
                 View Details
-              </button>
-              <button
+              </CustomButton>
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={() => setOpenDropdownId(null)}
-                className="w-full px-4 py-2 text-fs13 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer"
+                className="w-full justify-start !h-auto !px-4 !py-2 text-fs14 text-[#5d596c] hover:bg-[#f5f5f9] transition text-left cursor-pointer rounded-none font-normal"
               >
                 Edit Project
-              </button>
+              </CustomButton>
             </div>
           </AnchoredPortal>
         ),
@@ -934,9 +937,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
 
   return (
     <div className="w-full flex-1 flex flex-col min-w-0 space-y-6">
-      {/* 1. PROFILE HEADER CARD */}
       <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 overflow-hidden">
-        {/* Banner with profile-bg image */}
         <div className="profile-bg-container  sm:h-60 relative overflow-hidden">
           <CustomImage
             src={profileBg}
@@ -947,10 +948,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
           />
         </div>
 
-        {/* Profile Info Bar */}
         <div className="px-6 sm:px-8 pb-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-end gap-5 -mt-14 sm:-mt-16">
-            {/* Avatar overlapping banner */}
             <div className="w-28 h-28 rounded-lg border-4 border-white shadow-md overflow-hidden bg-white shrink-0 z-10">
               <CustomImage
                 src={getMemberAvatar(user.avatar)}
@@ -961,13 +960,11 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               />
             </div>
 
-            {/* Name and Basic Meta */}
             <div className="space-y-1 pt-1 sm:pt-0 sm:pb-1">
               <h1 className="text-[22px] font-bold text-[#5d596c] leading-tight">
                 {user.name}
               </h1>
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-fs14 text-[#6f6b7d]">
-                {/* Designation */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-fs15 text-[#6f6b7d]">
                 <div className="flex items-center gap-1.5">
                   <svg
                     className="w-4 h-4 text-[#a5a3ae]"
@@ -985,7 +982,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   <span>{user.designation}</span>
                 </div>
 
-                {/* Location */}
                 <div className="flex items-center gap-1.5">
                   <svg
                     className="w-4 h-4 text-[#a5a3ae]"
@@ -1009,7 +1005,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   <span>{user.location}</span>
                 </div>
 
-                {/* Joined Date */}
                 <div className="flex items-center gap-1.5">
                   <svg
                     className="w-4 h-4 text-[#a5a3ae]"
@@ -1030,7 +1025,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             </div>
           </div>
 
-          {/* Connected Button */}
           <div className="self-end sm:self-auto sm:pb-1">
             <CustomButton
               type="button"
@@ -1064,14 +1058,14 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
       </div>
 
-      {/* 2. NAVIGATION TABS BAR */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1">
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={() => handleTabChange("profile")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
+          className={`flex items-center gap-2 !px-4 !py-2 !h-auto rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
             activeTab === "profile"
-              ? "bg-[#7367F0] text-white shadow-sm"
+              ? "!bg-[#7367F0] !text-white shadow-sm"
               : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c] bg-transparent"
           }`}
         >
@@ -1089,14 +1083,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             />
           </svg>
           <span>PROFILE</span>
-        </button>
+        </CustomButton>
 
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={() => handleTabChange("teams")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
+          className={`flex items-center gap-2 !px-4 !py-2 !h-auto rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
             activeTab === "teams"
-              ? "bg-[#7367F0] text-white shadow-sm"
+              ? "!bg-[#7367F0] !text-white shadow-sm"
               : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c] bg-transparent"
           }`}
         >
@@ -1114,14 +1109,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             />
           </svg>
           <span>TEAMS</span>
-        </button>
+        </CustomButton>
 
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={() => handleTabChange("projects")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
+          className={`flex items-center gap-2 !px-4 !py-2 !h-auto rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
             activeTab === "projects"
-              ? "bg-[#7367F0] text-white shadow-sm"
+              ? "!bg-[#7367F0] !text-white shadow-sm"
               : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c] bg-transparent"
           }`}
         >
@@ -1139,14 +1135,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             />
           </svg>
           <span>PROJECTS</span>
-        </button>
+        </CustomButton>
 
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={() => handleTabChange("connections")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
+          className={`flex items-center gap-2 !px-4 !py-2 !h-auto rounded-md font-medium text-xs tracking-wider uppercase transition cursor-pointer select-none ${
             activeTab === "connections"
-              ? "bg-[#7367F0] text-white shadow-sm"
+              ? "!bg-[#7367F0] !text-white shadow-sm"
               : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c] bg-transparent"
           }`}
         >
@@ -1164,23 +1161,23 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             />
           </svg>
           <span>CONNECTIONS</span>
-        </button>
+        </CustomButton>
       </div>
 
-      {/* 3. TAB CONTENT */}
+      
 
-      {/* 3.1 PROFILE TAB CONTENT (TWO ROWS + PROJECTS UNDER CONNECTIONS & TEAMS) */}
+      
       {activeTab === "profile" && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* ROW 1 - LEFT: About Card */}
+          
           <div className="lg:col-span-4 flex flex-col">
             <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 space-y-5 h-full flex flex-col justify-between">
-              {/* About Section */}
+              
               <div>
                 <h3 className="text-xs font-semibold text-[#a5a3ae] uppercase tracking-wider mb-3">
                   ABOUT
                 </h3>
-                <ul className="space-y-3 text-fs14">
+                <ul className="space-y-3 text-fs15">
                   <li className="flex items-center gap-2.5">
                     <svg
                       className="w-4 h-4 text-[#6f6b7d] shrink-0"
@@ -1283,12 +1280,12 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </ul>
               </div>
 
-              {/* Contact Section */}
+              
               <div className="pt-2 border-t border-[#dbdade]/50">
                 <h3 className="text-xs font-semibold text-[#a5a3ae] uppercase tracking-wider mb-3">
                   CONTACT
                 </h3>
-                <ul className="space-y-3 text-fs14">
+                <ul className="space-y-3 text-fs15">
                   <li className="flex items-center gap-2.5">
                     <svg
                       className="w-4 h-4 text-[#6f6b7d] shrink-0"
@@ -1351,12 +1348,12 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </ul>
               </div>
 
-              {/* Teams Section in Sidebar */}
+              
               <div className="pt-2 border-t border-[#dbdade]/50">
                 <h3 className="text-xs font-semibold text-[#a5a3ae] uppercase tracking-wider mb-3">
                   TEAMS
                 </h3>
-                <ul className="space-y-3 text-fs14">
+                <ul className="space-y-3 text-fs15">
                   {(user.sidebarTeams || []).map((t, idx) => (
                     <li key={idx} className="flex items-center gap-2.5">
                       <div className="w-5 h-5 rounded-full bg-[#f5f5f9] flex items-center justify-center shrink-0 text-[#7367F0]">
@@ -1387,16 +1384,17 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             </div>
           </div>
 
-          {/* ROW 1 - RIGHT: Activity Timeline Card */}
+          
           <div className="lg:col-span-8 flex flex-col">
             <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 md:p-6 h-full flex flex-col">
               <div className="flex items-center justify-between mb-5">
-                <h3 className="text-fs16 font-semibold text-[#5d596c]">
+                <h3 className="text-fs17 font-semibold text-[#5d596c]">
                   Activity Timeline
                 </h3>
-                <button
+                <CustomButton
+                  variant="ghost"
                   type="button"
-                  className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
+                  className="!h-auto !p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
                 >
                   <svg
                     className="w-5 h-5"
@@ -1405,25 +1403,25 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   >
                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                   </svg>
-                </button>
+                </CustomButton>
               </div>
 
-              {/* Timeline Items */}
+              
               <div className="relative">
-                {/* Timeline Event 1 */}
+                
                 <div className="relative pl-7 pb-6">
                   <span className="absolute left-1.5 top-3 bottom-0 w-[2px] bg-[#dbdade]/70 -translate-x-1/2" />
                   <span className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[#ffab00] border-2 border-white shadow-xs -translate-x-1/2 z-10" />
                   <div className="flex items-center justify-between gap-2">
-                    <h4 className="text-fs14 font-semibold text-[#5d596c]">
+                    <h4 className="text-fs15 font-semibold text-[#5d596c]">
                       Client Meeting
                     </h4>
-                    <span className="text-fs12 text-[#a5a3ae]">Today</span>
+                    <span className="text-fs13 text-[#a5a3ae]">Today</span>
                   </div>
-                  <p className="text-fs13 text-[#6f6b7d] mt-1">
+                  <p className="text-fs14 text-[#6f6b7d] mt-1">
                     Project meeting with John @10:15 am
                   </p>
-                  {/* Embedded Client Card */}
+                  
                   <div className="mt-3 p-3 bg-[#fafafb] rounded-lg border border-[#dbdade]/50 flex items-center gap-3 w-full sm:w-auto">
                     <CustomImage
                       src={getMemberAvatar("member2")}
@@ -1433,47 +1431,47 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                       containerClassName="w-10 h-10 shrink-0"
                     />
                     <div>
-                      <span className="block text-fs14 font-semibold text-[#5d596c]">
+                      <span className="block text-fs15 font-semibold text-[#5d596c]">
                         Lester McCarthy (Client)
                       </span>
-                      <span className="block text-fs12 text-[#a5a3ae]">
+                      <span className="block text-fs13 text-[#a5a3ae]">
                         CEO of Infibeam
                       </span>
                     </div>
                   </div>
                 </div>
 
-                {/* Timeline Event 2 */}
+                
                 <div className="relative pl-7 pb-6">
                   <span className="absolute left-1.5 top-0 bottom-0 w-[2px] bg-[#dbdade]/70 -translate-x-1/2" />
                   <span className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[#00cfe8] border-2 border-white shadow-xs -translate-x-1/2 z-10" />
                   <div className="flex items-center justify-between gap-2">
-                    <h4 className="text-fs14 font-semibold text-[#5d596c]">
+                    <h4 className="text-fs15 font-semibold text-[#5d596c]">
                       Create a new Project for client
                     </h4>
-                    <span className="text-fs12 text-[#a5a3ae]">2 Days Ago</span>
+                    <span className="text-fs13 text-[#a5a3ae]">2 Days Ago</span>
                   </div>
-                  <p className="text-fs13 text-[#6f6b7d] mt-1">
+                  <p className="text-fs14 text-[#6f6b7d] mt-1">
                     Add files to new design folder
                   </p>
                 </div>
 
-                {/* Timeline Event 3 */}
+                
                 <div className="relative pl-7 pb-6">
                   <span className="absolute left-1.5 top-0 bottom-0 w-[2px] bg-[#dbdade]/70 -translate-x-1/2" />
                   <span className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[#7367F0] border-2 border-white shadow-xs -translate-x-1/2 z-10" />
                   <div className="flex items-center justify-between gap-2">
-                    <h4 className="text-fs14 font-semibold text-[#5d596c]">
+                    <h4 className="text-fs15 font-semibold text-[#5d596c]">
                       Shared 2 New Project files
                     </h4>
-                    <span className="text-fs12 text-[#a5a3ae]">6 days ago</span>
+                    <span className="text-fs13 text-[#a5a3ae]">6 days ago</span>
                   </div>
-                  <p className="text-fs13 text-[#6f6b7d] mt-1">
+                  <p className="text-fs14 text-[#6f6b7d] mt-1">
                     Sent by Malic Dixon 👏
                   </p>
-                  {/* File Attachments */}
+                  
                   <div className="flex flex-wrap items-center gap-3 mt-3">
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#fafafb] border border-[#dbdade]/60 text-fs13 text-[#5d596c]">
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#fafafb] border border-[#dbdade]/60 text-fs14 text-[#5d596c]">
                       <svg
                         className="w-4 h-4 text-[#ea5455]"
                         fill="currentColor"
@@ -1487,7 +1485,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                       </svg>
                       <span className="font-medium">App Guidelines</span>
                     </div>
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#fafafb] border border-[#dbdade]/60 text-fs13 text-[#5d596c]">
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#fafafb] border border-[#dbdade]/60 text-fs14 text-[#5d596c]">
                       <svg
                         className="w-4 h-4 text-[#28c76f]"
                         fill="currentColor"
@@ -1504,19 +1502,19 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   </div>
                 </div>
 
-                {/* Timeline Event 4 */}
+                
                 <div className="relative pl-7">
                   <span className="absolute left-1.5 top-0 h-3 w-[2px] bg-[#dbdade]/70 -translate-x-1/2" />
                   <span className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[#28c76f] border-2 border-white shadow-xs -translate-x-1/2 z-10" />
                   <div className="flex items-center justify-between gap-2">
-                    <h4 className="text-fs14 font-semibold text-[#5d596c]">
+                    <h4 className="text-fs15 font-semibold text-[#5d596c]">
                       Project status updated
                     </h4>
-                    <span className="text-fs12 text-[#a5a3ae]">
+                    <span className="text-fs13 text-[#a5a3ae]">
                       10 days ago
                     </span>
                   </div>
-                  <p className="text-fs13 text-[#6f6b7d] mt-1">
+                  <p className="text-fs14 text-[#6f6b7d] mt-1">
                     woocommerce iOS App Completed
                   </p>
                 </div>
@@ -1524,13 +1522,13 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             </div>
           </div>
 
-          {/* ROW 2 - LEFT: Overview / Stats Card */}
+          
           <div className="lg:col-span-4 flex flex-col">
             <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 space-y-4">
               <h3 className="text-xs font-semibold text-[#a5a3ae] uppercase tracking-wider">
                 OVERVIEW
               </h3>
-              <ul className="space-y-3.5 text-fs14">
+              <ul className="space-y-3.5 text-fs15">
                 <li className="flex items-center gap-3">
                   <div className="w-7 h-7 rounded-md bg-[#e8fadf] text-[#28c76f] flex items-center justify-center shrink-0">
                     <svg
@@ -1606,19 +1604,20 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             </div>
           </div>
 
-          {/* ROW 2 - RIGHT: Connections Card & Teams Card */}
+          
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full items-stretch">
-              {/* Connections Card */}
+              
               <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-fs16 font-semibold text-[#5d596c]">
+                    <h3 className="text-fs17 font-semibold text-[#5d596c]">
                       Connections
                     </h3>
-                    <button
+                    <CustomButton
+                      variant="ghost"
                       type="button"
-                      className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
+                      className="!h-auto !p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
                     >
                       <svg
                         className="w-5 h-5"
@@ -1627,7 +1626,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                       >
                         <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                       </svg>
-                    </button>
+                    </CustomButton>
                   </div>
 
                   <div className="space-y-4">
@@ -1645,22 +1644,23 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                             containerClassName="w-10 h-10 shrink-0"
                           />
                           <div className="min-w-0">
-                            <span className="block font-semibold text-fs14 text-[#5d596c] truncate">
+                            <span className="block font-semibold text-fs15 text-[#5d596c] truncate">
                               {conn.name}
                             </span>
-                            <span className="block text-fs12 text-[#a5a3ae]">
+                            <span className="block text-fs13 text-[#a5a3ae]">
                               {conn.connectionsCount}
                             </span>
                           </div>
                         </div>
 
-                        <button
+                        <CustomButton
+                          variant="ghost"
                           type="button"
                           onClick={() => handleToggleConnection(conn.id)}
-                          className={`w-9 h-9 rounded-md flex items-center justify-center transition cursor-pointer shrink-0 ${
+                          className={`!w-9 !h-9 !p-0 rounded-md flex items-center justify-center transition cursor-pointer shrink-0 ${
                             conn.isConnected
-                              ? "bg-[#7367F0] text-white hover:bg-[#685dd8]"
-                              : "border border-[#dbdade] text-[#a5a3ae] hover:text-[#7367F0] hover:border-[#7367F0] bg-transparent"
+                              ? "!bg-[#7367F0] text-white hover:!bg-[#685dd8]"
+                              : "border border-[#dbdade] text-[#a5a3ae] hover:text-[#7367F0] hover:border-[#7367F0] !bg-transparent"
                           }`}
                           title={conn.isConnected ? "Connected" : "Connect"}
                         >
@@ -1677,33 +1677,35 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                               d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
                             />
                           </svg>
-                        </button>
+                        </CustomButton>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div className="pt-4 text-center border-t border-[#dbdade]/50 mt-4">
-                  <button
+                  <CustomButton
+                    variant="ghost"
                     type="button"
                     onClick={() => handleTabChange("connections")}
-                    className="text-fs14 font-medium text-[#7367F0] hover:underline cursor-pointer"
+                    className="!h-auto !p-0 text-fs15 font-medium text-[#7367F0] hover:underline cursor-pointer"
                   >
                     View all connections
-                  </button>
+                  </CustomButton>
                 </div>
               </div>
 
-              {/* Teams Card */}
+              
               <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-fs16 font-semibold text-[#5d596c]">
+                    <h3 className="text-fs17 font-semibold text-[#5d596c]">
                       Teams
                     </h3>
-                    <button
+                    <CustomButton
+                      variant="ghost"
                       type="button"
-                      className="text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer p-1"
+                      className="!h-auto !p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
                     >
                       <svg
                         className="w-5 h-5"
@@ -1712,7 +1714,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                       >
                         <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                       </svg>
-                    </button>
+                    </CustomButton>
                   </div>
 
                   <div className="space-y-4">
@@ -1738,17 +1740,17 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                               {t.name.slice(0, 2).toUpperCase()}
                             </div>
                             <div className="min-w-0">
-                              <span className="block font-semibold text-fs14 text-[#5d596c] truncate">
+                              <span className="block font-semibold text-fs15 text-[#5d596c] truncate">
                                 {t.name}
                               </span>
-                              <span className="block text-fs12 text-[#a5a3ae]">
+                              <span className="block text-fs13 text-[#a5a3ae]">
                                 {t.membersCount} Members
                               </span>
                             </div>
                           </div>
 
                           <span
-                            className={`px-2 py-0.5 rounded text-fs11 font-bold tracking-wider uppercase shrink-0 ${badgeClass}`}
+                            className={`px-2 py-0.5 rounded text-fs12 font-bold tracking-wider uppercase shrink-0 ${badgeClass}`}
                           >
                             {t.badge}
                           </span>
@@ -1759,23 +1761,24 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </div>
 
                 <div className="pt-4 text-center border-t border-[#dbdade]/50 mt-4">
-                  <button
+                  <CustomButton
+                    variant="ghost"
                     type="button"
                     onClick={() => handleTabChange("teams")}
-                    className="text-fs14 font-medium text-[#7367F0] hover:underline cursor-pointer"
+                    className="!h-auto !p-0 text-fs15 font-medium text-[#7367F0] hover:underline cursor-pointer"
                   >
                     View all teams
-                  </button>
+                  </CustomButton>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* ROW 3: Projects Table Card (positioned under Connections & Teams in cols 5-12) */}
+          
           <div className="col-span-1 lg:col-start-5 lg:col-span-8">
             <div className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 overflow-hidden">
               <div className="p-4 md:p-6 pb-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-                <h3 className="text-fs16 font-semibold text-[#5d596c]">
+                <h3 className="text-fs17 font-semibold text-[#5d596c]">
                   Projects
                 </h3>
 
@@ -1786,7 +1789,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     value={projectSearch}
                     onChange={(e) => setProjectSearch(e.target.value)}
                     sizeVariant="sm"
-                    className="!h-[38px] text-fs14 placeholder:text-[#a5a3ae]"
+                    className="!h-[38px] text-fs15 placeholder:text-[#a5a3ae]"
                   />
                 </div>
               </div>
@@ -1807,7 +1810,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
       )}
 
-      {/* 3.2 TEAMS TAB CONTENT (FULL GRID VIEW) */}
+      
       {activeTab === "teams" && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {(user.teams || []).map((t) => (
@@ -1815,19 +1818,20 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               key={t.id}
               className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 flex flex-col justify-between space-y-3.5 hover:shadow-md transition"
             >
-              {/* Header: Icon + Title on left, Star + 3-dots on right */}
+              
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2.5 min-w-0">
                   {renderTeamIcon(t)}
-                  <h4 className="text-fs15 font-semibold text-[#5d596c] truncate">
+                  <h4 className="text-fs16 font-semibold text-[#5d596c] truncate">
                     {t.name}
                   </h4>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
-                  <button
+                  <CustomButton
+                    variant="ghost"
                     type="button"
                     onClick={() => handleToggleStarTeam(t.id)}
-                    className="p-1 text-[#a5a3ae] hover:text-[#ffab00] transition cursor-pointer"
+                    className="!h-auto !p-1 text-[#a5a3ae] hover:text-[#ffab00] transition cursor-pointer"
                     title="Star team"
                   >
                     <svg
@@ -1847,10 +1851,11 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                         d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                       />
                     </svg>
-                  </button>
-                  <button
+                  </CustomButton>
+                  <CustomButton
+                    variant="ghost"
                     type="button"
-                    className="p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
+                    className="!h-auto !p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer"
                     title="More options"
                   >
                     <svg
@@ -1860,16 +1865,16 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     >
                       <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                     </svg>
-                  </button>
+                  </CustomButton>
                 </div>
               </div>
 
-              {/* Description */}
-              <p className="text-fs13 text-[#6f6b7d] leading-relaxed line-clamp-2">
+              
+              <p className="text-fs14 text-[#6f6b7d] leading-relaxed line-clamp-2">
                 {t.description}
               </p>
 
-              {/* Footer: Avatars + Extra count on left, Badges on right */}
+              
               <div className="flex items-center justify-between gap-2 pt-1">
                 <div className="flex items-center">
                   <div className="flex items-center -space-x-1.5">
@@ -1887,13 +1892,13 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     )}
                   </div>
                   {(t.extraMembers || t.membersCount) && (
-                    <span className="text-fs12 text-[#a5a3ae] font-medium ml-1.5">
+                    <span className="text-fs13 text-[#a5a3ae] font-medium ml-1.5">
                       +{t.extraMembers || t.membersCount}
                     </span>
                   )}
                 </div>
 
-                {/* Badges / Chips */}
+                
                 <div className="flex items-center gap-1.5 flex-wrap justify-end">
                   {(
                     t.badges || [
@@ -1914,7 +1919,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
       )}
 
-      {/* 3.3 PROJECTS TAB CONTENT (FULL GRID VIEW MATCHING ATTACHED SCREENSHOT) */}
+      
       {activeTab === "projects" && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {(user.projects || []).map((proj) => (
@@ -1922,15 +1927,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               key={proj.id}
               className="bg-white rounded-lg shadow-sm border border-[#dbdade]/60 p-5 flex flex-col justify-between space-y-4 hover:shadow-md transition"
             >
-              {/* 1. Header: Icon + Title + Client on left, 3-dots on right */}
+              
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-3 min-w-0">
                   {renderProjectCardIcon(proj)}
                   <div className="min-w-0">
-                    <h4 className="text-fs15 font-semibold text-[#5d596c] hover:text-[#7367F0] transition cursor-pointer truncate">
+                    <h4 className="text-fs16 font-semibold text-[#5d596c] hover:text-[#7367F0] transition cursor-pointer truncate">
                       {proj.name}
                     </h4>
-                    <p className="text-fs12 text-[#a5a3ae] truncate">
+                    <p className="text-fs13 text-[#a5a3ae] truncate">
                       <span className="font-normal text-[#6f6b7d]">
                         Client:
                       </span>{" "}
@@ -1938,9 +1943,10 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     </p>
                   </div>
                 </div>
-                <button
+                <CustomButton
+                  variant="ghost"
                   type="button"
-                  className="p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer shrink-0"
+                  className="!h-auto !p-1 text-[#a5a3ae] hover:text-[#5d596c] transition cursor-pointer shrink-0"
                   title="More options"
                 >
                   <svg
@@ -1950,14 +1956,14 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   >
                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                   </svg>
-                </button>
+                </CustomButton>
               </div>
 
-              {/* 2. Budget & Dates Box */}
-              <div className="flex items-center justify-between gap-3 text-fs12">
-                {/* Left: Total Budget Pill */}
+              
+              <div className="flex items-center justify-between gap-3 text-fs13">
+                
                 <div className="bg-[#f8f7fa] px-3 py-1.5 rounded-md min-w-[120px]">
-                  <div className="font-semibold text-fs13 text-[#5d596c]">
+                  <div className="font-semibold text-fs14 text-[#5d596c]">
                     {proj.totalBudget || "$24.8k/$18.2k"}
                   </div>
                   <div className="text-[10px] font-semibold text-[#a5a3ae] uppercase tracking-wider">
@@ -1965,7 +1971,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   </div>
                 </div>
 
-                {/* Right: Start Date & Deadline */}
+                
                 <div className="space-y-0.5 text-right sm:text-left">
                   <div>
                     <span className="text-[#a5a3ae]">Start Date: </span>
@@ -1982,16 +1988,16 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </div>
               </div>
 
-              {/* 3. Description */}
-              <p className="text-fs13 text-[#6f6b7d] leading-relaxed line-clamp-2">
+              
+              <p className="text-fs14 text-[#6f6b7d] leading-relaxed line-clamp-2">
                 {proj.description ||
                   "we are Consulting,software Development and Web Development Services."}
               </p>
 
-              {/* 4. Stats & Progress */}
+              
               <div className="pt-2 border-t border-[#dbdade]/50 space-y-2">
-                {/* All Hours & Days Left Badge */}
-                <div className="flex items-center justify-between text-fs12">
+                
+                <div className="flex items-center justify-between text-fs13">
                   <span className="text-[#6f6b7d]">
                     <span className="font-semibold text-[#5d596c]">
                       All Hours:
@@ -2007,15 +2013,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   </span>
                 </div>
 
-                {/* Task Count & Percentage Completed */}
-                <div className="flex items-center justify-between text-fs12 text-[#a5a3ae]">
+                
+                <div className="flex items-center justify-between text-fs13 text-[#a5a3ae]">
                   <span>Task: {proj.taskCount || "328/344"}</span>
                   <span className="font-medium text-[#5d596c]">
                     {proj.completedPercentage ?? proj.progress}% Completed
                   </span>
                 </div>
 
-                {/* Progress Bar */}
+                
                 <div className="w-full bg-[#ecebfd] rounded-full h-1.5 overflow-hidden">
                   <div
                     className="bg-[#7367F0] h-full rounded-full transition-all duration-300"
@@ -2026,7 +2032,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 </div>
               </div>
 
-              {/* 5. Footer: Avatars + Members count on left, Chat comments on right */}
+              
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center">
                   <div className="flex items-center -space-x-1.5">
@@ -2043,13 +2049,13 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                       />
                     ))}
                   </div>
-                  <span className="text-fs12 text-[#a5a3ae] ml-2">
+                  <span className="text-fs13 text-[#a5a3ae] ml-2">
                     {proj.membersCountLabel || "280 members"}
                   </span>
                 </div>
 
-                {/* Comments Icon + Count */}
-                <div className="flex items-center gap-1.5 text-fs12 text-[#a5a3ae]">
+                
+                <div className="flex items-center gap-1.5 text-fs13 text-[#a5a3ae]">
                   <svg
                     className="w-4 h-4 text-[#a5a3ae]"
                     fill="none"
@@ -2071,7 +2077,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
       )}
 
-      {/* 3.4 CONNECTIONS TAB CONTENT (FULL GRID VIEW) */}
+      
       {activeTab === "connections" && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {(user.connections || []).map((conn) => (
@@ -2087,15 +2093,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 containerClassName="w-20 h-20 shrink-0"
               />
               <div className="min-w-0">
-                <h4 className="font-bold text-fs15 text-[#5d596c] truncate">
+                <h4 className="font-bold text-fs16 text-[#5d596c] truncate">
                   {conn.name}
                 </h4>
-                <p className="text-fs13 text-[#a5a3ae]">
+                <p className="text-fs14 text-[#a5a3ae]">
                   {conn.department || "Design & Tech"}
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 text-fs13 text-[#6f6b7d] py-1">
+              <div className="flex items-center gap-4 text-fs14 text-[#6f6b7d] py-1">
                 <div>
                   <span className="font-bold text-[#5d596c]">
                     {conn.projectsCount || 18}

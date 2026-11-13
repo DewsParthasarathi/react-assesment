@@ -64,15 +64,16 @@ const EmailComposeForm: React.FC<{
     <div className="fixed inset-0 sm:inset-auto sm:right-8 sm:bottom-6 z-50 flex items-end sm:items-auto justify-center select-none pointer-events-auto">
       <div className="w-full sm:w-[540px] md:w-[600px] bg-white rounded-t-lg sm:rounded-lg shadow-[0_8px_32px_rgba(47,43,61,0.2)] border border-[#dbdade]/80 flex flex-col overflow-hidden max-h-[90vh]">
         <div className="bg-[#696cff] text-white px-5 py-3 flex items-center justify-between">
-          <span className="text-fs14 font-semibold tracking-wide">
+          <span className="text-fs15 font-semibold tracking-wide">
             {initialData ? "Continue Draft" : "Compose Mail"}
           </span>
           <div className="flex items-center gap-1">
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={handleSaveDraft}
               title="Save as Draft"
-              className="text-white/80 hover:text-white p-1 rounded transition cursor-pointer"
+              className="!p-1 !h-auto text-white/80 hover:text-white rounded transition cursor-pointer"
             >
               <svg
                 className="w-4 h-4"
@@ -87,12 +88,13 @@ const EmailComposeForm: React.FC<{
                   d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
                 />
               </svg>
-            </button>
-            <button
+            </CustomButton>
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={onClose}
               title="Close"
-              className="text-white/80 hover:text-white p-1 rounded transition cursor-pointer"
+              className="!p-1 !h-auto text-white/80 hover:text-white rounded transition cursor-pointer"
             >
               <svg
                 className="w-4 h-4"
@@ -107,20 +109,21 @@ const EmailComposeForm: React.FC<{
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-            </button>
+            </CustomButton>
           </div>
         </div>
 
         {error && (
-          <div className="bg-[#ffe2e3] text-[#ea5455] text-fs12 px-4 py-1.5 border-b border-[#ea5455]/20 flex items-center justify-between">
+          <div className="bg-[#ffe2e3] text-[#ea5455] text-fs13 px-4 py-1.5 border-b border-[#ea5455]/20 flex items-center justify-between">
             <span>{error}</span>
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={() => setError(null)}
-              className="font-bold cursor-pointer"
+              className="!p-0 !h-auto font-bold cursor-pointer text-[#ea5455]"
             >
               &times;
-            </button>
+            </CustomButton>
           </div>
         )}
 
@@ -128,7 +131,7 @@ const EmailComposeForm: React.FC<{
           <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50">
             <label
               htmlFor="email-to"
-              className="text-fs13 font-medium text-[#a5a3ae] w-14 shrink-0"
+              className="text-fs14 font-medium text-[#a5a3ae] w-14 shrink-0"
             >
               To:
             </label>
@@ -139,27 +142,29 @@ const EmailComposeForm: React.FC<{
               onChange={(e) => setTo(e.target.value)}
               placeholder="recipient@example.com"
               containerClassName="flex-1"
-              className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
+              className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs15 text-[#32475c] placeholder-[#a5a3ae]"
               autoFocus
             />
-            <div className="flex items-center gap-2 text-fs12 text-[#696cff] shrink-0 font-medium ml-2">
+            <div className="flex items-center gap-2 text-fs13 text-[#696cff] shrink-0 font-medium ml-2">
               {!showCc && (
-                <button
+                <CustomButton
                   type="button"
+                  variant="ghost"
                   onClick={() => setShowCc(true)}
-                  className="hover:underline cursor-pointer"
+                  className="!p-0 !h-auto hover:underline cursor-pointer text-fs13 text-[#696cff] font-medium"
                 >
                   Cc
-                </button>
+                </CustomButton>
               )}
               {!showBcc && (
-                <button
+                <CustomButton
                   type="button"
+                  variant="ghost"
                   onClick={() => setShowBcc(true)}
-                  className="hover:underline cursor-pointer"
+                  className="!p-0 !h-auto hover:underline cursor-pointer text-fs13 text-[#696cff] font-medium"
                 >
                   Bcc
-                </button>
+                </CustomButton>
               )}
             </div>
           </div>
@@ -168,7 +173,7 @@ const EmailComposeForm: React.FC<{
             <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50 animate-in fade-in">
               <label
                 htmlFor="email-cc"
-                className="text-fs13 font-medium text-[#a5a3ae] w-14 shrink-0"
+                className="text-fs14 font-medium text-[#a5a3ae] w-14 shrink-0"
               >
                 Cc:
               </label>
@@ -179,7 +184,7 @@ const EmailComposeForm: React.FC<{
                 onChange={(e) => setCc(e.target.value)}
                 placeholder="cc-recipient@example.com"
                 containerClassName="flex-1"
-                className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
+                className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs15 text-[#32475c] placeholder-[#a5a3ae]"
               />
             </div>
           )}
@@ -188,7 +193,7 @@ const EmailComposeForm: React.FC<{
             <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50 animate-in fade-in">
               <label
                 htmlFor="email-bcc"
-                className="text-fs13 font-medium text-[#a5a3ae] w-14 shrink-0"
+                className="text-fs14 font-medium text-[#a5a3ae] w-14 shrink-0"
               >
                 Bcc:
               </label>
@@ -199,7 +204,7 @@ const EmailComposeForm: React.FC<{
                 onChange={(e) => setBcc(e.target.value)}
                 placeholder="bcc-recipient@example.com"
                 containerClassName="flex-1"
-                className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
+                className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs15 text-[#32475c] placeholder-[#a5a3ae]"
               />
             </div>
           )}
@@ -207,7 +212,7 @@ const EmailComposeForm: React.FC<{
           <div className="flex items-center px-4 py-2 border-b border-[#dbdade]/50">
             <label
               htmlFor="email-subject"
-              className="text-fs13 font-medium text-[#a5a3ae] w-14 shrink-0"
+              className="text-fs14 font-medium text-[#a5a3ae] w-14 shrink-0"
             >
               Subject:
             </label>
@@ -218,7 +223,7 @@ const EmailComposeForm: React.FC<{
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Meeting agenda, sales inquiry..."
               containerClassName="flex-1"
-              className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
+              className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs15 text-[#32475c] placeholder-[#a5a3ae]"
             />
           </div>
 
@@ -228,7 +233,7 @@ const EmailComposeForm: React.FC<{
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Write your email message here..."
               rows={8}
-              className="w-full h-44 resize-none text-fs14 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden leading-relaxed"
+              className="w-full h-44 resize-none text-fs15 text-[#32475c] placeholder-[#a5a3ae] focus:outline-hidden leading-relaxed"
             />
           </div>
 
@@ -238,7 +243,7 @@ const EmailComposeForm: React.FC<{
                 type="submit"
                 variant="primary"
                 size="sm"
-                className="!h-9 px-5 gap-2 text-fs13 shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
+                className="!h-9 px-5 gap-2 text-fs14 shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
               >
                 <span>Send</span>
                 <svg
@@ -256,20 +261,22 @@ const EmailComposeForm: React.FC<{
                 </svg>
               </CustomButton>
 
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={handleSaveDraft}
-                className="text-fs13 font-medium text-[#6f6b7d] hover:text-[#5d596c] transition cursor-pointer"
+                className="!p-0 !h-auto text-fs14 font-medium text-[#6f6b7d] hover:text-[#5d596c] transition cursor-pointer"
               >
                 Save Draft
-              </button>
+              </CustomButton>
             </div>
 
-            <button
+            <CustomButton
               type="button"
+              variant="ghost"
               onClick={onClose}
               title="Discard"
-              className="text-[#a5a3ae] hover:text-[#ea5455] p-1.5 rounded transition cursor-pointer"
+              className="!p-1.5 !h-auto text-[#a5a3ae] hover:text-[#ea5455] rounded transition cursor-pointer"
             >
               <svg
                 className="w-4 h-4"
@@ -284,7 +291,7 @@ const EmailComposeForm: React.FC<{
                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                 />
               </svg>
-            </button>
+            </CustomButton>
           </div>
         </form>
       </div>

@@ -23,8 +23,8 @@ export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) 
   const chartOptions: Highcharts.Options = {
     chart: {
       type: "pie",
-      height: 100,
-      width: 100,
+      height: 114,
+      width: 114,
       backgroundColor: "transparent",
       margin: [0, 0, 0, 0],
       spacing: [0, 0, 0, 0],
@@ -34,7 +34,7 @@ export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) 
     tooltip: { enabled: false },
     plotOptions: {
       pie: {
-        innerSize: "74%",
+        innerSize: "75%",
         dataLabels: { enabled: false },
         borderWidth: 0,
         states: {
@@ -67,24 +67,24 @@ export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
-        <h3 className="text-fs22 font-medium text-[#444050]">{title}</h3>
-        <p className="text-fs16 font-normal text-[#a5a3ae] mt-0.5">{subtitle}</p>
+        <h3 className="text-fs23 font-medium text-[#444050]">{title}</h3>
+        <p className="text-fs14 font-normal text-[#a5a3ae] mt-0.5">{subtitle}</p>
       </div>
 
       <div className="flex items-center justify-between mt-3">
         <div>
-          <span className="text-fs24 font-semibold text-[#444050]">{value}</span>
-          <p className="text-fs14 font-normal text-[#71dd37] flex items-center gap-1 mt-1">
+          <span className="text-fs25 font-semibold text-[#444050]">{value}</span>
+          <p className="text-fs15 font-normal text-[#71dd37] flex items-center gap-1 mt-1">
             <span>↑</span>
             <span>{change}</span>
           </p>
         </div>
 
-        <div className="relative w-[100px] h-[100px] flex items-center justify-center">
+        <div className="relative w-[114px] h-[114px] flex items-center justify-center">
           <Chart options={chartOptions} />
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="text-fs18 font-bold text-[#32475c] leading-none">{percentage}%</span>
-            <span className="text-fs13 text-[#a5a3ae] mt-1 leading-none">Average</span>
+            <span className="text-fs19 font-bold text-[#32475c] leading-none">{percentage}%</span>
+            <span className="text-fs12 font-medium text-[#a5a3ae] mt-1 leading-none">Average</span>
           </div>
         </div>
       </div>

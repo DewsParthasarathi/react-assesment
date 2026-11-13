@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useRouteError, isRouteErrorResponse } from "react-router-dom";
 import notFoundIllustration from "../assets/images/404.png";
+import CustomImage from "../components/ui/CustomImage";
 
 export const NotFound: React.FC = () => {
   const error = useRouteError();
@@ -17,16 +18,16 @@ export const NotFound: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#696cff]/5 via-[#696cff]/10 to-transparent rounded-full blur-3xl pointer-events-none -z-0" />
 
       <div className="relative z-10 w-full max-w-2xl flex flex-col items-center py-8">
-        <h1 className="text-fs28 sm:text-fs34 md:text-fs38 font-bold text-[#566a7f] tracking-tight leading-tight">
+        <h1 className="text-fs29 sm:text-fs35 md:text-fs39 font-bold text-[#566a7f] tracking-tight leading-tight">
           Page Not Found :(
         </h1>
-        <p className="text-fs14 sm:text-fs15 text-[#697a8d] mt-2 mb-6 max-w-md leading-relaxed">
+        <p className="text-fs15 sm:text-fs16 text-[#697a8d] mt-2 mb-6 max-w-md leading-relaxed">
           {errorMessage}
         </p>
 
         <Link
           to="/"
-          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[6px] text-fs14 font-medium text-white bg-[#696cff] hover:bg-[#5f61e6] active:bg-[#585ad7] shadow-[0_2px_6px_rgba(105,108,255,0.4)] hover:shadow-[0_4px_12px_rgba(105,108,255,0.5)] transition duration-150 cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[6px] text-fs15 font-medium text-white bg-[#696cff] hover:bg-[#5f61e6] active:bg-[#585ad7] shadow-[0_2px_6px_rgba(105,108,255,0.4)] hover:shadow-[0_4px_12px_rgba(105,108,255,0.5)] transition duration-150 cursor-pointer"
         >
           <svg
             className="w-4 h-4"
@@ -45,10 +46,12 @@ export const NotFound: React.FC = () => {
         </Link>
 
         <div className="mt-8 sm:mt-10 w-full flex justify-center items-center">
-          <img
+          <CustomImage
             src={notFoundIllustration}
             alt="404 Page Not Found"
-            className="w-full max-w-[420px] sm:max-w-[520px] md:max-w-[580px] h-auto object-contain drop-shadow-sm select-none pointer-events-none"
+            containerClassName="w-full max-w-[420px] sm:max-w-[520px] md:max-w-[580px] h-auto drop-shadow-sm select-none pointer-events-none"
+            className="w-full h-auto"
+            objectFit="contain"
           />
         </div>
       </div>

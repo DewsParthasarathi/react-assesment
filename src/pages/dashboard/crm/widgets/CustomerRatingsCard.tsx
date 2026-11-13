@@ -135,7 +135,7 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs22 font-medium text-[#444050]">Customer Ratings</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">Customer Ratings</h3>
           <YearSelectionPopup
             selectedYear={selectedYear}
             onSelectYear={setSelectedYear}
@@ -152,7 +152,7 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
         </div>
 
         <div className="flex items-center gap-3 mt-3">
-          <span className="text-fs32 font-bold text-[#32475c]">{rating.toFixed(1)}</span>
+          <span className="text-fs33 font-bold text-[#32475c]">{rating.toFixed(1)}</span>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4].map((i) => (
               <CustomImage
@@ -178,10 +178,10 @@ export const CustomerRatingsCard: React.FC<CustomerRatingsCardProps> = ({ data, 
           const badgeLabel = match ? match[2] : "Points from last month";
           return (
             <div className="flex items-center gap-2 mt-2">
-              <span className="bg-[#e7e7ff] text-[#696cff] text-fs12 font-semibold px-2 py-0.5 rounded">
+              <span className="bg-[#e7e7ff] text-[#696cff] text-fs13 font-semibold px-2 py-0.5 rounded">
                 {badgeVal}
               </span>
-              <span className="text-fs13 text-[#a5a3ae]">
+              <span className="text-fs14 text-[#a5a3ae]">
                 {badgeLabel}
               </span>
             </div>

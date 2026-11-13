@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { CustomButton } from "../../../components/ui/CustomButton";
 
 interface MiniCalendarProps {
   currentDate: Date;
@@ -106,36 +107,38 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
   return (
     <div className="w-full select-none">
       <div className="flex items-center justify-between mb-4">
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={handlePrevMonth}
           title="Previous Month"
-          className="w-6 h-6 rounded bg-[#f5f5f9] hover:bg-[#ebebee] text-[#5d596c] flex items-center justify-center transition cursor-pointer"
+          className="!w-6 !h-6 !p-0 rounded bg-[#f5f5f9] hover:bg-[#ebebee] text-[#5d596c] flex items-center justify-center transition cursor-pointer"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
-        </button>
+        </CustomButton>
 
-        <span className="text-fs14 font-medium text-[#5d596c]">
+        <span className="text-fs15 font-medium text-[#5d596c]">
           {monthNames[month]} {year}
         </span>
 
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={handleNextMonth}
           title="Next Month"
-          className="w-6 h-6 rounded bg-[#f5f5f9] hover:bg-[#ebebee] text-[#5d596c] flex items-center justify-center transition cursor-pointer"
+          className="!w-6 !h-6 !p-0 rounded bg-[#f5f5f9] hover:bg-[#ebebee] text-[#5d596c] flex items-center justify-center transition cursor-pointer"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </CustomButton>
       </div>
 
       <div className="grid grid-cols-7 gap-1 text-center mb-2">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, idx) => (
-          <div key={idx} className="text-fs12 font-medium text-[#a5a3ae]">
+          <div key={idx} className="text-fs13 font-medium text-[#a5a3ae]">
             {day}
           </div>
         ))}
@@ -144,11 +147,12 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
       <div className="grid grid-cols-7 gap-y-1 gap-x-1 text-center">
         {daysGrid.map((item, idx) => {
           return (
-            <button
+            <CustomButton
               key={idx}
               type="button"
+              variant="ghost"
               onClick={() => onSelectDate(item.date)}
-              className={`h-7 w-7 mx-auto rounded text-fs12 flex items-center justify-center transition cursor-pointer ${
+              className={`!h-7 !w-7 !p-0 mx-auto rounded text-fs13 flex items-center justify-center transition cursor-pointer ${
                 item.isSelected
                   ? "border border-[#696cff] bg-[#696cff]/10 text-[#696cff] font-medium"
                   : item.isCurrentMonth
@@ -157,7 +161,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
               }`}
             >
               {item.dayNumber}
-            </button>
+            </CustomButton>
           );
         })}
       </div>

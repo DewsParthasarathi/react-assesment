@@ -222,7 +222,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
               style={{ width: `${row.width}%` }}
             />
           </div>
-          <span className="text-fs12 font-medium text-[#444050] w-12 text-right">
+          <span className="text-fs13 font-medium text-[#444050] w-12 text-right">
             {row.percentage}
           </span>
         </div>
@@ -267,7 +267,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white w-full rounded-[6px] p-5 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
+    <div className="bg-white w-full rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       <Tabs
         tabs={tabItems}
         activeTab={activeTab}

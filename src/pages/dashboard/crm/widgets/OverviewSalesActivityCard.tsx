@@ -100,10 +100,10 @@ export const OverviewSalesActivityCard: React.FC<OverviewSalesActivityCardProps>
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
+      
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs22 font-medium text-[#444050]">Overview &amp; Sales Activity</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">Overview &amp; Sales Activity</h3>
           <YearSelectionPopup
             selectedYear={selectedYear}
             onSelectYear={setSelectedYear}
@@ -118,10 +118,10 @@ export const OverviewSalesActivityCard: React.FC<OverviewSalesActivityCardProps>
             </CustomButton>
           </YearSelectionPopup>
         </div>
-        <p className="text-fs16 font-normal text-[#a5a3ae] mt-0.5">{subtitle}</p>
+        <p className="text-fs17 font-normal text-[#a5a3ae] mt-0.5">{subtitle}</p>
       </div>
 
-      {/* Chart */}
+      
       <div className="mt-4 -mx-2">
         <Chart options={chartOptions} />
       </div>

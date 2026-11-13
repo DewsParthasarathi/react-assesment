@@ -75,7 +75,7 @@ export const CustomerTransactionsTableCard: React.FC<
       id: "customer",
       header: "CUSTOMER",
       headerClassName:
-        "pb-2.5 font-medium text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+        "pb-2.5 font-medium text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 align-middle",
       render: (tx) => (
         <div className="flex items-center gap-2.5">
@@ -86,10 +86,10 @@ export const CustomerTransactionsTableCard: React.FC<
             className="w-full h-full object-cover block rounded-full"
           />
           <div className="flex flex-col justify-center">
-            <p className="text-fs14 font-semibold text-[#32475c] leading-snug">
+            <p className="text-fs15 font-semibold text-[#32475c] leading-snug">
               {tx.name}
             </p>
-            <p className="text-fs12 text-[#a5a3ae] leading-tight">{tx.email}</p>
+            <p className="text-fs13 text-[#a5a3ae] leading-tight">{tx.email}</p>
           </div>
         </div>
       ),
@@ -99,9 +99,9 @@ export const CustomerTransactionsTableCard: React.FC<
       header: "AMOUNT",
       align: "center",
       headerClassName:
-        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+        "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className:
-        "py-2.5 text-center text-fs14 text-[#444050] font-medium align-middle",
+        "py-2.5 text-center text-fs15 text-[#444050] font-medium align-middle",
       render: (tx) => tx.amount,
     },
     {
@@ -109,11 +109,11 @@ export const CustomerTransactionsTableCard: React.FC<
       header: "STATUS",
       align: "center",
       headerClassName:
-        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+        "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: (tx) => (
         <span
-          className={`text-fs12 font-semibold px-2 py-0.5 rounded tracking-wide ${
+          className={`text-fs13 font-semibold px-2 py-0.5 rounded tracking-wide ${
             tx.statusColor || "bg-gray-100 text-gray-600"
           }`}
         >
@@ -126,7 +126,7 @@ export const CustomerTransactionsTableCard: React.FC<
       header: "PAID BY",
       align: "center",
       headerClassName:
-        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+        "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: (tx) => (
         <div className="inline-flex items-center justify-center h-full">
@@ -144,7 +144,7 @@ export const CustomerTransactionsTableCard: React.FC<
       header: "ACTIONS",
       align: "center",
       headerClassName:
-        "pb-2.5 font-medium text-center text-fs12 text-[#a5a3ae] uppercase tracking-wider",
+        "pb-2.5 font-medium text-center text-fs13 text-[#a5a3ae] uppercase tracking-wider",
       className: "py-2.5 text-center align-middle",
       render: () => (
         <CustomButton
@@ -170,7 +170,7 @@ export const CustomerTransactionsTableCard: React.FC<
         data={items}
         keyExtractor={(tx) => tx.id}
         tableClassName="w-full text-left"
-        headerRowClassName="border-b border-[#dbdade]/50 text-fs12 font-medium text-[#a5a3ae] uppercase tracking-wider"
+        headerRowClassName="border-b border-[#dbdade]/50 text-fs13 font-medium text-[#a5a3ae] uppercase tracking-wider"
         bodyClassName="divide-y divide-gray-50"
         bodyRowClassName="hover:bg-gray-50/50 transition-colors"
       />

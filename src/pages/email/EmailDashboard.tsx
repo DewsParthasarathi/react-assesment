@@ -16,6 +16,7 @@ import {
 } from "../../hooks/useEmailsQuery";
 import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
 import { CustomInput } from "../../components/ui/CustomInput";
+import { CustomButton } from "../../components/ui/CustomButton";
 import EmailComposeModal from "./components/EmailComposeModal";
 import EmailDetailsView from "./components/EmailDetailsView";
 import EmailList from "./components/EmailList";
@@ -294,17 +295,18 @@ export const EmailDashboard: React.FC = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search mail"
                     containerClassName="w-full"
-                    className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs14 text-[#32475c] placeholder-[#a5a3ae]"
+                    className="!h-auto !border-none !bg-transparent !p-0 focus:!ring-0 text-fs15 text-[#32475c] placeholder-[#a5a3ae]"
                   />
                   {searchQuery && (
-                    <button
+                    <CustomButton
                       type="button"
+                      variant="ghost"
                       onClick={() => setSearchQuery("")}
-                      className="text-fs14 text-[#a5a3ae] hover:text-[#5d596c] p-1 font-bold cursor-pointer"
+                      className="!p-1 !h-auto text-fs15 text-[#a5a3ae] hover:text-[#5d596c] font-bold cursor-pointer"
                       aria-label="Clear search"
                     >
                       &times;
-                    </button>
+                    </CustomButton>
                   )}
                 </div>
                 <EmailToolbar

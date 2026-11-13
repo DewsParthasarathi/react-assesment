@@ -28,9 +28,9 @@ export const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
       <CustomButton
         variant="primary"
         onClick={onAddEventClick}
-        className="w-full !h-10 uppercase tracking-wider font-medium text-fs14 rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer"
+        className="w-full !h-10 uppercase tracking-wider font-medium text-fs15 rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer"
       >
-        <span className="text-fs18 font-light leading-none">+</span>
+        <span className="text-fs19 font-light leading-none">+</span>
         <span>ADD EVENT</span>
       </CustomButton>
 

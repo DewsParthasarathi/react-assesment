@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { CalendarEvent, CalendarEventCategory } from "../../../api/types";
 import { CustomInput } from "../../../components/ui/CustomInput";
+import { CustomButton } from "../../../components/ui/CustomButton";
 import { CustomDropdown } from "../../../components/ui/CustomDropdown";
 
 interface EventDrawerProps {
@@ -142,17 +143,18 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
       <div className="fixed inset-y-0 right-0 max-w-full flex">
         <div className="w-screen max-w-[400px] bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out">
           <div className="flex items-center justify-between px-6 py-5 border-b border-[#dbdade]/60">
-            <h3 className="text-fs18 font-medium text-[#5d596c]">
+            <h3 className="text-fs19 font-medium text-[#5d596c]">
               {isEditMode ? "Update Event" : "Add Event"}
             </h3>
 
             <div className="flex items-center gap-2">
               {isEditMode && onDelete && initialEvent?.id && (
-                <button
+                <CustomButton
                   type="button"
+                  variant="ghost"
                   onClick={() => onDelete(initialEvent.id!)}
                   title="Delete Event"
-                  className="p-1.5 text-[#a5a3ae] hover:text-[#ff4c51] rounded transition cursor-pointer"
+                  className="!p-1.5 !h-auto text-[#a5a3ae] hover:text-[#ff4c51] rounded transition cursor-pointer"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -162,25 +164,26 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                     />
                   </svg>
-                </button>
+                </CustomButton>
               )}
 
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={onClose}
                 title="Close"
-                className="p-1.5 text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
+                className="!p-1.5 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
-              </button>
+              </CustomButton>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                 Title
               </label>
               <CustomInput
@@ -208,7 +211,7 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             </div>
 
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                 Start Date
               </label>
               <CustomInput
@@ -222,7 +225,7 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             </div>
 
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                 End Date
               </label>
               <CustomInput
@@ -236,12 +239,13 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             </div>
 
             <div className="flex items-center gap-3 select-none py-1">
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 role="switch"
                 aria-checked={allDay}
                 onClick={() => setAllDay(!allDay)}
-                className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-200 ease-in-out ${
+                className={`!w-11 !h-6 flex items-center rounded-full !p-1 cursor-pointer transition-colors duration-200 ease-in-out ${
                   allDay ? "bg-[#696cff]" : "bg-[#dbdade]"
                 }`}
               >
@@ -250,20 +254,19 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                     allDay ? "translate-x-5" : "translate-x-0"
                   }`}
                 />
-              </button>
+              </CustomButton>
               <span
-                className="text-fs14 text-[#5d596c] font-normal cursor-pointer"
+                className="text-fs15 text-[#5d596c] font-normal cursor-pointer"
                 onClick={() => setAllDay(!allDay)}
               >
                 All Day
               </span>
             </div>
 
-            {/* Times when not All Day */}
             {!allDay && (
               <div className="grid grid-cols-2 gap-3">
                 <div className="relative">
-                  <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+                  <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                     Start Time
                   </label>
                   <CustomInput
@@ -275,7 +278,7 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                   />
                 </div>
                 <div className="relative">
-                  <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+                  <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                     End Time
                   </label>
                   <CustomInput
@@ -289,9 +292,8 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               </div>
             )}
 
-            {/* Event URL */}
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                 Event URL
               </label>
               <CustomInput
@@ -304,7 +306,6 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               />
             </div>
 
-            {/* Guests Select using CustomDropdown */}
             <div className="relative">
               <CustomDropdown
                 label="Guests"
@@ -323,9 +324,8 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               />
             </div>
 
-            {/* Description Textarea */}
             <div className="relative">
-              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs12 text-[#a5a3ae] font-normal z-10">
+              <label className="absolute -top-2.5 left-3 bg-white px-1 text-fs13 text-[#a5a3ae] font-normal z-10">
                 Description
               </label>
               <textarea
@@ -333,26 +333,27 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
-                className="w-full p-3.5 rounded-[6px] border border-[#dbdade] text-fs14 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff] resize-none"
+                className="w-full p-3.5 rounded-[6px] border border-[#dbdade] text-fs15 text-[#5d596c] bg-white transition focus:outline-hidden focus:border-[#696cff] resize-none"
               />
             </div>
 
-            {/* Action Buttons: ADD/UPDATE and RESET */}
             <div className="pt-3 flex items-center gap-3">
-              <button
+              <CustomButton
                 type="submit"
+                variant="primary"
                 disabled={isSaving}
-                className="px-6 py-2.5 bg-[#696cff] hover:bg-[#5f61e6] text-white font-medium text-fs14 uppercase rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] transition cursor-pointer"
+                className="!px-6 !py-2.5 !h-auto font-medium text-fs15 uppercase rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
               >
                 {isSaving ? "Saving..." : isEditMode ? "UPDATE" : "ADD"}
-              </button>
-              <button
+              </CustomButton>
+              <CustomButton
                 type="button"
+                variant="outline"
                 onClick={handleReset}
-                className="px-6 py-2.5 bg-white border border-[#dbdade] hover:border-[#c7c5ca] text-[#8592a3] hover:text-[#5d596c] font-medium text-fs14 uppercase rounded-[6px] transition cursor-pointer"
+                className="!px-6 !py-2.5 !h-auto border-[#dbdade] hover:border-[#c7c5ca] text-[#8592a3] hover:text-[#5d596c] font-medium text-fs15 uppercase rounded-[6px]"
               >
                 RESET
-              </button>
+              </CustomButton>
             </div>
           </form>
         </div>

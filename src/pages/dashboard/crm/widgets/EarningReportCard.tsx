@@ -103,9 +103,9 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
-      {/* Header */}
+      
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-fs22 font-medium text-[#444050]">Earning Report</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">Earning Report</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}
@@ -121,9 +121,9 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
         </YearSelectionPopup>
       </div>
 
-      {/* 3 Metric Rows */}
+      
       <div className="space-y-3">
-        {/* Net Profit */}
+        
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
@@ -138,14 +138,14 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-fs16 font-medium text-[#444050] leading-snug">{netProfit.label}</p>
-              <p className="text-fs14 text-[#a5a3ae] leading-tight">{netProfit.subLabel}</p>
+              <p className="text-fs17 font-medium text-[#444050] leading-snug">{netProfit.label}</p>
+              <p className="text-fs15 text-[#a5a3ae] leading-tight">{netProfit.subLabel}</p>
             </div>
           </div>
-          <span className="text-fs16 font-medium text-[#444050] shrink-0">{netProfit.amount}</span>
+          <span className="text-fs17 font-medium text-[#444050] shrink-0">{netProfit.amount}</span>
         </div>
 
-        {/* Total Income */}
+        
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
@@ -160,14 +160,14 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-fs16 font-medium text-[#444050] leading-snug">{totalIncome.label}</p>
-              <p className="text-fs14 text-[#a5a3ae] leading-tight">{totalIncome.subLabel}</p>
+              <p className="text-fs17 font-medium text-[#444050] leading-snug">{totalIncome.label}</p>
+              <p className="text-fs15 text-[#a5a3ae] leading-tight">{totalIncome.subLabel}</p>
             </div>
           </div>
-          <span className="text-fs16 font-medium text-[#444050] shrink-0">{totalIncome.amount}</span>
+          <span className="text-fs17 font-medium text-[#444050] shrink-0">{totalIncome.amount}</span>
         </div>
 
-        {/* Total Expenses */}
+        
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
@@ -182,15 +182,15 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-fs16 font-medium text-[#444050] leading-snug">{totalExpenses.label}</p>
-              <p className="text-fs14 text-[#a5a3ae] leading-tight">{totalExpenses.subLabel}</p>
+              <p className="text-fs17 font-medium text-[#444050] leading-snug">{totalExpenses.label}</p>
+              <p className="text-fs15 text-[#a5a3ae] leading-tight">{totalExpenses.subLabel}</p>
             </div>
           </div>
-          <span className="text-fs16 font-medium text-[#444050] shrink-0">{totalExpenses.amount}</span>
+          <span className="text-fs17 font-medium text-[#444050] shrink-0">{totalExpenses.amount}</span>
         </div>
       </div>
 
-      {/* Weekly Column Chart */}
+      
       <div className="mt-3 -mx-2">
         <Chart options={chartOptions} />
       </div>

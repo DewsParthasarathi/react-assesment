@@ -51,10 +51,10 @@ export const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ data, availa
       </div>
 
       <div className="mt-3">
-        <p className="text-fs18 font-normal text-[#a5a3ae]">Order</p>
-        <p className="text-fs24 font-semibold text-[#444050] mt-1">{amount}</p>
+        <p className="text-fs19 font-normal text-[#a5a3ae]">Order</p>
+        <p className="text-fs25 font-semibold text-[#444050] mt-1">{amount}</p>
         <p
-          className={`text-fs14 font-normal mt-1 flex items-center gap-1 ${
+          className={`text-fs15 font-normal mt-1 flex items-center gap-1 ${
             isPositive ? "text-[#71dd37]" : "text-[#ea5455]"
           }`}
         >

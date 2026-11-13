@@ -61,7 +61,7 @@ export const TopProductsBySalesCard: React.FC<TopProductsBySalesCardProps> = ({
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-fs22 font-medium text-[#444050]">
+        <h3 className="text-fs23 font-medium text-[#444050]">
           Top Products by <span className="text-[#696cff]">Sales</span>
         </h3>
         <YearSelectionPopup
@@ -97,11 +97,11 @@ export const TopProductsBySalesCard: React.FC<TopProductsBySalesCardProps> = ({
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <p className="text-fs16 font-medium text-[#444050] leading-snug">{item.name}</p>
-                <p className="text-fs14 text-[#a5a3ae] leading-tight">{item.brand}</p>
+                <p className="text-fs17 font-medium text-[#444050] leading-snug">{item.name}</p>
+                <p className="text-fs15 text-[#a5a3ae] leading-tight">{item.brand}</p>
               </div>
             </div>
-            <span className="text-fs16 font-medium text-[#444050] shrink-0">{item.amount}</span>
+            <span className="text-fs17 font-medium text-[#444050] shrink-0">{item.amount}</span>
           </div>
         ))}
       </div>

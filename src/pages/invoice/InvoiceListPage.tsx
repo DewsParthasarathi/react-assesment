@@ -1,7 +1,8 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Invoice, InvoiceStatus } from "../../api/types";
 import { CustomButton } from "../../components/ui/CustomButton";
+import { CustomImage } from "../../components/ui/CustomImage";
 import { CustomCheckbox } from "../../components/ui/CustomCheckbox";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomDropdown } from "../../components/ui/CustomDropdown";
@@ -16,6 +17,8 @@ import {
 import { getMemberAvatar } from "../../utils/userAvatars";
 import { ConfirmationModal } from "../../components/ui/ConfirmationModal";
 import InvoiceStatusIcon from "./components/InvoiceStatusIcon";
+import { InvoicePreviewCard } from "./components/InvoicePreviewCard";
+import { printInvoiceElement } from "./utils/downloadInvoicePdf";
 
 const formatDateDisplay = (dateStr?: string): string => {
   if (!dateStr) return "";
@@ -48,27 +51,22 @@ const formatDateDisplay = (dateStr?: string): string => {
 export const InvoiceListPage: React.FC = () => {
   const navigate = useNavigate();
 
-  // TanStack Query
   const { data: invoices = [], isLoading, isError, error } = useInvoicesQuery();
   const deleteMutation = useDeleteInvoiceMutation();
   const batchDeleteMutation = useBatchDeleteInvoicesMutation();
   const batchStatusMutation = useBatchUpdateInvoiceStatusMutation();
 
-  // Filters State
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [dateFilter, setDateFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // Selection & Actions
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isActionsDropdownOpen, setIsActionsDropdownOpen] = useState(false);
   const [activeMenuInvoiceId, setActiveMenuInvoiceId] = useState<string | null>(null);
 
-  // Pagination State
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // Modals
   const [deleteModalState, setDeleteModalState] = useState<{
     isOpen: boolean;
     invoiceId?: string;
@@ -77,24 +75,23 @@ export const InvoiceListPage: React.FC = () => {
     count?: number;
   }>({ isOpen: false });
 
-  // Filtered Invoices
+  const [printInvoice, setPrintInvoice] = useState<Invoice | null>(null);
+  const printContainerRef = useRef<HTMLDivElement>(null);
+
   const filteredInvoices = useMemo(() => {
     return invoices.filter((inv) => {
-      // 1. Status Filter
       if (statusFilter !== "all") {
         if (inv.status.toLowerCase() !== statusFilter.toLowerCase()) {
           return false;
         }
       }
 
-      // 2. Date Filter
       if (dateFilter) {
         if (!inv.issueDate.includes(dateFilter)) {
           return false;
         }
       }
 
-      // 3. Search Query
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim();
         const matchesId = inv.invoiceNumber.toLowerCase().includes(query) || inv.id.includes(query);
@@ -109,7 +106,6 @@ export const InvoiceListPage: React.FC = () => {
     });
   }, [invoices, statusFilter, dateFilter, searchQuery]);
 
-  // Paginated Data
   const totalRecords = filteredInvoices.length;
   const totalPages = Math.max(1, Math.ceil(totalRecords / rowsPerPage));
   const validCurrentPage = Math.min(currentPage, totalPages);
@@ -122,7 +118,6 @@ export const InvoiceListPage: React.FC = () => {
   const startRecord = totalRecords === 0 ? 0 : (validCurrentPage - 1) * rowsPerPage + 1;
   const endRecord = Math.min(validCurrentPage * rowsPerPage, totalRecords);
 
-  // Row Selection Handlers
   const isAllSelected =
     paginatedInvoices.length > 0 &&
     paginatedInvoices.every((inv) => selectedIds.includes(inv.id));
@@ -143,7 +138,6 @@ export const InvoiceListPage: React.FC = () => {
     );
   }, []);
 
-  // Delete Action Handlers
   const handleOpenSingleDelete = (inv: Invoice) => {
     setDeleteModalState({
       isOpen: true,
@@ -183,7 +177,6 @@ export const InvoiceListPage: React.FC = () => {
     }
   };
 
-  // Batch Status Update Handler
   const handleBatchStatus = (newStatus: InvoiceStatus) => {
     if (selectedIds.length === 0) return;
     batchStatusMutation.mutate(
@@ -197,7 +190,27 @@ export const InvoiceListPage: React.FC = () => {
     );
   };
 
-  // Reusable CustomTable columns definition
+  const handleDownloadInvoice = useCallback((inv: Invoice) => {
+    setPrintInvoice(inv);
+  }, []);
+
+  useEffect(() => {
+    if (!printInvoice) return;
+    let isCancelled = false;
+
+    const timer = setTimeout(() => {
+      if (printContainerRef.current && !isCancelled) {
+        printInvoiceElement(printContainerRef.current);
+        setPrintInvoice(null);
+      }
+    }, 200);
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timer);
+    };
+  }, [printInvoice]);
+
   const tableColumns = useMemo<TableColumn<Invoice>[]>(() => {
     return [
       {
@@ -224,16 +237,17 @@ export const InvoiceListPage: React.FC = () => {
       {
         id: "id",
         header: "#ID",
-        headerClassName: "py-3.5 px-4 font-semibold text-fs14",
+        headerClassName: "py-3.5 px-4 font-semibold text-fs15",
         className: "py-3.5 px-4 font-medium",
         render: (inv) => (
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
-            className="text-[#696cff] hover:underline font-medium cursor-pointer"
+            className="!p-0 !h-auto text-[#696cff] hover:underline font-medium cursor-pointer"
           >
             {inv.invoiceNumber}
-          </button>
+          </CustomButton>
         ),
       },
       {
@@ -270,19 +284,21 @@ export const InvoiceListPage: React.FC = () => {
         className: "py-3.5 px-4",
         render: (inv) => (
           <div className="flex items-center gap-3">
-            <img
+            <CustomImage
               src={getMemberAvatar(inv.clientAvatar)}
               alt={inv.clientName}
-              className="w-9 h-9 rounded-full object-cover shrink-0 border border-[#dbdade]/60"
+              containerClassName="w-9 h-9 rounded-full shrink-0 border border-[#dbdade]/60 overflow-hidden"
+              className="w-full h-full"
+              objectFit="cover"
             />
             <div className="flex flex-col min-w-0">
               <span
                 onClick={() => navigate(`/apps/invoice/preview?id=${inv.id}`)}
-                className="text-fs16 font-medium text-[#5d596c] hover:text-[#696cff] transition truncate cursor-pointer"
+                className="text-fs17 font-medium text-[#5d596c] hover:text-[#696cff] transition truncate cursor-pointer"
               >
                 {inv.clientName}
               </span>
-              <span className="text-fs14 text-[#a5a3ae] truncate">
+              <span className="text-fs15 text-[#a5a3ae] truncate">
                 {inv.clientEmail}
               </span>
             </div>
@@ -312,7 +328,7 @@ export const InvoiceListPage: React.FC = () => {
           const isPaid =
             inv.balance === 0 || inv.status.toLowerCase() === "paid";
           return isPaid ? (
-            <span className="bg-[#e8fadf] text-[#71dd37] text-fs13 font-semibold uppercase px-2 py-0.5 rounded-[4px] inline-block tracking-wide">
+            <span className="bg-[#e8fadf] text-[#71dd37] text-fs14 font-semibold uppercase px-2 py-0.5 rounded-[4px] inline-block tracking-wide">
               PAID
             </span>
           ) : (
@@ -391,11 +407,12 @@ export const InvoiceListPage: React.FC = () => {
                     type="button"
                     variant="icon"
                     title="More Options"
-                    onClick={() =>
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuInvoiceId((prev) =>
                         prev === inv.id ? null : inv.id,
-                      )
-                    }
+                      );
+                    }}
                     className="p-1 hover:text-[#5d596c] transition cursor-pointer"
                   >
                     <svg
@@ -418,22 +435,24 @@ export const InvoiceListPage: React.FC = () => {
                   <CustomButton
                     type="button"
                     variant="ghost"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuInvoiceId(null);
                       navigate(`/apps/invoice/edit?id=${inv.id}`);
                     }}
-                    className="w-full px-3 py-1.5 text-fs15 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                    className="w-full px-3 py-1.5 text-fs16 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center justify-start gap-2 cursor-pointer rounded-none"
                   >
                     <span>Edit</span>
                   </CustomButton>
                   <CustomButton
                     type="button"
                     variant="ghost"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuInvoiceId(null);
-                      navigate(`/apps/invoice/preview?id=${inv.id}`);
+                      handleDownloadInvoice(inv);
                     }}
-                    className="w-full px-3 py-1.5 text-fs15 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center justify-start gap-2 cursor-pointer rounded-none"
+                    className="w-full px-3 py-1.5 text-fs16 text-[#5d596c] hover:bg-[#f8f7fa] flex items-center justify-start gap-2 cursor-pointer rounded-none"
                   >
                     <span>Download</span>
                   </CustomButton>
@@ -450,19 +469,18 @@ export const InvoiceListPage: React.FC = () => {
     activeMenuInvoiceId,
     handleSelectAll,
     handleSelectRow,
+    handleDownloadInvoice,
     navigate,
   ]);
 
   return (
     <div className="w-full flex-1 flex flex-col min-w-0 space-y-6">
-      {/* 1. FILTERS SECTION CARD (Matching reference image) */}
       <section className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 p-6">
-        <h2 className="text-fs20 font-medium text-[#5d596c] tracking-tight mb-4">
+        <h2 className="text-fs21 font-medium text-[#5d596c] tracking-tight mb-4">
           Filters
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Invoice Status Filter using CustomDropdown */}
           <CustomDropdown
             value={statusFilter}
             onChange={(val) => {
@@ -482,7 +500,6 @@ export const InvoiceListPage: React.FC = () => {
             ]}
           />
 
-          {/* Invoice Date Filter */}
           <div className="relative">
             <CustomInput
               type="date"
@@ -496,24 +513,22 @@ export const InvoiceListPage: React.FC = () => {
               className="rounded-[6px] !px-3.5"
             />
             {dateFilter && (
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 onClick={() => setDateFilter("")}
-                className="absolute right-9 top-1/2 -translate-y-1/2 text-fs14 text-[#a5a3ae] hover:text-[#5d596c] cursor-pointer"
+                className="!p-0 !h-auto absolute right-9 top-1/2 -translate-y-1/2 text-fs15 text-[#a5a3ae] hover:text-[#5d596c] cursor-pointer"
                 title="Clear date"
               >
-                âœ•
-              </button>
+                ✕
+              </CustomButton>
             )}
           </div>
         </div>
       </section>
 
-      {/* 2. INVOICE TABLE SECTION CARD */}
       <section className="bg-white rounded-[6px] shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/70 overflow-hidden flex flex-col">
-        {/* Table Toolbar */}
         <div className="p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#dbdade]/50">
-          {/* Left: Actions Dropdown */}
           <AnchoredPortal
             isOpen={isActionsDropdownOpen}
             onClose={() => setIsActionsDropdownOpen(false)}
@@ -521,56 +536,59 @@ export const InvoiceListPage: React.FC = () => {
             offset={6}
             wrapperClassName="relative inline-flex"
             trigger={
-              <button
+              <CustomButton
                 type="button"
+                variant="outline"
                 onClick={() => setIsActionsDropdownOpen((prev) => !prev)}
-                className="h-10 px-4 border border-[#dbdade] rounded-[6px] text-fs16 font-medium text-[#6f6b7d] hover:border-[#696cff] hover:text-[#696cff] transition flex items-center gap-2 bg-white cursor-pointer select-none"
+                className="!h-10 !px-4 border-[#dbdade] text-fs17 font-medium text-[#6f6b7d] hover:border-[#696cff] hover:text-[#696cff] flex items-center gap-2 bg-white cursor-pointer select-none"
               >
                 <span>Actions</span>
                 <svg className="w-3.5 h-3.5 text-[#a5a3ae]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </CustomButton>
             }
           >
             <div className="w-48 bg-white rounded-[6px] shadow-[0_4px_16px_rgba(165,163,174,0.3)] border border-[#dbdade]/70 py-1.5 animate-fade-in">
-              <button
+              <CustomButton
                 type="button"
+                variant="ghost"
                 disabled={selectedIds.length === 0}
                 onClick={handleOpenBatchDelete}
-                className="w-full text-left px-4 py-2 text-fs15 text-[#ff4c51] hover:bg-[#ffe5e5]/50 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
+                className="w-full justify-start !text-left !px-4 !py-2 !h-auto text-fs16 text-[#ff4c51] hover:bg-[#ffe5e5]/50 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer font-normal rounded-none"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
                 <span>Delete Selected ({selectedIds.length})</span>
-              </button>
-              <button
+              </CustomButton>
+              <CustomButton
                 type="button"
+                variant="ghost"
                 disabled={selectedIds.length === 0}
                 onClick={() => handleBatchStatus("Paid")}
-                className="w-full text-left px-4 py-2 text-fs15 text-[#5d596c] hover:bg-[#f8f7fa] transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
+                className="w-full justify-start !text-left !px-4 !py-2 !h-auto text-fs16 text-[#5d596c] hover:bg-[#f8f7fa] transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer font-normal rounded-none"
               >
-                <svg className="w-4 h-4 text-[#71dd37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#71dd37] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>Mark as Paid</span>
-              </button>
-              <button
+              </CustomButton>
+              <CustomButton
                 type="button"
+                variant="ghost"
                 disabled={selectedIds.length === 0}
                 onClick={() => handleBatchStatus("Pending")}
-                className="w-full text-left px-4 py-2 text-fs15 text-[#5d596c] hover:bg-[#f8f7fa] transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
+                className="w-full justify-start !text-left !px-4 !py-2 !h-auto text-fs16 text-[#5d596c] hover:bg-[#f8f7fa] transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer font-normal rounded-none"
               >
-                <svg className="w-4 h-4 text-[#ffab00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#ffab00] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3" />
                 </svg>
                 <span>Mark as Pending</span>
-              </button>
+              </CustomButton>
             </div>
           </AnchoredPortal>
 
-          {/* Right: Search & Create Invoice Button */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
               <CustomInput
@@ -586,52 +604,49 @@ export const InvoiceListPage: React.FC = () => {
                 className="rounded-[6px] !px-3.5"
               />
               {searchQuery && (
-                <button
+                <CustomButton
                   type="button"
+                  variant="ghost"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-fs14 text-[#a5a3ae] hover:text-[#5d596c] cursor-pointer"
+                  className="!p-0 !h-auto absolute right-3 top-1/2 -translate-y-1/2 text-fs15 text-[#a5a3ae] hover:text-[#5d596c] cursor-pointer"
                 >
-                  âœ•
-                </button>
+                  ✕
+                </CustomButton>
               )}
             </div>
 
             <CustomButton
               variant="primary"
               onClick={() => navigate("/apps/invoice/add")}
-              className="!h-10 px-5 uppercase tracking-wide font-medium text-fs15 md:text-fs16 rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+              className="!h-10 px-5 uppercase tracking-wide font-medium text-fs16 md:text-fs17 rounded-[6px] shadow-[0_2px_4px_rgba(105,108,255,0.4)] flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
               <span>CREATE INVOICE</span>
             </CustomButton>
           </div>
         </div>
 
-        {/* Loading State */}
         {isLoading && (
-          <div className="p-12 text-center text-[#696cff] font-medium text-fs16 animate-pulse">
+          <div className="p-12 text-center text-[#696cff] font-medium text-fs17 animate-pulse">
             Loading invoices from database...
           </div>
         )}
 
-        {/* Error State */}
         {isError && (
-          <div className="p-12 text-center text-[#ff4c51] font-medium text-fs16">
+          <div className="p-12 text-center text-[#ff4c51] font-medium text-fs17">
             Failed to load invoices: {error?.message || "Unknown error"}
           </div>
         )}
 
-        {/* Empty State */}
         {!isLoading && !isError && filteredInvoices.length === 0 && (
           <div className="p-16 text-center text-[#a5a3ae] flex flex-col items-center justify-center gap-2">
             <svg className="w-12 h-12 text-[#dbdade]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <p className="text-fs17 font-medium text-[#5d596c]">No invoices found</p>
-            <p className="text-fs15 text-[#a5a3ae]">Try adjusting your search or filters.</p>
+            <p className="text-fs18 font-medium text-[#5d596c]">No invoices found</p>
+            <p className="text-fs16 text-[#a5a3ae]">Try adjusting your search or filters.</p>
           </div>
         )}
 
-        {/* Main Table using reusable CustomTable */}
         {!isLoading && !isError && filteredInvoices.length > 0 && (
           <CustomTable<Invoice>
             columns={tableColumns}
@@ -639,8 +654,8 @@ export const InvoiceListPage: React.FC = () => {
             keyExtractor={(inv) => inv.id}
             className="w-full overflow-x-auto"
             tableClassName="w-full text-left border-collapse"
-            headerRowClassName="border-b border-[#dbdade]/60 text-fs14 font-medium text-[#5d596c] tracking-wider uppercase bg-[#fafafb]/70"
-            bodyClassName="divide-y divide-[#dbdade]/40 text-fs16"
+            headerRowClassName="border-b border-[#dbdade]/60 text-fs15 font-medium text-[#5d596c] tracking-wider uppercase bg-[#fafafb]/70"
+            bodyClassName="divide-y divide-[#dbdade]/40 text-fs17"
             bodyRowClassName={(inv) =>
               selectedIds.includes(inv.id)
                 ? "bg-[#ecebfd]/30 hover:bg-[#ecebfd]/40 transition"
@@ -650,10 +665,8 @@ export const InvoiceListPage: React.FC = () => {
           />
         )}
 
-        {/* 3. PAGINATION TOOLBAR using CustomDropdown & CustomButton */}
         {!isLoading && !isError && filteredInvoices.length > 0 && (
-          <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs15 text-[#6f6b7d] bg-white">
-            {/* Rows Per Page Selector using CustomDropdown */}
+          <div className="p-4 md:px-6 md:py-3.5 flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-4 border-t border-[#dbdade]/50 text-fs16 text-[#6f6b7d] bg-white">
             <div className="flex items-center gap-2">
               <span>Rows per page:</span>
               <CustomDropdown
@@ -672,12 +685,10 @@ export const InvoiceListPage: React.FC = () => {
               />
             </div>
 
-            {/* Record Range Counter */}
-            <div className="text-fs15 text-[#6f6b7d]">
+            <div className="text-fs16 text-[#6f6b7d]">
               {startRecord}-{endRecord} of {totalRecords}
             </div>
 
-            {/* Prev / Next Controls using CustomButton */}
             <div className="flex items-center gap-1 text-[#6f6b7d]">
               <CustomButton
                 type="button"
@@ -709,7 +720,6 @@ export const InvoiceListPage: React.FC = () => {
         )}
       </section>
 
-      {/* 4. DELETE CONFIRMATION MODAL */}
       <ConfirmationModal
         isOpen={deleteModalState.isOpen}
         title={deleteModalState.isMultiple ? "Delete Selected Invoices" : "Delete Invoice"}
@@ -734,6 +744,24 @@ export const InvoiceListPage: React.FC = () => {
         onCancel={() => setDeleteModalState({ isOpen: false })}
         isLoading={deleteMutation.isPending || batchDeleteMutation.isPending}
       />
+
+      {printInvoice && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            left: "-9999px",
+            top: 0,
+            width: "820px",
+            opacity: 0,
+            pointerEvents: "none",
+          }}
+        >
+          <div ref={printContainerRef}>
+            <InvoicePreviewCard invoice={printInvoice} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

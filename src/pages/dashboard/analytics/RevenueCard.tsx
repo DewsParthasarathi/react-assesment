@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store";
 import Highcharts from "highcharts";
 import { Chart } from "../../../components/ui/Chart";
 
@@ -7,6 +9,11 @@ interface RevenueCardProps {
 }
 
 export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
+  const themeMode = useSelector(
+    (state: RootState) => state.theme?.mode || "light",
+  );
+  const isDark = themeMode === "dark";
+
   const options: Highcharts.Options = {
     chart: {
       type: "column",
@@ -25,7 +32,11 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
       labels: {
         step: 1,
         y: 19,
-        style: { color: "#a5a3ae", fontSize: "12px", fontFamily: "Poppins" },
+        style: {
+          color: isDark ? "#b6bee3" : "#a5a3ae",
+          fontSize: "12px",
+          fontFamily: "Poppins",
+        },
       },
     },
     yAxis: {
@@ -35,10 +46,14 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
     tooltip: {
       headerFormat: "<b>Day {point.key}</b><br/>",
       pointFormat: "{point.y}k Revenue",
-      backgroundColor: "#ffffff",
-      borderColor: "#dbdade",
+      backgroundColor: isDark ? "#2f3349" : "#ffffff",
+      borderColor: isDark ? "#434968" : "#dbdade",
       borderRadius: 6,
-      style: { fontSize: "12px", fontFamily: "Poppins" },
+      style: {
+        color: isDark ? "#cfcde4" : "#32475c",
+        fontSize: "12px",
+        fontFamily: "Poppins",
+      },
     },
     plotOptions: {
       column: {
@@ -52,26 +67,26 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
       {
         type: "column",
         data: [
-          { y: 15, color: "#e0e1ff" },
-          { y: 22, color: "#e0e1ff" },
-          { y: 18, color: "#e0e1ff" },
-          { y: 14, color: "#e0e1ff" },
+          { y: 15, color: isDark ? "rgba(105, 108, 255, 0.16)" : "#e0e1ff" },
+          { y: 22, color: isDark ? "rgba(105, 108, 255, 0.16)" : "#e0e1ff" },
+          { y: 18, color: isDark ? "rgba(105, 108, 255, 0.16)" : "#e0e1ff" },
+          { y: 14, color: isDark ? "rgba(105, 108, 255, 0.16)" : "#e0e1ff" },
           { y: 32, color: "#696cff" },
-          { y: 16, color: "#e0e1ff" },
-          { y: 24, color: "#e0e1ff" },
+          { y: 16, color: isDark ? "rgba(105, 108, 255, 0.16)" : "#e0e1ff" },
+          { y: 24, color: isDark ? "rgba(105, 108, 255, 0.16)" : "#e0e1ff" },
         ],
       },
     ],
   };
 
   return (
-    <div className="bg-white rounded-[6px] p-5 pb-3 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full min-h-[190px]">
+    <div className="bg-white rounded-[6px] p-4 pb-2 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       <div>
-        <p className="text-fs14 font-normal text-[#a5a3ae]">Revenue</p>
-        <p className="text-fs24 font-bold text-[#444050] mt-1">{value}</p>
+        <p className="text-fs18 font-medium text-[#a5a3ae]">Revenue</p>
+        <p className="text-fs25 font-bold text-[#444050] mt-1">{value}</p>
       </div>
       <div className="mt-1">
-        <Chart options={options} />
+        <Chart key={themeMode} options={options} />
       </div>
     </div>
   );

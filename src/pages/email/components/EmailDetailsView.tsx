@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CustomButton } from "../../../components/ui/CustomButton";
+import { CustomImage } from "../../../components/ui/CustomImage";
 import type { EmailItem, EmailLabel } from "../../../api/types";
 import { getAvatarUrl } from "../avatarHelper";
 
@@ -43,10 +44,11 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
     <div className="flex-1 flex flex-col min-w-0 bg-white h-full overflow-hidden">
       <div className="shrink-0 sticky top-0 z-10 px-5 py-3 border-b border-[#dbdade]/50 flex items-center justify-between bg-white select-none">
         <div className="flex items-center gap-3">
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={onBack}
-            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] text-[#6f6b7d] hover:text-[#32475c] transition cursor-pointer flex items-center gap-1.5 text-fs13 font-medium"
+            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] text-[#6f6b7d] hover:text-[#32475c] transition cursor-pointer flex items-center gap-1.5 text-fs14 font-medium !h-auto"
             title="Back to list"
           >
             <svg
@@ -63,15 +65,16 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
               />
             </svg>
             <span>Back</span>
-          </button>
+          </CustomButton>
 
           <div className="h-4 w-px bg-[#dbdade] mx-1" />
 
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={() => onDelete(email.id)}
             title="Delete email"
-            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] text-[#6f6b7d] hover:text-[#ea5455] transition cursor-pointer"
+            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] text-[#6f6b7d] hover:text-[#ea5455] transition cursor-pointer !h-auto"
           >
             <svg
               className="w-4.5 h-4.5"
@@ -86,13 +89,14 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
               />
             </svg>
-          </button>
+          </CustomButton>
 
-          <button
+          <CustomButton
             type="button"
+            variant="ghost"
             onClick={() => onMarkAsUnread(email.id)}
             title="Mark as unread"
-            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] text-[#6f6b7d] hover:text-[#5d596c] transition cursor-pointer"
+            className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] text-[#6f6b7d] hover:text-[#5d596c] transition cursor-pointer !h-auto"
           >
             <svg
               className="w-4.5 h-4.5"
@@ -107,14 +111,15 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               />
             </svg>
-          </button>
+          </CustomButton>
         </div>
 
-        <button
+        <CustomButton
           type="button"
+          variant="ghost"
           onClick={() => onToggleStar(email.id, email.isStarred)}
           title={email.isStarred ? "Unstar" : "Star"}
-          className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] transition cursor-pointer"
+          className="p-1.5 rounded-[4px] hover:bg-[#f8f7fa] transition cursor-pointer !h-auto"
         >
           {email.isStarred ? (
             <svg
@@ -138,12 +143,12 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
               />
             </svg>
           )}
-        </button>
+        </CustomButton>
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto p-6 chat-email-scrollbar">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-[#dbdade]/50">
-          <h2 className="text-fs20 font-bold text-[#32475c] leading-snug">
+          <h2 className="text-fs21 font-bold text-[#32475c] leading-snug">
             {email.subject}
           </h2>
 
@@ -155,7 +160,7 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
                 return (
                   <span
                     key={lbl}
-                    className={`text-fs11 font-semibold px-2.5 py-0.5 rounded-full ${badge.color}`}
+                    className={`text-fs12 font-semibold px-2.5 py-0.5 rounded-full ${badge.color}`}
                   >
                     {badge.name}
                   </span>
@@ -165,24 +170,26 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
           )}
         </div>
 
-        {/* Sender Information Card */}
+
         <div className="flex items-start justify-between gap-4 py-5 border-b border-[#dbdade]/40">
           <div className="flex items-center gap-3.5">
-            <img
+            <CustomImage
               src={getAvatarUrl(email.from.avatar)}
               alt={email.from.name}
-              className="w-10 h-10 rounded-full object-cover border border-[#dbdade]/60 shrink-0"
+              containerClassName="w-10 h-10 rounded-full shrink-0"
+              className="w-full h-full rounded-full object-cover border border-[#dbdade]/60"
+              objectFit="cover"
             />
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-fs15 font-bold text-[#32475c]">
+                <span className="text-fs16 font-bold text-[#32475c]">
                   {email.from.name}
                 </span>
-                <span className="text-fs12 text-[#a5a3ae]">
+                <span className="text-fs13 text-[#a5a3ae]">
                   &lt;{email.from.email}&gt;
                 </span>
               </div>
-              <div className="text-fs12 text-[#6f6b7d] mt-0.5">
+              <div className="text-fs13 text-[#6f6b7d] mt-0.5">
                 to:{" "}
                 <span className="text-[#32475c] font-medium">{email.to}</span>
                 {email.cc && (
@@ -192,23 +199,23 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
             </div>
           </div>
 
-          <div className="text-fs12 text-[#a5a3ae] shrink-0 whitespace-nowrap">
+          <div className="text-fs13 text-[#a5a3ae] shrink-0 whitespace-nowrap">
             {email.timestamp} ({new Date(email.date).toLocaleDateString()})
           </div>
         </div>
 
-        {/* Full Message Body */}
-        <div className="py-6 text-fs14 text-[#444050] whitespace-pre-wrap leading-relaxed min-h-[160px]">
+
+        <div className="py-6 text-fs15 text-[#444050] whitespace-pre-wrap leading-relaxed min-h-[160px]">
           {email.message}
         </div>
 
-        {/* Action Buttons (Reply, Forward) */}
+
         <div className="pt-4 border-t border-[#dbdade]/40 flex items-center gap-3">
           <CustomButton
             variant="outline"
             size="sm"
             onClick={() => setShowReplyBox((prev) => !prev)}
-            className="!h-9 px-4 gap-2 text-fs13 border-[#dbdade]"
+            className="!h-9 px-4 gap-2 text-fs14 border-[#dbdade]"
           >
             <svg
               className="w-4 h-4"
@@ -230,7 +237,7 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
             variant="outline"
             size="sm"
             onClick={() => onForward(email)}
-            className="!h-9 px-4 gap-2 text-fs13 border-[#dbdade]"
+            className="!h-9 px-4 gap-2 text-fs14 border-[#dbdade]"
           >
             <svg
               className="w-4 h-4"
@@ -249,10 +256,10 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
           </CustomButton>
         </div>
 
-        {/* Inline Reply Box */}
+
         {showReplyBox && (
           <div className="mt-5 p-4 rounded-lg bg-[#f8f7fa] border border-[#dbdade]/60 animate-in fade-in">
-            <div className="text-fs13 font-semibold text-[#32475c] mb-2">
+            <div className="text-fs14 font-semibold text-[#32475c] mb-2">
               Reply to {email.from.name}
             </div>
             <textarea
@@ -260,7 +267,7 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
               placeholder="Type your reply here..."
-              className="w-full p-3 bg-white rounded-md border border-[#dbdade] text-fs14 text-[#32475c] focus:outline-hidden focus:border-[#696cff] transition resize-none"
+              className="w-full p-3 bg-white rounded-md border border-[#dbdade] text-fs15 text-[#32475c] focus:outline-hidden focus:border-[#696cff] transition resize-none"
               autoFocus
             />
             <div className="mt-3 flex items-center justify-end gap-2">
@@ -271,7 +278,7 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
                   setShowReplyBox(false);
                   setReplyText("");
                 }}
-                className="!h-8 px-3 text-fs12"
+                className="!h-8 px-3 text-fs13"
               >
                 Cancel
               </CustomButton>
@@ -280,7 +287,7 @@ export const EmailDetailsView: React.FC<EmailDetailsViewProps> = ({
                 size="sm"
                 onClick={handleSendReply}
                 disabled={!replyText.trim()}
-                className="!h-8 px-4 text-fs12 shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
+                className="!h-8 px-4 text-fs13 shadow-[0_2px_4px_rgba(105,108,255,0.4)]"
               >
                 Send Reply
               </CustomButton>

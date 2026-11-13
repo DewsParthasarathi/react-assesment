@@ -39,12 +39,12 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
           {...rest}
         />
         {label && (
-          <span className={`text-fs14 text-[#6f6b7d] ${labelClassName}`}>
+          <span className={`text-fs15 text-[#6f6b7d] ${labelClassName}`}>
             {label}
           </span>
         )}
       </label>
-      {error && <p className="mt-1 text-fs12 text-red-500">{error}</p>}
+      {error && <p className="mt-1 text-fs13 text-red-500">{error}</p>}
     </div>
   );
 };

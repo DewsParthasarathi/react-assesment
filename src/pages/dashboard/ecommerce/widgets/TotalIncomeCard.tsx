@@ -113,15 +113,15 @@ export const TotalIncomeCard: React.FC<TotalIncomeCardProps> = ({
 
   const containerClass = isInsideSharedContainer
     ? "p-4 flex flex-col h-full"
-    : "bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col h-full min-h-[260px]";
+    : "bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col h-full";
 
   return (
     <div className={containerClass}>
       <div>
-        <h3 className="text-fs18 font-bold text-[#444050] tracking-tight">
+        <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
           {title}
         </h3>
-        <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
+        <p className="text-fs14 text-[#a5a3ae] mt-0.5">{subtitle}</p>
       </div>
 
       <div className="w-full flex-1 min-h-[240px] mt-2">

@@ -1,4 +1,6 @@
 import React from "react";
+import { CustomButton } from "../../../components/ui/CustomButton";
+import { CustomImage } from "../../../components/ui/CustomImage";
 import type { EmailItem } from "../../../api/types";
 import { getAvatarUrl } from "../avatarHelper";
 
@@ -36,7 +38,7 @@ export const EmailList: React.FC<EmailListProps> = ({
   return (
     <div className="flex-1 min-h-0 overflow-y-auto divide-y divide-[#dbdade]/35 chat-email-scrollbar select-none">
       {isLoading ? (
-        <div className="flex items-center justify-center py-20 text-[#a5a3ae] text-fs14">
+        <div className="flex items-center justify-center py-20 text-[#a5a3ae] text-fs15">
           Loading emails...
         </div>
       ) : emails.length === 0 ? (
@@ -54,10 +56,10 @@ export const EmailList: React.FC<EmailListProps> = ({
               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
             />
           </svg>
-          <p className="text-fs15 font-medium text-[#6f6b7d]">
+          <p className="text-fs16 font-medium text-[#6f6b7d]">
             No emails found
           </p>
-          <p className="text-fs13 text-[#a5a3ae] mt-1">
+          <p className="text-fs14 text-[#a5a3ae] mt-1">
             {searchQuery
               ? "Try adjusting your search criteria"
               : "This folder is currently empty"}
@@ -72,22 +74,21 @@ export const EmailList: React.FC<EmailListProps> = ({
               <div
                 key={email.id}
                 onClick={() => onOpenEmail(email)}
-                className={`group flex items-center justify-between px-5 py-3 transition cursor-pointer select-none ${
+                className={`group flex items-center justify-between px-5 py-3 transition cursor-pointer select-none border-b border-[#dbdade]/30 dark:border-[#434968]/50 ${
                   isSelected
-                    ? "bg-[#e7e7ff]/30"
+                    ? "bg-[#e7e7ff]/30 dark:bg-[#696cff]/20"
                     : isUnread
-                      ? "bg-white hover:bg-[#f8f7fa]"
-                      : "bg-[#fcfcfd] hover:bg-[#f8f7fa]"
+                      ? "bg-white hover:bg-[#f8f7fa] dark:bg-[#2f3349] dark:hover:bg-[#353952]"
+                      : "bg-[#fcfcfd] hover:bg-[#f8f7fa] dark:bg-[#2b2e42] dark:hover:bg-[#353952]"
                 }`}
               >
-                {/* Left section: Checkbox, Star, Avatar, Sender Name */}
                 <div className="flex items-center gap-3.5 min-w-0 flex-1 pr-4">
-                  {/* Checkbox */}
-                  <button
+                  <CustomButton
                     type="button"
+                    variant="ghost"
                     onClick={(e) => onToggleSelect(email.id, e)}
                     aria-label={isSelected ? "Deselect email" : "Select email"}
-                    className="cursor-pointer shrink-0"
+                    className="cursor-pointer shrink-0 !p-0 !h-auto border-none bg-transparent"
                   >
                     {isSelected ? (
                       <div className="w-4.5 h-4.5 rounded-[4px] bg-[#696cff] border border-[#696cff] flex items-center justify-center text-white">
@@ -106,14 +107,14 @@ export const EmailList: React.FC<EmailListProps> = ({
                     ) : (
                       <div className="w-4.5 h-4.5 rounded-[4px] border-2 border-[#dbdade] hover:border-[#696cff] transition bg-white" />
                     )}
-                  </button>
+                  </CustomButton>
 
-                  {/* Star Button */}
-                  <button
+                  <CustomButton
                     type="button"
+                    variant="ghost"
                     onClick={(e) => onToggleStar(email.id, email.isStarred, e)}
                     aria-label={email.isStarred ? "Unstar email" : "Star email"}
-                    className="cursor-pointer shrink-0 p-0.5"
+                    className="cursor-pointer shrink-0 !p-0.5 !h-auto border-none bg-transparent"
                   >
                     {email.isStarred ? (
                       <svg
@@ -137,18 +138,18 @@ export const EmailList: React.FC<EmailListProps> = ({
                         />
                       </svg>
                     )}
-                  </button>
+                  </CustomButton>
 
-                  {/* Sender Avatar */}
-                  <img
+                  <CustomImage
                     src={getAvatarUrl(email.from.avatar)}
                     alt={email.from.name}
-                    className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#dbdade]/50"
+                    containerClassName="w-8 h-8 rounded-full shrink-0"
+                    className="w-full h-full rounded-full object-cover border border-[#dbdade]/50"
+                    objectFit="cover"
                   />
 
-                  {/* Sender Name */}
                   <span
-                    className={`text-fs14 shrink-0 w-32 md:w-36 truncate ${
+                    className={`text-fs15 shrink-0 w-32 md:w-36 truncate ${
                       isUnread
                         ? "font-bold text-[#32475c]"
                         : "font-medium text-[#5d596c]"
@@ -157,9 +158,8 @@ export const EmailList: React.FC<EmailListProps> = ({
                     {email.from.name}
                   </span>
 
-                  {/* Subject and Message Snippet */}
                   <span
-                    className={`text-fs14 truncate flex-1 min-w-0 ${
+                    className={`text-fs15 truncate flex-1 min-w-0 ${
                       isUnread ? "text-[#32475c] font-medium" : "text-[#6f6b7d]"
                     }`}
                   >
@@ -167,9 +167,7 @@ export const EmailList: React.FC<EmailListProps> = ({
                   </span>
                 </div>
 
-                {/* Right section: Label dots and Timestamp */}
                 <div className="flex items-center gap-3 shrink-0 ml-2">
-                  {/* Label dots */}
                   {email.labels && email.labels.length > 0 && (
                     <div className="flex items-center gap-1.5">
                       {email.labels.map((lbl) => (
@@ -184,9 +182,8 @@ export const EmailList: React.FC<EmailListProps> = ({
                     </div>
                   )}
 
-                  {/* Timestamp */}
                   <span
-                    className={`text-fs12 min-w-16 text-right ${
+                    className={`text-fs13 min-w-16 text-right ${
                       isUnread
                         ? "text-[#32475c] font-semibold"
                         : "text-[#a5a3ae]"

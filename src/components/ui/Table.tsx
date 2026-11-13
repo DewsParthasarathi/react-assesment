@@ -31,9 +31,9 @@ export function Table<T>({
   data,
   keyExtractor,
   className = "overflow-x-auto",
-  tableClassName = "w-full text-left text-fs13",
+  tableClassName = "w-full text-left text-fs14",
   headerClassName = "",
-  headerRowClassName = "border-b border-[#dbdade]/50 text-fs12 text-[#a5a3ae] font-medium uppercase tracking-wider",
+  headerRowClassName = "border-b border-[#dbdade]/50 text-fs13 text-[#a5a3ae] font-medium uppercase tracking-wider",
   bodyClassName = "divide-y divide-[#dbdade]/30",
   bodyRowClassName,
   emptyText = "No data available",
@@ -87,7 +87,7 @@ export function Table<T>({
             <tr>
               <td
                 colSpan={columns.length}
-                className="py-8 text-center text-[#a5a3ae] text-fs13 font-medium"
+                className="py-8 text-center text-[#a5a3ae] text-fs14 font-medium"
               >
                 {emptyText}
               </td>
@@ -102,7 +102,9 @@ export function Table<T>({
 
               const baseRowClass =
                 customRowClass ??
-                (hoverable ? "hover:bg-[#f8f7fa]/60 transition" : "");
+                (hoverable
+                  ? "hover:bg-[#f8f7fa]/60 dark:hover:bg-[#353952] transition-colors"
+                  : "");
 
               return (
                 <tr

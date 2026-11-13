@@ -1,3 +1,4 @@
+import { CustomImage } from "../../../components/ui/CustomImage";
 import member1 from "../../../assets/images/member1.jpg";
 import member2 from "../../../assets/images/member2.jpg";
 import member3 from "../../../assets/images/member3.jpg";
@@ -55,10 +56,12 @@ export const renderChatAvatar = (
 
   return (
     <div className={`relative ${sizeClass} shrink-0`}>
-      <img
+      <CustomImage
         src={imageSrc}
         alt={name || "User Avatar"}
-        className="w-full h-full rounded-full object-cover border border-[#dbdade]/50"
+        containerClassName="w-full h-full rounded-full"
+        className="w-full h-full rounded-full border border-[#dbdade]/50"
+        objectFit="cover"
       />
       {showOnline && (
         <span

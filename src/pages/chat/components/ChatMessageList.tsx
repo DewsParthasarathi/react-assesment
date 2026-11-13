@@ -66,10 +66,10 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
               />
             </svg>
           </div>
-          <p className="text-fs15 font-semibold text-[#6f6b7d]">
+          <p className="text-fs16 font-semibold text-[#6f6b7d]">
             No messages yet
           </p>
-          <p className="text-fs13 text-[#a5a3ae] mt-1">
+          <p className="text-fs14 text-[#a5a3ae] mt-1">
             Say hello to start the conversation!
           </p>
         </div>
@@ -84,11 +84,11 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
               <div key={msg.id} className="flex flex-col items-end">
                 <div className="flex items-end gap-2.5 max-w-[80%] md:max-w-[70%]">
                   <div className="flex flex-col items-end">
-                    <div className="bg-[#696cff] text-white rounded-lg shadow-[0_2px_4px_rgba(105,108,255,0.4)] px-4 py-2.5 text-fs14 leading-relaxed whitespace-pre-wrap select-text">
+                    <div className="bg-[#696cff] text-white rounded-lg shadow-[0_2px_4px_rgba(105,108,255,0.4)] px-4 py-2.5 text-fs15 leading-relaxed whitespace-pre-wrap select-text">
                       {msg.text}
                     </div>
                     {isLastInCluster && (
-                      <span className="text-fs11 text-[#a5a3ae] mt-1 mr-1">
+                      <span className="text-fs12 text-[#a5a3ae] mt-1 mr-1">
                         {msg.timestamp}
                       </span>
                     )}
@@ -123,11 +123,11 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
                 </div>
 
                 <div className="flex flex-col items-start">
-                  <div className="bg-white rounded-lg shadow-xs border border-[#dbdade]/50 px-4 py-2.5 text-fs14 text-[#32475c] leading-relaxed whitespace-pre-wrap select-text">
+                  <div className="bg-white rounded-lg shadow-xs border border-[#dbdade]/50 px-4 py-2.5 text-fs15 text-[#32475c] leading-relaxed whitespace-pre-wrap select-text">
                     {msg.text}
                   </div>
                   {isLastInCluster && (
-                    <span className="text-fs11 text-[#a5a3ae] mt-1 ml-1">
+                    <span className="text-fs12 text-[#a5a3ae] mt-1 ml-1">
                       {msg.timestamp}
                     </span>
                   )}
@@ -144,7 +144,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({
             {renderChatAvatar(contact.avatar, contact.name, "w-8 h-8", false)}
           </div>
           <div className="bg-white rounded-lg shadow-xs border border-[#dbdade]/50 px-4 py-2.5 flex items-center gap-2">
-            <span className="text-fs12 text-[#6f6b7d] font-medium">
+            <span className="text-fs13 text-[#6f6b7d] font-medium">
               {contact.name} is typing...
             </span>
             <div className="flex items-center gap-1">

@@ -299,3 +299,54 @@
 .calendar-wrapper .fc-list-event:hover td {
   background-color: #f8f7fa !important;
 }
+
+html.dark .calendar-wrapper {
+  --fc-border-color: #434968;
+  --fc-page-bg-color: #2f3349;
+  --fc-today-bg-color: rgba(105, 108, 255, 0.12);
+  --fc-neutral-bg-color: #2f3349;
+  --fc-list-event-hover-bg-color: #353952;
+}
+
+html.dark .calendar-wrapper .fc {
+  color: #cfcde4;
+}
+
+html.dark .calendar-wrapper .fc-5M,
+html.dark .calendar-wrapper .fc-col-header,
+html.dark .calendar-wrapper thead,
+html.dark .calendar-wrapper [role="rowgroup"]:has([role="columnheader"]) {
+  background-color: #2f3349 !important;
+}
+
+html.dark .calendar-wrapper .fc-5M > div,
+html.dark .calendar-wrapper [role="rowgroup"]:has([role="columnheader"]) [role="row"],
+html.dark .calendar-wrapper [role="columnheader"],
+html.dark .calendar-wrapper .fc-col-header-cell,
+html.dark .calendar-wrapper th {
+  background-color: #2f3349 !important;
+  color: #b6bee3 !important;
+}
+
+html.dark .calendar-wrapper [role="columnheader"] > div,
+html.dark .calendar-wrapper .fc-col-header-cell-cushion {
+  color: #b6bee3 !important;
+}
+
+html.dark .calendar-wrapper .fc-daygrid-day-number {
+  color: #cfcde4 !important;
+}
+
+html.dark .calendar-wrapper .fc-theme-standard td,
+html.dark .calendar-wrapper .fc-theme-standard th {
+  border-color: #434968 !important;
+}
+
+html.dark .calendar-wrapper .fc-list-day-cushion {
+  background-color: #2b2e44 !important;
+  color: #cfcde4 !important;
+}
+
+html.dark .calendar-wrapper .fc-list-event:hover td {
+  background-color: #353952 !important;
+}

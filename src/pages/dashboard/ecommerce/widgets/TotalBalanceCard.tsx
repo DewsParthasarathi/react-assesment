@@ -3,6 +3,7 @@ import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommerceTotalBalance } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+import { CustomButton } from "../../../../components/ui/CustomButton";
 
 interface TotalBalanceCardProps {
   data?: EcommerceTotalBalance;
@@ -126,10 +127,10 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full min-h-[340px]">
+    <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs18 font-bold text-[#444050] tracking-tight">
+          <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
             {title}
           </h3>
 
@@ -138,9 +139,10 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
             onSelectYear={onSelectYear || (() => {})}
             availableYears={availableYears}
           >
-            <button
+            <CustomButton
               type="button"
-              className="text-[#a5a3ae] hover:text-[#5d596c] p-1 rounded transition cursor-pointer"
+              variant="ghost"
+              className="!p-1 !h-auto text-[#a5a3ae] hover:text-[#5d596c] rounded transition cursor-pointer"
               aria-label="Balance options"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -148,7 +150,7 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
                 <circle cx="12" cy="12" r="2" />
                 <circle cx="12" cy="19" r="2" />
               </svg>
-            </button>
+            </CustomButton>
           </YearSelectionPopup>
         </div>
 
@@ -168,10 +170,10 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
               </svg>
             </div>
             <div>
-              <span className="text-fs16 font-bold text-[#444050] block leading-tight">
+              <span className="text-fs17 font-bold text-[#444050] block leading-tight">
                 {walletBalance}
               </span>
-              <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
+              <span className="text-fs13 text-[#a5a3ae] block leading-tight mt-0.5">
                 Wallet
               </span>
             </div>
@@ -188,10 +190,10 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
               </svg>
             </div>
             <div>
-              <span className="text-fs16 font-bold text-[#444050] block leading-tight">
+              <span className="text-fs17 font-bold text-[#444050] block leading-tight">
                 {paypalBalance}
               </span>
-              <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5">
+              <span className="text-fs13 text-[#a5a3ae] block leading-tight mt-0.5">
                 Paypal
               </span>
             </div>
@@ -205,17 +207,18 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
 
       <div className="border-t border-[#dbdade]/40 pt-3 flex items-center justify-between mt-auto">
         <div>
-          <span className="text-fs12 font-medium text-[#6f6b7d] block leading-tight">
+          <span className="text-fs13 font-medium text-[#6f6b7d] block leading-tight">
             {salesGrowthMessage}
           </span>
-          <span className="text-fs11 text-[#a5a3ae] block leading-tight mt-0.5 capitalize">
+          <span className="text-fs12 text-[#a5a3ae] block leading-tight mt-0.5 capitalize">
             {subMessage}
           </span>
         </div>
 
-        <button
+        <CustomButton
           type="button"
-          className="w-8 h-8 rounded-[6px] bg-[#fff1e3] text-[#ffab00] flex items-center justify-center hover:bg-[#ffe5c9] transition cursor-pointer shrink-0 ml-2"
+          variant="ghost"
+          className="!w-8 !h-8 !p-0 rounded-[6px] bg-[#fff1e3] text-[#ffab00] flex items-center justify-center hover:bg-[#ffe5c9] transition cursor-pointer shrink-0 ml-2"
           aria-label="View sales details"
         >
           <svg
@@ -231,7 +234,7 @@ export const TotalBalanceCard: React.FC<TotalBalanceCardProps> = ({
               d="M9 5l7 7-7 7"
             />
           </svg>
-        </button>
+        </CustomButton>
       </div>
     </div>
   );
