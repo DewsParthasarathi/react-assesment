@@ -2,6 +2,7 @@ import React from "react";
 import type { EcommerceSalesSummary } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import { CustomButton } from "../../../../components/ui/CustomButton";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface SalesSummaryCardProps {
   data?: EcommerceSalesSummary;
@@ -16,6 +17,7 @@ export const SalesSummaryCard: React.FC<SalesSummaryCardProps> = ({
   selectedYear = "2023",
   onSelectYear,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Sales";
   const value = data?.value || "$42,389";
   const growth = data?.growth || "28.14%";
@@ -49,7 +51,7 @@ export const SalesSummaryCard: React.FC<SalesSummaryCardProps> = ({
       </div>
 
       <div className="mt-3">
-        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{t(title)}</span>
         <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>

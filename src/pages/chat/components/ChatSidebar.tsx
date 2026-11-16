@@ -10,6 +10,7 @@ interface ChatSidebarProps {
   onSelectContact: (contact: ChatContact) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  loadingContacts?: Record<string, boolean>;
 }
 
 export const ChatSidebar: React.FC<ChatSidebarProps> = ({
@@ -18,6 +19,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   onSelectContact,
   searchQuery,
   onSearchChange,
+  loadingContacts = {},
 }) => {
   const filteredContacts = contacts.filter((c) =>
     c.name.toLowerCase().includes(searchQuery.toLowerCase().trim()),
@@ -82,6 +84,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           <div className="space-y-1 mt-1">
             {recentChats.map((contact) => {
               const isActive = contact.id === activeContactId;
+              const isContactLoading = Boolean(loadingContacts[contact.id]);
 
               return (
                 <div
@@ -113,13 +116,40 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                         {contact.name}
                       </span>
                     </div>
-                    <p
-                      className={`text-fs13 truncate mt-0.5 ${
-                        isActive ? "text-white/80" : "text-[#a5a3ae]"
-                      }`}
-                    >
-                      {contact.lastMessage || contact.role}
-                    </p>
+                    {isContactLoading ? (
+                      <span
+                        className={`text-fs13 truncate mt-0.5 flex items-center gap-1.5 ${
+                          isActive ? "text-white/90" : "text-[#696cff] font-medium"
+                        }`}
+                      >
+                        <span>Typing...</span>
+                        <span className="flex items-center gap-0.5">
+                          <span
+                            className={`w-1 h-1 rounded-full ${
+                              isActive ? "bg-white" : "bg-[#696cff]"
+                            } animate-bounce [animation-delay:-0.3s]`}
+                          />
+                          <span
+                            className={`w-1 h-1 rounded-full ${
+                              isActive ? "bg-white" : "bg-[#696cff]"
+                            } animate-bounce [animation-delay:-0.15s]`}
+                          />
+                          <span
+                            className={`w-1 h-1 rounded-full ${
+                              isActive ? "bg-white" : "bg-[#696cff]"
+                            } animate-bounce`}
+                          />
+                        </span>
+                      </span>
+                    ) : (
+                      <p
+                        className={`text-fs13 truncate mt-0.5 ${
+                          isActive ? "text-white/80" : "text-[#a5a3ae]"
+                        }`}
+                      >
+                        {contact.lastMessage || contact.role}
+                      </p>
+                    )}
                   </div>
                 </div>
               );
@@ -138,6 +168,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             <div className="space-y-1 mt-1">
               {otherContacts.map((contact) => {
                 const isActive = contact.id === activeContactId;
+                const isContactLoading = Boolean(loadingContacts[contact.id]);
 
                 return (
                   <div
@@ -167,13 +198,40 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                       >
                         {contact.name}
                       </span>
-                      <p
-                        className={`text-fs13 truncate mt-0.5 ${
-                          isActive ? "text-white/80" : "text-[#a5a3ae]"
-                        }`}
-                      >
-                        {contact.role}
-                      </p>
+                      {isContactLoading ? (
+                        <span
+                          className={`text-fs13 truncate mt-0.5 flex items-center gap-1.5 ${
+                            isActive ? "text-white/90" : "text-[#696cff] font-medium"
+                          }`}
+                        >
+                          <span>Typing...</span>
+                          <span className="flex items-center gap-0.5">
+                            <span
+                              className={`w-1 h-1 rounded-full ${
+                                isActive ? "bg-white" : "bg-[#696cff]"
+                              } animate-bounce [animation-delay:-0.3s]`}
+                            />
+                            <span
+                              className={`w-1 h-1 rounded-full ${
+                                isActive ? "bg-white" : "bg-[#696cff]"
+                              } animate-bounce [animation-delay:-0.15s]`}
+                            />
+                            <span
+                              className={`w-1 h-1 rounded-full ${
+                                isActive ? "bg-white" : "bg-[#696cff]"
+                              } animate-bounce`}
+                            />
+                          </span>
+                        </span>
+                      ) : (
+                        <p
+                          className={`text-fs13 truncate mt-0.5 ${
+                            isActive ? "text-white/80" : "text-[#a5a3ae]"
+                          }`}
+                        >
+                          {contact.role}
+                        </p>
+                      )}
                     </div>
                   </div>
                 );

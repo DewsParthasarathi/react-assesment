@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: "Poppins";
   src: url("./fonts/Poppins-Regular.ttf") format("truetype");
@@ -280,7 +282,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Noto Sans Tamil", "Nirmala UI", sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--page-bg);
@@ -413,8 +415,28 @@ html.dark .bg-\[\#71dd37\]\/15 {
   background-color: rgba(113, 221, 55, 0.16) !important;
 }
 
-html.dark .bg-\[\#d2f4fa\] {
+html.dark .bg-\[\#d2f4fa\],
+html.dark .bg-\[\#d9f8fc\],
+html.dark .bg-\[\#d7f5fc\] {
   background-color: rgba(3, 195, 236, 0.16) !important;
+}
+
+html.dark .bg-\[\#eae8fd\] {
+  background-color: rgba(105, 108, 255, 0.16) !important;
+}
+
+html.dark .bg-\[\#fff1e3\] {
+  background-color: rgba(255, 171, 0, 0.16) !important;
+}
+
+html.dark .bg-\[\#f1f0f4\],
+html.dark .bg-\[\#f2f3f5\],
+html.dark .bg-\[\#f1f0f2\] {
+  background-color: #353952 !important;
+}
+
+html.dark .stroke-\[\#f1f0f4\] {
+  stroke: #3c415e !important;
 }
 
 html.dark .bg-gray-50 {

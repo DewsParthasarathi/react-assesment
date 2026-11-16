@@ -5,6 +5,7 @@ import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import type { OrderData } from "../../../../api/types";
 import orderIcon from "../../../../assets/images/Order.svg";
 import moreIcon from "../../../../assets/images/More.svg";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface OrderSummaryCardProps {
   data?: OrderData;
@@ -13,6 +14,7 @@ interface OrderSummaryCardProps {
 
 export const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ data, availableYears = ["2023", "2022"] }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
 
   if (!data) {
     return (
@@ -51,7 +53,7 @@ export const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ data, availa
       </div>
 
       <div className="mt-3">
-        <p className="text-fs19 font-normal text-[#a5a3ae]">Order</p>
+        <p className="text-fs19 font-normal text-[#a5a3ae]">{t("Order")}</p>
         <p className="text-fs25 font-semibold text-[#444050] mt-1">{amount}</p>
         <p
           className={`text-fs15 font-normal mt-1 flex items-center gap-1 ${

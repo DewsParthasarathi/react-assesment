@@ -2,6 +2,7 @@ import React from "react";
 import illustrationJohn from "../../../assets/images/illustration-john-light.png";
 import { CustomButton } from "../../../components/ui/CustomButton";
 import { CustomImage } from "../../../components/ui/CustomImage";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 interface WelcomeCardProps {
   greeting?: string;
@@ -61,11 +62,13 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
     return description;
   };
 
+  const { t } = useWidgetTranslation();
+
   return (
     <div className="bg-white rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] relative overflow-hidden flex flex-col justify-between h-full">
       <div className="max-w-[68%] sm:max-w-[70%] z-10">
         <h2 className="text-fs26 font-medium text-[#696cff] tracking-normal">
-          {greeting}
+          {t(greeting)}
         </h2>
         <div className="text-fs17 text-[#6f6b7d] mt-2.5 leading-relaxed tracking-normal max-w-xl">
           {renderDescription()}

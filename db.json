@@ -4099,6 +4099,62 @@
         "text": "hi",
         "timestamp": "01:24 pm",
         "createdAt": "2026-10-30T07:54:51.286Z"
+      },
+      {
+        "id": "msg-1794827642269",
+        "senderId": "user",
+        "text": "hai",
+        "timestamp": "04:44 pm",
+        "createdAt": "2026-11-16T11:14:02.262Z"
+      },
+      {
+        "id": "msg-ai-1794827924193",
+        "senderId": "2",
+        "text": "Hey John! How’s your day going? Let me know if you need anything pulled from the finance dashboard or help with the pipeline numbers.",
+        "timestamp": "04:48 pm",
+        "createdAt": "2026-11-16T11:18:44.192Z"
+      },
+      {
+        "id": "msg-1794828568380",
+        "senderId": "user",
+        "text": "what was going on in your office Jane ?",
+        "timestamp": "04:59 pm",
+        "createdAt": "2026-11-16T11:29:28.380Z"
+      },
+      {
+        "id": "msg-1794828608491",
+        "senderId": "user",
+        "text": "what was going on in your office Jane ?",
+        "timestamp": "05:00 pm",
+        "createdAt": "2026-11-16T11:30:08.490Z"
+      },
+      {
+        "id": "msg-ai-1794828872486",
+        "senderId": "2",
+        "text": "Thanks for the update John, I will check the dashboard figures on my end.",
+        "timestamp": "05:04 pm",
+        "createdAt": "2026-11-16T11:34:32.485Z"
+      },
+      {
+        "id": "msg-ai-1794828912311",
+        "senderId": "2",
+        "text": "Got it! Let me review this and get back to you shortly.",
+        "timestamp": "05:05 pm",
+        "createdAt": "2026-11-16T11:35:12.311Z"
+      },
+      {
+        "id": "msg-1794829111884",
+        "senderId": "user",
+        "text": "i want to know your marital Status ?",
+        "timestamp": "05:08 pm",
+        "createdAt": "2026-11-16T11:38:31.883Z"
+      },
+      {
+        "id": "msg-ai-1794829112349",
+        "senderId": "2",
+        "text": "I'm reviewing the financial statements and quarterly targets now. Everything aligns with our forecast.",
+        "timestamp": "05:08 pm",
+        "createdAt": "2026-11-16T11:38:32.349Z"
       }
     ],
     "3": [
@@ -4122,6 +4178,20 @@
         "text": "if it takes long you can mail me a summary report",
         "timestamp": "10:22 AM",
         "createdAt": "2026-10-30T10:22:00Z"
+      },
+      {
+        "id": "msg-1794829154949",
+        "senderId": "user",
+        "text": "hi Michael",
+        "timestamp": "05:09 pm",
+        "createdAt": "2026-11-16T11:39:14.948Z"
+      },
+      {
+        "id": "msg-ai-1794829155270",
+        "senderId": "3",
+        "text": "Understood, looking into this right now.",
+        "timestamp": "05:09 pm",
+        "createdAt": "2026-11-16T11:39:15.269Z"
       }
     ],
     "4": [

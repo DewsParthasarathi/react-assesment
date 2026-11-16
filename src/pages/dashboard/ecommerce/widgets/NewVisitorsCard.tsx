@@ -2,6 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommerceNewVisitors } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface NewVisitorsCardProps {
   data?: EcommerceNewVisitors;
@@ -12,6 +13,7 @@ export const NewVisitorsCard: React.FC<NewVisitorsCardProps> = ({
   data,
   isInsideSharedContainer = false,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "New Visitors";
   const timeLabel = data?.timeLabel || "Last Week";
   const percentage = data?.percentage || "23%";
@@ -87,7 +89,7 @@ export const NewVisitorsCard: React.FC<NewVisitorsCardProps> = ({
     <div className={containerClass}>
       <div className="flex items-center justify-between">
         <h3 className="text-fs19 font-medium text-[#444050] tracking-tight">
-          {title}
+          {t(title)}
         </h3>
         <span className="text-fs14 text-[#a5a3ae]">{timeLabel}</span>
       </div>

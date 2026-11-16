@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CustomDropdown from "../../../../components/ui/CustomDropdown";
 import type { SalesAnalyticsData } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface SalesAnalyticsHeatmapCardProps {
   data?: SalesAnalyticsData;
@@ -13,6 +14,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
   selectedYear: controlledYear,
   onYearChange,
 }) => {
+  const { t } = useWidgetTranslation();
   const [internalYear, setInternalYear] = useState<string>("2023");
   const [hoveredCell, setHoveredCell] = useState<{ month: string; y: string; value: number } | null>(null);
 
@@ -59,7 +61,7 @@ export const SalesAnalyticsHeatmapCard: React.FC<SalesAnalyticsHeatmapCardProps>
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full relative">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs23 font-medium text-[#444050]">Sales Analytics</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">{t("Sales Analytics")}</h3>
 
           <div className="relative w-20">
             <CustomDropdown

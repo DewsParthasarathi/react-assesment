@@ -8,6 +8,7 @@ import { CustomButton } from "../../../components/ui/CustomButton";
 import { CustomImage } from "../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
 import type { MemberTransaction } from "../../../api/types";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 interface TransactionsCardProps {
   transactions?: MemberTransaction[];
@@ -21,6 +22,7 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t: translate } = useWidgetTranslation();
 
   const defaultTransactions: MemberTransaction[] = [
     {
@@ -104,7 +106,7 @@ export const TransactionsCard: React.FC<TransactionsCardProps> = ({
   return (
     <div className="bg-white rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       <div className="flex items-center justify-between pb-1">
-        <h3 className="text-fs19 font-semibold text-[#444050]">Transactions</h3>
+        <h3 className="text-fs19 font-semibold text-[#444050]">{translate("Transactions")}</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}

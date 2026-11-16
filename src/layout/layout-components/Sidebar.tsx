@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { CustomButton } from "../../components/ui/CustomButton";
 
 interface SubmenuItem {
   id: string;
@@ -108,7 +107,7 @@ export const Sidebar: React.FC = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.5}
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            d="M9 12h6m-6 4h6m2 5H5a2 2 0 01-2-2V5a2 2 0 012-2h7.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
           />
         </svg>
       ),
@@ -148,7 +147,7 @@ export const Sidebar: React.FC = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.5}
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a9 9 0 00-9 7h18a9 9 0 00-9-7z"
           />
         </svg>
       ),
@@ -192,7 +191,7 @@ export const Sidebar: React.FC = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.5}
-            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+            d="M5 21h12a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H5a2 2 0 00-2 2v14a2 2 0 002 2z"
           />
         </svg>
       ),
@@ -221,29 +220,31 @@ export const Sidebar: React.FC = () => {
   return (
     <aside className="sticky top-0 h-screen w-[18%] shrink-0 bg-white border-r border-[#dbdade]/50 flex flex-col pt-[86px] pb-3 select-none z-20 print:hidden">
       <div className="px-3 mb-1">
-        <CustomButton
-          variant="ghost"
+        <button
+          type="button"
           onClick={() => setDashboardOpen((prev) => !prev)}
-          className={`w-full !justify-between px-3 !py-2.5 !h-auto rounded-lg text-fs16 font-medium transition cursor-pointer ${
+          className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-fs16 font-medium transition cursor-pointer ${
             isDashboardActive
-              ? "!bg-[#e7e7ff] !text-[#696cff] dark:!bg-[#696cff] dark:!text-white"
-              : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
+              ? "bg-[#e7e7ff] text-[#696cff] font-medium"
+              : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c]"
           }`}
         >
           <div className="flex items-center gap-3">
-            <svg
-              className="w-5 h-5 shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
-            </svg>
+            <span className="w-5 h-5 shrink-0 flex items-center justify-center">
+              <svg
+                className="w-5 h-5 shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+              </svg>
+            </span>
             <span className="font-medium">Dashboards</span>
           </div>
           <svg
@@ -259,7 +260,7 @@ export const Sidebar: React.FC = () => {
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </CustomButton>
+        </button>
 
         {dashboardOpen && (
           <div className="mt-1 pl-4 space-y-0.5">
@@ -321,20 +322,20 @@ export const Sidebar: React.FC = () => {
           if (item.hasSubmenu) {
             return (
               <div key={item.id} className="space-y-0.5">
-                <CustomButton
-                  variant="ghost"
+                <button
+                  type="button"
                   onClick={() => toggleGroup(item.id)}
-                  className={`w-full !justify-between px-3 !py-2 !h-auto rounded-md text-fs16 font-medium transition cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-fs16 font-medium transition cursor-pointer ${
                     isChildActive
-                      ? "!bg-[#e7e7ff] !text-[#696cff] font-medium"
-                      : "!text-[#6f6b7d] hover:!bg-[#f5f5f9] hover:!text-[#5d596c]"
+                      ? "bg-[#e7e7ff] text-[#696cff] font-medium"
+                      : "text-[#6f6b7d] hover:bg-[#f5f5f9] hover:text-[#5d596c]"
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <span
-                      className={
+                      className={`w-5 h-5 shrink-0 flex items-center justify-center ${
                         isChildActive ? "text-[#696cff]" : "text-[#6f6b7d]"
-                      }
+                      }`}
                     >
                       {item.icon}
                     </span>
@@ -355,7 +356,7 @@ export const Sidebar: React.FC = () => {
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </CustomButton>
+                </button>
 
                 {isGroupExpanded && item.subItems && (
                   <div className="pl-6 space-y-0.5">
@@ -436,9 +437,9 @@ export const Sidebar: React.FC = () => {
                   <>
                     <div className="flex items-center gap-3">
                       <span
-                        className={
+                        className={`w-5 h-5 shrink-0 flex items-center justify-center ${
                           isItemActive ? "text-[#696cff]" : "text-[#6f6b7d]"
-                        }
+                        }`}
                       >
                         {item.icon}
                       </span>

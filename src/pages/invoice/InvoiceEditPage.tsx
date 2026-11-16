@@ -95,6 +95,23 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
   );
   const [successToast, setSuccessToast] = useState("");
 
+  const invoiceOptions = useMemo(() => {
+    const seen = new Set<string>();
+    const opts: Array<{ label: string; value: string }> = [];
+    allInvoices.forEach((inv) => {
+      const rawVal = inv.invoiceNumber || `#${inv.id}`;
+      const clean = rawVal.trim();
+      if (clean && !seen.has(clean)) {
+        seen.add(clean);
+        opts.push({
+          label: clean,
+          value: clean,
+        });
+      }
+    });
+    return opts;
+  }, [allInvoices]);
+
   const handleAddItem = () => {
     setItems((prev) => [
       ...prev,
@@ -270,25 +287,18 @@ const InvoiceEditForm: React.FC<InvoiceEditFormProps> = ({
               <span className="text-fs17 font-semibold text-[#32475c] w-28 sm:text-right">
                 Invoice
               </span>
-              <CustomInput
-                type="text"
-                list="previous-invoices"
-                value={invoiceNumber}
-                onChange={(e) => handleInvoiceNumberChange(e.target.value)}
-                sizeVariant="sm"
-                containerClassName="w-48 sm:w-56"
-                className="rounded-[6px] !px-3"
-              />
-              <datalist id="previous-invoices">
-                {allInvoices.map((inv) => (
-                  <option
-                    key={inv.id}
-                    value={inv.invoiceNumber || `#${inv.id}`}
-                  >
-                    {inv.clientName} - ${inv.total}
-                  </option>
-                ))}
-              </datalist>
+              <div className="w-48 sm:w-56">
+                <CustomDropdown
+                  value={invoiceNumber}
+                  onChange={(val) => handleInvoiceNumberChange(String(val))}
+                  sizeVariant="sm"
+                  searchable
+                  searchPlaceholder="Search Invoice ID..."
+                  noResultsText="No invoice found"
+                  options={invoiceOptions}
+                  className="rounded-[6px] !h-9"
+                />
+              </div>
             </div>
 
             <div className="flex items-center justify-between sm:justify-end gap-3">

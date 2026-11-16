@@ -3,6 +3,7 @@ import paypalIcon from "../../../assets/images/Paypal.svg";
 import { CustomButton } from "../../../components/ui/CustomButton";
 import { CustomImage } from "../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 interface PaymentsCardProps {
   value?: string;
@@ -23,6 +24,7 @@ export const PaymentsCard: React.FC<PaymentsCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
   const active =
     years && years[selectedYear]
       ? years[selectedYear]
@@ -64,7 +66,7 @@ export const PaymentsCard: React.FC<PaymentsCardProps> = ({
       </div>
 
       <div>
-        <p className="text-fs18 font-medium text-[#a5a3ae]">Payments</p>
+        <p className="text-fs18 font-medium text-[#a5a3ae]">{t("Payments")}</p>
         <p className="text-fs25 font-bold text-[#444050] mt-0.5">
           {displayValue}
         </p>

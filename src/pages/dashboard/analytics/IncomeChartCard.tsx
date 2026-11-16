@@ -6,11 +6,13 @@ import Highcharts from "highcharts";
 import { Chart } from "../../../components/ui/Chart";
 import { Tabs, type TabItem } from "../../../components/ui/Tabs";
 import { CustomImage } from "../../../components/ui/CustomImage";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 type TabType = "INCOME" | "EXPENSES" | "PROFIT";
 
 export const IncomeChartCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>("INCOME");
+  const { t } = useWidgetTranslation();
   const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
   const isDark = themeMode === "dark";
 
@@ -232,9 +234,9 @@ export const IncomeChartCard: React.FC = () => {
   };
 
   const tabItems: TabItem[] = [
-    { id: "INCOME", label: "INCOME" },
-    { id: "EXPENSES", label: "EXPENSES" },
-    { id: "PROFIT", label: "PROFIT" },
+    { id: "INCOME", label: t("INCOME") },
+    { id: "EXPENSES", label: t("EXPENSES") },
+    { id: "PROFIT", label: t("PROFIT") },
   ];
 
   return (
@@ -264,7 +266,7 @@ export const IncomeChartCard: React.FC = () => {
           </div>
           <div>
             <p className="text-fs15 font-normal text-[#6f6b7d]">
-              {current.label}
+              {t(current.label)}
             </p>
             <div className="flex items-center gap-3 mt-0.5">
               <span className="text-fs23 font-bold text-[#444050]">

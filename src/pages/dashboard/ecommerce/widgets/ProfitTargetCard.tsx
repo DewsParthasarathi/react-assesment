@@ -1,11 +1,13 @@
 import React from "react";
 import type { EcommerceProfitTarget } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface ProfitTargetCardProps {
   data?: EcommerceProfitTarget;
 }
 
 export const ProfitTargetCard: React.FC<ProfitTargetCardProps> = ({ data }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Profit";
   const value = data?.value || "482K";
   const growth = data?.growth || "+34%";
@@ -16,7 +18,7 @@ export const ProfitTargetCard: React.FC<ProfitTargetCardProps> = ({ data }) => {
     <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
         <div>
-          <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+          <span className="text-fs15 font-medium text-[#6f6b7d]">{t(title)}</span>
           <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
             {value}
           </div>
@@ -29,7 +31,7 @@ export const ProfitTargetCard: React.FC<ProfitTargetCardProps> = ({ data }) => {
 
       <div className="mt-4">
         <span className="text-fs13 text-[#a5a3ae] block mb-2">
-          {targetLabel}
+          {t(targetLabel)}
         </span>
         <div className="flex items-center gap-2">
           <div className="flex-1 h-1.5 rounded-full bg-[#f1f0f2] overflow-hidden">

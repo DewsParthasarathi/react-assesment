@@ -6,6 +6,7 @@ import { Chart } from "../../../components/ui/Chart";
 import { CustomButton } from "../../../components/ui/CustomButton";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
 import type { TotalRevenueData } from "../../../api/types";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 interface TotalRevenueCardProps {
   data?: TotalRevenueData;
@@ -25,6 +26,7 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState("2023");
+  const { t, isTamil } = useWidgetTranslation();
   const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
   const isDark = themeMode === "dark";
 
@@ -128,9 +130,11 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
   const segmentWidth = 7;
   const segmentHeight = 20;
 
-  const formattedCompanyGrowth = currentCompanyGrowth.includes("Company Growth")
-    ? currentCompanyGrowth
-    : `${currentCompanyGrowth} Company Growth`;
+  const formattedCompanyGrowth = isTamil
+    ? currentCompanyGrowth.replace("Company Growth", t("Company Growth"))
+    : (currentCompanyGrowth.includes("Company Growth")
+        ? currentCompanyGrowth
+        : `${currentCompanyGrowth} Company Growth`);
 
   return (
     <div className="bg-white rounded-[6px] border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] overflow-hidden h-full flex flex-col justify-between">
@@ -138,7 +142,7 @@ export const TotalRevenueCard: React.FC<TotalRevenueCardProps> = ({
         <div className="col-span-12 md:col-span-7 p-4 flex flex-col justify-between">
           <div className="flex flex-col items-start gap-2.5 mb-2">
             <h3 className="text-fs19 font-semibold text-[#444050]">
-              Total Revenue
+              {t("Total Revenue")}
             </h3>
             <div className="flex items-center gap-4 text-fs15 font-normal text-[#6f6b7d]">
               <span className="flex items-center gap-1.5">

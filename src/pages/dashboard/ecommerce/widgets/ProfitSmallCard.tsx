@@ -2,12 +2,14 @@ import React from "react";
 import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommerceProfitSmall } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface ProfitSmallCardProps {
   data?: EcommerceProfitSmall;
 }
 
 export const ProfitSmallCard: React.FC<ProfitSmallCardProps> = ({ data }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Profit";
   const value = data?.value || "624K";
   const months = data?.months || ["Jan", "Apr", "Jul", "Oct"];
@@ -78,7 +80,7 @@ export const ProfitSmallCard: React.FC<ProfitSmallCardProps> = ({ data }) => {
   return (
     <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
-        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{t(title)}</span>
         <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>

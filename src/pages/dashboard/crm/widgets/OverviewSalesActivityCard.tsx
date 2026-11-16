@@ -6,6 +6,7 @@ import CustomImage from "../../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import type { OverviewSalesActivityData } from "../../../../api/types";
 import moreIcon from "../../../../assets/images/More.svg";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface OverviewSalesActivityCardProps {
   data?: OverviewSalesActivityData;
@@ -14,6 +15,7 @@ interface OverviewSalesActivityCardProps {
 
 export const OverviewSalesActivityCard: React.FC<OverviewSalesActivityCardProps> = ({ data, availableYears = ["2023", "2022"] }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
 
   if (!data) {
     return (
@@ -103,7 +105,7 @@ export const OverviewSalesActivityCard: React.FC<OverviewSalesActivityCardProps>
       
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs23 font-medium text-[#444050]">Overview &amp; Sales Activity</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">{t("Overview & Sales Activity")}</h3>
           <YearSelectionPopup
             selectedYear={selectedYear}
             onSelectYear={setSelectedYear}

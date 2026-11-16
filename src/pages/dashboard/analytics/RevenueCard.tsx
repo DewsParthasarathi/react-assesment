@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import Highcharts from "highcharts";
 import { Chart } from "../../../components/ui/Chart";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 interface RevenueCardProps {
   value?: string;
 }
 
 export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
+  const { t } = useWidgetTranslation();
   const themeMode = useSelector(
     (state: RootState) => state.theme?.mode || "light",
   );
@@ -82,7 +84,7 @@ export const RevenueCard: React.FC<RevenueCardProps> = ({ value = "425K" }) => {
   return (
     <div className="bg-white rounded-[6px] p-4 pb-2 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between h-full">
       <div>
-        <p className="text-fs18 font-medium text-[#a5a3ae]">Revenue</p>
+        <p className="text-fs18 font-medium text-[#a5a3ae]">{t("Revenue")}</p>
         <p className="text-fs25 font-bold text-[#444050] mt-1">{value}</p>
       </div>
       <div className="mt-1">

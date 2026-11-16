@@ -10,6 +10,7 @@ import member2 from "../../../../assets/images/member2.jpg";
 import member3 from "../../../../assets/images/member3.jpg";
 import member4 from "../../../../assets/images/member4.jpg";
 import member5 from "../../../../assets/images/member5.jpg";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface EmployeePerformanceTableCardProps {
   employees?: EmployeePerformance[];
@@ -23,6 +24,7 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
 
   const items = (years && years[selectedYear]) ? years[selectedYear] : employees;
 
@@ -146,7 +148,7 @@ export const EmployeePerformanceTableCard: React.FC<EmployeePerformanceTableCard
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-fs23 font-medium text-[#444050]">Sales Analytics</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">{t("Sales Analytics")}</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}

@@ -2,12 +2,14 @@ import React from "react";
 import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { SessionsData } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface SessionsCardProps {
   data?: SessionsData;
 }
 
 export const SessionsCard: React.FC<SessionsCardProps> = ({ data }) => {
+  const { t } = useWidgetTranslation();
   if (!data) {
     return (
       <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
@@ -80,7 +82,7 @@ export const SessionsCard: React.FC<SessionsCardProps> = ({ data }) => {
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
-        <p className="text-fs19 font-normal text-[#a5a3ae]">sessions</p>
+        <p className="text-fs19 font-normal text-[#a5a3ae]">{t("sessions")}</p>
         <p className="text-fs25 font-semibold text-[#444050] mt-1">{value}</p>
       </div>
       <div className="mt-2 -mx-2 -mb-2">

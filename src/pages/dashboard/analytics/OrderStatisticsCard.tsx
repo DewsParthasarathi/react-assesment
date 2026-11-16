@@ -6,6 +6,7 @@ import { Chart } from "../../../components/ui/Chart";
 import { CustomButton } from "../../../components/ui/CustomButton";
 import { CustomImage } from "../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../components/ui/YearSelectionPopup";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 import electronicIcon from "../../../assets/images/Electronic.svg";
 import fashionIcon from "../../../assets/images/Fashion.svg";
 import decorIcon from "../../../assets/images/Decor.svg";
@@ -44,6 +45,7 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
   const themeMode = useSelector((state: RootState) => state.theme?.mode || "light");
   const isDark = themeMode === "dark";
   const active = years && years[selectedYear] ? years[selectedYear] : { totalSales, totalOrders, growth };
@@ -139,7 +141,7 @@ export const OrderStatisticsCard: React.FC<OrderStatisticsCardProps> = ({
       <div>
         <div className="flex items-center justify-between">
           <h3 className="text-fs19 font-semibold text-[#444050]">
-            Order Statistics
+            {t("Order Statistics")}
           </h3>
           <YearSelectionPopup
             selectedYear={selectedYear}

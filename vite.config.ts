@@ -485,10 +485,8 @@ function mockApiPlugin(): Plugin {
           return;
         }
 
-        // 6.4. POST /api/chat/gemini (Secure Server-Side Gemini AI Proxy)
         if (req.method === "POST" && pathname === "/api/chat/gemini") {
           readJsonBody().then(async (body) => {
-            // Read GEMINI_API_KEY from environment or .env file securely
             let apiKey = process.env.GEMINI_API_KEY;
             if (!apiKey) {
               try {
@@ -496,14 +494,7 @@ function mockApiPlugin(): Plugin {
                 const match = envContent.match(/GEMINI_API_KEY=([^\r\n]+)/);
                 if (match) apiKey = match[1].trim();
               } catch {
-                // Ignore missing .env
               }
-            }
-
-            if (!apiKey) {
-              res.statusCode = 500;
-              res.end(JSON.stringify({ error: "Server Gemini API key is not configured." }));
-              return;
             }
 
             const rawMessages = (body.messages as Array<{ senderId: string; text: string }>) || [];
@@ -511,18 +502,20 @@ function mockApiPlugin(): Plugin {
             const contactName = (body.contactName as string) || "team member";
             const contactRole = (body.contactRole as string) || "colleague";
 
-            // Map conversation history into Gemini format
             const contents = rawMessages.map((m) => ({
               role: m.senderId === "user" ? "user" : "model",
               parts: [{ text: m.text }],
             }));
 
-            // Fallback content if empty
             if (contents.length === 0) {
               contents.push({ role: "user", parts: [{ text: (body.text as string) || "Hello" }] });
             }
 
             try {
+              if (!apiKey) {
+                throw new Error("No Gemini API key configured");
+              }
+
               const requestPayload = {
                 system_instruction: {
                   parts: [
@@ -534,19 +527,20 @@ function mockApiPlugin(): Plugin {
                 contents,
               };
 
-              const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
+              const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 4000);
+
               const apiRes = await fetch(geminiUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(requestPayload),
+                signal: controller.signal,
               });
+              clearTimeout(timeoutId);
 
               if (!apiRes.ok) {
-                const errText = await apiRes.text();
-                console.error("Gemini API error:", errText);
-                res.statusCode = apiRes.status;
-                res.end(JSON.stringify({ error: "Gemini API service error: " + errText }));
-                return;
+                throw new Error(`Gemini API returned status ${apiRes.status}`);
               }
 
               const apiJson = (await apiRes.json()) as {
@@ -556,7 +550,6 @@ function mockApiPlugin(): Plugin {
                 apiJson.candidates?.[0]?.content?.parts?.[0]?.text ||
                 "Got it! I will review this and update our records.";
 
-              // Automatically record response in employee's conversation history
               const data = getDashboardData();
               const now = new Date();
               const timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -576,14 +569,28 @@ function mockApiPlugin(): Plugin {
               res.statusCode = 200;
               res.end(JSON.stringify({ response: aiText, message: aiMsg }));
             } catch (err) {
-              console.error("Failed to proxy Gemini request:", err);
-              const fallbacks = [
+              console.error("Gemini API fallback activated:", err);
+              const fallbacksByRole: Record<string, string[]> = {
+                "Financial Analyst": [
+                  "I'm reviewing the financial statements and quarterly targets now. Everything aligns with our forecast.",
+                  "Got it! Let me cross-check these numbers against our latest revenue ledger and get back to you shortly.",
+                  "Thanks for following up John! The latest expenses and revenue margins are looking steady.",
+                ],
+                "Marketing Manager": [
+                  "Thanks John! The new campaign metrics are trending upwards, I'll send an update shortly.",
+                  "Got it! We're reviewing lead conversion rates and adjusting our ad placements accordingly.",
+                  "Sounds great! Let's align on these campaign targets during our next team review.",
+                ],
+              };
+              const defaultFallbacks = [
                 "Understood, looking into this right now.",
                 "Got it! Let me review this and get back to you shortly.",
                 "Thanks for the update John, I will check the dashboard figures on my end.",
                 "Sounds good! Let's follow up on this during our team sync.",
               ];
-              const fallbackText = fallbacks[Math.floor(Math.random() * fallbacks.length)];
+              const pool = fallbacksByRole[contactRole] || defaultFallbacks;
+              const fallbackText = pool[Math.floor(Math.random() * pool.length)];
+
               const data = getDashboardData();
               const now = new Date();
               const timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });

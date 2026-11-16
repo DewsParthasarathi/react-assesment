@@ -6,6 +6,7 @@ import CustomImage from "../../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import type { SalesStatusData } from "../../../../api/types";
 import moreIcon from "../../../../assets/images/More.svg";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface SalesStatusCardProps {
   data?: SalesStatusData;
@@ -14,6 +15,7 @@ interface SalesStatusCardProps {
 
 export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availableYears = ["2023", "2022"] }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
 
   if (!data) {
     return (
@@ -76,7 +78,7 @@ export const SalesStatusCard: React.FC<SalesStatusCardProps> = ({ data, availabl
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div className="flex items-center justify-between">
-        <h3 className="text-fs23 font-medium text-[#444050]">Sales Status</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">{t("Sales Status")}</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}

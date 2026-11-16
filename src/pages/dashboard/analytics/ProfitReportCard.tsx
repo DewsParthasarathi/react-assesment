@@ -1,6 +1,7 @@
 import React from "react";
 import Highcharts from "highcharts";
 import { Chart } from "../../../components/ui/Chart";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 
 interface ProfitReportCardProps {
   year?: string;
@@ -13,6 +14,7 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
   growth = "14.82%",
   value = "$84,686k",
 }) => {
+  const { t } = useWidgetTranslation();
   const curveData = [8, 62, 66, 10, 52, 22, 46, 72];
 
   const splineOptions: Highcharts.Options = {
@@ -79,7 +81,7 @@ export const ProfitReportCard: React.FC<ProfitReportCardProps> = ({
   return (
     <div className="bg-white rounded-[6px] p-4 border border-[#dbdade]/50 shadow-[0_2px_6px_rgba(47,43,61,0.06)] flex flex-col justify-between">
       <div className="flex flex-col items-start gap-1">
-        <h3 className="text-fs19 font-semibold text-[#444050]">Profit Report</h3>
+        <h3 className="text-fs19 font-semibold text-[#444050]">{t("Profit Report")}</h3>
         <span className="inline-block px-2.5 py-0.5 rounded-[4px] text-fs13 font-medium bg-[#fff1d6] text-[#ffab00]">
           {year}
         </span>

@@ -2,12 +2,14 @@ import React from "react";
 import trophyImg from "../../../../assets/images/trophy.png";
 import { CustomImage } from "../../../../components/ui/CustomImage";
 import type { EcommerceCongratulations } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface CongratulationsCardProps {
   data?: EcommerceCongratulations;
 }
 
 export const CongratulationsCard: React.FC<CongratulationsCardProps> = ({ data }) => {
+  const { isTamil } = useWidgetTranslation();
   const sellerName = data?.sellerName || "Katie!";
   const subtitle = data?.subtitle || "Best seller of the month";
   const salesValue = data?.salesValue || "$48.9k";
@@ -17,7 +19,7 @@ export const CongratulationsCard: React.FC<CongratulationsCardProps> = ({ data }
       <div className="flex flex-col justify-between h-full z-10">
         <div>
           <h2 className="text-fs21 font-bold text-[#444050] tracking-tight">
-            Congratulations {sellerName}
+            {isTamil ? `வாழ்த்துகள் ${sellerName}` : `Congratulations ${sellerName}`}
           </h2>
           <p className="text-fs14 text-[#a5a3ae] mt-1">
             {subtitle}

@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Sidebar } from "./layout-components/Sidebar";
 import { Navbar } from "./layout-components/Navbar";
 
 export const MainLayout: React.FC = () => {
   const location = useLocation();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   const isAppPage =
     location.pathname.startsWith("/apps/chat") ||
     location.pathname.startsWith("/chat") ||
     location.pathname.startsWith("/apps/email") ||
     location.pathname.startsWith("/email");
 
+  useLayoutEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    const frameId = requestAnimationFrame(() => {
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = 0;
+      }
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [location.pathname, location.search]);
+
   return (
     <div className="h-screen bg-[#f8f7fa] flex text-[#32475c] overflow-hidden print:h-auto print:bg-white print:overflow-visible print:block">
       <Sidebar />
 
       <div
+        ref={scrollContainerRef}
         className={`flex-1 flex flex-col min-w-0 h-screen ${
           isAppPage
             ? "overflow-hidden"

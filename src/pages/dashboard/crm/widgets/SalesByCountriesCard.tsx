@@ -10,6 +10,7 @@ import indiaFlag from "../../../../assets/images/India.png";
 import franceFlag from "../../../../assets/images/France.png";
 import belgiumFlag from "../../../../assets/images/belgium.png";
 import chinaFlag from "../../../../assets/images/China.png";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface SalesByCountriesCardProps {
   countries?: CountrySales[];
@@ -23,6 +24,7 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
 
   const items = (years && years[selectedYear]) ? years[selectedYear] : countries;
 
@@ -66,7 +68,7 @@ export const SalesByCountriesCard: React.FC<SalesByCountriesCardProps> = ({
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-fs23 font-medium text-[#444050]">Sales by countries</h3>
+          <h3 className="text-fs23 font-medium text-[#444050]">{t("Sales by countries")}</h3>
           <YearSelectionPopup
             selectedYear={selectedYear}
             onSelectYear={setSelectedYear}

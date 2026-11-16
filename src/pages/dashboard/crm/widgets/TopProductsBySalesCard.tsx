@@ -8,6 +8,7 @@ import phoneIcon from "../../../../assets/images/phone2.svg";
 import watchIcon from "../../../../assets/images/Smart watch.svg";
 import laptopIcon from "../../../../assets/images/Laptop.svg";
 import earphoneIcon from "../../../../assets/images/Earphone.svg";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface TopProductsBySalesCardProps {
   products?: TopProductSales[];
@@ -21,6 +22,7 @@ export const TopProductsBySalesCard: React.FC<TopProductsBySalesCardProps> = ({
   availableYears = ["2023", "2022"],
 }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t, isTamil } = useWidgetTranslation();
 
   const items = (years && years[selectedYear]) ? years[selectedYear] : products;
 
@@ -62,7 +64,13 @@ export const TopProductsBySalesCard: React.FC<TopProductsBySalesCardProps> = ({
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-fs23 font-medium text-[#444050]">
-          Top Products by <span className="text-[#696cff]">Sales</span>
+          {isTamil ? (
+            t("Top Products by Sales")
+          ) : (
+            <>
+              Top Products by <span className="text-[#696cff]">Sales</span>
+            </>
+          )}
         </h3>
         <YearSelectionPopup
           selectedYear={selectedYear}

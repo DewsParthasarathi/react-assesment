@@ -9,6 +9,7 @@ import moreIcon from "../../../../assets/images/More.svg";
 import netProfitIcon from "../../../../assets/images/Net profit.svg";
 import totalIncomeIcon from "../../../../assets/images/Total income.svg";
 import creditCardIcon from "../../../../assets/images/Credit Card.svg";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface EarningReportCardProps {
   data?: EarningReportData;
@@ -17,6 +18,7 @@ interface EarningReportCardProps {
 
 export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, availableYears = ["2023", "2022"] }) => {
   const [selectedYear, setSelectedYear] = useState<string>("2023");
+  const { t } = useWidgetTranslation();
 
   if (!data) {
     return (
@@ -105,7 +107,7 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-fs23 font-medium text-[#444050]">Earning Report</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">{t("Earning Report")}</h3>
         <YearSelectionPopup
           selectedYear={selectedYear}
           onSelectYear={setSelectedYear}
@@ -138,7 +140,7 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-fs17 font-medium text-[#444050] leading-snug">{netProfit.label}</p>
+              <p className="text-fs17 font-medium text-[#444050] leading-snug">{t(netProfit.label)}</p>
               <p className="text-fs15 text-[#a5a3ae] leading-tight">{netProfit.subLabel}</p>
             </div>
           </div>
@@ -160,7 +162,7 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-fs17 font-medium text-[#444050] leading-snug">{totalIncome.label}</p>
+              <p className="text-fs17 font-medium text-[#444050] leading-snug">{t(totalIncome.label)}</p>
               <p className="text-fs15 text-[#a5a3ae] leading-tight">{totalIncome.subLabel}</p>
             </div>
           </div>
@@ -182,7 +184,7 @@ export const EarningReportCard: React.FC<EarningReportCardProps> = ({ data, avai
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-fs17 font-medium text-[#444050] leading-snug">{totalExpenses.label}</p>
+              <p className="text-fs17 font-medium text-[#444050] leading-snug">{t(totalExpenses.label)}</p>
               <p className="text-fs15 text-[#a5a3ae] leading-tight">{totalExpenses.subLabel}</p>
             </div>
           </div>

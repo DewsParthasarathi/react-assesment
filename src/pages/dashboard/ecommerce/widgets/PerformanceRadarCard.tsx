@@ -5,6 +5,7 @@ import Chart from "../../../../components/ui/Chart";
 import type { EcommercePerformance } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import { CustomButton } from "../../../../components/ui/CustomButton";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 const initMore = HighchartsMore as unknown as
   | ((hc: typeof Highcharts) => void)
@@ -28,6 +29,7 @@ export const PerformanceRadarCard: React.FC<PerformanceRadarCardProps> = ({
   selectedYear = "2023",
   onSelectYear,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "performance";
   const earning = data?.earning || "$846.17";
   const sales = data?.sales || "25.7M";
@@ -131,7 +133,7 @@ export const PerformanceRadarCard: React.FC<PerformanceRadarCardProps> = ({
       <div>
         <div className="flex items-center justify-between">
           <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
-            {title}
+            {t(title)}
           </h3>
 
           <YearSelectionPopup

@@ -4,6 +4,7 @@ import walletIcon from "../../../../assets/images/wallet.svg";
 import { CustomButton } from "../../../../components/ui/CustomButton";
 import { CustomImage } from "../../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface SalesSmallCardProps {
   data?: EcommerceMetricSmall;
@@ -18,6 +19,7 @@ export const SalesSmallCard: React.FC<SalesSmallCardProps> = ({
   selectedYear = "2023",
   onSelectYear,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Sales";
   const value = data?.value || "$4,679";
   const growth = data?.growth || "28.14%";
@@ -56,7 +58,7 @@ export const SalesSmallCard: React.FC<SalesSmallCardProps> = ({
       </div>
 
       <div className="mt-3">
-        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{t(title)}</span>
         <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>

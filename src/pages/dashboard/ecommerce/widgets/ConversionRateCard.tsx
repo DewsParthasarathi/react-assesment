@@ -4,6 +4,7 @@ import Chart from "../../../../components/ui/Chart";
 import type { EcommerceConversionRate } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import { CustomButton } from "../../../../components/ui/CustomButton";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface ConversionRateCardProps {
   data?: EcommerceConversionRate;
@@ -18,6 +19,7 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
   selectedYear = "2023",
   onSelectYear,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Conversion Rate";
   const subtitle = data?.subtitle || "Compared to Last Month";
   const rate = data?.rate || "8.72%";
@@ -124,7 +126,7 @@ export const ConversionRateCard: React.FC<ConversionRateCardProps> = ({
         <div className="flex items-start justify-between">
           <div>
             <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
-              {title}
+              {t(title)}
             </h3>
             <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
           </div>

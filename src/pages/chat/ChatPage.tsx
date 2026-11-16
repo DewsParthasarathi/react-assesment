@@ -14,7 +14,8 @@ import ChatSidebar from "./components/ChatSidebar";
 export const ChatPage: React.FC = () => {
   const [activeContactId, setActiveContactId] = useState<string>("2");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAiTyping, setIsAiTyping] = useState(false);
+  const [loadingContacts, setLoadingContacts] = useState<Record<string, boolean>>({});
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showMobileChat, setShowMobileChat] = useState(false);
 
   const { data: contacts = [] } = useChatContactsQuery();
@@ -40,15 +41,18 @@ export const ChatPage: React.FC = () => {
   };
 
   const handleSendMessage = (text: string) => {
-    if (!text.trim() || isAiTyping) return;
+    const targetContactId = activeContact.id;
+    if (!text.trim() || loadingContacts[targetContactId]) return;
+
+    setErrorMessage(null);
 
     sendMessageMutation.mutate({
-      contactId: activeContact.id,
+      contactId: targetContactId,
       senderId: "user",
       text,
     });
 
-    setIsAiTyping(true);
+    setLoadingContacts((prev) => ({ ...prev, [targetContactId]: true }));
     const conversationHistory = [
       ...messages.map((m) => ({ senderId: m.senderId, text: m.text })),
       { senderId: "user", text },
@@ -56,19 +60,26 @@ export const ChatPage: React.FC = () => {
 
     sendGeminiMutation.mutate(
       {
-        contactId: activeContact.id,
+        contactId: targetContactId,
         contactName: activeContact.name,
         contactRole: activeContact.role,
         messages: conversationHistory,
         text,
       },
       {
+        onError: (err: unknown) => {
+          const message =
+            err instanceof Error ? err.message : "Failed to receive response.";
+          setErrorMessage(message);
+        },
         onSettled: () => {
-          setIsAiTyping(false);
+          setLoadingContacts((prev) => ({ ...prev, [targetContactId]: false }));
         },
       },
     );
   };
+
+  const isCurrentContactLoading = Boolean(loadingContacts[activeContact.id]);
 
   return (
     <div className="w-full h-full flex-1 min-h-0 flex flex-col">
@@ -84,6 +95,7 @@ export const ChatPage: React.FC = () => {
             onSelectContact={handleSelectContact}
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
+            loadingContacts={loadingContacts}
           />
         </div>
 
@@ -96,15 +108,27 @@ export const ChatPage: React.FC = () => {
             contact={activeContact}
             onBackToContacts={() => setShowMobileChat(false)}
           />
+          {errorMessage && (
+            <div className="mx-6 mt-4 p-3 bg-red-50 border border-red-200 text-red-700 text-fs14 rounded-[6px] flex items-center justify-between">
+              <span>{errorMessage}</span>
+              <button
+                type="button"
+                onClick={() => setErrorMessage(null)}
+                className="text-red-500 hover:text-red-700 font-bold ml-3 cursor-pointer"
+              >
+                &times;
+              </button>
+            </div>
+          )}
           <ChatMessageList
             messages={messages}
             contact={activeContact}
-            isAiTyping={isAiTyping}
+            isAiTyping={isCurrentContactLoading}
           />
 
           <ChatMessageInput
             onSendMessage={handleSendMessage}
-            disabled={isAiTyping}
+            disabled={isCurrentContactLoading}
           />
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table, type TableColumn } from "../../../components/ui/Table";
 import { Tabs, type TabItem } from "../../../components/ui/Tabs";
 import { CustomImage } from "../../../components/ui/CustomImage";
+import { useWidgetTranslation } from "../../../hooks/useWidgetTranslation";
 import chromeIcon from "../../../assets/images/Chrome.svg";
 import safariIcon from "../../../assets/images/Safari.svg";
 import firefoxIcon from "../../../assets/images/Firefox_logo,_2019.svg";
@@ -23,6 +24,7 @@ export interface AnalyticsRow {
 
 export const BrowserAnalyticsCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<AnalyticsTab>("BROWSER");
+  const { t } = useWidgetTranslation();
 
   const browserRows: AnalyticsRow[] = [
     {
@@ -233,7 +235,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
   const tabItems: TabItem[] = [
     {
       id: "BROWSER",
-      label: "BROWSER",
+      label: t("BROWSER"),
       content: (
         <Table<AnalyticsRow>
           columns={getColumns("BROWSER")}
@@ -244,7 +246,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
     },
     {
       id: "OPERATING SYSTEM",
-      label: "OPERATING SYSTEM",
+      label: t("OPERATING SYSTEM"),
       content: (
         <Table<AnalyticsRow>
           columns={getColumns("OPERATING SYSTEM")}
@@ -255,7 +257,7 @@ export const BrowserAnalyticsCard: React.FC = () => {
     },
     {
       id: "COUNTRY",
-      label: "COUNTRY",
+      label: t("COUNTRY"),
       content: (
         <Table<AnalyticsRow>
           columns={getColumns("COUNTRY")}

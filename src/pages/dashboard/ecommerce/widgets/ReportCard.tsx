@@ -4,6 +4,7 @@ import paypalIcon from "../../../../assets/images/Paypal.svg";
 import { CustomButton } from "../../../../components/ui/CustomButton";
 import { CustomImage } from "../../../../components/ui/CustomImage";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface ReportCardProps {
   data?: EcommerceReport;
@@ -20,6 +21,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({
   onSelectYear,
   isInsideSharedContainer = false,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Report";
   const subtitle = data?.subtitle || "Monthly Avg $45,578k";
   const items = data?.items || [
@@ -55,7 +57,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({
       <div className="flex items-start justify-between">
         <div>
           <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
-            {title}
+            {t(title)}
           </h3>
           <p className="text-fs13 text-[#a5a3ae] mt-0.5">{subtitle}</p>
         </div>

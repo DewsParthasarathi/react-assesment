@@ -2,12 +2,14 @@ import React from "react";
 import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { GeneratedLeadsData } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface GeneratedLeadsCardProps {
   data?: GeneratedLeadsData;
 }
 
 export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) => {
+  const { t } = useWidgetTranslation();
   if (!data) {
     return (
       <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full animate-pulse">
@@ -67,7 +69,7 @@ export const GeneratedLeadsCard: React.FC<GeneratedLeadsCardProps> = ({ data }) 
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
-        <h3 className="text-fs23 font-medium text-[#444050]">{title}</h3>
+        <h3 className="text-fs23 font-medium text-[#444050]">{t(title)}</h3>
         <p className="text-fs14 font-normal text-[#a5a3ae] mt-0.5">{subtitle}</p>
       </div>
 

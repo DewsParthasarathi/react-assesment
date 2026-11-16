@@ -2,6 +2,7 @@ import React from "react";
 import type { EcommerceMetricSmall } from "../../../../api/types";
 import YearSelectionPopup from "../../../../components/ui/YearSelectionPopup";
 import { CustomButton } from "../../../../components/ui/CustomButton";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface TransactionsSmallCardProps {
   data?: EcommerceMetricSmall;
@@ -16,6 +17,7 @@ export const TransactionsSmallCard: React.FC<TransactionsSmallCardProps> = ({
   selectedYear = "2023",
   onSelectYear,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Transactions";
   const value = data?.value || "$14,854";
   const growth = data?.growth || "17.53%";
@@ -61,7 +63,7 @@ export const TransactionsSmallCard: React.FC<TransactionsSmallCardProps> = ({
       </div>
 
       <div className="mt-3">
-        <span className="text-fs15 font-medium text-[#6f6b7d]">{title}</span>
+        <span className="text-fs15 font-medium text-[#6f6b7d]">{t(title)}</span>
         <div className="text-fs23 font-bold text-[#444050] mt-0.5 leading-tight">
           {value}
         </div>

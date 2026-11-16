@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store";
 import { logout } from "../../store/slices/authSlice";
 import { toggleTheme } from "../../store/slices/themeSlice";
+import { toggleLanguage } from "../../store/slices/languageSlice";
 import { shuffleDashboard, type DashboardType } from "../../store/slices/shuffleSlice";
 import { getMemberAvatar } from "../../utils/userAvatars";
 
@@ -48,6 +49,15 @@ export const Navbar: React.FC = () => {
 
   const toggleDarkMode = () => {
     dispatch(toggleTheme());
+  };
+
+  const currentLanguage = useSelector(
+    (state: RootState) => state.language?.language || "en",
+  );
+  const isTamil = currentLanguage === "ta";
+
+  const handleToggleLanguage = () => {
+    dispatch(toggleLanguage());
   };
 
   const handleLogout = () => {
@@ -125,9 +135,15 @@ export const Navbar: React.FC = () => {
 
       <div className="flex items-center gap-1.5 sm:gap-2">
         <CustomButton
-          aria-label="Change Language"
-          title="Language"
+          aria-label={isTamil ? "Switch to English" : "Translate to Tamil"}
+          title={isTamil ? "Switch to English" : "Translate to Tamil"}
           variant="icon"
+          onClick={handleToggleLanguage}
+          className={
+            isTamil
+              ? "text-[#696cff] bg-[#e7e7ff]/30 dark:bg-[#696cff]/20"
+              : ""
+          }
         >
           <svg
             className="w-5 h-5"

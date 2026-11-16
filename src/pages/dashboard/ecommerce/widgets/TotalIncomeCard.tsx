@@ -2,6 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommerceTotalIncome } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface TotalIncomeCardProps {
   data?: EcommerceTotalIncome;
@@ -12,6 +13,7 @@ export const TotalIncomeCard: React.FC<TotalIncomeCardProps> = ({
   data,
   isInsideSharedContainer = false,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Total income";
   const subtitle = data?.subtitle || "Yearly Sales Overview";
   const months = data?.months || [
@@ -119,7 +121,7 @@ export const TotalIncomeCard: React.FC<TotalIncomeCardProps> = ({
     <div className={containerClass}>
       <div>
         <h3 className="text-fs19 font-bold text-[#444050] tracking-tight">
-          {title}
+          {t(title)}
         </h3>
         <p className="text-fs14 text-[#a5a3ae] mt-0.5">{subtitle}</p>
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import Chart from "../../../../components/ui/Chart";
 import type { EcommerceExpensesComparison } from "../../../../api/types";
+import { useWidgetTranslation } from "../../../../hooks/useWidgetTranslation";
 
 interface ExpensesComparisonCardProps {
   data?: EcommerceExpensesComparison;
@@ -10,6 +11,7 @@ interface ExpensesComparisonCardProps {
 export const ExpensesComparisonCard: React.FC<ExpensesComparisonCardProps> = ({
   data,
 }) => {
+  const { t } = useWidgetTranslation();
   const title = data?.title || "Expenses";
   const value = data?.value || "$84.7K";
   const growth = data?.growth || "28.14%";
@@ -84,7 +86,7 @@ export const ExpensesComparisonCard: React.FC<ExpensesComparisonCardProps> = ({
   return (
     <div className="bg-white rounded-[6px] p-4 shadow-[0_2px_4px_rgba(165,163,174,0.1)] border border-[#dbdade]/50 flex flex-col justify-between h-full">
       <div>
-        <span className="text-fs17 font-semibold text-[#444050]">{title}</span>
+        <span className="text-fs17 font-semibold text-[#444050]">{t(title)}</span>
       </div>
 
       <div className="flex items-end justify-between flex-1 mt-1">
